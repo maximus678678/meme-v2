@@ -1,0 +1,475 @@
+{
+  "chapter": 6,
+  "title": "In Chains",
+  "start": "c6_start",
+  "nodes": {
+    "c6_start": {
+      "text": [
+        "The stars come back wrong — smeared, then snapping into a sky full of guns.\n\nInterdiction field. The Resolute Dawn slams out of hyperspace like a bird hitting a window, and the Vandos Reach is waiting for her: two Separatist dreadnoughts and a screen of frigates arranged with horrible, patient geometry around the exact point where the corridor narrows. Not an ambush. A harvest. The relief column staggers out of the tunnel behind you, fat and slow, straight into the basket.",
+        {"if": "dunne == \"exposed\"", "text": "And you understand, in the half-second before the first salvo, the bill you are being handed: Dunne sold this corridor weeks before you ever put binders on him. You caught the traitor. You were always going to be too late for this."},
+        {"if": "dunne == \"blackmailed\"", "text": "And you understand, in the half-second before the first salvo, exactly whose merchandise this is. Old stock — sold before you put your puppet on his leash. You've been so proud of the intelligence you've been feeding them that you forgot they were still digesting the real thing."},
+        {"if": "dunne == \"dead\"", "text": "And you understand, in the half-second before the first salvo, that you killed the wrong end of the snake. Dunne's last sale was already delivered. Dead men's merchandise still ships."},
+        {"if": "dunne == \"escaped\"", "text": "And you understand, in the half-second before the first salvo, that this is Dunne's parting gift — the last sale he closed before Raxus, gift-wrapped with your name on it."},
+        "The first salvo takes the forward shields to forty percent. The second takes the hyperdrive. Havoc's voice on the command channel, flat and fast: \"Boarding craft inbound, ${sir}. Dreadnought's launching shuttles, not missiles. They want the Dawn whole.\"\n\nThey want something on the Dawn whole. You have a terrible suspicion it's you."
+      ],
+      "choices": [
+        {
+          "text": "Hold the bridge. Fight the boarding action deck by deck, and make them pay for every meter.",
+          "effects": ["saber %+ 10", "war_score %+ 5"],
+          "goto": "c6_battle_fight"
+        },
+        {
+          "text": "The ship is lost — the people aren't. Run the evacuation yourself: pods, gunships, the relief column scattering on your order.",
+          "effects": ["command %+ 10", "havoc_rel %+ 15"],
+          "goto": "c6_battle_evac"
+        },
+        {
+          "text": "Signal the dreadnought. Offer them the only cargo they actually came for — you — for the column's safe passage.",
+          "effects": ["dark %- 5", "havoc_rel %+ 10", "master_rel %+ 5"],
+          "goto": "c6_battle_surrender"
+        }
+      ]
+    },
+    "c6_battle_fight": {
+      "text": [
+        "You meet them at the breach points, and for two hours the Resolute Dawn is the most expensive real estate in the Reach.\n\nYou hold the ventral corridor with a scratch platoon while the boarding shuttles disgorge B2s in waves. Your blade does not stop moving. Twice they push to the bridge approach; twice you throw them back down the lift shafts in a storm of sparks. The naval crew fight like furies because you are fighting beside them, and somewhere in the noise you realize you are smiling, and you put that thought away to be afraid of later.\n\nBut it's arithmetic, not courage, and the arithmetic was settled before the first shot. The Dawn's guns go silent one battery at a time. The droids do not get tired, and you do.",
+        "What you buy with those two hours is everything that matters: the pods get out. The gunships get out. The relief column scatters into the deep Reach with Havoc's transports riding herd, because you held the hangar deck open at the cost of holding anything else.\n\nThe last thing you hear on the command channel, through the breaking static, is Havoc — no panic in it, just iron: \"This isn't done, ${sir}. The 117th doesn't write off the living. Whatever they want you for — stay alive and stay difficult. We'll come.\"\n\nThen the bridge blast doors fail, and the wave that comes through is not droids."
+      ],
+      "goto": "c6_taken"
+    },
+    "c6_battle_evac": {
+      "text": [
+        "You give the order that no commander wants and every good one keeps loaded: abandon ship.\n\nAnd then you make it mean something. You stand in the hangar control bay with the deck shaking apart under you and you run the evacuation like a battle, because it is one: pods sequenced between salvos, gunships slingshotting out of the blind spot you order the helm to keep carving, the relief column scattering on vectors you assign one freighter at a time. The Dawn dies around you in slow motion, and you spend her death like currency, buying lives with every minute she holds together.\n\nHavoc fights you, of course. He stands in front of you with his helmet off so you can see exactly what he thinks of leaving you aboard. \"Last pod, ${sir}. That's you.\"",
+        "It isn't you, and you both know it. The interdictor's tractors have the Dawn by the spine already; whoever stays to fly her last hour is staying. You make it an order. You make it the kind of order he can't eat.\n\nHe puts the helmet on, which is how he hides what his face is doing, and his voice comes out flat and forever: \"Acknowledged. Stay alive and stay difficult, ${sir}. The 117th doesn't write off the living.\"\n\nThe pods get out. All of them. You watch the last one burn away toward the scattered column, alone on a dying bridge, and you find you would not trade the math for anything they could do to you now.\n\nIt takes them another hour to cut their way in. You spend it deleting the code books and drinking the captain's brandy, and you are not even slightly ashamed of either."
+      ],
+      "goto": "c6_taken"
+    },
+    "c6_battle_surrender": {
+      "text": [
+        "You open a channel to the dreadnought, and you make the only trade on the table.\n\n\"Separatist commander. You came for the Dawn's flag officer. Recall your boarding craft and let the column run, and I'll walk aboard your shuttle myself. Or spend a thousand droids prying me out of a dying ship while every freighter in this corridor scatters beyond your picket. Your employers will ask which you chose.\"\n\nThe pause is long enough to count heartbeats. Then the boarding shuttles bank away, and a voice you will come to know very well indeed says, amused, through the static: \"A Jedi who negotiates like a smuggler. Oh, they undersold you. Done.\"",
+        "Havoc takes it the way he'd take a round to the chestplate: it staggers him, and then he's still standing and the wound is just information. \"This is a bad trade, ${sir},\" he says, quietly, off the command channel. \"You're worth more than a grain column. To the war and to the battalion. Permission to refuse the order.\"\n\nDenied. You keep your voice level while you say it, which is the hardest fight of the day.\n\nThe column runs. The pods and gunships go with it, every soul accounted for, and you stand alone in the Dawn's hangar with your saber surrendered to your own belt and watch the Separatist shuttle settle onto the deck like a crow.\n\nHavoc's last transmission arrives text-only, against regulations, unsigned against none: STAY ALIVE. STAY DIFFICULT. THE 117TH DOESN'T WRITE OFF THE LIVING."
+      ],
+      "goto": "c6_taken"
+    },
+    "c6_taken": {
+      "text": [
+        "She comes down the shuttle ramp without guards, which is its own message.\n\nSev'ara Nyx, Dooku's acolyte, dressed for boarding actions in dark armorweave, twin sabers riding her hips like punctuation. The tomb world hangs between you for a moment — the vault, the blades, the question she left in your ear like a splinter. Her pale tattooed face is unreadable, and then it isn't: she smiles, with what appears to be entirely genuine pleasure.\n\n\"Commander ${name}. I asked them for you alive and unbroken, and look — they've managed at least one.\" She takes in the burning deck, the dead droids, the whole ruinous cost of you, and nods as if confirming a theory. \"I've read everything the Republic publishes about you, you know. It's all wrong in the most interesting ways.\"",
+        {"if": "nyx_rel >= 25", "text": "\"You've been in my thoughts since the tomb,\" she says, simply, as if reporting weather. \"I don't imagine that flatters you. It isn't meant to. It's just true, and I've decided to only tell you true things. You'll see why.\""}
+      ],
+      "choices": [
+        {
+          "text": "Ignite your blade. If she wants you, she can earn you.",
+          "effects": ["saber %+ 10", "nyx_rel %+ 5"],
+          "goto": "c6_wake"
+        },
+        {
+          "text": "Ignite your blade — and actually hurt her before they take you.",
+          "if": "saber >= 60",
+          "effects": ["saber %+ 10", "nyx_rel %+ 10", "set wounded_nyx true"],
+          "goto": "c6_wake"
+        },
+        {
+          "text": "Hand over your lightsaber with full ceremony, like a Knight surrendering a fortress. Dignity is the last ground you hold.",
+          "effects": ["command %+ 5", "nyx_rel %+ 10"],
+          "goto": "c6_wake"
+        },
+        {
+          "text": "Say nothing. Give her nothing. Let her wonder which reports were wrong.",
+          "effects": ["guile %+ 10"],
+          "goto": "c6_wake"
+        }
+      ]
+    },
+    "c6_wake": {
+      "text": [
+        "You wake in a room that is insultingly comfortable.\n\nNot a cell — quarters. A bunk with actual bedding, a refresher, a viewport showing the long blue throat of hyperspace. The ship around you thrums with capital-ship gravity: the Penumbral, you'll learn, Nyx's own command. Your wounds have been treated, well, by someone. Your saber is gone. And laid over everything like deep water is the flat, deadened pressure of a Force suppression field — the galaxy gone suddenly hard of hearing. You reach by reflex for the currents you've swum in since you were four years old, and find a wall.",
+        {"if": "wounded_nyx", "text": "On the table beside the bunk, someone has left a single item: a strip of burned armorweave from her shoulder, where your blade touched her on the hangar deck. No note. The message is perfectly clear anyway: well struck, and look how little it changed."},
+        {"if": "holocron == \"kept\"", "text": "And on the table, impossibly, sits the holocron.\n\nUnwrapped. Patient. Theirs now, you'd assumed — salvaged from your sea chest by droids cataloguing the Dawn's corpse. Instead it's here, returned to arm's reach like a borrowed book. The whisper sounds different inside the suppression field — thinner, but closer, like a voice through a wall pressing its mouth to the crack: Interesting captors, child. She gave me back to you. Ask yourself what your Council would have done."},
+        "No interrogation comes. No drugs, no probes, no theatrical menace. Day one passes, and a silent KX droid brings meals that are better than Republic field rations by a margin you find vaguely offensive. Day two. Day three. They are letting you rest, which is far more frightening than the alternative, because it means she is in no hurry at all.\n\nOn the fourth day, the droid brings something else: a dinner invitation, handwritten, actual ink.\n\nThe lie they told you about me is that I will lie to you. Come and check. — S.N."
+      ],
+      "goto": "c6_meal_1"
+    },
+    "c6_meal_1": {
+      "text": [
+        "Dinner is served in an observation gallery under a ceiling of cold stars, and there are exactly two chairs, no guards, and no binders.\n\n\"Rules,\" Nyx says, pouring something amber into your glass. \"I will never lie to you. Not once, the entire time you're aboard. When you catch me wrong — and you'll try, you're the type — it will be because I was wrong, not because I lied. In exchange, you don't pretend you're not listening. That's all. That's the whole cage.\"\n\nShe slides a datapad across the table with the first course. \"A gift. Kamino production invoices, third quarter, cross-indexed against Senate casualty disclosures. The Republic reports clone losses by unit readiness, did you know that? Not by men. A battalion at sixty percent strength is 'degraded.' The forty percent have no other line item anywhere in the budget of the government they died for.\"",
+        "You check the documents, because of course you do. You'll check everything she gives you for weeks, hunting the forgery, and the horror is that you will not find one.\n\n\"Your Captain Havoc keeps a tally on his vambrace,\" she says, and watches you go still. \"Yes, I do my reading. Tell me, Commander — in the entire Republic, every ministry, every committee of that Senate you nearly died defending last month — can you name one other place where those men are counted as men?\"\n\nThe suppression field hums. The stars don't help. She waits, and lets the true thing do its work."
+      ],
+      "choices": [
+        {
+          "text": "Engage her honestly: the count is shameful, and shame is why you fight to end the war — not reason to lose it.",
+          "effects": ["nyx_rel %+ 15"],
+          "goto": "c6_meal_2"
+        },
+        {
+          "text": "Counter-attack: ask how many beings her droids counted on the worlds the Confederacy has burned.",
+          "effects": ["nyx_rel %+ 10", "force %+ 5"],
+          "goto": "c6_meal_2"
+        },
+        {
+          "text": "Eat in silence. Give her the audience she demanded and nothing else.",
+          "effects": ["guile %+ 5", "nyx_rel %+ 5"],
+          "goto": "c6_meal_2"
+        },
+        {
+          "text": "\"You're right.\" Say it plainly, and watch what she does with a Jedi who doesn't flinch from true things.",
+          "effects": ["nyx_rel %+ 15", "dark %+ 10"],
+          "goto": "c6_meal_2"
+        }
+      ]
+    },
+    "c6_meal_2": {
+      "text": [
+        "The dinners become the architecture of your captivity. Every third night, two chairs, cold stars, true things.\n\nShe never raises her voice. She never touches doctrine you can dismiss. She works the seams instead — the places where you've already bled. \"Recite it for me,\" she says one night. \"There is no emotion, there is peace. Now tell me about the hangar where your captain reads his lists of the dead. Was that peace? When the names ran out and the silence started — what was the Order's word for the thing in your chest? Because they do have a word for it, Commander. The word is flaw.\"\n\n\"The Code took your grief and called it a failure of discipline. Took your love and called it attachment. Took your anger at two hundred and six murdered men and called it a door to the dark. Every honest thing you have ever felt, they taught you to report like a malfunction.\" She refills your glass, unhurried. \"I'm not asking you to hate them. I'm asking you to notice that you already grieve like one of us, and the only people who ever punished you for it wear your uniform.\"",
+        {"if": "master_rel >= 50", "text": "You hold Master Venn against the tide like a lamp in a doorway — her dry voice, her two raised fingers, awake now and watching. Whatever the Order's failures are, they also made that woman. Nyx sees you do it, and does not interfere. \"Good,\" she says softly. \"Hold on to the one who was kind to you. I'd have given anything for one of those. Remember that I said that.\""},
+        {"if": "dark >= 50", "text": "The worst part is the relief. Somewhere in the third week you stop preparing rebuttals and start listening, and it feels like taking off armor that no longer fits — which is, you note distantly, exactly what it is."}
+      ],
+      "goto": "c6_days"
+    },
+    "c6_days": {
+      "text": [
+        "Weeks. The Penumbral makes port twice — you feel the gravity shifts — and runs dark and deep between them. Your days acquire a rhythm that horrifies you precisely because it doesn't: meals, exercise, a library access she granted unasked, the dinners. As a gesture of trust she has the suppression field lowered during them — \"a Jedi who can feel the room lies less,\" she says — and the Force floods back each time like blood into a sleeping limb, and each time it costs you more to feel it taken away again.",
+        "You map everything, because you are still a soldier: the field generator's hum cycling at shift change, the KX droid's maintenance window, the guard rotation — organics, not droids, on her personal deck, and they fear her with a flavor you file away. Three doors and one hangar between you and a courier skiff. You catalogue it all nightly, and nightly you notice the catalogue getting shorter, the way a prayer does when you've stopped meaning it.",
+        {"if": "holocron == \"kept\"", "text": "The holocron has opinions about all of it. She is not lying to you, it observes, which you already knew and wish you didn't. The technique is flawless anyway. True bricks, child — watch what shape the house turns out to be. From it, this is practically a confession of love."},
+        "A choice ripens. The maintenance window, the field's shift-change stutter, the skiff. The pieces are all there — risky, but real. Or you can keep listening, keep mapping, and wait for a better door. The trouble with waiting aboard this ship is that you've started to suspect the better door is the one she's building, and it doesn't lead to the hangar."
+      ],
+      "choices": [
+        {
+          "text": "Go. Tonight, at shift change. You've waited long enough to know the cage by heart.",
+          "goto": "c6_attempt_plan"
+        },
+        {
+          "text": "Wait. Keep listening. Learn what she actually wants — knowing what listening is costing you.",
+          "effects": ["nyx_rel %+ 10", "dark %+ 5"],
+          "goto": "c6_truth_2"
+        }
+      ]
+    },
+    "c6_attempt_plan": {
+      "text": "You spend the day being a model prisoner, which is to say, a loaded weapon at rest.\n\nThe pieces: the suppression field stutters for nine seconds at shift change while the generators hand off. The KX droid docks for maintenance at the same hour, leaving the corridor cameras on a loop any half-decent slicer could stretch. The guards on this deck are organic, alert, and armed — but they are also creatures of rotation, and rotations are clocks, and clocks can be read.\n\nThree doors. One hangar. One skiff.\n\nHow do you crack the first door?",
+      "choices": [
+        {
+          "text": "The nine seconds. When the field stutters, reach through it — take the guards' minds at the handoff and walk out through their courtesy.",
+          "goto": "c6_att_force"
+        },
+        {
+          "text": "The droid's maintenance dock shares a junction with your door circuit. Slice it with the stylus you palmed from the library terminal weeks ago.",
+          "goto": "c6_att_guile"
+        },
+        {
+          "text": "The evening guard carries his vibroblade on the wrong hip for his draw. Take it, take him, take the corridor — speed over subtlety.",
+          "goto": "c6_att_saber"
+        }
+      ]
+    },
+    "c6_att_force": {
+      "text": [
+        "Shift change. The field's hum climbs toward its handoff stutter, and you sit in meditation posture facing the door, empty as a drawn bow.\n\nThe stutter hits, and the Force comes back like a wave through a broken seawall — nine seconds of the whole singing galaxy. You pour everything into the narrow thing you need: two minds on the far side of the door, tired, mid-sentence, unguarded.",
+        {"if": "force >= 55", "text": "They open the door for you. They check the corridor for you. One of them walks you to the junction with the absent courtesy of a man escorting a colleague, and goes on believing it for exactly as long as you need him to. You are through the second door before the field re-establishes, and the deadened silence that crashes back down cannot take back what it already gave you: position, momentum, and a corridor with no alarms in it."},
+        {"if": "force < 55", "text": "Nine seconds is so little time. The guards' minds bend — and hold. You hear boots, the door slams its bolts, and the field comes back down like a coffin lid with you still inside it. Within a minute the corridor is full of soldiers who were clearly briefed for exactly this, and you note, with a connoisseur's bitterness, that they are not even rough about it. Standing orders. Hers."}
+      ],
+      "choices": [
+        {
+          "text": "Move — second door, the junction, the hangar.",
+          "if": "force >= 55",
+          "effects": ["force %+ 10"],
+          "goto": "c6_run"
+        },
+        {
+          "text": "Stand down before someone gets hurt for nothing.",
+          "if": "force < 55",
+          "effects": ["set tried_escape true"],
+          "goto": "c6_caught"
+        }
+      ]
+    },
+    "c6_att_guile": {
+      "text": [
+        "The stylus took three weeks to acquire and two to modify, charging head sliced open, contacts re-bent against the refresher mirror's frame. It is the single shabbiest piece of slicing equipment you have ever staked a life on.\n\nAt the maintenance hour you crack the access panel beside your door — four screws, loosened across many patient nights — and go into the junction circuit by feel, the way Patch taught you in another lifetime: don't beat the lock, convince the lock it already opened.",
+        {"if": "guile >= 55", "text": "The door sighs open onto an empty, looping-camera corridor, and you become nobody: a maintenance rhythm, a shadow between rotations. You'd mapped the guards' clock for weeks and the clock holds. First door. Second. At the junction you ride the KX droid's own docking signal through the security handshake, and the third door opens believing you are scheduled. The hangar lies beyond, dark and close enough to taste."},
+        {"if": "guile < 55", "text": "The junction takes the handshake, hesitates — and asks a question your shabby stylus cannot answer. You feel the counter-slice ripple back down the line and know, with flat professional certainty, that the system was waiting for you: a honeypot circuit, laid in her unhurried way like everything else aboard. The door opens, and it's full of guards. They confiscate the stylus with something close to respect."}
+      ],
+      "choices": [
+        {
+          "text": "Through the third door. The hangar.",
+          "if": "guile >= 55",
+          "effects": ["guile %+ 10"],
+          "goto": "c6_run"
+        },
+        {
+          "text": "Surrender the field. This round is hers.",
+          "if": "guile < 55",
+          "effects": ["set tried_escape true"],
+          "goto": "c6_caught"
+        }
+      ]
+    },
+    "c6_att_saber": {
+      "text": [
+        "The evening guard's vibroblade rides his left hip, and he draws across his body, and that half-second has been the whole plan for a week.\n\nWhen he brings the meal tray you are simply not where prisoners stand. The tray goes one way, the blade comes free into your hand like it missed you, and the guard is down — alive, you make sure of it, some debts you refuse to take on — before his partner finishes turning. The partner is better. The corridor fight is fast and ugly and silent, vibroblade against stun baton under the looping cameras, and you win it the way you've won everything since Jabiim: because your body learned war faster than your conscience could object.",
+        {"if": "saber >= 55", "text": "Two doors fall to stolen codes off the guards' armor. At the third a response team meets you, four of them, and what happens in that junction is the reason her soldiers will speak of you in the mess for the rest of the cruise: a Jedi with no Force and a borrowed knife, taking apart four armed professionals like a drill instructor disappointed in their footwork. You leave them breathing. The hangar door opens on darkness and the smell of cold fuel."},
+        {"if": "saber < 55", "text": "Two doors fall. At the third, a response team meets you — four of them, fresh, in armor, with stun weapons and all the time in the world, against one exhausted Jedi with no Force and a borrowed knife. You hurt them. It isn't enough. The deck comes up to meet you wrapped in blue stun-fire, and your last coherent thought is professional irritation at how quickly they arrived. Standing orders. Hers."}
+      ],
+      "choices": [
+        {
+          "text": "Into the hangar, before the next rotation.",
+          "if": "saber >= 55",
+          "effects": ["saber %+ 10"],
+          "goto": "c6_run"
+        },
+        {
+          "text": "Down, in stun-fire and defeat.",
+          "if": "saber < 55",
+          "effects": ["set tried_escape true"],
+          "goto": "c6_caught"
+        }
+      ]
+    },
+    "c6_run": {
+      "text": [
+        "The hangar is a cathedral of sleeping metal, and the courier skiff sits where your weeks of mapping promised: fueled, prepped, pointed at the void. Your hands move through the cold-start sequence while your heart counts the seconds to the next rotation.\n\nThe problem reveals itself on the nav board, in cool Separatist blue.\n\nThe Penumbral is eleven hours deep in an uncharted hyperlane. The skiff's astromech holds exactly one plotted course: back along the lane to a Separatist depot. Real space, if you drop early, is the Vandos deep — no relay, no traffic, three weeks of rations, and a transponder every Confederacy picket in the sector knows by heart. Escape is right here in your hands, and it is a coin flip with the void on one side.",
+        "Behind you, unhurried bootsteps. One set.\n\nNyx leans in the hangar doorway, unarmed, arms crossed, and the look on her face is — this is the unforgivable part — delight. \"Eleven hours of lane, three weeks of rations, and a flagged transponder,\" she says. \"You knew, and you came anyway. I have soldiers who wouldn't.\" She steps aside, leaving your path to the skiff entirely clear. \"So choose. I won't stop you, and that's not a trick — it's the lesson. I keep telling you, Commander: the only cage on this ship that can actually hold you is the one you're flying it through.\""
+      ],
+      "choices": [
+        {
+          "text": "Launch. The void is an honest enemy, which is more than anyone aboard this ship can say.",
+          "effects": ["nyx_rel %- 15"],
+          "goto": "c6_alone_1"
+        },
+        {
+          "text": "Step back from the skiff. Not because she won — because dying in the deep proves nothing to anyone.",
+          "effects": ["nyx_rel %+ 15", "dark %+ 10", "set tried_escape true"],
+          "goto": "c6_truth_2"
+        }
+      ]
+    },
+    "c6_caught": {
+      "text": [
+        "They return you to your quarters with bruises, professional courtesy, and no punishment whatsoever, which you eventually understand is the punishment.\n\nNyx comes at the dinner hour, alone, and pours two glasses as if nothing has happened, and then — worse — talks about what happened with the warm specificity of a duelist reviewing a bout she enjoyed. The handoff stutter. The camera loop. The guard's wrong-hipped blade. She knew every piece of your plan, has known for weeks, and let you run it anyway.\n\n\"Why?\" is the only question worth asking, so you ask it.",
+        "\"Because I needed you to learn what your Order never let you find out,\" she says. \"What you do when no one is coming to save you and the rules are gone. Now we both know: you go through the wall. No tears, no bargaining, no waiting for the Council's permission — through the wall.\" She lifts her glass to you, and the gesture is infuriatingly free of mockery. \"I was the same. The night the Order's transport left me at the AgriCorps dock, I broke my hand on the hatch. Thirteen years old, hitting a starship. Good. I'd have worried if you didn't try.\"\n\nShe leaves the field down, that night, for the first time — all night. Trust, or the appearance of it, laid across your shoulders like a borrowed coat. You lie awake in the returned vastness of the Force and hate, with great precision, how much it feels like a gift."
+      ],
+      "effects": ["nyx_rel %+ 10"],
+      "goto": "c6_truth_2"
+    },
+    "c6_alone_1": {
+      "text": [
+        "You launch.\n\nThe skiff drops from the Penumbral's belly into the blue, rides the lane four hours back the way you came, and then you do the maths one final time and drop early into the black of the Vandos deep — because the depot means recapture and the deep only means probably dying, and you have had weeks to discover exactly how much that distinction is worth to you.\n\nNo pursuit comes. That bothers you more than pursuit would. The last thing the Penumbral's traffic control transmits to your skiff, text only, is: YOU'LL COME TO ME ON YOUR OWN, IN THE END. SAFE TRAVELS. — S.N.",
+        "Nineteen days.\n\nNineteen days of rationed water, cold-soak protein, a transponder you tore out by the roots on day one, and a silence so total you start holding conversations with the astromech's diagnostic chirps. You run the Jedi hunger disciplines until they stop working, then run them anyway. You think about every true document she showed you, on a loop you cannot switch off, exactly as she intended; starving alone in the dark, it turns out, is excellent study time, and she has packed your head like a footlocker.\n\nOn the nineteenth day, a Republic picket frigate's spotlight fills the cockpit, and a boarding officer's voice — human, young, shaking slightly — says, \"Identify yourself,\" and you discover your own name comes out in a whisper, because you haven't used your voice in so long."
+      ],
+      "effects": ["set escaped_how \"alone\"", "set joined_nyx false", "force %+ 5"],
+      "goto": "c6_alone_1b"
+    },
+    "c6_alone_1b": {
+      "text": [
+        "The Republic gets its commander back, and is not entirely sure what to do with you.\n\nThe debrief takes six days. Fleet Intelligence is gentle and relentless: weeks in the personal custody of Dooku's acolyte, no torture, comfortable quarters, dinners — they say the word 'dinners' the way healers say 'tumor.' You tell the truth, mostly, and watch them write it down, mostly. A Temple mind-healer pronounces you sound. Her report, you happen to see, contains the phrase 'subject exhibits unusual certainty,' and you spend a long night deciding not to wonder what she sensed.",
+        {"if": "havoc_rel >= 50", "text": "The 117th is waiting at the relay station, drawn up in the hangar in parade order nobody ordered. Havoc looks you over once, head to boots, cataloguing damage the way he catalogues everything. \"Knew it,\" he says at last. \"Stay alive, stay difficult. Welcome back, ${sir}.\" Behind him, someone — Dice, certainly Dice — has painted a new name on a gunship's nose: STAYS DIFFICULT."},
+        {"if": "master_alive", "text": "Venn's holo finds you the first night you're alone. She is stronger now, upright, a cane she calls 'the indignity' in reach. She listens to all of it — even the dinners, even the parts you soften — and at the end she says only: \"Nineteen days in the dark, and you flew toward the dark to get there. My Padawan. We need to talk about what she planted in you, and we will. But tonight — tonight I am simply glad.\" It is very nearly enough."},
+        "You are cleared for duty. The war takes you back the way the sea takes back a swimmer, and somewhere out in the deep lanes a ship called the Penumbral runs dark and patient, and you know — the way you know weather coming — that she meant the last thing she said."
+      ],
+      "goto_chapter": 7
+    },
+    "c6_truth_2": {
+      "text": [
+        "The next dinner, she tells you where she comes from, and you understand at last what the recruiter is made of.\n\n\"Dathomir,\" she says. \"I was four. The Jedi who found me told my clan-mothers it was a great honor. I remember the ship leaving better than I remember their faces — I learned later that's by design. Crechelings transfer attachment more cleanly if the break is early and total. It's in the actual literature, Commander. You can look it up. You were small enough not to remember yours; I wasn't, quite. The Order's one miscalculation with me: four is old enough to keep one image. I kept the ship leaving.\"\n\n\"I was a good youngling. Devout, even. Then I was thirteen, and my saber forms were 'aggressive,' and my grief for a dead crechemate was 'attachment,' and the trials board took forty minutes to decide I was unsuitable. Forty minutes, thirteen years. They were kind about it — they're always kind about it — and the transport left me at the Agricultural Corps depot on Salliche with a duffel and a blessing. The Order doesn't fail, you see. Its raw material does.\"",
+        "\"Eleven years I grew food for the Republic. Then a man with silver hair and perfect manners walked the rows like I was worth interrupting a harvest for, and said: they took you from your mothers, weighed you, found you wanting, and shelved you — and you have decided the shame is yours to carry. Give it back.\" She turns her glass slowly. \"I'd have died for Dooku by sundown. I tell you that plainly so you'll understand I know exactly what was done to me, and how. That's what no one tells you about being recruited, Commander. It works even when you can see it working.\"\n\nThe gallery is very quiet. Every word of it is true; the Force, unsuppressed at dinners, tolls with it like a struck bell. True bricks."
+      ],
+      "choices": [
+        {
+          "text": "\"What they did to you was wrong. All of it.\" No argument, no defense of the Order. Just that.",
+          "effects": ["nyx_rel %+ 20"],
+          "goto": "c6_truth_3"
+        },
+        {
+          "text": "\"And Dooku? He walked the rows looking for a weapon, and found one. How is his kindness different?\"",
+          "effects": ["nyx_rel %+ 10", "force %+ 5"],
+          "goto": "c6_truth_3"
+        },
+        {
+          "text": "Say nothing. Reach across the table and rest your hand on hers, once, briefly — grief answering grief.",
+          "effects": ["nyx_rel %+ 20", "dark %+ 5"],
+          "goto": "c6_truth_3"
+        },
+        {
+          "text": "\"You're recruiting me with the story of how recruiting works. That's either honesty or artistry, and I can't tell which.\"",
+          "effects": ["nyx_rel %+ 15", "guile %+ 5"],
+          "goto": "c6_truth_3"
+        }
+      ]
+    },
+    "c6_truth_3": {
+      "text": [
+        "The last dinner before everything changes, she brings no food at all. Only a holoprojector, and the war.\n\n\"True things,\" she says. \"All of it verified. I'll wait while you check.\" And for two hours she walks you through the Republic's own classified traffic: convoys written off in advance as acceptable losses with relief dispatched late by design; a Senate sub-committee trading relief contracts on foreknowledge of battles; orbital strike authorizations signed before the surrender deadlines they claimed to wait for. Document after document, and her voice never rises, and the forgery you keep hunting for never comes.",
+        {"if": "bombarded", "text": "And then Calden Spire. Your bombardment. The droid foundry, the civilian district, the order with your authorization code on it, and after it the part you never saw: the Republic relief assessment, filed and sealed, with the casualty figure that no one ever read aloud in your hearing. \"I didn't doctor it,\" she says, quietly, \"and I didn't choose it to wound you. I chose it because they sealed it. You were willing to carry what you did — I watched your record, you've never once denied it. They decided for you that the Republic shouldn't have to. That's the machine I want you to see. Not your guilt. Their filing system.\""},
+        {"if": "civvies_saved", "text": "And then Calden Spire — someone else's. A city like the one you saved, on a world you've never visited, where a different commander made the other choice, and the Republic's relief assessment was filed, sealed, and stamped for release 'post-hostilities.' \"You took the hard road on Pellior,\" she says. \"I know. It's why you're at this table instead of in a cell. Now look at what the machine did with the commander who didn't — promoted, decorated, sealed. Your mercy and his fire went into the same drawer, Commander. The machine doesn't care which of you it makes more of. It only cares that the drawer stays shut.\""},
+        {"if": "vethari == \"separatist\" or vethari == \"burned\"", "text": "Vethari Prime scrolls past among the rest — the world that slipped through the Republic's fingers on your watch. Her mouth curves, not unkindly. \"You met my work there, though we hadn't been introduced. I'll tell you something true about it someday. Tonight isn't the night. Tonight is about their lies, not mine.\" It is the closest she has ever come to admitting she has any."},
+        {"if": "force >= 60", "text": "And yet. Beneath the parade of true documents, your trained senses keep snagging on something — not falsehood, but arrangement. A gallery hung by a curator. Every document real; every document chosen; and nowhere, in two hours of the war's hidden machinery, a single page about who designed the machine, or why both sides of it feed the same engine. The omission has a shape. You can almost see it."},
+        "\"Here is the only lie I'll accuse your Order of tonight,\" she says, shutting off the projector. \"They told you the war is a tragedy. It isn't. It's a product. And the Jedi — the wise, compassionate Jedi — took four million men who were never asked, and became its generals, and called that the light.\" She stands. \"I don't want your saber, ${name}. Dooku collects swords; I'm not my master. I want the one thing the Republic is wasting: someone who counts the dead like my old captain does, and goes through walls. Think about what you could stop, standing where I stand.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask the question that's been circling for weeks: \"Why did you give me back the holocron?\"",
+          "if": "holocron == \"kept\"",
+          "goto": "c6_holocron"
+        },
+        {
+          "text": "Let her go without an answer. Some offers deserve a night's silence.",
+          "goto": "c6_offer"
+        },
+        {
+          "text": "\"Name it, then. What exactly are you offering me?\" Make her say it all, plainly.",
+          "effects": ["nyx_rel %+ 10", "dark %+ 5"],
+          "goto": "c6_offer"
+        }
+      ]
+    },
+    "c6_holocron": {
+      "text": [
+        "She sits back down, and for the first time since the hangar deck, she looks at you with something that is not strategy.\n\n\"Because I felt it the moment you walked off the tomb world,\" she says. \"In the vault you fought me for it like a Jedi — and then your Council asked for it, and you looked at all that locked-away teaching and you kept it. You. The decorated commander, the good Padawan.\" Her smile is slow and entirely without triumph. \"You can imagine what that did to me, finding out. It was the first time in eleven years I felt less alone.\"\n\n\"Your Order has a vault full of those, you know that now. Not destroyed — destroyed I could respect. Kept. Studied by the masters and forbidden to everyone they decide is raw material. Knowledge isn't dark or light, ${name}; locks are. So no, I wasn't going to take it from you and put it in Dooku's vault instead. One cage to another — that's their move.\"",
+        "From the way the air bends, you know the holocron is listening from your quarters three decks down, the way it is always listening, and that it is — there is no other word — pleased.\n\n\"I'll tell you a true thing about that whisper in it,\" Nyx adds, rising again, and her voice is suddenly older. \"It flatters because flattery is cheap and you were starving. Mine did the same. They're teachers, not friends — never confuse the two, or it will own you instead of serve you. You see? I'm not even a good Sith. I keep telling you how the machinery works.\" At the door she pauses. \"That's the difference between me and everyone else who has ever wanted something from you, Commander. I show you the strings. Even mine.\""
+      ],
+      "effects": ["nyx_rel %+ 15", "dark %+ 10"],
+      "goto": "c6_offer"
+    },
+    "c6_offer": {
+      "text": [
+        "The offer, when it finally comes in full, is not what the Temple warned you about. There is no throne in it, no red blade pressed into your hand, no kneeling.\n\n\"Walk out of here at my side,\" Nyx says, \"as my equal — Dooku will object, and I will enjoy that conversation. No oaths. No master. You keep your blade, your conscience, even your Code if you can make it run on truth instead of denial. And together we do the one thing neither army will: we end it. The senators selling routes, the procurement engines, the committee men who price battalions — the war has perhaps two dozen load-bearing beings, and you've already met one of them. You've seen how easily they die or fold. Imagine actually being allowed to finish the list.\"",
+        {"if": "dunne == \"blackmailed\" or dunne == \"dead\"", "text": "\"And spare me the recitation of the rules,\" she adds, gently, watching your face. \"We both know what you did about Senator Dunne. I'm not accusing you, Commander. I'm pointing out that you've already voted. The only question left is whether you keep doing it alone, ashamed, in the dark — or with someone who will tell you the truth about what you are.\""},
+        "\"Here is my last true thing tonight.\" She stands close enough that the Force hums between you like a struck wire. \"Tonight your door is unlocked. The suppression field is off and stays off. There's a skiff in the hangar with a full nav library, and no one — I have given the order on my own authority — no one will stop you. Fly back to your Republic and your Council and your sealed drawers, and I will grieve and get over it.\"\n\n\"Or be standing in that doorway when I come at first watch, and we will go and end this war like it deserves. Not the Republic's way. Not Dooku's. Ours.\"\n\nShe leaves. The door, you confirm an hour later with your heart going like a forge hammer, is exactly as unlocked as she promised."
+      ],
+      "goto": "c6_night"
+    },
+    "c6_night": {
+      "text": [
+        "The longest night of your life is silent, vast, and entirely your own. That, of course, is the trap, and knowing it's the trap helps not at all.\n\nThe Force, unsuppressed, fills your quarters like deep water. Out in it you can feel the Penumbral's two thousand sleeping crew, the cold scatter of the Vandos stars — and very far off, so faint it might be hope or might be memory, the warmth of the places you are loved: a medcot in the Temple, a hangar deck where your name is painted on a gunship.",
+        {"if": "havoc_rel >= 65", "text": "Stay alive and stay difficult. The 117th doesn't write off the living. You turn Havoc's words over like a coin worn smooth. Weeks, now. No rescue could find this ship; no sane command would authorize one. And still some stubborn trooper's-instinct in you, bred from standing next to those men for two years, refuses to finish the sentence that begins: by now, surely, even they..."},
+        {"if": "holocron == \"kept\"", "text": "The holocron does not argue a side, which by now you understand is its most dangerous register. She is the truest thing the war has shown you, it offers, and she is using the truth as a leash. Both facts, child. Your Order would make you choose which to believe. I'd rather you grow up: walk to whichever door you want — but go knowing both."},
+        {"if": "dark >= 60", "text": "And underneath everything, quiet as a heartbeat, the simplest thing: you are tired of pretending you don't already know what you are. She is the first being in years who looked at it without flinching. The Temple would call that seduction. Standing here in the dark, it feels indistinguishable from being seen."},
+        "You are still standing at the viewport, decided or undecided, when the deck shudders — once, hard — and every alarm on the Penumbral goes off at once."
+      ],
+      "choices": [
+        {
+          "text": "Don't wait for first watch. Walk out now, find her amid the alarms, and stand with her. You've decided.",
+          "effects": ["dark %+ 10"],
+          "goto": "c6_join_1"
+        },
+        {
+          "text": "Whatever's happening, it's a door. Move.",
+          "goto": "c6_climax"
+        }
+      ]
+    },
+    "c6_climax": {
+      "text": [
+        "The corridor is chaos — klaxons, running crew, the deep cough of point-defense guns somewhere forward.",
+        {"if": "havoc_rel >= 65", "text": "And cutting through the Penumbral's own comm channels, broad-band, in the clear, a voice you would know in any galaxy:\n\n\"Separatist cruiser Penumbral, this is Captain Havoc, 117th Ghost Battalion, Grand Army of the Republic — currently and irreversibly inside your hull. We've come for our commander. Crew are advised to stay clear of deck nine. Commander ${name}, if you're hearing this: stay alive, stay difficult, make for the breach. The battalion doesn't write off the living.\"\n\nNo task force. No fleet action. The readouts on a sprung wall panel tell the story in Separatist battle-code: a single stolen prowler, one assault boat, perhaps forty men — an unsanctioned raid across half a war zone, every trooper aboard having traded his future on the chance you were still breathing. Deck nine. Two decks up, eight hundred meters of burning ship between you."},
+        {"if": "havoc_rel < 65", "text": "A sprung wall panel gives you the story in Separatist battle-code: a Republic probe sortie out of the deep Reach — three light frigates that stumbled onto the Penumbral's silhouette, loosed their birds at extreme range, and are already running. No rescue. Nobody knows you're aboard. But the ship is at battle stations, the guard rotations are shattered, and between you and the hangar there are suddenly no scheduled humans at all. Doors, as she would say. The galaxy is mostly doors."},
+        "And somewhere aft, beneath the alarms, you can feel her — a cold bright star moving fast toward the guns, trailing fury and, threaded through it, something that pulls at you even now. First watch came early, one way or another.\n\nChoose."
+      ],
+      "choices": [
+        {
+          "text": "Deck nine. Cut your way to Havoc's breach and go home with the men who came for you.",
+          "if": "havoc_rel >= 65",
+          "goto": "c6_havoc_1"
+        },
+        {
+          "text": "The hangar, alone. Take her unlocked door and her skiff, and owe nobody the bill for your freedom.",
+          "goto": "c6_alone_2"
+        },
+        {
+          "text": "Find Nyx. Stand at her side — and walk out of this war's lie at the side of the one person who never told you one.",
+          "effects": ["dark %+ 10"],
+          "goto": "c6_join_1"
+        },
+        {
+          "text": "Find Nyx — and defend this ship. Those boarders came to take back Republic property. You're done being property.",
+          "if": "havoc_rel >= 65 and dark >= 45",
+          "goto": "c6_join_dark"
+        }
+      ]
+    },
+    "c6_havoc_1": {
+      "text": [
+        "You go through the ship like a rumor of fire.\n\nNo saber — it's three decks aft in her quarters, and there is no time. You take a stun baton off a fallen guard and the Force takes everything else: blast doors convinced open, droids slapped into bulkheads, a path torn through the burning arteries of the Penumbral by something that has stopped, for the moment, pretending to be a prisoner. Crew scatter from you. You note, distantly, that you have become something that crews scatter from, and that the observation can wait.\n\nDeck nine is a war. The breach point glows white where the assault boat's collar bit through the hull, and the corridor junction beyond it is a textbook strongpoint: overlapping fields of fire, smoke discipline, and painted on every shoulder plate, the grey ghost-skull of the 117th.\n\n\"Commander on deck!\" — Longshot's voice, cracking on the first word, all pretense of comm discipline gone. \"It's ${them}! It's actually ${them}!\"",
+        "Havoc comes out of the smoke with his blaster still tracking the corridor behind you, because Havoc has never once in his life secured the moment before the perimeter. Up close, his armor tells you what the trip cost: carbon scoring, a field-patched gouge along the ribs, one pauldron gone entirely.\n\n\"Forty volunteers, one stolen prowler, and Tally forged the requisition codes,\" he says, in answer to the question you haven't managed to ask. \"Court-martial offense. Several. We took a vote — first one in battalion history. It wasn't close, ${sir}.\" Behind the visor, his voice does something it has never done on any battlefield you've shared. \"You stayed difficult. Good. Now let's go before this goes from historic to stupid.\""
+      ],
+      "effects": ["set escaped_how \"havoc\"", "set joined_nyx false", "havoc_rel %+ 20"],
+      "goto": "c6_havoc_2"
+    },
+    "c6_havoc_2": {
+      "text": [
+        "She is waiting at the junction before the breach, alone, both blades lit. Red light fills the smoke like a wound in the air.\n\nThe troopers' rifles come up; Havoc's fist halts them. Forty men against Sev'ara Nyx in a corridor is a casualty list, and every being present knows it — and she hasn't moved. Her eyes are only on you, and in the Force she is grief and fury fused so tightly they read as a single color.\n\n\"This is the choice, then,\" she says, level, pitched to reach you alone. \"The ones who count your dead. I told you I'd never lie to you, so hear it once, plainly: go with them, and you go back to being the machine's finest part. Everything I showed you stays true, ${name}. It will keep being true every day of your war, and you will know it, and that knowing is mine. I planted it. No rescue reaches it.\"",
+        {"if": "tried_escape", "text": "\"Through the wall,\" she adds, and something underneath the fury almost smiles. \"It's still the truest thing about you. Even now I can't be sorry I let you run.\""}
+      ],
+      "choices": [
+        {
+          "text": "\"Stand aside, Sev'ara. I won't be the one who kills you, and it won't be today.\" Walk past her blades with the men.",
+          "effects": ["nyx_rel %+ 10"],
+          "goto": "c6_havoc_3"
+        },
+        {
+          "text": "\"Everything you showed me was true. Everything you built with it was a cage. Goodbye, Nyx.\"",
+          "effects": ["nyx_rel %- 10", "force %+ 5"],
+          "goto": "c6_havoc_3"
+        },
+        {
+          "text": "Say nothing. Take the stun baton off your belt and set it on the deck between you — a soldier's salute to an honest enemy — and go.",
+          "effects": ["nyx_rel %+ 15", "havoc_rel %+ 5"],
+          "goto": "c6_havoc_3"
+        }
+      ]
+    },
+    "c6_havoc_3": {
+      "text": [
+        "She lets you go. Both blades die at once, and she stands in the smoke and watches you leave with an expression you will be a long time forgetting — not defeat. Postponement.\n\nThe prowler runs for the deep Reach with the Penumbral's fire walking after it, and Dice flies like a man personally offended by physics, and then the stars stretch and snap and you are away — packed shoulder to shoulder among forty troopers who are all very carefully not staring at you, and all failing.\n\nIt's Tally who breaks the silence, glowlamp still clipped to his chestplate, inventory voice: \"One commander. Accounted for.\" The hold comes apart. The sound those men make is nothing the Kaminoans put in them.",
+        "The cost comes due at the relay station: a board of inquiry, forty careers in the balance, an unsanctioned raid across a war zone in stolen Separatist hardware. Havoc stands at attention through all of it and offers exactly no defense except, \"The battalion doesn't write off the living, sir,\" to an admiral who looks very much like he is trying to decide between a court-martial and a medal.\n\nWhat tips it, in the end, is you — your testimony, your rank, and your flat refusal to let the record show anything but a rescue you'd have authorized yourself if anyone had been foolish enough to ask. The inquiry dissolves into reprimands that read, the way Havoc holds them, like commendations.\n\nThat night, in the mess, the 117th paints a new tally on the prowler before Fleet impounds it. One mark. Underneath, in trooper-stencil: THE ONES WE GET BACK.",
+        {"if": "master_alive", "text": "Venn's message reaches you at the relay, text only, healers be praised: 'Forty men stole a ship for you. Whatever else that woman taught you in the dark, my Padawan, weigh it against that. Then come home. — V.'"}
+      ],
+      "effects": ["dark %- 5", "council_rep %- 5"],
+      "goto_chapter": 7
+    },
+    "c6_alone_2": {
+      "text": [
+        "You take her unlocked door at a dead run.\n\nThe ship is too busy dying around its own alarms to care about one prisoner moving with purpose: crew streaming to battle stations, droids locked to damage control, every scheduled human in your path shaken loose by the raid. Her quarters first — three decks of burning chaos — because some debts you collect even under fire, and your lightsaber comes off her desk and into your hand like a word you'd forgotten and just remembered.",
+        {"if": "holocron == \"kept\"", "text": "The holocron is beside it, waiting, and you take that too — and notice that you never even framed it as a question. Neither does the whisper. It rides in your jacket against your heart, silent and satisfied, like a passenger who already knows the destination."},
+        {"if": "havoc_rel >= 65", "text": "On deck nine, two levels above your route to the hangar, the 117th is fighting toward an empty cell. The comm panel by the hangar door would reach them. You stand before it for three full seconds — Havoc's voice in the static, stay alive, stay difficult — and then you choose the thing you can survive choosing: a single burst transmission, your old field cipher. AM OUT. AM SAFE. GO HOME. DON'T SPEND THE BATTALION ON ME. You're in the skiff before the reply can reach you, because you know exactly what it would do to your resolve."},
+        "The skiff drops free into a sky full of tracer-light. Nobody fires on you. Her order, you realize, holding even now, even in this — no one will stop you — and you carry that thought into hyperspace like a stone in your boot.\n\nNav library's full, just as she promised. You plot for the Republic relay net, three jumps, clean. The blue tunnel takes you, and for the first time in weeks you are nobody's prisoner and nobody's project, alone with everything she ever told you, all of it true, all of it arranged, and yours now to live with.\n\nShe will not chase you, you're certain. She doesn't think she has to. The last thing she said before leaving your door unlocked plays once more and files itself away where you keep the things that will matter later: you'll come to me on your own, in the end."
+      ],
+      "effects": ["set escaped_how \"alone\"", "set joined_nyx false", "guile %+ 10", "nyx_rel %+ 5"],
+      "goto": "c6_alone_3"
+    },
+    "c6_alone_3": {
+      "text": [
+        "The Republic gets its commander back at a relay station in the mid-Reach, and is not entirely sure what to do with you.\n\nThe debrief takes six days. Fleet Intelligence is gentle and relentless: weeks in the personal custody of Dooku's acolyte. No torture. Comfortable quarters. Dinners. They say the word 'dinners' the way healers say 'tumor,' and they return to the escape again and again — the unlocked door, the unguarded hangar, the order that let you fly out of a ship at battle stations untouched. 'And why,' the senior analyst asks, four separate times in four separate phrasings, 'would she allow that?'\n\nYou give the true answer once: because she believes I'll come back on my own. You watch them decide it's the one thing in your testimony that can't go in the report.",
+        {"if": "havoc_rel >= 65", "text": "The 117th's unsanctioned raid is the other fire to put out. Forty men and a stolen prowler, fighting toward a cell you'd already left — they made it out, all of them, on Havoc's iron timing and your burst transmission. At the inquiry you claim the raid as executed on your standing orders, which is a lie, and the best one you've ever told. Havoc finds you after. He doesn't salute. \"Got your message,\" he says. \"Don't spend the battalion on me.\" A long pause. \"Bad order, ${sir}. The men want it struck from the record. So do I.\""},
+        {"if": "master_alive", "text": "Venn's holo finds you the first night you're truly alone. She is stronger — upright, a cane she calls 'the indignity' within reach — and she listens to everything, even the parts you soften, with her eyes never leaving yours. \"She told you true things,\" she says at last. \"Of course she did. The dark side's oldest economy: truth is cheap, and you were starving. We need to talk about the arrangement of those truths, my Padawan — but not tonight. Tonight, I am simply glad.\""},
+        "A mind-healer pronounces you sound. You are cleared for duty. And somewhere out in the deep lanes, a dark patient ship runs on, carrying a woman who is certain — not hopeful, certain — that she knows how your story ends. Proving her wrong, you understand at last, is going to take more than escaping. You've done that twice now, and you can still hear her voice."
+      ],
+      "goto_chapter": 7
+    },
+    "c6_join_1": {
+      "text": [
+        "You find her on the gun deck, directing the battle with one blade lit, and when she sees you — sees how you're standing, sees what you've decided — Sev'ara Nyx goes utterly still in the middle of her own burning ship.\n\n\"Say it,\" she says. \"Not for ceremony. Because you need to hear yourself.\"\n\nYou say it. The deck shakes. Somewhere forward the point-defense guns cough and cough. And the Force around her blooms with something so unguarded — joy, fierce and disbelieving, the four-year-old watching a different ship arrive — that whatever this choice costs you later, you will never manage to call her feelings a lie.",
+        {"if": "havoc_rel >= 65", "text": "Aft, on deck nine, a breach team of the 117th is fighting toward an empty cell, and Havoc's voice is still on the broad-band, calling your name into the smoke. You make yourself listen to all of it — stay alive, stay difficult, the battalion doesn't write off the living — like holding your hand against a hull until it burns, because some prices should be paid attention to. Nyx watches you listen, and says nothing, and orders her boarding-defense teams onto containment instead of slaughter: \"Drive them to their boat. No pursuit. Nobody dies for theater tonight.\" It is a gift, and a tactic, and both of you know it can be both. The prowler tears free and runs. You do not transmit. There is no version of your voice tonight that would not break them, or break you."},
+        "What you feel, when the alarms finally die and the Penumbral limps into the deep dark — what you feel underneath the enormity, where the Temple taught you to report your malfunctions — is quiet. The arguing in your chest, the two-years' war between what you saw and what you served: ended. Armistice. You had forgotten what it weighed.\n\nThe holos will say 'turned.' The Temple will say 'fallen.' The truth, you decide, watching her argue with her own bridge crew about casualty reports — counting her dead, like Havoc, like you — is that you have stopped lying to exactly one person, and it is the one the Order always insisted didn't matter: yourself."
+      ],
+      "effects": ["set joined_nyx true", "set escaped_how \"nyx\"", "dark %+ 25", "nyx_rel %+ 25", "council_rep %- 25"],
+      "goto": "c6_join_2"
+    },
+    "c6_join_dark": {
+      "text": [
+        "You find her on the gun deck, take a guard's rifle from the rack by the blast door, and the look on her face when she understands what you intend is the only oath the moment needs.\n\n\"Containment,\" you tell her, and your voice comes out with the flat authority of two years of command. \"They came for me — they'll fold back to the breach the second they know I'm not in that cell. Drive, don't kill. Let me do the talking.\"\n\nAnd so the worst thing you have ever done is also, by the war's own arithmetic, nearly bloodless: you walk into the smoke of deck nine under a guard's flickering glow-shield, and you let the 117th see you — standing whole and unforced and armed, beside Sev'ara Nyx, on the wrong side of the corridor. You watch the rifles waver. You watch forty men who stole a prowler and crossed a war zone understand, one by one, what they are looking at.\n\nHavoc's voice comes through helmet speakers gone toneless, every year of discipline holding the wreckage: \"...Confirm you're under no duress, ${sir}.\"\n\n\"No duress, Captain. Take your men home. That's my last order.\"",
+        "The silence on the broad-band lasts four seconds, which for Havoc is screaming. Then: \"The 117th doesn't write off the living,\" he says — slowly, like a man checking the words for the place they broke. \"Specialist Tally. Strike the commander from the roster. Living, by their own report.\" The fold-back is parade-perfect, because it would be. The prowler tears free trailing fire, and Dice — it could only be Dice — burns one full second of escape window to roll the ship, once, the old salute, before the dark takes them.\n\nYou stand in the smoking breach with your borrowed rifle and discover the difference between choosing a side and being seen choosing it. Nyx's hand lands on your shoulder, and she has the immense good sense to say nothing at all."
+      ],
+      "effects": ["set joined_nyx true", "set escaped_how \"nyx\"", "dark %+ 35", "nyx_rel %+ 25", "havoc_rel %- 40", "council_rep %- 30"],
+      "goto": "c6_join_2"
+    },
+    "c6_join_2": {
+      "text": [
+        "The first morning is the strangest, because it is ordinary.\n\nCaf in the observation gallery. Repair reports. Her bridge crew calling you 'Commander' in Separatist accents and meaning it, because she introduced you as her equal and dared anyone present to flinch. Your lightsaber, returned without comment, riding your hip where it has always ridden. \"Keep the blue, if you like,\" she says, watching you check the blade's alignment. \"It was never the color doing the work.\"",
+        {"if": "holocron == \"kept\"", "text": "The holocron sits openly on your worktable now — no more sea chests, no more meditation cloths over its face like a caged bird. The whisper, when it comes, is almost gentle: There. Out of one set of locks, at least. Now the real study begins, child — and the first lesson is the one she keeps trying to teach you for free. Watch where the truths are arranged, and find what the arrangement is hiding. Yes. Even hers."},
+        {"if": "dark < 60", "text": "And under the strange ordinary morning, a thin bright wire of refusal that you keep to yourself: you have changed sides, not natures. The men on the convoys, the names on the tallies, the reasons you gave her — if this turns out to be one more machine wearing the truth as paint, then it will learn, as the last one did, exactly what you go through. Walls, for instance."},
+        "It's mid-morning when the comm chime sounds, and her whole bearing changes — a tightening you've never seen in her, gone almost before you catch it. The holo that rises over the gallery table is silver-haired, elegant, patient as winter: Count Dooku, requesting his acolyte's report.\n\nYou are out of the pickup's field of view. So you are free to watch her — the woman who bends for nothing, who left your door unlocked on her own authority, who shows everyone the strings — compose her face, lower her eyes, and stand the particular way that soldiers stand for admirals who frighten them.\n\n\"Master,\" she says.\n\nIt is the first time since the hangar deck that you have heard Sev'ara Nyx sound rehearsed. You file the observation where you keep the things that will matter later — right beside you'll come to me on your own, and the curious, growing list of true things she has never quite finished telling."
+      ],
+      "goto_chapter": 7
+    }
+  }
+}

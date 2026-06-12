@@ -1,0 +1,474 @@
+{
+  "chapter": 2,
+  "title": "The Ghost Battalion",
+  "start": "c2_start",
+  "nodes": {
+    "c2_start": {
+      "text": "Two weeks out from Jabiim, the attack cruiser 'Resolute Dawn' hangs in hyperspace like a held breath, and in her main hangar twelve hundred clone troopers stand at attention in ranks so straight you could survey by them.\n\nYour battalion. The words still don't fit in your mouth.\n\nThe captain waiting at the front of the formation is built like a door and stands like he's holding one. His armor carries the 117th's grey spectre sigil and more field repairs than paint; a notch is cut into his left vambrace, then another, then rows of them, small and neat and deliberate.\n\n\"CT-7719,\" he says. \"Captain. The men call me Havoc.\" His handshake is a hydraulic event. He studies you for exactly two seconds — the lightsaber, the new rank tabs, the mud stains the cleaning droids couldn't get out of your boots — and you have the distinct sensation of being weighed on scales he's calibrated over many funerals. \"We heard about Razor's Rim, ${sir}. The men have opinions about it. They're mostly good ones.\"\n\nBehind him, twelve hundred identical faces wait to learn what kind of officer the Republic has spent on them.",
+      "effects": ["set havoc_rel 30"],
+      "choices": [
+        {
+          "text": "Address them as their commander: clear voice, clear expectations, the speech they deserve.",
+          "effects": ["set greeting \"command\"", "command %+ 8", "havoc_rel %+ 5"],
+          "goto": "c2_briefing"
+        },
+        {
+          "text": "Skip the speech. Walk the ranks instead — learn names, look at faces, let them look back.",
+          "effects": ["set greeting \"names\"", "havoc_rel %+ 12"],
+          "goto": "c2_briefing"
+        },
+        {
+          "text": "Keep it cold and brief. You're not here to be loved; you're here to spend them well.",
+          "effects": ["set greeting \"cold\"", "havoc_rel %- 5", "command %+ 5", "dark %+ 5"],
+          "goto": "c2_briefing"
+        }
+      ]
+    },
+    "c2_briefing": {
+      "text": [
+        {"if": "greeting == \"command\"", "text": "Your speech is short and unsentimental — 'I won't waste you, and I won't lie to you' — and lands better than poetry would have. Havoc's expression doesn't change, but afterward he says, \"Good ceiling on it, ${sir}. Men distrust a long speech,\" which you suspect is his highest available compliment."},
+        {"if": "greeting == \"names\"", "text": "You spend an hour in the ranks. Sergeant Dice, who paints sabacc cards on his pauldron. Longshot, who watches everything and says almost nothing. Tally, the medic, with grey check-marks down his armor that you don't ask about yet. By the end the formation has stopped being a formation and become twelve hundred individual men, which is the most dangerous thing a commander can let happen, and the only thing worth being one for. Havoc watches you do it with an expression that has stopped pretending to be neutral."},
+        {"if": "greeting == \"cold\"", "text": "You keep it under a minute and dismiss them to stations. Efficient. Correct. As the ranks break up, you catch Havoc making a small note on his pad, and you have the uncomfortable certainty the note is about you, filed under a heading you can't read."},
+        "The briefing room of the 'Resolute Dawn' smells of caf and recycled air. Havoc kills the lights and Pellior blooms above the table: a temperate mid-rim world, one major city worth the name — Calden Spire, a kilometer-high tower of terraces and habs rising out of an industrial sprawl.\n\n\"Three months ago the Seps took the Spire,\" Havoc says. \"Under the Lower Terraces they've dug in a droid foundry — putting out a battalion of B1s every six days, feeding three sectors' worth of fronts. Theater command wants it gone, and we're the ones holding the tasking order.\" He rotates the image. A shimmering lattice wraps the city's lower third. \"Ray shield, powered from inside. And here's the part you'll want to stand up for, ${sir}: the foundry district is the Terraces. Sixty thousand civilians, give or take. The Seps sealed them in WITH the foundry. Workers, families. Human shielding, city-sized.\""
+      ],
+      "choices": [
+        {
+          "text": "\"Sixty thousand. Give me the real number, Captain, not the estimate.\"",
+          "effects": ["set asked_civvies true", "havoc_rel %+ 5"],
+          "goto": "c2_tally_book"
+        },
+        {
+          "text": "\"What's the droid strength, and what relieves them if we're slow?\"",
+          "effects": ["command %+ 5", "war_score += 3"],
+          "goto": "c2_tally_book"
+        },
+        {
+          "text": "\"You've been staring at this map for a week, Captain. What would YOU do?\"",
+          "effects": ["havoc_rel %+ 8"],
+          "goto": "c2_tally_book"
+        }
+      ]
+    },
+    "c2_tally_book": {
+      "text": [
+        {"if": "asked_civvies", "text": "\"Sixty-one thousand, four hundred and six,\" Havoc says, without consulting anything. \"Per the last census the Seps didn't burn. I keep numbers, ${sir}. It's a habit.\" He holds your gaze a moment, as if checking whether the precision bothers you, and seems to record the result."},
+        {"if": "not asked_civvies and greeting != \"cold\"", "text": "Havoc answers in flat quartermaster's prose — droid strength estimated at two regiments plus foundry fresh production; nearest Separatist relief flotilla nine days out at best speed; he'd rather not guess past that. He guesses anyway, accurately, because he's been staring at this map for a week."},
+        {"if": "greeting == \"cold\"", "text": "Havoc answers in flat quartermaster's prose, precise and complete, offering nothing past what's asked. Two regiments of droids plus fresh foundry production. Separatist relief possible inside two weeks. He briefs you the way you addressed the men: efficiently, at arm's length."},
+        "When the formal brief ends and the holos die, he doesn't leave. He sets something on the table instead: a paper notebook, actual flimsi, swollen with rain damage and bound with a boot lace.\n\n\"Permission to be straight with you, ${sir}. You'll hear about this book eventually; better from me.\" He opens it. Columns of names, written small. Page after page. \"Every brother I've lost since Geonosis. Two hundred and twelve, as of this morning. I write them because the Republic doesn't — we don't get headstones, we get inventory adjustments.\" He closes it with the gentleness some men reserve for children. \"I'm not showing you this to make a point about Calden Spire. I'm showing you because you're my third Jedi commander. The first treated us like droids with better aim. The second cried over us and got forty-one of us killed dithering.\" The visor comes up; his eyes are dark and level. \"I don't need you to love us, ${sir}. I need to know what you spend us ON.\""
+      ],
+      "goto": "c2_descent"
+    },
+    "c2_descent": {
+      "text": "Pellior fills the viewports three days later, green and grey and burning in one place only — a single smudge of smoke on the northern continent, rising off Calden Spire like the planet has a fuse lit.\n\nThe drop goes down through flak.\n\nYour gunship bucks and slams in the thermal wash of detonating shells, sixty troopers packed shoulder-to-shoulder in the hold, red light washing their helmets. Across from you, a shiny grips his rifle so hard you can hear the casing creak. Sergeant Dice deals invisible sabacc hands to nobody. Longshot might be asleep. Tally, the medic, mouths his equipment checklist like a litany.\n\nThe hull rings like a bell — close one — and every helmet in the hold turns, just slightly, toward you. Twelve hundred men in forty gunships, and in every single hold, this same quarter-second glance: checking the weather. Checking you.",
+      "choices": [
+        {
+          "text": "Open yourself and pour calm down the line — let the Force settle sixty hammering hearts at once.",
+          "effects": ["set drop_style \"calm\"", "force %+ 8", "havoc_rel %+ 5"],
+          "goto": "c2_firebase"
+        },
+        {
+          "text": "Key the squad net and tell the worst joke you know, deadpan, mid-flak.",
+          "effects": ["set drop_style \"joke\"", "havoc_rel %+ 10"],
+          "goto": "c2_firebase"
+        },
+        {
+          "text": "Give them nothing but stillness — sit motionless in the shaking hold, untouched. Let them draw their own conclusions about fear.",
+          "effects": ["set drop_style \"stone\"", "command %+ 5"],
+          "goto": "c2_firebase"
+        }
+      ]
+    },
+    "c2_firebase": {
+      "text": [
+        {"if": "drop_style == \"calm\"", "text": "You breathe out, and the Force goes out with it, moving down the hold like warmth through cold water. The shiny's knuckles unclench. Tally's litany slows. Even the deck seems to ride the flak more gently. \"Whatever you just did,\" Dice murmurs on a private channel, \"the Jedi store sell it by the crate?\""},
+        {"if": "drop_style == \"joke\"", "text": "The joke is genuinely terrible — it involves a Hutt, a protocol droid, and a misunderstanding about lunch — and you deliver it bone-dry over the squad net between flak bursts. There's a silence. Then sixty men packed into a shaking steel box start laughing, properly laughing, and you hear it spread to the other holds as someone retells it. Havoc's voice comes over command channel, perfectly flat: \"Confirming our Jedi is combat-ineffective as a comedian, ${sir}. Good copy on morale.\""},
+        {"if": "drop_style == \"stone\"", "text": "You become the stillest thing on the gunship. It costs more than it shows — that's the point of it. By the time the skids hit dirt, sixty men have spent twenty minutes watching a person sit inside a steel drum full of explosions like it's a garden, and have decided, each privately, that panicking in front of you would be embarrassing."},
+        "Firebase Spectre goes up in nine hours on a ridge eleven klicks from the city: berms, gun pits, a forest of sensor masts, the Ghost Battalion digging with the speed of men who have been shelled in shallow holes before.\n\nFrom the command post trench, Calden Spire owns the horizon — beautiful, actually, which nobody expected to feel. A kilometer of stacked terraces catching the sunset, the ray shield wrapping its lower third in oil-sheen rainbow. Through the macrobinoculars: droid gun emplacements among laundry lines. Vulture droids perched on a school's roof beams like carrion birds.\n\nAnd at the wire that evening, the first refugees — a dozen scarecrow figures who slipped the shield perimeter through some gap the droids have since found and sealed. They tell stories quietly, in the way of people who have rationed even their horror. The foundry runs day-shift and night-shift. Workers who slow down are 'made examples.' The Seps know the Republic is here.\n\nThey've started welding the Terrace district's blast doors shut. From the outside."
+      ],
+      "goto": "c2_recon_choice"
+    },
+    "c2_recon_choice": {
+      "text": "Havoc spreads the tactical map across two ration crates. \"Theater command wants the foundry dead inside two weeks — there's a Sep relief flotilla that could make orbit in nine days, and if it does, we're the ones under siege. So.\" He plants a finger on the shield lattice. \"Before you pick how to kill this thing, ${sir}, we need to know what we're killing. I can get you fidelity three ways, and they're not equal.\"\n\nHe doesn't list them. He just looks at you. Another weighing: what kind of commander asks for what kind of truth.",
+      "choices": [
+        {
+          "text": "Go yourself — into the undercity with Longshot, through the old aqueduct ways, eyes on the foundry floor itself.",
+          "effects": ["set recon \"self\"", "guile %+ 8"],
+          "goto": "c2_recon_self"
+        },
+        {
+          "text": "Open yourself to the city from here — a night of deep meditation, reading sixty thousand minds' worth of fear for the shape of what holds them.",
+          "effects": ["set recon \"force\"", "force %+ 8"],
+          "goto": "c2_recon_force"
+        },
+        {
+          "text": "Probe in force — hit the south gate hard enough to make the defense show its teeth, and read the answer like a confession.",
+          "effects": ["set recon \"probe\"", "command %+ 8", "war_score += 5"],
+          "goto": "c2_recon_probe"
+        }
+      ]
+    },
+    "c2_recon_self": {
+      "text": "The aqueducts under Calden Spire predate the Republic's presence on Pellior, which means they predate every map the Seps are using. You and Longshot go in at midnight, black against black, through water mains a tactical droid would never assign a patrol to because no rational army travels on its belly through forty centimeters of runoff.\n\nLongshot turns out to be the ideal companion for crime: he communicates entirely in two-finger gestures and disapproving silences. Four hours in, you surface through a maintenance grate into the Lower Terraces themselves.\n\nIt's worse than the refugees said. The foundry's heat-bloom has turned the district into a fever ward; families sleep in stairwells to be near the cool exterior walls. You watch a droid overseer walk a night-shift queue, prodding the slow ones with a shock-staff and logging the rest. The shield generator announces itself through the Force before you find it physically — a hard cold knot of power three levels under the foundry floor, fed by the same reactor that runs the production lines.\n\nIn a stairwell shrine, you nearly walk into a girl of maybe sixteen, keeping watch over a sleeping family with a kitchen knife in her fist. Mer Atta, foreman's daughter. She doesn't scream. She studies your lightsaber for a long moment, then says: \"There are four hundred of us in the resistance cells. Tell me you're not going to do what the Republic did at Hadran Vale.\"\n\nYou don't know what the Republic did at Hadran Vale. You're afraid you'll learn.",
+      "effects": ["set met_resistance true"],
+      "goto": "c2_intel"
+    },
+    "c2_recon_force": {
+      "text": "You sit zazen on the firebase berm as the sun goes down, facing the Spire, and let go of your own edges.\n\nThe city comes in like a tide. Sixty-one thousand lives — Havoc's number, you'll realize later, almost exactly — each one a candle of fear and stubbornness and boredom and love, because people remain people even inside a cage. You taste metal-dust and machine oil that's three meals deep in everyone's bread. You feel the foundry as the district feels it: a heartbeat that never stops, a heat that never breaks, the floor of the world trembling in shifts.\n\nYou find the shield generator by its wrongness — a cold dead knot in the warm lattice of lives, three levels down, where no minds linger because the droids cleared the levels around it. And you find something the maps could never show: the harmonic flaw. The shield and the foundry drink from one reactor, and every six days, when the production line retools for a new droid batch, the shield flickers — milliseconds only, but in the Force you can see the seam like a scar on the sky.\n\nYou also find, because you cannot help finding it, the shape of what sixty-one thousand people fear most. It isn't the droids. The droids are familiar by now.\n\nIt's the sky. It's what the Republic's guns might decide their district is worth.\n\nYou come back to your body after four hours with tears dried on your face and Tally pretending he hasn't been standing medical watch over you the whole time.",
+      "effects": ["set sensed_flaw true"],
+      "goto": "c2_intel"
+    },
+    "c2_recon_probe": {
+      "text": "At dawn, Dice's company hits the south gate with exactly enough force to be taken seriously.\n\nIt's a brutal kind of question to ask — reconnaissance written in blaster fire — and the answer comes back in detail: gun emplacements unmasking along the second terrace, hidden batteries the refugees never knew about, a counterattack of B2s that deploys with a speed telling you the garrison commander is a tactical droid of the newer series, and the precise lag — eleven seconds — between the shield modulating to let defenders fire out and its return to full strength.\n\nEvery gun that shows itself goes onto the map. Longshot and his scout-snipers spend the morning annotating death.\n\nThe answer costs. Dice brings his company back with five wounded — two of them badly, dragged the last hundred meters under fire by their brothers. At the aid station, Tally works with the steady viciousness of a medic who has decided the universe will have to go through him, and Havoc stands at the foot of the cots making small marks in a notebook that you now know the meaning of.\n\nHe doesn't say anything about the cost. It was a sound trade and you both know it; that's what probes are for. But that evening you notice the men's voices around the cook fires, recounting the morning, and you understand that the battalion is keeping its own ledger about you, entry by entry, and that it has just opened with a line item: 'spends us when it counts. Watches the stretchers come in. Doesn't look away.'",
+      "effects": ["set mapped_guns true", "havoc_rel %+ 5"],
+      "goto": "c2_intel"
+    },
+    "c2_intel": {
+      "text": [
+        "It rains the night of the decision brief, drumming on the command tent while the holotable paints everyone's faces blue. Havoc. Dice with his arm in a field dressing he's ignoring. Longshot in the corner shadow. Tally, present because you told him medics get a voice in plans that make casualties.",
+        {"if": "recon == \"self\"", "text": "Your own sketch-map of the undercity glows on the table — aqueduct routes, the generator's location, Mer Atta's four hundred. \"We have a way in that the droids don't know exists,\" you tell them, \"and four hundred sets of hands on the inside.\" Dice whistles. Havoc just looks at the route for a long time, measuring it against names not yet in his book."},
+        {"if": "recon == \"force\"", "text": "You talk them through the harmonic flaw — the six-day retooling flicker, the seam in the sky — and watch a roomful of professional skeptics decide all over again that Jedi are worth the paperwork. \"Production cycle resets in four days,\" Havoc says slowly. \"So we'd have one window before the relief flotilla math gets ugly. Tight. Real, but tight.\""},
+        {"if": "recon == \"probe\"", "text": "The gun map rotates above the table, every battery plotted in Longshot's fastidious hand, the eleven-second shield lag flagged in red. \"We bought this with five beds in my aid station,\" Tally says, not as an accusation — as a unit of account. Havoc nods. \"Then we spend it like it cost something.\""},
+        "Three courses sit on the table like three loaded blasters.\n\nORBITAL: the 'Resolute Dawn' cracks the shield and brings the Lower Terraces down onto the foundry. One hour. Zero Republic casualties. The district dies with it.\n\nINFILTRATION: a small team inside, drop the shield from the generator floor, shelter the civilians, take the foundry by hand. If it goes wrong, it goes wrong in the middle of sixty thousand people.\n\nSIEGE: cut power, food, and patience until the garrison cracks. Sieges work — slowly, under the relief flotilla's clock, with a trickle of casualties that never stops. And the civilians inside are on half-rations already.\n\nHavoc sets his helmet on the table. \"Whatever you choose, ${sir}, the One-One-Seven will make it true. That's not the question.\" His eyes go briefly to the notebook pocket. \"The question is what we're spending, and what we're buying.\""
+      ],
+      "goto": "c2_decision"
+    },
+    "c2_decision": {
+      "text": "The rain fills the silence. The holotable turns. Sixty-one thousand candle-flames, two regiments of droids, twelve hundred men of the Ghost Battalion, and you.\n\nMaster Venn floats in amber light eleven systems away. 'Watch yourself. The mud gets in through wounds.'\n\nYou look at the map and the map looks back.",
+      "choices": [
+        {
+          "text": "\"Signal the Dawn. We bring the Terraces down on top of the foundry.\" One hour, and not one of Havoc's names added to the book. The droids made it a shield; the droids made the choice.",
+          "effects": ["set route \"bombard\""],
+          "goto": "c2_bomb_order"
+        },
+        {
+          "text": "\"We go in. Drop the shield from inside, get those people out from under it, and take the foundry with our hands.\"",
+          "effects": ["set route \"infil\""],
+          "goto": "c2_inf_plan"
+        },
+        {
+          "text": "\"We strangle it. Siege lines, cut the feeds, and break the garrison before the relief fleet breaks us.\"",
+          "effects": ["set route \"siege\""],
+          "goto": "c2_siege_lines"
+        }
+      ]
+    },
+    "c2_bomb_order": {
+      "text": "The tent goes still in a particular way — not shock. Attention. Dice looks at the table. Tally looks at you. Longshot looks at nothing, which is what he looks at when he's looking at everything.\n\nHavoc takes out his datapad and reads it back with a fire controller's precision, each word weighed and stamped: \"'Resolute Dawn' to commence sustained orbital bombardment, target reference Foundry District, Lower Terraces, Calden Spire. Danger-close override authorized.\" He looks up. There is nothing in his face at all, which from Havoc is the loudest thing in the tent. \"Confirm the override, ${sir}. It needs your voice print. Regulations are particular about —\" the half-second pause is surgical — \"about targets like this one.\"\n\nThe rain drums. Eleven klicks away, sixty-one thousand people are asleep in stairwells.\n\nIt would work. That's the thing with teeth. It would absolutely work, and every trooper in this battalion would still be alive next week, and the front would stop receiving a battalion of fresh droids every six days, and the war does not care how anyone feels about it.",
+      "choices": [
+        {
+          "text": "Give the voice print. \"Confirmed. Fire.\"",
+          "effects": ["war_score += 5"],
+          "goto": "c2_bomb_fire"
+        },
+        {
+          "text": "\"...Belay it.\" Your voice, but it arrives like someone else's. There has to be another way to spend this.",
+          "effects": ["dark %- 5", "havoc_rel %+ 5"],
+          "goto": "c2_bomb_belay"
+        }
+      ]
+    },
+    "c2_bomb_belay": {
+      "text": "\"Belay it,\" you say again, steadier, and the tent breathes.\n\nHavoc deletes the order with one keystroke. If there's relief in him, it doesn't reach his face — but Tally's shoulders come down from around his ears, and Dice starts shuffling his actual sabacc deck, which you're learning is what he does when the universe resumes making sense.\n\n\"Wasn't going to argue with it,\" Havoc says quietly, just to you, as the others lean back over the map. \"Want that on the record, ${sir}. I'd have fired. Brothers I'd have kept alive with it.\" A beat. \"Also want on the record that I'm glad I don't have to find out what it would've made us.\"\n\nThe map still turns. The clock still runs. Two courses left, and the relief flotilla isn't getting farther away.",
+      "choices": [
+        {
+          "text": "\"We go in. Drop the shield from inside and take the foundry with our hands.\"",
+          "effects": ["set route \"infil\""],
+          "goto": "c2_inf_plan"
+        },
+        {
+          "text": "\"Then we strangle it. Siege lines. We break them before the fleet comes.\"",
+          "effects": ["set route \"siege\""],
+          "goto": "c2_siege_lines"
+        }
+      ]
+    },
+    "c2_bomb_fire": {
+      "text": "\"Voice print confirmed,\" the 'Resolute Dawn' says, in the pleasant tone warships use for everything. \"Firing solution locked. Time on target, six minutes.\"\n\nYou step out of the tent because you will not let yourself not watch.\n\nIt starts as a brightening above the cloud deck, like a second dawn out of schedule. The first turbolaser lance touches the shield, and the shield drinks it, and the second, and the third — oil-sheen rainbow blazing white — and then somewhere under the Lower Terraces a generator gives everything it has and dies, and the sky falls the rest of the way in.\n\nIt takes forty minutes, not an hour. The Terraces descend, level folding onto level, with a sound that arrives at the firebase like the planet clearing its throat. Near the end the foundry's reactor cooks off, a pulse of un-light under the rubble, and the smoke column climbs until it flattens against the overcast.\n\nBehind you, the firebase is silent. Twelve hundred men, every one alive, every one watching, and not one sound.\n\nHavoc stands at your shoulder, helmet under his arm. His notebook stays in its pocket. There is no page in it for this; that's what his silence is — discovering, in real time, that his accounting has a hole in it the size of a city district.\n\n\"Foundry's dead, ${sir},\" he says at last. Flat. True. \"Confirming kill for theater command.\"",
+      "effects": ["set bombarded true", "set civvies_saved false", "war_score += 15", "dark %+ 20", "havoc_rel %- 10"],
+      "goto": "c2_bomb_walk"
+    },
+    "c2_bomb_walk": {
+      "text": [
+        "The battalion walks the ruin two days later, when the rubble cools enough for boots.\n\nMop-up, the tasking order calls it. There is nothing to mop. Droid wreckage and city wreckage have fused into one geology; you climb a slope and realize it was a stairwell. The men work in fire-team silence, marking sublevel voids for the engineers, their squad channels — usually a river of chatter and insult — running almost dry.\n\nIt's Dice who finds the shoe. He doesn't say anything — just stops, looking down at something small caught between slabs, then unclips the pauldron with the sabacc cards painted on it, sets it over the gap like a lid, and climbs on. Eleven men watch him do it and file it somewhere deep.",
+        {"if": "dark >= 40", "text": "That night you sleep without dreams, and wake to a thought lying in your mind like a stone someone left there: 'It worked. They would still be dying for weeks, the slow way. You spent one minute of horror and bought a month of lives, and no one who calls it monstrous has ever held the ledger.' The thought is reasonable. The thought is warm. You can't find the seam where it entered."},
+        {"if": "dark < 40", "text": "That night you don't sleep. You sit on the berm facing the smoke column — it still hasn't finished — and you reach for the Force the way you'd reach for water, and it comes, but it comes the way water comes to a cut: stinging. Sixty-one thousand candles. You had felt the city breathing, and now eleven klicks of night air carries nothing at all."},
+        "In the morning, theater command's reply to the kill confirmation arrives. It is a commendation. It uses the phrase 'decisive economy of force.' Havoc reads it over your shoulder, says, \"Congratulations, ${sir},\" with no inflection whatsoever, and goes to inspect the perimeter."
+      ],
+      "goto": "c2_spire_falls"
+    },
+    "c2_inf_plan": {
+      "text": [
+        "\"Infiltration,\" Havoc says, and you can hear the battalion's odds recalculating behind his eyes. \"Small team drops the shield from the generator floor. The moment it falls, I bring the One-One-Seven through the south gate with everything we have. The window between 'shield down' and 'droids understand why' is the whole plan, ${sir}. Minutes. Maybe only one.\"",
+        {"if": "met_resistance", "text": "\"And we have four hundred friends inside,\" you say, and put Mer Atta's cell map on the table. Whistles around the tent. Four hundred sets of hands to move sixty thousand people into shelters and cellars the moment the shooting starts — if you get them the warning in time."},
+        {"if": "sensed_flaw", "text": "\"And we have the flicker,\" you say — the six-day retooling seam, milliseconds wide, when the shield wavers. A team that's already at the perimeter in that moment doesn't need a gap big enough for an army. It needs a gap big enough for a ghost."},
+        {"if": "mapped_guns", "text": "\"And we have their gun map,\" you say. Longshot's annotations bloom across the holo. Every emplacement that unmasked at the south gate is plotted to the meter — which means when the shield drops, the Dawn's precision fire can blind the defense in the first thirty seconds without touching the habs."},
+        "Three ways in. You'll lead the team yourself — that part was never a question, whatever the regulations think about commanders on point."
+      ],
+      "choices": [
+        {
+          "text": "The aqueducts — through the undercity dark with Longshot and Dice, the way no rational army travels.",
+          "effects": ["set vector \"tunnels\""],
+          "goto": "c2_inf_tunnels"
+        },
+        {
+          "text": "The refugee checkpoint — walk in through the front door wrapped in the Force, faces the droids' sensors decline to find interesting.",
+          "effects": ["set vector \"veil\""],
+          "goto": "c2_inf_veil"
+        },
+        {
+          "text": "The pylon — a grapple ascent and a blade through the shield's southern anchor point, loud and fast, daring them to react in time.",
+          "effects": ["set vector \"strike\""],
+          "goto": "c2_inf_strike"
+        }
+      ]
+    },
+    "c2_inf_tunnels": {
+      "text": "Midnight again, water again, dark again. You, Longshot, Dice, and six picked troopers move through the aqueduct ways in a silence so complete the city's own groans and tickings become a kind of weather.\n\nFour hours in — one junction short of the maintenance grate that opens beneath the foundry district — Longshot's fist comes up, and everyone becomes part of the wall.\n\nA probe droid hangs at the junction ahead, where no patrol route has any business being. Its photoreceptor sweeps the tunnel mouth in slow arcs. Behind it, faint, the clank of a B1 picket the Seps have pushed down here since your last visit — somebody inside that garrison has started thinking about the undercity after all.\n\nThe grate is forty meters past the droid. The mission is forty meters past the droid. Dice's hand drifts to his vibroblade and stops, waiting on your call.",
+      "choices": [
+        {
+          "text": "Stillness. Wrap the team in patience and let the probe's sweep slide over nine motionless shadows until it loses interest.",
+          "if": "guile >= 45",
+          "effects": ["guile %+ 10"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Take it before it calls home — one thrown blade-stroke, faster than its transmitter.",
+          "if": "saber >= 40",
+          "effects": ["saber %+ 8", "set alarm_near true"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Rush the junction and overwhelm the picket before anything can matter.",
+          "effects": ["war_score += 2"],
+          "goto": "c2_inf_blown"
+        }
+      ]
+    },
+    "c2_inf_veil": {
+      "text": "The checkpoint at the Terrace district's one open gate processes work-permit traffic at dawn: a grinding queue of grey-faced laborers, a tactical droid with a scanner array, and twelve B1s whose programming has been set to 'officious.'\n\nYou join the queue wrapped in the Force, two troopers in laborers' rags behind you with their armor cached and their sidearms making them walk wrong. The veil is delicate work — not invisibility, never invisibility, just a gentle ongoing suggestion that you are exactly as interesting as gravel.\n\nThe queue shuffles. The scanner array sweeps. And three places from the front, the tactical droid raises one servo and halts the line. \"Anomaly,\" it announces, in that maddening conversational register the new series uses. \"Thermal profile inconsistency. Sector scan commencing.\"\n\nThe scan will take eleven seconds to reach you. The Force is listening for what you'll ask of it.",
+      "choices": [
+        {
+          "text": "Deepen the veil — become not just uninteresting but UNTHINKABLE, a hole in the droid's arithmetic.",
+          "if": "force >= 45",
+          "effects": ["force %+ 10"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Push a needle of panic into the crowd — one scream, one stampede, and three ghosts vanish in the churn. The droids will restore order with shock-staffs. They always do.",
+          "effects": ["dark %+ 12", "guile %+ 5"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Hold the veil as it is and trust the queue's churn to carry you past the sweep.",
+          "goto": "c2_inf_blown"
+        }
+      ]
+    },
+    "c2_inf_strike": {
+      "text": "The southern shield pylon is a two-hundred-meter spike of Separatist engineering anchored into the Spire's old transit viaduct, and the plan is insolence itself: grapple the viaduct's underside before dawn, ascend through the maintenance bones, and put a lightsaber through the field modulator at the moment Havoc's diversion opens up on the far side of the city.\n\nThe ascent goes like a dream. The diversion goes like a Havoc — punctual, violent, irresistible — and every gun on the southern arc swings to answer it.\n\nYou come out of the pylon's maintenance shaft into the modulator gallery and find the dream over: a maintenance crew of B1s, an unscheduled super battle droid, and — turning toward the shaft with its pennant-antenna twitching — the garrison's tactical droid itself, here for an inspection nobody's schedule predicted.\n\n\"Jedi,\" it says, with what you'd swear is satisfaction, and the gallery fills with blasterfire.",
+      "choices": [
+        {
+          "text": "Become the storm — blade and motion, wreck the modulator while the gallery dies around you.",
+          "if": "saber >= 45",
+          "effects": ["saber %+ 10"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Let the rage off its leash — seize the super battle droid with the Force and use it as a flail until nothing in the gallery stands. It would feel like exhaling.",
+          "effects": ["dark %+ 12", "force %+ 5"],
+          "goto": "c2_inf_inside"
+        },
+        {
+          "text": "Grind it out — cover, fire discipline, trade the gallery meter by meter.",
+          "goto": "c2_inf_blown"
+        }
+      ]
+    },
+    "c2_inf_inside": {
+      "text": [
+        {"if": "vector == \"tunnels\"", "text": "The junction passes behind you like a held breath released. Forty meters, a grate, a ladder — and then you're standing in the foundry's under-levels, the machine heartbeat shaking dust off the pipes, three levels of stair between you and the cold dead knot of the shield generator."},
+        {"if": "vector == \"veil\"", "text": "The checkpoint passes behind you like a fever dream. Inside the gate, the Terrace district swallows three more grey figures without a ripple, and you walk the route to the foundry under-levels through streets where every window is watching and none of them tells."},
+        {"if": "vector == \"strike\"", "text": "The gallery falls silent except for sparks. The tactical droid's head sits at your feet, still trying to file a report through jammed channels. Below, through the viaduct's bones, the foundry under-levels and the generator's cold knot wait — and the route there is briefly, beautifully unguarded, because its guards just died on inspection detail."},
+        {"if": "met_resistance", "text": "Mer Atta's cell finds you before you find them — she materializes out of a duct with her kitchen knife and four hard-faced foundry workers, takes one look, and starts giving you the under-levels' real map, the one that lives in workers' heads. \"Four hundred of us are ready,\" she says. \"Tell me when, Jedi. We'll have every family in the deep cellars before your first shot.\""},
+        "The generator floor, when you reach it, is a cathedral of cold light: the shield's heart, humming its single note, fat power trunks running away to the foundry reactor. Charges go onto the couplings with the tenderness of men who know exactly how big a sound they're preparing.\n\nAnd here, hand on the detonator, you face the last fork of the night. The moment the shield falls, Havoc comes through the south gate and the district becomes a battlefield. Sixty-one thousand people are asleep over your head.\n\nThe warning takes time. Word moving mouth to mouth, families into cellars, stairwells clearing. Time is the one thing the plan doesn't have — every minute between warning and detonation is a minute some collaborator, some frightened soul, some droid informant might spend the secret."
+      ],
+      "choices": [
+        {
+          "text": "Warn them. Every family in the cellars before the first shot, whatever it risks. That was the point of coming in.",
+          "effects": ["set warned true", "set civvies_saved true", "set bombarded false", "dark %- 8", "force %+ 5"],
+          "goto": "c2_inf_shield_down"
+        },
+        {
+          "text": "Blow it now. Surprise is the plan; the One-One-Seven will be precise, and a warning that leaks kills everyone including the battalion. Cold, clean, fast.",
+          "effects": ["set warned false", "set civvies_saved false", "set bombarded false", "war_score += 5", "dark %+ 12"],
+          "goto": "c2_inf_shield_down"
+        }
+      ]
+    },
+    "c2_inf_shield_down": {
+      "text": [
+        {"if": "warned", "text": "The warning moves through the Terraces the way water moves through a dry field — silently, downward, into every crack. Two hours of agony while it spreads; twice, patrol sweeps pass close enough to touch, and twice the district holds its breath around you and lies for you with sixty thousand mouths shut. By the time your thumb finds the detonator, the stairwells are empty and the cellars are full, and somewhere above, an old woman is reportedly refusing to leave her kettle, the way there is always, always one."},
+        {"if": "not warned", "text": "You blow it on schedule, into a sleeping city. Surprise is total. That's the word the after-action will use — total — and it will be accurate about the droids and silent about the stairwells, about families waking mid-battle in the middle of a battlefield, about everything the word 'surprise' means to people who were never told their neighborhood was the objective."},
+        "The charges fire. The shield's single note climbs, cracks, and dies, and over the whole of Calden Spire the oil-sheen rainbow peels off the sky.\n\nAnd the Ghost Battalion comes through the south gate like its name.\n\nYou fight upward through the under-levels to meet them as the droid garrison convulses — production lines still disgorging half-built B1s that sit up on the conveyors and join the firefight unpainted. Havoc's voice owns the command net, calm as a metronome, walking companies through the foundry gates. Dice's company takes the reactor floor. Longshot's rifle, from some perch nobody saw him reach, removes every droid officer-node that raises an antenna."
+      ],
+      "effects": ["havoc_rel %+ 15", "war_score += 10"],
+      "goto": "c2_assault"
+    },
+    "c2_inf_blown": {
+      "text": "It goes wrong the way these things go wrong: completely, and in one second.\n\nAn alarm shrieks somewhere above, and then everywhere above. Blast doors begin descending like teeth. The under-levels flood with the clank and chatter of a garrison waking up angry, and the team is suddenly nine people in a stone throat with two regiments of droids learning their position to the meter.\n\n\"Well,\" Dice says, deploying his rifle's bipod against a pipe junction with weird serenity, \"there's the bad sabacc hand. Orders, ${sir}?\"\n\nYou are four hundred meters of hostile architecture from the shield generator. Behind you, the way out. Above you, sixty-one thousand civilians and a garrison that now knows the Republic is INSIDE. On the command net, Havoc's voice, tight and steady: \"Spectre Actual, we read alarms city-wide. Battalion is mounted and holding at the line of departure. Tell me what we're doing, ${sir}, and we'll do it.\"",
+      "choices": [
+        {
+          "text": "\"We finish it.\" Fight through to the generator — pay whatever it costs, drop the shield, and give the warning sirens to the civilians on your way.",
+          "effects": ["set finished_hard true"],
+          "goto": "c2_inf_desperate"
+        },
+        {
+          "text": "\"Dawn, this is Spectre Actual — the shield's down to half-power feeding their lockdown. Fire NOW, full bombardment, while it's weak.\" Salvage victory from the wreck. The district pays.",
+          "goto": "c2_inf_bomb"
+        }
+      ]
+    },
+    "c2_inf_desperate": {
+      "text": "What follows is forty minutes the 117th will tell new men about for the rest of the war, in the quiet voice the stories that matter get.\n\nNine of you fight four hundred meters down a stone throat. Longshot goes to overwatch and simply does not miss. Dice burns out two rifle barrels. You are everywhere the line is thinnest, blade a blue wall — and still it can't be enough, until the under-levels themselves rise: foundry workers with cutting torches and three generations of knowing these tunnels, hitting the droid flanks out of duct-ways the garrison never mapped. The resistance. They've been waiting three months for the Republic to be worth joining.\n\nTwo troopers die. Vex, who you'd known four days. Render, who'd been teaching the shiny sabacc. A dozen workers fall with them.\n\nBut the generator floor comes, and the charges go on, and the city's own sirens — cut over to the workers' control, wailing the old evacuation pattern every Terrace family knows — empty the stairwells into the deep cellars as the shield peels off the sky and Havoc brings twelve hundred ghosts through the south gate.\n\nOn the foundry floor, afterward, Havoc finds you. He looks at the worker-cells guiding his companies, at the cellars full of living families, at the two ponchos over his brothers. He writes the two names in his book. Then, beneath them, slowly, something else — you're close enough to see: 'Bought: Calden Spire. The people too.'",
+      "effects": ["set bombarded false", "set civvies_saved true", "havoc_rel %+ 12", "war_score += 5", "dark %- 5"],
+      "goto": "c2_assault"
+    },
+    "c2_inf_bomb": {
+      "text": "\"Copy, Spectre Actual,\" the 'Resolute Dawn' says, and the sky above Calden Spire turns white.\n\nYou spend the bombardment in the aqueducts, leading the team out the way you came while the city above takes the kind of fire its weakened shield drinks for only ninety seconds. The under-levels shudder. Dust falls in sheets. The foundry's heartbeat stutters, races, and stops — and so does everything else. The tunnels carry sound strangely; you try not to learn which sounds.\n\nThe team comes out of the aqueduct mouth at dawn into rain, eleven klicks between you and the smoke column that used to be the Lower Terraces. Nobody speaks on the walk back. Dice doesn't shuffle his cards.\n\nAt the wire, Havoc is waiting. He gets the team's count off your armor postures before anyone speaks — all nine, no losses — and his eyes go past you to the smoke flattening against the overcast.\n\n\"Foundry confirmed dead, ${sir},\" he says. \"Theater command sends its compliments.\" He pauses, and for the only time since you've met him, visibly chooses his next words. \"The men knew civilians were inside the plan, ${sir}. They'll want to know if the civilians were inside the fallback, too. I'll tell them whatever you tell me.\"\n\nThe rain falls. You tell him. He listens, nods once, goes to brief the companies, and his notebook stays in its pocket, holding its new hole.",
+      "effects": ["set bombarded true", "set civvies_saved false", "war_score += 10", "dark %+ 18", "havoc_rel %- 10"],
+      "goto": "c2_spire_falls"
+    },
+    "c2_assault": {
+      "text": [
+        "The Battle of Calden Spire lasts eleven hours, and the Ghost Battalion fights it the way it does everything: like it's already been somewhere worse.\n\nYou fight it at the front, because that's what a lightsaber is for — anchoring the breach at the foundry gates while Havoc feeds companies through with metronome calm, taking the reactor floor beside Dice, watching half-built droids sit up on their own conveyors to die unpainted. Tally runs an aid station in a tapcaf, and keeps the caf machine going, which the men will talk about for months.",
+        {"if": "warned or finished_hard", "text": "And through it all, the cellars hold. Sixty-one thousand people under the battlefield's floor, listening to the Republic and the Confederacy argue over their heads — and when the last droid falls, the strangest sound rises up through the city's bones: applause, muffled, subterranean, like rain heard from underwater. Dice stands in the middle of the foundry floor, looks down, and says, \"That's for us,\" in the voice of a man who didn't grow up expecting to be clapped for."},
+        {"if": "not warned and not finished_hard", "text": "The district pays for its surprise. Crossfire respects nothing; the after-action will count four hundred civilian dead and call the figure 'low, given the operational context,' and be hatefully correct. You see the survivors begin to emerge near the end — families surfacing into the wreck of their streets, walking past trooper and droid carcass alike with their eyes fixed on something the war can't reach. They don't look at you. The not-looking takes effort. You can feel it."},
+        "By dusk, the foundry's production lines are cooling for the first time in three months, and the 117th's flag — somebody made one, grey ghost on black, technically against regulations — flies from the highest gun emplacement on the second terrace."
+      ],
+      "goto": "c2_spire_falls"
+    },
+    "c2_siege_lines": {
+      "text": "\"Siege,\" Havoc repeats, and starts laying it out before you've finished nodding, because he's had this plan in a drawer since orbit. \"Cut the water mains feeding the foundry's coolant, kill the fusion taps, mine the resupply roads. The foundry chokes in eight, nine days. Then their garrison chooses between sallying into our guns or sitting on a dead asset while we dig closer.\"\n\nIt begins that night, and it is exactly as advertised: methodical, miserable, effective, slow.\n\nThe Ghost Battalion digs. Saps crawl toward the walls meter by meter under netting. Counter-raids come every night — droid sorties, vulture droids hunting the gun pits — and every morning Havoc's notebook comes out. One name. Two. The war does its accounting in a trickle, which is its own kind of weight: no single dawn worth grieving, and all of them together a stone on the chest.\n\nTheater command's daily dispatches acquire a tone. 'Confirm projected resolution date.' 'Relief flotilla now estimates eight days.' 'Advise if tasking exceeds battalion capability' — which in staff language is a slap.\n\nOn the fifth night, Longshot brings you a thing his scope found: figures on the district wall, lowering something on ropes. A basket. A child in it.\n\nThe civilians have started putting their children over the wall at night, into no-man's-land, on the theory that the Republic might feed them.",
+      "effects": ["war_score -= 10"],
+      "goto": "c2_siege_week"
+    },
+    "c2_siege_week": {
+      "text": "By day seven there are four hundred civilians in the wire — escapees, wall-basket children, families who swam the drainage canals. Tally has converted half the aid station to feeding them. The droids have noticed: last night a Separatist gun walked shells across the canal mouth while people were in the water, and the screaming carried all the way to the gun pits, and this morning the men won't meet anyone's eyes.\n\nHavoc lays it in front of you without recommendation, which is how he serves you the heavy ones. \"The flow's increasing, ${sir}. Word's gotten into the district that we feed people. We can cut a protected corridor — push the line out to the canal, wire it, light it, hold it open with a standing company. People get out alive.\" He pauses. \"Costs: a company off the siege works, casualties holding it, and every refugee column is a column the Seps can salt with infiltrator droids and informants. The book answer is seal the lines. The book was written on worlds I don't drink to.\"",
+      "choices": [
+        {
+          "text": "Open the corridor. Wire it, light it, hold it — every family that reaches the canal gets out alive, and the cost comes out of the battalion's hide.",
+          "effects": ["set corridor_open true", "set civvies_saved true", "havoc_rel %+ 12", "dark %- 8", "war_score -= 5"],
+          "goto": "c2_corridor"
+        },
+        {
+          "text": "Seal the lines. Infiltrators inside the wire kill troopers; the siege exists to end this FOR those people, and softness now lengthens it. The book answer, because the book is right.",
+          "effects": ["set corridor_open false", "set civvies_saved false", "dark %+ 12", "command %+ 5", "havoc_rel %- 8"],
+          "goto": "c2_sealed"
+        }
+      ]
+    },
+    "c2_corridor": {
+      "text": "They call it the Lantern Road inside a day — a wired, gun-covered lane from the canal mouth to the firebase, strung with salvaged glow-rods because you ordered it LIT: let every family in the district see exactly where mercy lives.\n\nIt costs what Havoc said it would. The Separatists hit it the second night; the standing company holds, and two troopers go into the notebook — Chess, and a man everyone called Grandpa because he'd survived eleven months. The relief flotilla's ETA drops to six days and theater command's dispatches grow another degree colder.\n\nAnd eleven thousand people walk out of Calden Spire down the Lantern Road in four nights.\n\nThey come in soaked and starved, carrying grandmothers and tool bags and one defiant potted vine, and the Ghost Battalion — bred for war, never once asked what they'd be when it ended — discovers a talent for refugee logistics no Kaminoan ever wrote into a genome. Dice teaches sabacc to a row of wall-basket children with the gravity of officer training. Tally's medics deliver a baby on night three, and the firebase behaves for a full day as though the war is somebody else's problem.\n\n\"You'll want to see this, ${sir},\" Havoc says on the fourth night, and hands you his notebook, open. Under the day's two names, in his small exact hand, a second column has appeared. A number, climbing nightly. He's started counting the other direction too.",
+      "goto": "c2_siege_crisis"
+    },
+    "c2_sealed": {
+      "text": "You seal the lines, and you make yourself give the order in person, on the wire, where the men holding it can see your face while they obey.\n\nIt's the right call by every manual the Republic prints. Within a week you have proof: the engineers catch two infiltrator droids in a refugee basket at the canal mouth, packed in with a real child. Men would have died for that basket. Now they won't. The arithmetic holds, the way cold equations hold.\n\nWhat the manuals don't print is the rest. The wall-baskets keep coming for three more nights — lowered, waiting, raised again untaken — until the district understands, and they stop. The canal swimmers stop too, after the droid gun walks its fire across the water a second time and the firebase has to listen, stood-to and silent, weapons cold by your order. A sergeant asks permission to return fire and you hear your own voice deny it — the gun is bait, shooting unmasks the batteries, this is TRUE — and the sergeant says, \"Understood, ${sir},\" with perfect courtesy, and something shuts behind his visor like a door.\n\nHavoc never argues. He logs the decision, executes it flawlessly, and stops showing you the notebook.\n\nThe siege tightens. The foundry chokes. It's working. You've begun sleeping with the lamp on, which you file under things the war doesn't need to know.",
+      "goto": "c2_siege_crisis"
+    },
+    "c2_siege_crisis": {
+      "text": [
+        "Day twelve. The foundry's heartbeat — audible at the saps now, where the lines have crawled to under the walls — has gone arrhythmic, coolant-starved, production crawling. Two days, maybe three, and it dies on its own. The garrison's sorties have turned desperate.\n\nAnd at 0400, the 'Resolute Dawn' breaks orbit silence with the transmission you've been dreading: \"Separatist relief flotilla has jumped. Revised arrival: thirty hours. Be advised, we cannot hold orbit against their escort weight. Whatever you hold at H-plus-thirty, ${sir}, you hold alone.\"\n\nThirty hours. Three days of siege left in the foundry. The math has finally, formally, stopped going.\n\nHavoc assembles the command group in the pre-dawn cold, and nobody needs the situation explained. Take the city in thirty hours, or stand on twelve days of the notebook's names with empty hands while the sky fills with the enemy.",
+        {"if": "corridor_open", "text": "Eleven thousand are out down the Lantern Road. Fifty thousand remain — but the deep cellars are provisioned now, the corridor's families having carried the warning back along their own back-trails: 'if it comes to a storm, get DOWN, the Republic knows where you'll be.'"},
+        {"if": "not corridor_open", "text": "Sixty-one thousand people are still inside the walls, sealed in with the garrison, starved by your siege as surely as the foundry is. Whatever happens in the next thirty hours happens to them too."},
+        "Havoc waits, stylus over the operations pad. \"Orders, ${sir}.\""
+      ],
+      "choices": [
+        {
+          "text": "\"Assault. Tonight. Every company, every sap, the whole battalion through the walls at once — we take it with our hands before their fleet takes the sky.\"",
+          "goto": "c2_siege_assault"
+        },
+        {
+          "text": "\"The district's nearly empty and the cellars are deep. Bring the Dawn's guns down on the foundry before she has to run.\" The corridor bought you this option; the rubble lands mostly on droids.",
+          "if": "corridor_open",
+          "effects": ["set bombarded true", "dark %+ 12", "war_score += 10", "havoc_rel %- 5"],
+          "goto": "c2_siege_bomb"
+        },
+        {
+          "text": "\"We're out of time and out of choices. Bring the Dawn's guns down. All of it.\" The district is still full. The district was always going to be the price.",
+          "if": "not corridor_open",
+          "effects": ["set bombarded true", "dark %+ 20", "war_score += 10", "havoc_rel %- 12"],
+          "goto": "c2_siege_bomb"
+        }
+      ]
+    },
+    "c2_siege_assault": {
+      "text": [
+        "The Ghost Battalion goes over the top at 0140 under a hurricane of its own making — every gun the firebase owns firing the preparation, the saps disgorging companies directly under the walls, and you first through the breach because some traditions exist for good reasons.\n\nThe night assault on Calden Spire is the hardest thing the 117th has done in its short violent life. The garrison fights with the viciousness of cornered programming; the breach changes hands twice before holding. You are everywhere — blade a blue gale at the wall, the gate, the foundry floor, spending the Force like the battalion's ammunition because tonight it is.",
+        {"if": "corridor_open", "text": "The cellars hold. The Lantern Road families' warning did its work: the district is DOWN, deep, out of the crossfire, and the battle rages through streets that are terribly, mercifully empty. When the foundry's reactor is captured intact at 0830 and the last droid column surrenders its charge codes, the city comes up out of the ground into the smoke and the rain and the ringing silence — fifty thousand people, alive, blinking at the grey ghosts who walk their streets — and the cheer starts somewhere in the middle of them and does not stop for an hour."},
+        {"if": "not corridor_open", "text": "The sealed district pays the assault's tax. There was no warning to give and no trust to carry it; families surface into a running night battle, and crossfire respects nothing. The after-action will count the civilian dead in four figures and note, correctly, that the figure would have been worse by far had the city fallen to bombardment or the relief fleet turned the siege. Correct arithmetic. The survivors stand in their doorways at dawn and watch the battalion pass, and do not cheer, and do not curse, and their silence follows the column like weather."},
+        "Twenty-six hours after H-hour, when the Separatist relief flotilla drops out of hyperspace, it finds Calden Spire's guns — Republic-crewed now — already ranged on its approach lanes, the foundry cold, and nothing left to relieve. It loiters for one orbit, calculating, and jumps away.\n\nThe cost is in the notebook: thirty-one names in one night, the worst page since Geonosis. Havoc writes them at dawn, sitting on the breach rubble, and when he finishes he looks up at you and says, \"They knew what it was for, ${sir}. That's all the men ever ask. That it be FOR something.\""
+      ],
+      "effects": ["set bombarded false", "havoc_rel %+ 12", "war_score += 8"],
+      "goto": "c2_spire_falls"
+    },
+    "c2_siege_bomb": {
+      "text": [
+        "The 'Resolute Dawn' fires for sixteen minutes, which is all the time her gun captains need against a shield twelve days starved.\n\nYou watch it from the saps, close enough that the shockwaves arrive through the ground first, through your boot soles, like the city knocking. The Lower Terraces fold down onto the foundry level by level, and the heartbeat that has run under every hour of this siege — that you have felt through the earth at the saps, arrhythmic and dying and stubbornly ALIVE — stops mid-beat.",
+        {"if": "corridor_open", "text": "The deep cellars, the engineers will report, mostly held. Mostly. The Lantern Road bought eleven thousand people their lives outright and the cellar-warning bought most of the rest — but 'most' is a word with a body count inside it, and the count comes in over the following days, by the dozens and then the hundreds, dug out by troopers who keep digging long past orders. The men hold onto the eleven thousand. You watch them learn to do the arithmetic of it around the cook fires: we got out who we could, the Road was LIT, they knew the way. It is true, and it helps, and it is not enough, and all three of those things are permanent."},
+        {"if": "not corridor_open", "text": "There were no cellars provisioned, no warning carried, no Road. The district dies with the foundry, sealed in by Separatist blast-doors and your own perimeter both, and the relief flotilla arrives thirty hours later to find nothing worth relieving and jumps away, and that is called, in the dispatch you must now write, victory. The battalion stands to on the siege lines it spent twelve days bleeding for, facing a smoke column where the objective used to be, and the silence in the gun pits is total. Havoc closes his notebook with twelve days of names in it and does not open it again on Pellior. Some ledgers, his stillness says, have stopped balancing."},
+        "Theater command's commendation arrives within the day. 'Decisive resolution under fleet-threat conditions.' You read it twice and find that both times your eyes slide off the words like rain off a visor."
+      ],
+      "goto": "c2_spire_falls"
+    },
+    "c2_spire_falls": {
+      "text": [
+        "On the last morning, the Separatist holdout transmitter atop Calden Spire goes silent, and a work crew of troopers cuts the Confederate banner off the summit mast. It comes down the kilometer of the tower's face in slow folds, like something deciding to be done.\n\nPellior is taken. The foundry that fed three fronts is dead. However it happened, that much is arithmetic: the 117th's first campaign under your command is a victory, and the war will spend it accordingly.",
+        {"if": "bombarded and not civvies_saved", "text": "What the war's ledgers won't record: the smoke column off the Lower Terraces burned for six days, and the battalion stopped mentioning it on the second, and the firebase's cook fires went quiet earlier each night. Some victories you stand on. This one you stand NEAR, and feel it looking at you."},
+        {"if": "bombarded and civvies_saved", "text": "What the war's ledgers won't record: the survivors' camp at the canal mouth, eleven thousand strong, where the Lantern Road families have raised the Republic flag beside — not under — a hand-painted banner listing their own dead. The men visit on their off-rotations. Nobody orders them to. Dice has lost forty hands of sabacc to the wall-basket children, possibly on purpose."},
+        {"if": "not bombarded and civvies_saved", "text": "What the war's ledgers won't record: a city still standing. Sixty thousand people in their own streets, the foundry's carcass already being stripped by its former slaves for reconstruction girders, and children who run after the troopers' patrols not to beg but to march — knees high, arms swinging, helmets of woven scrap. The men pretend not to see them and adjust their own pace so the small ones keep up. Grey ghosts. Funny how the name's stopped sounding like a death omen."},
+        {"if": "not bombarded and not civvies_saved", "text": "What the war's ledgers won't record: a city standing but hollowed — saved from the sky, scarred by the ground, its streets full of people who survived your strategy without ever being its concern. They rebuild already, because people do. They take the Republic's rations with their eyes elsewhere. Whatever was won here, you've begun to understand it was won FROM them, not for them."},
+        "Word from the 'Mercy of Alderaan' arrives with the mail packet, in a medical droid's tin prose: Master Ilara Venn's condition is stable. Coma unchanged. 'Neural activity,' the droid notes, 'is consistent with deep dreaming.' You wonder, not for the first time, how much of this she'll already know when she wakes. She always knew everything, by means you never caught her using."
+      ],
+      "goto": "c2_tally_night"
+    },
+    "c2_tally_night": {
+      "text": [
+        "You find Havoc on the firebase berm on the last night, helmet off, notebook open on his knee, working through it by glow-rod light. Not writing. Reading. Page by page, all two hundred-some, the way other men read letters from home.\n\nHe doesn't startle when you sit down beside him — he's known you were coming since you left the command tent, soldiers' radar being what it is.",
+        {"if": "havoc_rel >= 45", "text": "\"My second Jedi commander,\" he says, eyes on the book, \"told me grief was attachment, and attachment was the path to the dark side. Maybe so. But I watched you this campaign, ${sir}, and I'll tell you what I think now: the dark side's whatever lets you stop counting.\" He turns a page. \"You counted. The men noticed. That's the entire report.\""},
+        {"if": "havoc_rel < 45", "text": "\"Permission to speak plainly, ${sir}.\" He doesn't wait for it. \"I don't know yet what kind of commander you are. Twelve hundred men are also still deciding, and they'll decide off what you do, not what HQ says about it. This book's my half of the ledger.\" He turns a page. \"The other half is what it bought. I'll keep writing my half either way. That's the entire report.\""},
+        "He closes the notebook and looks at the city — lit or smoking, saved or scarred, whatever the campaign has made of it — and asks the only question he's asked all war that has nothing to do with orders.\n\n\"Does it get lighter, ${sir}? The counting. You Jedi live longer than we do. You'd know.\""
+      ],
+      "choices": [
+        {
+          "text": "Sit with him and the book, and say the names with him. All of them. It takes until the watch changes.",
+          "effects": ["havoc_rel %+ 15", "dark %- 5"],
+          "goto": "c2_dispatch"
+        },
+        {
+          "text": "\"No. It gets heavier. You just get stronger — or you put the book down.\" The truth, with the bark on.",
+          "effects": ["havoc_rel %+ 8", "command %+ 5"],
+          "goto": "c2_dispatch"
+        },
+        {
+          "text": "\"It gets lighter when we win. Every name in there is a down payment on the only thing that redeems it. Keep your eyes on that.\" The war's answer, in your mouth.",
+          "effects": ["havoc_rel %- 8", "dark %+ 10", "war_score += 3"],
+          "goto": "c2_dispatch"
+        }
+      ]
+    },
+    "c2_dispatch": {
+      "text": [
+        "Your campaign dispatch goes up to the 'Resolute Dawn' at dawn, and the Council's reply comes down before the morning fog burns off — which tells you someone on Coruscant was waiting for it.\n\nThe holo is Master Windu, alone this time, blue and weary. \"Commander ${name}. The foundry's destruction is already being felt on three fronts. The Council notes the result.\" A pause, and you've learned to read these pauses now; this one has your whole campaign inside it, every choice, weighed by people who weren't there.",
+        {"if": "civvies_saved and not bombarded", "text": "\"It also notes the manner of it. Sixty thousand civilians under a Republic commander's protection, and protected. In a war that is teaching our Order... other habits, that dispatch was read aloud, Commander. Master Venn argued you were ready. Consider her account in credit.\""},
+        {"if": "bombarded", "text": "\"It also notes the manner of it.\" Windu's face gives you nothing — Windu's face has given the war nothing since Geonosis. \"A Separatist foundry destroyed, with collateral consequences the dispatch describes as 'operationally unavoidable.' The Council has accepted that characterization.\" A beat. \"Acceptance, Commander, is not the same as endorsement. We will speak of doctrine when the tempo allows. May the Force be with you in the meantime.\""},
+        {"if": "not civvies_saved and not bombarded", "text": "\"It also notes the manner of it — the city taken by ground assault under fleet threat. Costly. Defensible. The Council has marked the dispatch 'reviewed without finding.'\" A beat. \"Between us: learn the difference between a defensible choice and a right one, Commander. The war will keep offering you the first kind.\""},
+        "\"Your next tasking is attached. Vethari Prime — mid-rim shipyard world, formally neutral, courting both sides while its yards build for whoever wins the argument. The Republic is sending a diplomatic mission, and the Council is sending you with it. Your reputation now precedes you usefully.\" Almost — almost — something dry crosses the holo, a flicker of what might be humor in a less exhausted year. \"You will not be the only Padawan-made-Commander at the table. The Council is also sending Joren Kade.\"\n\nThe name lands like a thrown sabacc card. Joren. Temple-raised in the same creche cohort, two bunks down for ten years: brilliant, hungry, the keeper of exactly one tally of his own — every spar, every exam, every commendation, you-versus-him, since you were both nine. Last you heard he was on Ryloth winning something.\n\nThe holo dies. Havoc, who has materialized at your shoulder in that way of his, reads the tasking order upside down with one eyebrow up. \"Diplomacy, ${sir}?\" he says. \"The men'll want to know if they should pack for it.\""
+      ],
+      "goto": "c2_end"
+    },
+    "c2_end": {
+      "text": "The 'Resolute Dawn' breaks Pellior orbit that evening, and you stand at the observation deck transparisteel watching the planet fall away — the green and the grey, the city you decided about, already too small to see what the deciding cost.\n\nThe deck is officially crew-restricted during acceleration. The Ghost Battalion has decided this rule does not apply to its Jedi, so troopers move through on invented errands, each finding some reason to pass your spot: a nod, a 'sir', Dice dealing you a single sabacc card off the top of his deck — the Square of Stars, which he claims means luck and probably means nothing — and Longshot, passing in silence, leaving a cup of caf on the rail at your elbow as though it had always been there.\n\nTwelve hundred men. Two hundred-some names in a rain-swollen notebook, plus whatever Pellior added. One master, dreaming in amber, eleven systems behind. One rival, waiting on a neutral world that builds warships for whoever wins the argument.\n\n'This war is wrong-shaped,' she said. 'Don't just fight it. Watch it.'\n\nThe stars stretch, snap into starlines, and take you with them.",
+      "goto_chapter": 3
+    }
+  }
+}

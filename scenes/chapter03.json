@@ -1,0 +1,764 @@
+{
+  "chapter": 3,
+  "title": "The Neutral World",
+  "start": "c3_start",
+  "nodes": {
+
+    "c3_start": {
+      "text": [
+        "Hyperspace unspools past the bridge viewports of the Resolute Dawn like rain down a pane of glass. You stand at the holotable while the mission file rotates above it: Vethari Prime, a mid-rim world wearing a halo. The halo is the Ribbon — eleven hundred kilometers of orbital drydock, gantry, and foundry, where half-built warship keels hang like the bones of enormous fish. Whoever wins Vethari's yards gains a fleet a year. Whoever loses them will spend that year burying crews.",
+        "The Council's orders are precise in the way that only desperate orders are. The Shipwrights' Concord — the guild parliament that actually runs the planet — votes in four days on whose contracts to take: the Republic's, or the Confederacy's. You are to attend as envoy, win the vote, and under no circumstances start a war in a neutral harbor. A Separatist delegation is already on the ground. So is the other Republic envoy.",
+        "The name at the bottom of the file makes you read it twice. Kade, Joren. Padawan-Commander, field commission. You have not seen Joren since Jabiim — since the mud, and the retreat, and the day Master Venn went into the bacta tank and did not come out. He was two trenches over when the line broke. He pulled survivors out of the wreck of a gunship with his bare hands and got a commendation for it.",
+        "You were always going to meet again. The war is a small galaxy, for Jedi.",
+        "Behind you, the lift hisses open, and a familiar tread crosses the deck."
+      ],
+      "goto": "c3_havoc"
+    },
+
+    "c3_havoc": {
+      "text": [
+        "Captain Havoc plants himself at parade rest on the other side of the holotable, helmet under one arm, the grey ghost-skull of the 117th freshly painted on its brow. He studies the slowly turning Ribbon the way he studies everything: as terrain.",
+        "\"Diplomacy, ${sir},\" he says, making the word sound like an unfamiliar ration flavor. \"The men were asking what we're meant to shoot at.\"",
+        {"if": "bombarded", "text": "There is something careful in the way he stands, and you know why. Calden Spire is three weeks behind you, and the battalion still doesn't say the name out loud. Word of the bombardment travelled ahead of you on the HoloNet — the Separatists made sure of it. \"Begging your pardon, ${sir},\" Havoc adds, flat as deckplate, \"but the Vetharin papers have been printing the foundry casualty lists. You should know what you're walking into down there. They'll have made up their minds about you before you clear the ramp.\""},
+        {"if": "civvies_saved", "text": "There's an ease in the way he stands that wasn't there before Calden Spire. The battalion saw what it cost you to bring the civilians out of that district alive, and clones keep accounts the way other men keep holy days. \"For what it's worth, ${sir}, the Vetharin papers ran the Calden Spire story. The true one. Dice has been collecting clippings like a gossipy aunt. It might buy you a hearing down there.\""},
+        {"if": "not bombarded and not civvies_saved", "text": "\"For what it's worth, ${sir}, the men would rather grind out another siege than watch politicians eat canapés. But Longshot's already running a betting pool on whether you come back with a treaty or a war, so morale's healthy.\""},
+        "He sets his helmet down. \"Orders for the battalion?\""
+      ],
+      "choices": [
+        {
+          "text": "\"Stay in orbit, stay visible. I want every Vetharin who looks up to see a Republic ship keeping honest watch.\"",
+          "effects": ["command %+ 10", "havoc_rel %+ 5"],
+          "goto": "c3_landing"
+        },
+        {
+          "text": "\"Pull the Dawn back to the system's edge. This has to look like trust, not a gun on the table.\"",
+          "effects": ["force %+ 5", "c3_favor += 1"],
+          "goto": "c3_landing"
+        },
+        {
+          "text": "\"Keep her close, guns cold but charged. If this goes wrong, I want options that arrive in minutes, not hours.\"",
+          "effects": ["havoc_rel %+ 10", "guile %+ 5"],
+          "goto": "c3_landing"
+        }
+      ]
+    },
+
+    "c3_landing": {
+      "text": [
+        "Vethari Prime from low orbit is the most beautiful industrial accident in the Mid Rim. The Ribbon crosses its sky in a bright arc, welding flares winking along it like a constellation being built by hand. Below, the capital — Threnholm — spreads around the anchor-tether in rings of guildhalls, dormitory towers, and launch cradles, all of it stained the warm rust color of the local iron.",
+        "Your shuttle puts down on a government pad slick with recent rain. No honor guard. The Vetharin do not do honor guards for either side; the message of the empty pad is the whole of their foreign policy. A single figure waits at the edge of the permacrete instead, brown robe snapping in the tether-wind, and you'd know that ready, restless stance anywhere.",
+        "Joren Kade has a new scar through one eyebrow and a commander's plate on his shoulder that he wears the way some men wear cologne. The last time you saw him, you were both being carried in opposite directions by a collapsing front line and he was screaming at the medics to take Master Venn first.",
+        "He comes toward you through the rain with his hood down, grinning like the war is somewhere else."
+      ],
+      "goto": "c3_joren"
+    },
+
+    "c3_joren": {
+      "text": [
+        "\"They told me they were sending a hero of the hour,\" Joren calls over the wind. \"And then your name came through, and I thought, well, close enough.\" He stops an arm's length away, and for a heartbeat the polish drops and he is just the boy you raced through the Temple's south stair with, a lifetime and one war ago. \"It's good to see you breathing.\"",
+        {"if": "bombarded", "text": "Something flickers behind the grin — quickly mastered, but you catch it. He has heard about Calden Spire. Everyone has. He doesn't ask. Not asking is its own kind of question."},
+        {"if": "civvies_saved", "text": "\"Calden Spire made the Temple bulletins, you know,\" he adds. \"The evacuation. Master Bevenne read the dispatch aloud to the younglings.\" There it is, under the warmth: the flick of a ledger being updated. Two columns, his and yours."},
+        "He spreads his hands at the rust-colored city. \"Welcome to the most expensive neutral ground in the galaxy. How do you want to play this — partners, or shall we take turns being the reasonable one?\""
+      ],
+      "choices": [
+        {
+          "text": "Pull him into a rough embrace. The war can wait ten seconds.",
+          "effects": ["joren_rel %+ 20"],
+          "goto": "c3_briefing"
+        },
+        {
+          "text": "\"Partners. Like the south stair — and I'm still faster than you.\"",
+          "effects": ["joren_rel %+ 15", "guile %+ 5"],
+          "goto": "c3_briefing"
+        },
+        {
+          "text": "\"We're not children racing for the Council's eye, Joren. Brief me.\"",
+          "effects": ["joren_rel %- 15", "command %+ 10"],
+          "goto": "c3_briefing"
+        },
+        {
+          "text": "\"Last time I saw you, Master Venn was bleeding out on your shoulder. Tell me about that first.\"",
+          "effects": ["joren_rel %+ 10", "master_rel %+ 5"],
+          "goto": "c3_briefing"
+        }
+      ]
+    },
+
+    "c3_briefing": {
+      "text": [
+        "The groundcar that takes you into Threnholm is armored, local, and driven by a guild teamster who pointedly turns off the news feed when you board. Joren briefs you the way he always did before an exam: fast, complete, showing off only a little.",
+        "\"Three people matter. First Magistrate Oma Threll — elected, beloved, terrified for her people, trusts neither of us. She controls the floor of the Concord but only a third of its votes. Guildmaster Derren Hax — Keelwrights' Guild, the biggest bloc. He'd sell the yards to a Hutt if the Hutt's credits cleared first. And Ambassador Sajin Vey, the Confederacy's man. Koorivar, soft-spoken, generous, and three of Threll's aides are already wearing jewelry they can't afford.\" He ticks them off on his fingers. \"The vote is in four days. We're behind, but not badly. The Vetharin don't love the Republic, but they've seen what happens to 'liberated' foundry worlds.\"",
+        "\"One more thing.\" His voice loses its shine. \"Vey's delegation is bigger than it needs to be, and half of it never appears in public. Somebody senior is running it from the shadows — Vey looks over his shoulder before he sneezes. I don't know who. I don't like not knowing.\"",
+        "The car slows. Through the rain-streaked canopy rises the Hall of Keels, the Concord's seat, its doors flanked tonight by lanterns for a reception in both delegations' honor."
+      ],
+      "choices": [
+        {
+          "text": "\"We win this clean. Open hands, open books — show them what the Republic is supposed to be.\"",
+          "effects": ["c3_favor += 1", "force %+ 5"],
+          "goto": "c3_reception"
+        },
+        {
+          "text": "\"We treat it like a battlefield. Map the ground, find the weak point, commit everything there.\"",
+          "effects": ["command %+ 10"],
+          "goto": "c3_reception"
+        },
+        {
+          "text": "\"Vey is running a covert game. Then so are we — we just have to be better at it.\"",
+          "effects": ["guile %+ 10"],
+          "goto": "c3_reception"
+        }
+      ]
+    },
+
+    "c3_reception": {
+      "text": [
+        "The Hall of Keels was built inside the first drydock the Vetharin ever raised, and they never let you forget it: the reception swirls beneath the preserved skeleton of a thousand-year-old freighter keel, hung overhead like the rib cage of a god. Guild colors everywhere — welders' crimson, fitters' grey, the Keelwrights' brass — and between them the two delegations circle each other with canapés instead of blades.",
+        "You spot the principals at once. First Magistrate Oma Threll, grey-maned and straight-backed, holding court near the keel's bow with the expression of a woman counting exits. Guildmaster Hax, broad and loud, brass vow-rings up both forearms, laughing at his own joke to a knot of contract-hungry foremen. And drifting between them like incense, Ambassador Sajin Vey, cranial cone wrapped in silk, dispensing small perfect courtesies.",
+        "Joren tips his head toward you. \"One evening, two of us. Where do you spend it?\""
+      ],
+      "choices": [
+        {
+          "text": "On Threll. The Concord follows her heart even when it argues with her. Win the heart.",
+          "effects": ["c3_favor += 1"],
+          "goto": "c3_r_threll"
+        },
+        {
+          "text": "On Vey. Get close to the enemy, smile, and learn the shape of his game.",
+          "effects": ["guile %+ 5"],
+          "goto": "c3_r_vey"
+        },
+        {
+          "text": "On Hax. Votes are cargo, and Hax owns the most tonnage.",
+          "effects": ["c3_favor += 1"],
+          "goto": "c3_r_hax"
+        },
+        {
+          "text": "On none of them. Stand apart, robe and lightsaber, and let the room feel what a Jedi at war is. Let them come to you.",
+          "effects": ["dark %+ 8"],
+          "goto": "c3_r_presence"
+        }
+      ]
+    },
+
+    "c3_r_threll": {
+      "text": [
+        "Threll watches you approach the way a harbormaster watches weather. \"Commander,\" she says. \"My grandmother built gun cradles for the Republic in the last century's war. It paid for this hall. It also got the Ribbon bombed twice. You'll forgive me if my gratitude is complicated.\"",
+        "You don't argue. You ask, instead, about the lanterns — and for twenty minutes she tells you about the Festival of First Keels, about her welder daughter on the Ribbon, about the eleven thousand Vetharin already dead in other people's wars as conscripted freighter crews. You listen. It costs nothing and it is the rarest coin in the room; you can feel her noticing.",
+        "\"Vey listens too,\" she says at last, abruptly. \"He's very good at it. Then his masters' droids do the talking, on worlds that chose wrong. Convince me you're different, Jedi, and you'll have my floor — but I won't sell you my people for a smile.\"",
+        "Across the hall, Joren has Hax roaring at some story. He catches your eye over the guildmaster's shoulder: working, the look says. Both of us. Good."
+      ],
+      "effects": ["c3_favor += 1", "force %+ 5"],
+      "goto": "c3_sabotage"
+    },
+
+    "c3_r_vey": {
+      "text": [
+        "Ambassador Vey receives you with both hands open, a gesture his people reserve for honored rivals. \"The famous young commander. I confess I hoped you would come to me first. The Magistrate gives speeches; the Guildmaster gives invoices; only fellow professionals give conversation.\"",
+        "He is very good. He praises your Order, deplores the war, mourns Jabiim with what sounds like real grief, and never once says anything that could be quoted against him. But you are watching the rest of him, and the rest of him is frightened. When a silk-masked aide murmurs in his ear, his pulse jumps in his throat. When you mention, idly, that his delegation seems large, his cone tilts a degree and he changes the subject with too much grace.",
+        "\"We are both servants, Commander,\" he says at parting, and for one unguarded instant his voice drops the silk entirely. \"Some of us serve things that watch us back. Enjoy the reception.\"",
+        "He is gone into the crowd before you can frame the question. Whoever holds Vey's leash, Vey is more afraid of them than of the Republic, the Concord, and you combined. That is worth knowing — and it is the first true thing anyone has said all night."
+      ],
+      "effects": ["set seen_vey true", "guile %+ 10"],
+      "goto": "c3_sabotage"
+    },
+
+    "c3_r_hax": {
+      "text": [
+        "Getting to Hax is easy; everyone gets to Hax. Holding his attention costs more. \"Jedi!\" he booms, vow-rings clashing as he waves you into his circle. \"Settle a bet. Does the Republic pay its yards in credits, or in medals and apologies?\"",
+        "His foremen laugh on cue. You answer with numbers — fleet tonnage, hull-contracts, the dock fees of a hundred worlds the Confederacy 'liberated' into receivership — and the laughter shifts, slowly, onto your side of the scale. Hax's small eyes do arithmetic of their own. \"Hm. You talk like a quartermaster. I like quartermasters. Vey talks like a poet, and poets are how foundries end up nationalized.\"",
+        "He leans in, gone quiet under the noise of the party, breath warm with sparkwine. \"I'll tell you what I told him. The Concord vote is a cargo auction with extra steps. The Magistrate pretends otherwise because she's decent, which is why I'm fond of her and she's poor. Bring me terms — real ones, exclusive berths, indemnity if your war comes here — and my guild's votes load on your ship. Disappoint me, and, well.\" He toasts you, cheerful as a butcher. \"Poets pay in advance.\""
+      ],
+      "effects": ["set hax_warm true", "c3_favor += 1", "command %+ 5"],
+      "goto": "c3_sabotage"
+    },
+
+    "c3_r_presence": {
+      "text": [
+        "You take a position beneath the great keel's bow, hands folded in your sleeves, and you simply stop performing. No mingling, no canapés. You let the room see the robe, the saber, the stillness — the war made flesh, standing in their festival hall like a tax come due.",
+        "It works. Of course it works. Conversations bend around you; guild factors approach in twos and threes, drawn the way people are always drawn to power that doesn't beg. You answer their questions with calm, brief certainties and watch them walk away straighter, having chosen a side in their hearts without noticing. There is a low, warm satisfaction in it, like the first swallow of something strong.",
+        "Two reactions you mark. Ambassador Vey, across the hall, studies you for a long moment and then — oddly — smiles, as if you have confirmed something he was told to expect. And Joren appears at your elbow with two glasses and a fixed grin. \"You're scaring the locals,\" he murmurs.",
+        "\"Some of them like it,\" you say, because it's true.",
+        "\"That,\" Joren says, \"is what worries me.\" He puts a glass in your hand and stays beside you the rest of the night, a friendly arm and a quiet leash, and you can't decide which of you the leash is for."
+      ],
+      "effects": ["joren_rel %- 5", "force %+ 5"],
+      "goto": "c3_sabotage"
+    },
+
+    "c3_sabotage": {
+      "text": [
+        "The blast comes at the third hour after midnight, and it is not in orbit. It is Drydock Nine, the tether-foot yard at the edge of Threnholm — close enough that the shockwave rattles the windows of the envoy residence and sets every lantern in the city swinging.",
+        "By the time you and Joren reach the cordon, dawn is coming up through the smoke. Fourteen Vetharin welders dead, the night shift. The cradle that held the Concord's ceremonial flagship — the hull every guild apprentice works one rivet on — is a black flower of twisted durasteel.",
+        "And the investigators are already holding up what they found in the wreckage for the news droids: the scorched power cells of Republic demolition charges, and a shattered piece of white plastoid armor with the ghost-skull of the 117th stenciled on it.",
+        "\"That armor fragment is a fake,\" Joren says, low and furious. \"Our battalion crates are sealed in orbit — I checked the manifests an hour ago. This was staged by sunrise deliberately. Someone wants the Concord to vote angry.\" Across the cordon, Ambassador Vey is giving a statement, sorrowful and reasonable, deploring all violence, calling no names. He doesn't need to. The crowd is doing it for him.",
+        "Threll's summons arrives before the fires are out: the Concord convenes in three days. Explain, or go home.",
+        "Joren looks at you. \"Your call, Commander. How do we fight this?\""
+      ],
+      "choices": [
+        {
+          "text": "In the open. Demand a joint public inquiry — Vetharin investigators, full access to our ships and records. Truth, loudly.",
+          "effects": ["set c3_path \"diplomacy\"", "command %+ 5"],
+          "goto": "c3_dip_1"
+        },
+        {
+          "text": "In the shadows. Someone built that frame; find their hands and drag them into the light before the vote.",
+          "effects": ["set c3_path \"intrigue\"", "guile %+ 5"],
+          "goto": "c3_int_1"
+        },
+        {
+          "text": "With strength. Fourteen dead and a Republic flag on the murder weapon — march on Vey's compound and shake the truth out of it.",
+          "effects": ["set c3_path \"force\"", "dark %+ 8"],
+          "goto": "c3_arm_1"
+        },
+        {
+          "text": "Divide the work: Joren takes the public inquiry — he shines in daylight — while you go down into the shadows after the framers.",
+          "effects": ["set c3_path \"intrigue\"", "set joren_inquiry true", "joren_rel %+ 10"],
+          "goto": "c3_int_1"
+        }
+      ]
+    },
+
+    "c3_dip_1": {
+      "text": [
+        "You stand before First Magistrate Threll in her unadorned office above the Hall of Keels, and you put everything on the table. Battalion manifests. Demolition inventories, seal codes unbroken. The Resolute Dawn's full sensor logs for the night. And an offer no occupying power would ever make: Vetharin investigators aboard your ship, today, with access to anything they ask for.",
+        {"if": "background == \"consular\"", "text": "This is the work you were raised for, before the war decided otherwise — the patient architecture of trust. You find you remember how it's done."},
+        "Threll studies the documents, then you, for a long moment. \"Vey offered condolences and a reconstruction fund,\" she says. \"You're offering me your throat. Either you're honest or you're the better liar.\" She slides the data back. \"Three days, Jedi. My investigators will come. And the Concord floor will hear whatever they find — whichever way it cuts.\"",
+        "Joren waits until you're on the stairs to speak. \"You know what you've done. If the framers were thorough — if there's one planted log entry we haven't found — we just handed them the rope to hang us.\" He blows out a breath. \"It's what Master Venn would have done. I'm in. How do we spend the three days?\""
+      ],
+      "choices": [
+        {
+          "text": "With the families. Attend the fourteen funerals, all of them, robes off, no cameras invited.",
+          "effects": ["c3_favor += 2", "force %+ 10"],
+          "goto": "c3_dip_2"
+        },
+        {
+          "text": "With the guilds. Work the foremen hall by hall with Joren — terms, berths, contracts, handshakes.",
+          "effects": ["c3_favor += 1", "joren_rel %+ 10", "command %+ 10"],
+          "goto": "c3_dip_2"
+        },
+        {
+          "text": "With the investigators — stand over the forensics until the frame-job's seams show, and make sure they show on camera.",
+          "effects": ["c3_favor += 1", "guile %+ 10"],
+          "goto": "c3_dip_2"
+        }
+      ]
+    },
+
+    "c3_dip_2": {
+      "text": [
+        "On the second evening, Vey plays his counterstroke.",
+        "Every public screen in Threnholm lights at once with leaked battle footage — grainy, gun-camera, real. Calden Spire. Your siege, your orders, three weeks old. The feeds have been cut and scored like an opera, and a sorrowful Vetharin voice reads casualty figures over the burning skyline.",
+        {"if": "bombarded", "text": "And the worst of it is that the bones of it are true. You gave the order; the district burned; the foundry fell. The numbers on the screen are inflated — but not invented. In the residence's common room, Joren watches the loop twice without a word. The silence where his outrage should be is the loudest thing in the building."},
+        {"if": "not bombarded and civvies_saved", "text": "Except the footage has been doctored, and you know it because you were there. The district they show in flames is the district your troopers carried children out of, roof by roof. Joren is on his feet before the loop ends. \"That's fabricated. We can prove it's fabricated — Havoc's helmet-cams alone—\" He stops, watching you, waiting for the order."},
+        {"if": "not bombarded and not civvies_saved", "text": "The footage shows the long grind of your siege made to look like cruelty — starvation by deliberate policy rather than the slow strangling arithmetic it was. A lie built from true images. Joren's jaw works. \"They've turned patience into a war crime. Clever. How do we answer it?\""},
+        "Threll's office calls within the hour. The Magistrate will see you on the floor of the Concord tomorrow — and the floor will want an answer about Calden Spire before it hears anything else."
+      ],
+      "choices": [
+        {
+          "text": "Answer with the whole truth — stand before the Concord and account for Calden Spire yourself: what you ordered, what it cost, and why.",
+          "if": "not bombarded",
+          "effects": ["c3_favor += 2", "council_rep %+ 5"],
+          "goto": "c3_dip_3"
+        },
+        {
+          "text": "Answer with the whole truth — stand before the Concord and account for the bombardment yourself: what you ordered, what it cost, and what you would do differently.",
+          "if": "bombarded",
+          "effects": ["c3_favor += 1", "council_rep %+ 5", "dark %- 5"],
+          "goto": "c3_dip_3"
+        },
+        {
+          "text": "Fight footage with footage: have Havoc's helmet-cam records cut into a counter-broadcast by morning. Spin against spin.",
+          "effects": ["c3_favor += 1", "guile %+ 10", "havoc_rel %+ 5"],
+          "goto": "c3_dip_3"
+        },
+        {
+          "text": "Refuse to dignify it. The dead of Drydock Nine are Vetharin business; Calden Spire is the war's. Keep the inquiry on the sabotage and starve the story.",
+          "effects": ["command %+ 5"],
+          "goto": "c3_dip_3"
+        }
+      ]
+    },
+
+    "c3_dip_3": {
+      "text": [
+        "The Hall of Keels on voting day holds four thousand guild delegates, and the air above them is a haze of incense and fear. Threll's investigators report first, dry and devastating: the demolition cells recovered from Drydock Nine were Republic pattern but Separatist manufacture, serial-stamped by a foundry on Hypori. The armor fragment was cast plastoid, paint still curing. The frame is broken — but a broken frame is not a won vote, and you can feel the hall still balanced on its keel, waiting to be tipped.",
+        "Vey speaks like silk and ashes: the Republic may not have set this bomb, but the Republic's war will bring a thousand more. Neutrality under Confederate contract, he promises, means wealth and peace. He is believed. Not loved — but believed.",
+        "Then the Speaker's lantern swings to you.",
+        "Joren leans close as you rise. \"Whatever you're going to do,\" he murmurs, \"do it like you did at Jabiim. They followed you out of the mud. I watched.\"",
+        "Four thousand faces. One of them, in the third gallery, is hooded, and for half a heartbeat something cold brushes your senses from that direction — attention, ancient-feeling, amused. Then it is gone, and the hall is waiting."
+      ],
+      "choices": [
+        {
+          "text": "Speak the truth plainly: what the Republic can promise, what it can't, and what the Confederacy did to the last three shipyard worlds that signed with it.",
+          "effects": ["force %+ 10"],
+          "goto": "c3_dip_judge"
+        },
+        {
+          "text": "Yield your time to Joren — he's spent three days learning these guilds, and the Concord should hear a Republic that shares its podium.",
+          "effects": ["joren_rel %+ 20", "c3_favor += 1"],
+          "goto": "c3_dip_judge"
+        },
+        {
+          "text": "Reach out through the Force as you speak — find the wavering hearts in that hall and *press*, gently, until doubt becomes assent. They'll never know.",
+          "if": "force >= 40",
+          "effects": ["dark %+ 18", "set tricked_vote true"],
+          "goto": "c3_dip_trick"
+        },
+        {
+          "text": "Promise them everything — garrisons, indemnities, exclusivity — whether or not the Senate will ever honor a word of it. Win now; let Coruscant argue later.",
+          "effects": ["guile %+ 10", "dark %+ 10", "c3_favor += 2", "set lied_terms true"],
+          "goto": "c3_dip_judge"
+        }
+      ]
+    },
+
+    "c3_dip_trick": {
+      "text": [
+        "You speak — and beneath the words, you work.",
+        "It is so easy it frightens you, later, when you let yourself think about it. The hall is one creature with four thousand hearts, and most of them are not decided, only afraid. You move down the galleries with your outstretched senses the way a lamplighter moves down a street: this one needs his fear of droids brightened, that one her resentment of Vey's gifts warmed, this whole bench of fitters merely needs the memory of your voice to feel like their own conclusion. You are not lying to them, you tell yourself. You are only... tuning.",
+        "The Force goes with you gladly. That is the part you will not tell anyone.",
+        "When you sit, your hands steady, the hall is quiet in a new way — settled, like sediment. Joren is staring at you. He has no proof of anything; there is nothing to prove; you gave a fine speech. But he was at the Temple as long as you were, and something in his face has gone very carefully blank.",
+        "\"Good speech,\" he says, at last, each word weighed and found wanting.",
+        "The vote is called within the hour, and it is not close."
+      ],
+      "effects": ["joren_rel %- 20"],
+      "goto": "c3_out_republic"
+    },
+
+    "c3_dip_judge": {
+      "text": [
+        "You speak, and the hall listens — truly listens, in that way crowds only do once per cause. When you finish, the silence holds one heartbeat too long, and then the fitters' benches begin to drum their boot heels, which Joren whispers is either applause or a riot.",
+        "The Speaker calls the vote. The lantern-bearers walk the galleries. Guild by guild, the tallies climb the great brass board above the floor, crimson and grey and gold, and the hall holds its breath as the count narrows."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "c3_favor >= 4 or force >= 55 or command >= 55",
+          "goto": "c3_out_republic"
+        },
+        {
+          "text": "(Continue)",
+          "if": "c3_favor < 4 and force < 55 and command < 55",
+          "goto": "c3_out_separatist"
+        }
+      ]
+    },
+
+    "c3_int_1": {
+      "text": [
+        {"if": "joren_inquiry", "text": "Joren takes the daylight war: inquiries, manifests, press droids. \"Go,\" he says, with half a smile. \"I'll be respectable. Try not to make me regret it.\" By dusk his broadcasts are already blunting the worst of the public fury, which buys you the one thing the shadows require: time."},
+        "Whoever built the frame needed three things: Republic demolition cells, a piece of ghost-skull armor, and access to Drydock Nine on the night shift. The first two could be imported. The third is local, and local is where you go — down the tether district, where Threnholm's polish gives way to dock bars, flop-towers, and the eternal blue flicker of welding arcs.",
+        {"if": "background == \"sentinel\"", "text": "You grew up working places like this for the Temple, before the war: undercities and dock wards, where the truth is a commodity like any other and the exchange rate is respect. It is almost a homecoming. You know which stools to sit on, which questions to never ask first."},
+        "It takes a night of sabacc, sympathy, and bought rounds, but the shape emerges. The night-shift gate logs were doctored — sloppily, by someone with master codes. Three dockhands remember a freight crew nobody hired, with a work order signed by a clerk who doesn't exist, out of the office of the Keelwrights' Guild.",
+        "Hax's guild. The trail runs through Hax's own house — and then, if the freight manifests are honest about nothing else, onward to a sealed annex of the Separatist consulate."
+      ],
+      "choices": [
+        {
+          "text": "Squeeze the guild end first: confront Hax's chief clerk quietly and flip him before anyone knows you're looking.",
+          "effects": ["c3_int_score += 1", "guile %+ 10"],
+          "goto": "c3_int_2"
+        },
+        {
+          "text": "Go straight for the consulate annex tonight, before the trail cools.",
+          "effects": ["c3_int_score += 1"],
+          "goto": "c3_int_2"
+        },
+        {
+          "text": "Take the dockhands' testimony to Threll's investigators now — half a case in honest hands beats a whole case in yours.",
+          "effects": ["c3_favor += 1", "set told_threll true"],
+          "goto": "c3_int_2"
+        }
+      ]
+    },
+
+    "c3_int_2": {
+      "text": [
+        "By the second midnight you are on the consulate roof, rain hammering the silk pennants, Joren's voice a whisper on the comm from the speeder two streets over. \"Annex power grid runs hot at night. Whatever's in there, they're keeping it awake. You have my position if it goes loud.\"",
+        "The annex below you is the quiet kind of fortress: no droids visible, which means the droids are good. Through a vent grille you can see one room that matters — a comms suite, and in it a Koorivar clerk feeding flimsi into a furnace slot, one document at a time, methodical as prayer. They are burning the trail tonight. Whatever you do not take now, no one will ever take.",
+        "And there is something else. A cold spot in the Force, somewhere below decks — not a person, more like the *memory* of a person, the dent left in a cushion. Someone powerful sat long hours in that building, and recently. The cold has a flavor you have no name for yet.",
+        "How do you go in?"
+      ],
+      "choices": [
+        {
+          "text": "Like a ghost — vents, shadows, fingers light. Take the documents and leave nothing but rain.",
+          "effects": ["c3_int_score += 1", "guile %+ 10"],
+          "goto": "c3_int_3"
+        },
+        {
+          "text": "Cloak yourself in the Force — bend their attention away and walk in through the front door.",
+          "effects": ["c3_int_score += 1", "force %+ 10"],
+          "goto": "c3_int_3"
+        },
+        {
+          "text": "Take the clerk. A witness who can speak beats paper that can be forged — and he'll tell you what's in the cold room below.",
+          "effects": ["dark %+ 12", "c3_int_score += 1", "set took_clerk true"],
+          "goto": "c3_int_3"
+        },
+        {
+          "text": "Signal Joren and hit the annex together, fast and loud — smash the furnace before another page burns.",
+          "effects": ["joren_rel %+ 10", "saber %+ 5"],
+          "goto": "c3_int_3"
+        }
+      ]
+    },
+
+    "c3_int_3": {
+      "text": [
+        "In you go, with the rain for cover and your heartbeat very loud.",
+        "The annex unfolds around you in the dark: silk and steel, the smell of burnt flimsi, somewhere below that cold dent in the Force growing colder as you near the comms suite. The furnace room. The clerk. The papers, half of them already ash.",
+        "What happens in the next ninety seconds decides everything."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "c3_int_score >= 2 or guile >= 55",
+          "goto": "c3_int_clean"
+        },
+        {
+          "text": "(Continue)",
+          "if": "c3_int_score < 2 and guile < 55",
+          "goto": "c3_int_caught"
+        }
+      ]
+    },
+
+    "c3_int_clean": {
+      "text": [
+        "Ninety seconds later you are back in the rain with a satchel of unburned truth, and no alarm has sounded.",
+        {"if": "took_clerk", "text": "The clerk rides the speeder floor with stunned dignity. By the safe house he has decided, with the pragmatism of clerks everywhere, that he was rescued rather than abducted, and he talks. Oh, he talks."},
+        "Spread across the safe house table, the haul is a prosecutor's dream. Transfer orders for the Hypori-made demolition cells. Payment ledgers — Hax's chief clerk took eighty thousand for the gate codes, the night shift roster, the armor stencil. Vey's seal on the authorizations, his hand shaking visibly in the signature.",
+        "And one more thing: a security still from the annex's own internal cams, of the sealed lower room. A figure stands with its back to the lens — tall, hooded, a woman's bearing, twin saber hilts at the small of her back. The time stamp is six days ago. Across the bottom, someone — Vey? — has written one line in Koorivar shorthand, which the protocol droid renders as: SHE SAYS THE JEDI MUST WIN UGLY OR NOT AT ALL.",
+        "Joren reads it twice. \"Win ugly or not at all. They didn't come here to win the vote,\" he says slowly. \"They came to make *us* lose it. The frame, the footage — somebody is studying you.\" He looks up. \"So. The evidence. How do we spend it?\""
+      ],
+      "choices": [
+        {
+          "text": "Publicly. Hand everything to Threll's inquiry and let Vetharin justice detonate it on the Concord floor.",
+          "effects": ["set evidence true", "c3_favor += 1", "council_rep %+ 10"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Give it to Joren to present. He carried the daylight work; let the Concord see his face on the victory.",
+          "effects": ["set evidence true", "joren_rel %+ 20"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Privately. Take it to Vey at midnight and offer him a choice: withdraw the Confederacy's bid and run home — or face it in public, after which his hooded patron will deal with his failure personally.",
+          "effects": ["dark %+ 15", "guile %+ 10"],
+          "goto": "c3_int_black"
+        }
+      ]
+    },
+
+    "c3_int_caught": {
+      "text": [
+        "You are three steps from the furnace when the room's shadows stand up.",
+        "BX-series commandos, matte black, six of them — they were the furniture, and you walked past two. The first stun bolt you catch on instinct; the second takes the satchel strap off your shoulder; and then the annex is light and noise and Vey's voice on the public address, wonderfully grieved, announcing to all Threnholm that a Republic Jedi has been caught burgling a diplomatic mission.",
+        "You fight your way to the roof — there's no avoiding it, and the holocams catch every flash of blue — and Joren's speeder takes you off it under fire. The morning feeds are unanimous and merciless. The frame at Drydock Nine had begun to crack; your night's work has repaired it free of charge.",
+        "\"Don't,\" Joren says, when you start to speak, knuckles white on the controls. \"Just — don't. We have two days to save this, and I have to go tell the Magistrate why she shouldn't expel us by lunch.\"",
+        "What's left to salvage?"
+      ],
+      "effects": ["c3_favor -= 2", "set scandal true", "council_rep %- 10"],
+      "choices": [
+        {
+          "text": "Stand with Threll and confess it straight: what you suspected, why you went in, what you found before it went wrong. Take the consequences in person.",
+          "effects": ["c3_favor += 1", "force %+ 5", "dark %- 5"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Let Joren disown the operation publicly and burn your credibility to save the Republic's. He stays clean; you become the rogue.",
+          "effects": ["joren_rel %+ 15", "council_rep %- 5", "set scapegoat true"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Go back tonight. Finish it. The evidence still exists and shame is a luxury.",
+          "effects": ["dark %+ 12", "guile %+ 10"],
+          "goto": "c3_int_retry"
+        }
+      ]
+    },
+
+    "c3_int_retry": {
+      "text": [
+        "No one returns to a burgled house on the second night. That is precisely the arithmetic you are counting on.",
+        "This time you go in through the furnace flue itself, filthy and silent, while the consulate celebrates upstairs and the commando droids guard an empty roof. The comms suite is ash and triumph — but triumphant people get careless, and Vey's people have not yet purged the buffer of the very furnace that burned the trail. Machines remember what they destroy. You pull the spool with shaking fingers and are gone before the rain stops.",
+        "It is not the prosecutor's hoard the satchel would have been. Scorched fragments, half-reconstructed ledgers — and one intact security still of a sealed lower room: a tall hooded figure, twin saber hilts, a woman's bearing, and a line of Koorivar shorthand beneath: SHE SAYS THE JEDI MUST WIN UGLY OR NOT AT ALL.",
+        "Joren turns the still over in his hands at dawn, torn between fury at you and the evidence's plain weight. \"You're going to be the death of me,\" he says. \"Or the making of me. I genuinely cannot tell.\" He squares his shoulders. \"It's thin. With my testimony and Threll's forensics, it might just carry. Floor vote's at noon.\""
+      ],
+      "effects": ["set evidence true", "guile %+ 10"],
+      "goto": "c3_concord"
+    },
+
+    "c3_int_black": {
+      "text": [
+        "Vey receives you alone, at midnight, because the alternative you offered his aide was not receiving you at all.",
+        "You lay the ledgers on his desk one by one, and you watch a professional diplomat age a decade in silence. It is the security still that finishes him — the hooded figure, the twin hilts. His hands do not shake when he touches it. They go very, very still, which is worse.",
+        "\"You don't know what she is,\" he says quietly. \"I have served three governments and a banking clan, Commander. I have been threatened by experts. She never threatens. She *forgives* — in advance. Do you understand? She tells you it is already all right, what she will have to do.\" He pushes the still away. \"Withdraw the bid, and I die on a schedule of her choosing. Expose me, and I die sooner. You are not offering me choices; you are offering me calendars.\"",
+        "But he takes the calendar. The Confederate delegation announces its withdrawal at dawn — 'irregularities in local contracting' — and is gone by the vote, leaving the Concord one bid to accept and a guildmaster's clerk to arrest. You win without firing a shot or telling a single public truth.",
+        "Joren learns what you did from the morning feeds, and the look he gives you across the residence table is the first time he has ever looked at you like a stranger. \"Effective,\" is all he says. From him, it is an obituary."
+      ],
+      "effects": ["joren_rel %- 20", "war_score %+ 10"],
+      "goto": "c3_out_republic"
+    },
+
+    "c3_arm_1": {
+      "text": [
+        "You give Vey's compound one chance to open its gates. To everyone's surprise including possibly your own, it does.",
+        "You arrive at the Separatist consulate with Joren at your shoulder and a squad of the 117th at your back — Sergeant Dice on point, Longshot on overwatch across the avenue, Threnholm's morning crowds parting around the white armor in a hush that is one part awe and three parts fear. This is no longer diplomacy. This is a search, and everyone watching knows the difference.",
+        {"if": "background == \"guardian\"", "text": "Your blood, trained for the front since you could hold a training saber, settles into the old readiness. Whatever else this morning costs, at least it will be honest about what it is."},
+        "\"I want it on record,\" Joren says tightly as the gates part, \"that this is the option I argued against. Fourteen dead deserve justice, not theater with gun trucks.\"",
+        "\"It's on record,\" you say.",
+        "Inside: silk, incense, bowing aides — and at the center of the receiving court, Ambassador Vey, hands folded, having clearly rehearsed this scene since dawn. \"Commander. Search what you wish. The Confederacy mourns Drydock Nine with all Vethari.\" His eyes flick, once, toward the annex wing — the sealed lower levels — and away. He is performing for two audiences, and the one below ground frightens him more than yours does."
+      ],
+      "choices": [
+        {
+          "text": "Take him at his word and head straight for the sealed annex wing.",
+          "effects": ["command %+ 5"],
+          "goto": "c3_arm_2"
+        },
+        {
+          "text": "Watch his fear instead of his words — let the Force read where he most dreads you going, then go exactly there.",
+          "effects": ["force %+ 10"],
+          "goto": "c3_arm_2"
+        },
+        {
+          "text": "Make it hurt first: arrest him in front of his staff, on suspicion, and let the shock loosen every tongue in the building.",
+          "effects": ["dark %+ 12", "set brutal true"],
+          "goto": "c3_arm_2"
+        }
+      ]
+    },
+
+    "c3_arm_2": {
+      "text": [
+        "The annex's lower door is rated for orbital debris. Your lightsaber takes ninety seconds to disagree with it.",
+        "The droids are waiting on the other side — BX commandos, a full squad, and they do not pretend to be furniture. The corridor becomes a stuttering hell of blaster light and vibro-blades; Dice goes down with a smoking shoulder and keeps shooting from the floor; somewhere behind you Joren's blade sings its precise, economical song, guarding the wounded, always exactly where the line is thinnest.",
+        "Through it all you are aware of the room beyond the droids: cold in the Force, recently inhabited, the dent left by something that sat patiently in the dark for weeks and is gone now. Whoever ran this game has already left the board — hours ago, maybe minutes. The droids are not guarding their mistress. They are erasing her: behind them, demolition cells are stacked against the comms array, on a timer, ready to take the building's memory with them.",
+        "The fight comes down, as fights do, to seconds."
+      ],
+      "choices": [
+        {
+          "text": "Carve through the line — pure blade-work, fast and final, and reach that timer.",
+          "effects": ["saber %+ 10"],
+          "goto": "c3_arm_router1"
+        },
+        {
+          "text": "Direct the squad — overlap fields of fire, Longshot to the high vent, and grind the droids down by the manual.",
+          "effects": ["command %+ 10", "havoc_rel %+ 10"],
+          "goto": "c3_arm_router1"
+        },
+        {
+          "text": "Open yourself to the cold this place's mistress left behind — let it sharpen you, and end this the fast way.",
+          "effects": ["dark %+ 15", "saber %+ 5", "set drew_dark true"],
+          "goto": "c3_arm_win"
+        }
+      ]
+    },
+
+    "c3_arm_router1": {
+      "text": [
+        "Steel and light, three seconds, six droids, one timer."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "saber >= 50 or command >= 50",
+          "goto": "c3_arm_win"
+        },
+        {
+          "text": "(Continue)",
+          "if": "saber < 50 and command < 50",
+          "goto": "c3_arm_fail"
+        }
+      ]
+    },
+
+    "c3_arm_win": {
+      "text": [
+        {"if": "drew_dark", "text": "The cold pours into you like water finding a channel already cut. The next four seconds you will never quite remember and never quite forget: the droids simply *end*, in an order your conscious mind doesn't choose, and you come back to yourself standing over the dead timer with your blade humming and Dice staring at you from the floor with an expression you have only ever seen troopers aim at the enemy. The records survive. So does the memory of being, briefly, perfect."},
+        {"if": "not drew_dark", "text": "It is close, and it costs — Dice will need a tank week, and two troopers won't be returning to the Dawn — but the last droid falls across the threshold and Joren's blade spears the timer's leads with two seconds on the counter. The comms array, the ledgers, the whole guilty memory of the annex: intact, and yours."},
+        "The records are everything you hoped. Transfer orders for Hypori-cast demolition cells. Payments to Hax's chief clerk for codes and rosters. Vey's trembling seal. And the cold room itself: a meditation chamber, bare except for a meridian of scorch marks on the floor where someone trained with two blades, and a single flimsi square left precisely in the center, face up, in elegant High Galactic. It is addressed to no one and signed by no one, but it was left for a Jedi to find.",
+        "It says: YOU BREAK DOORS BEAUTIFULLY, COMMANDER. ASK YOUR COUNCIL WHAT THEY KEEP BEHIND THEIRS.",
+        "Joren reads it over your shoulder and says nothing at all. Outside, sirens, the Magistrate, the consequences."
+      ],
+      "effects": ["set evidence true", "set vey_confession true"],
+      "goto": "c3_arm_judge"
+    },
+
+    "c3_arm_fail": {
+      "text": [
+        "The timer wins.",
+        "The blast hurls you back up the stairwell in a fist of heat. The squad drags its wounded clear as the annex wing folds in on itself, burning every ledger, every droid, every gram of proof — and seasoning the rubble, you will learn within the hour, with planted fragments of Republic demolition cells. Of course. The building was always a second frame, cocked and waiting for you to march into it.",
+        "By noon the feeds have their story: the Jedi envoy stormed a diplomatic mission with clone troopers and blew its archive when the search found nothing. Vey gives his statement from a medcenter bed he does not need, voice bandaged in sorrow. Fourteen dead at Drydock Nine; now this. Threnholm's crowds outside the residence are no longer quiet.",
+        "Dice lives. Two of his squad don't. Joren comes back from the Magistrate's office grey-faced and stands in the doorway like a man deciding whether to keep being your friend.",
+        "\"She'll still hear us on the floor,\" he says finally. \"Threll. One last hearing before the vote — she's giving us that, against every adviser she has, because she met you and she isn't sure. That's what's left, ${name}. One unsure woman.\""
+      ],
+      "effects": ["c3_favor -= 2", "set scandal true", "havoc_rel %- 10", "war_score %- 5"],
+      "goto": "c3_arm_judge"
+    },
+
+    "c3_arm_judge": {
+      "text": [
+        "First Magistrate Threll receives you both in the Hall of Keels at dusk, the great brass tally board dark above the empty floor, the vote twelve hours away. She is done with diplomacy and so, visibly, are you; what's left is two tired people under a dead ship's bones.",
+        {"if": "vey_confession", "text": "Her investigators have spent the day with your captured records, and her face has the rigid calm of a woman who has read every page. \"You found the truth,\" she says. \"I won't pretend otherwise. You also found it by breaking my law with soldiers in my streets, and half my Concord is more frightened of you tonight than of the bomb. So convince me, Jedi. Tomorrow I stand before the guilds. Tell me what I should say the Republic is.\""},
+        {"if": "not vey_confession", "text": "\"Fourteen dead at the drydock,\" she says quietly. \"Two of your own troopers today. A burned consulate, a riot forming on my tether plaza, and not one page of proof. Vey offers my people contracts and condolences; you offer them a war that has already started behaving like one inside my capital. Tomorrow I stand before the guilds. Tell me, Jedi — what should I say the Republic is?\""},
+        "Joren stands beside you, silent. He has made his arguments already, all day, everywhere. This answer is yours alone."
+      ],
+      "choices": [
+        {
+          "text": "Lay the confession before her and the Concord, accept Vetharin judgment for how you got it, and let the truth do its own arguing.",
+          "if": "vey_confession",
+          "effects": ["set evidence true", "council_rep %+ 5", "c3_favor += 1"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Answer her honestly: the Republic is flawed, frightened, and still the only navy that will ever stand between the Ribbon and a droid fleet. No theater, just the arithmetic.",
+          "effects": ["c3_favor += 1", "command %+ 10"],
+          "goto": "c3_concord"
+        },
+        {
+          "text": "Stop persuading. Remind her — calmly, precisely — what happened to the orbital yards at Foerost and Sluis when they tried to stay neutral, and let her imagination govern her Concord. Fear travels faster than trust.",
+          "effects": ["dark %+ 15", "set brutal true"],
+          "goto": "c3_arm_router2"
+        },
+        {
+          "text": "You are done with all of them. If Vethari's yards cannot be the Republic's, they will be no one's — signal Havoc tonight and put a torpedo spread through the Ribbon's fuel lattice.",
+          "effects": ["dark %+ 20", "set torched true"],
+          "goto": "c3_burn"
+        }
+      ]
+    },
+
+    "c3_arm_router2": {
+      "text": [
+        "You say the names — Foerost, Sluis — and you say nothing else. The dusk does the rest. Threll holds your gaze for a long, long moment, measuring exactly what stands in her hall wearing a Jedi's robe, and what it will do."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "dark >= 40 or saber >= 55",
+          "goto": "c3_arm_cowed"
+        },
+        {
+          "text": "(Continue)",
+          "if": "dark < 40 and saber < 55",
+          "goto": "c3_out_separatist"
+        }
+      ]
+    },
+
+    "c3_arm_cowed": {
+      "text": [
+        "Whatever she sees decides her.",
+        "The vote the next morning is brisk, joyless, and unanimous in the way only frightened parliaments are unanimous. The Shipwrights' Concord of Vethari Prime accepts the Republic's contracts in perpetuity. There are no lantern processions afterward, no Festival of First Keels declared. The guild delegates file out past you without meeting your eyes, and the first Republic supply convoy is welcomed at the Ribbon by work crews who are very polite and do not sing.",
+        "Hax finds you at the shuttle pad, of all people, his vow-rings muted with a mourning cloth for the drydock dead. \"You won,\" he says, without preamble. \"I can do business with you, which is a thing I'd want a bath after saying about most people I can do business with.\" He glances up at the Ribbon's arc. \"A word of professional admiration, Jedi. Vey sold fear retail. You sell it wholesale. Mind the margin doesn't eat you.\"",
+        "Joren doesn't come to the pad. His report to the Council, you will learn later, is accurate, complete, and uses the word 'effective' the way other reports use words like 'regrettable'.",
+        "Vethari Prime is the Republic's. The Force around you has a new flavor, faintly metallic, like a coin held under the tongue — and you find you are getting used to it."
+      ],
+      "effects": ["set vethari \"republic\"", "war_score %+ 15", "joren_rel %- 20", "council_rep %- 5"],
+      "goto": "c3_aftermath"
+    },
+
+    "c3_burn": {
+      "text": [
+        {"if": "torched", "text": "The Resolute Dawn fires at the third hour after midnight — the same hour the saboteurs chose, which is the kind of symmetry the war teaches you to stop noticing. Six torpedoes into the Ribbon's fuel lattice, threaded by Havoc's gunnery officers to shear the great arc's industry without cracking its habitats. In this, at least, you are obeyed precisely: the yards burn, the dormitories live. From Threnholm's streets the Ribbon becomes a second dawn, then a scaffold of cooling embers across the whole sky, and the sound the city makes underneath it is one you will hear for the rest of your life."},
+        {"if": "not torched", "text": "It ends not with a vote but with a collapse. The Concord session dissolves into shouting; Threll's coalition shatters; by morning three guilds have declared the talks void and the Magistrate — protecting her people the only way left — orders both delegations off-world and the Ribbon's yards sealed under planetary quarantine. No keels for the Republic. None for the Confederacy either: the Vetharin mine their own approaches within the week. Neutrality, weaponized at last."},
+        {"if": "torched", "text": "Threll's last transmission to the Republic Senate is four words long and is read into the record of three separate inquiries: WE WERE BUILDING SHIPS. Joren does not speak to you on the voyage out. He sits in the hold with the after-action reports, writing and deleting, writing and deleting, and when you finally stand in front of him he looks up with eyes that have aged past the friendship. \"They'll clear you,\" he says. \"Denied assets to the enemy — the strategists will *love* it. That's the part I can't—\" He stops himself, and files the report, and whatever was in the deleted drafts stays deleted."},
+        {"if": "not torched", "text": "\"We did that,\" Joren says, on the voyage out, watching Vethari's halo recede — intact, sealed, lost. \"Both sides came to a neutral harbor and taught it that neutrality is unaffordable. There's a lesson there about this war, and I keep almost letting myself learn it.\""},
+        "Whatever else is true: Dooku's fleets will get no keels from Vethari Prime. Neither will yours. Fourteen welders, two troopers, and one world's trust — the ledger of your first diplomacy."
+      ],
+      "effects": ["set vethari \"burned\"", "council_rep %- 20", "war_score %+ 5"],
+      "goto": "c3_aftermath"
+    },
+
+    "c3_concord": {
+      "text": [
+        "Voting day. The Hall of Keels fills from the keel-bones down: four thousand guild delegates in crimson and grey and brass, the lantern-bearers at their stations, the great tally board dark and waiting. Fourteen empty seats in the welders' gallery are draped in white, and every speech must pass those seats on its way to the floor.",
+        {"if": "evidence", "text": "Threll's investigators present the evidence first, page by recovered page: the Hypori serial stamps, the bought clerk, Vey's trembling seal — and the security still of a hooded figure with paired saber hilts, which the Magistrate displays for a full ten seconds in total silence. The Confederate benches sit very still. Vey himself does not attend; his deputy reads a statement about regrettable rogue contractors to a hall that has stopped listening."},
+        {"if": "scandal and not evidence", "text": "The Confederate benches are generous today; they can afford to be. Vey's deputy 'declines to dwell' on the consulate affair for a full quarter hour, and every delegate in the hall watches you while he doesn't dwell on it. Whatever credit the Republic brought to this world, you have spent most of it, and Joren's daylight work is the only thing keeping a floor for you at all."},
+        {"if": "not evidence and not scandal", "text": "The arguments run their course one last time — Vey's silk arithmetic of peace and contracts, your Republic's blunter sums — and beneath them all the question the Vetharin actually vote on: which of these two wars is more frightening, and which is more frightening to refuse?"},
+        "The Speaker calls the question. The lantern-bearers walk the galleries, guild by guild, and the tallies climb the brass board in crimson and grey and gold while a world holds its breath."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "evidence or c3_favor >= 4",
+          "goto": "c3_out_republic"
+        },
+        {
+          "text": "(Continue)",
+          "if": "not evidence and c3_favor < 4",
+          "goto": "c3_out_separatist"
+        }
+      ]
+    },
+
+    "c3_out_republic": {
+      "text": [
+        "The brass board settles, gold over grey, and the Speaker's hammer falls on a new alliance: the Shipwrights' Concord of Vethari Prime contracts its yards, its keels, and its tether to the Galactic Republic.",
+        "The hall does not cheer so much as exhale — a thousand held breaths released at once — and then the fitters' benches start their boot-heel thunder and this time there is no mistaking it for a riot. Threll crosses the floor to take your hand, formal for the cams, and under the noise says only: \"Don't make a liar of me, Jedi.\"",
+        {"if": "tricked_vote", "text": "Her grip is firm; her trust, as far as she knows, freely given. That is the thing about the path you took through four thousand minds: no one will ever know, including, eventually, you. Already the memory is acquiring a protective gloss — *they were almost persuaded anyway*. Almost. The Force does not contradict you. It has stopped contradicting you about a number of things lately."},
+        {"if": "evidence", "text": "On the steps of the Hall, Vetharin marshals lead Hax's chief clerk away in binders while the Guildmaster himself loudly assists the inquiry, vow-rings flashing, having sold his own man with the smooth efficiency of long practice. Vey's delegation lifts off by nightfall, unaccredited and disgraced. Somewhere above it all, you suspect, a hooded figure files her report without rancor — this round to you — and begins the next."},
+        "By week's end the first Republic convoys are berthing along the Ribbon, and welding light fills Vethari's sky like a festival that doesn't end. A fleet a year, the Council's strategists said. You watch the arcs flare and try to feel only the victory."
+      ],
+      "effects": ["set vethari \"republic\"", "war_score %+ 15", "council_rep %+ 10"],
+      "goto": "c3_aftermath"
+    },
+
+    "c3_out_separatist": {
+      "text": [
+        "The brass board settles, grey over gold, and the hammer falls the wrong way.",
+        "The Shipwrights' Concord of Vethari Prime contracts its yards to the Confederacy of Independent Systems — 'under guarantees of demilitarized commerce,' as if such a phrase has ever survived contact with a war. The hall's exhale is relief and shame in equal measure, and most of the delegates who voted grey cannot look at the Magistrate as they file out.",
+        "Threll finds you before you reach the doors. She does not gloat; it isn't in her. \"For what it's worth,\" she says quietly, \"I believed you. The Concord believed its fears instead, and Vey priced his fears better than yours.\" A pause. \"When his guarantees fail — and we both know — will the Republic still answer a Vetharin distress call?\"",
+        "You give her the only honest answer, which is that you will, whatever the Senate does. It is not nothing. It is so very far from enough.",
+        "Vey's people are gracious in victory, which is somehow worst of all. Within a month, you know, the Ribbon's cradles will hold Confederate keels; within a year, the hulls built in that beautiful halo will be killing clones in your theater of the war. Joren stands with you at the shuttle ramp, watching the welding lights, doing the same arithmetic.",
+        "\"Remember this one,\" he says. Not bitter; worse, quiet. \"This is the one we'll both be telling ourselves stories about for years.\""
+      ],
+      "effects": ["set vethari \"separatist\"", "war_score %- 15", "council_rep %- 5"],
+      "goto": "c3_aftermath"
+    },
+
+    "c3_aftermath": {
+      "text": [
+        "The last night on Vethari Prime, you find Joren on the residence roof under the Ribbon's glow, two cups of dock-ward caf going cold on the parapet, one of them poured for you. Some habits survive anything; he always did think better out loud at altitude.",
+        {"if": "vethari == \"republic\"", "text": "\"First joint command,\" he says. \"We won a world. The reports will say so in those exact words, and the Council will read our names, and somewhere in the Temple two younglings will race a staircase pretending to be us.\" He turns the cup in his hands. \"So why do I keep counting the welders?\""},
+        {"if": "vethari == \"separatist\"", "text": "\"You know what frightens me,\" he says. \"Not losing. Losing I trained for. It's that I watched you do almost everything right, and the galaxy shrugged. If doing it right isn't enough—\" He stops, glances at you sidelong. \"That's the door *they* want us through. Forget I opened it.\""},
+        {"if": "vethari == \"burned\"", "text": "He doesn't speak for a long time. The sky where the Ribbon used to shine — or shines still, sealed and mined and lost — is what he's drinking instead of the caf. \"I keep drafting the version of this where I stopped it,\" he says finally. \"Stopped you. Stopped Vey. Stopped any of it. I can't find the move. That's what I'm taking home from this world: there was a move, and neither of us was good enough to see it.\""},
+        "Below, a freight tram sings along the tether line. Joren looks over at last. \"Whatever they hand us next — and they will, the war eats commanders — I'd take the field with you again. I want you to know that before the reports get there first.\"",
+        "He means it. He also means the reports. With Joren it has never been one or the other."
+      ],
+      "choices": [
+        {
+          "text": "\"I'd take the field with you too. Every time, Joren.\"",
+          "effects": ["joren_rel %+ 20"],
+          "goto": "c3_exit"
+        },
+        {
+          "text": "\"Then write the report straight. All of it — including me. That's what I need from you more than friendship.\"",
+          "effects": ["joren_rel %+ 10", "council_rep %+ 5"],
+          "goto": "c3_exit"
+        },
+        {
+          "text": "\"Keep counting the welders. One of us should, and I've started keeping different ledgers.\"",
+          "effects": ["joren_rel %- 10", "dark %+ 8"],
+          "goto": "c3_exit"
+        },
+        {
+          "text": "Say nothing. Drink the cold caf with him under the wounded sky, shoulder to shoulder, until the night ends.",
+          "effects": ["joren_rel %+ 15", "force %+ 5"],
+          "goto": "c3_exit"
+        }
+      ]
+    },
+
+    "c3_exit": {
+      "text": [
+        "The summons comes before dawn, on the Council's own encryption, audience-only: a blue ghost above the residence's comm table. Master Windu's image, terse with distance, speaks for less than a minute — long enough to change everything.",
+        "An archaeological survey team on the dead world of Drezzar, far down the Perlemian's frayed end, stopped reporting nine days ago. Their last transmission described a sealed structure in the ash wastes predating the Republic itself: a tomb of the old Sith. Yesterday a Republic listening post tracked a Separatist vessel — small, fast, running dark — making landfall at the site. Dooku is sending collectors, and the Council can guess what for: holocrons. The teaching of dead Sith Lords, sealed in crystal, waiting for a student.",
+        "\"Recover whatever the tomb holds,\" the Mirialan-edged voice of the Council concludes, \"before the enemy's agents do. Padawan-Commanders Kade and ${name} are assigned jointly. Be swift. Be wary. The dark side gathers around such places — and around those who linger in them.\"",
+        "The image gutters out. Across the table, Joren is already rolling up star charts, alight with the particular joy he gets from being chosen, and trying to hide it because fourteen welders are still being buried below this window.",
+        "\"A Sith tomb,\" he says. \"They're sending the two of us into a Sith tomb.\" A beat. \"Race you to the south stair.\"",
+        "Above the roofline, the Ribbon — whatever you have left of it — wheels on toward morning. By the time Vethari's sun clears the tether, the Resolute Dawn is already gone."
+      ],
+      "goto_chapter": 4
+    }
+  }
+}

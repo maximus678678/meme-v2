@@ -1,0 +1,551 @@
+{
+ "chapter": 8,
+ "title": "The Reckoning",
+ "start": "c8_start",
+ "nodes": {
+  "c8_start": {
+   "text": [
+    "The fleet falls out of hyperspace into firelight.",
+    {"if": "vethari == 'republic'", "text": "Vethari Prime fills the viewports the way a friend's face fills a doorway — and the friend is bleeding. The shipyards you won for the Republic ring the planet like a crown of scaffolding, and half the crown is burning. Dooku wants these yards badly enough to spend a fleet on them, and the world that chose your side three years ago is paying the bill for its choice. Every battery on the surface that fires in your support fires because of a treaty with your name somewhere in its margins."},
+    {"if": "vethari == 'separatist'", "text": "Vethari Prime fills the viewports wearing the enemy's colors — the shipyards you lost at the negotiating table ring the planet like a crown of scaffolding, every gantry of it building hulls to kill Republic crews. The Senate has decided it would rather see the yards dead than Separatist. Somewhere down there is a treaty with your name in its margins, the one that went wrong, and today the bill for that day comes due in tibanna and blood."},
+    {"if": "vethari == 'burned'", "text": "Vethari Prime fills the viewports belonging to no one. The talks you watched die left the shipyards unaligned and undefended, and so both galaxies have come to take them, and the world below is learning what neutrality costs when the war stops asking politely. No banner on the surface is yours. No battery fires in anyone's support. It is the loneliest battlefield you have ever seen."},
+    "Above it all, strung across the dark in a hunter's crescent, waits the Separatist line — and at the heart of it, the *Penumbral*. You would know that hull blind. Part of you, you do not say aloud, does know it blind.",
+    "The Siege of Vethari Prime begins."
+   ],
+   "choices": [
+    {"text": "Continue.", "if": "path == 'loyal'", "goto": "c8_l_council"},
+    {"text": "Continue.", "if": "path == 'slipping'", "goto": "c8_s_brief"},
+    {"text": "Continue.", "if": "path == 'fallen'", "goto": "c8_f_brief"},
+    {"text": "Continue.", "if": "path != 'loyal' and path != 'slipping' and path != 'fallen'", "goto": "c8_l_council"}
+   ]
+  },
+
+  "c8_l_council": {
+   "text": [
+    "The war council convenes in the *Resolute Dawn's* strategium: Havoc with his helmet under his arm and the tally fresh-painted on his vambrace; Joren at the plot, already three moves deep into the problem; squadron commanders in a ring of blue holo.",
+    {"if": "master_alive", "text": "And one more, flickering in from the reserve group on the system's edge: Ilara Venn, upright, gray-faced, alive. 'Don't say it,' she warns before you can. 'The healers cleared me for fleet command, not for arguments. Hello, my former Padawan. You got tall.' Three years of war, and the sight of her still squares your shoulders like a hand between them."},
+    "The plot is ugly. The Separatist line shelters the orbital yards; beneath the yards, on the surface, a counter-pulse spire is knocking down every dropship wave before it blooms. Until the spire dies, the army stays in its cans. Until the line breaks, the spire lives.",
+    "Joren looks up. 'Three ways in. None of them good. Where do you want to be when it gets loud?'"
+   ],
+   "choices": [
+    {"text": "Leading the boarding action against the yard batteries — blade-first, where the fighting is closest.", "effects": ["saber %+ 10", "set c8_role \"board\""], "goto": "c8_l_board"},
+    {"text": "On the ground with Havoc and the 117th, spearheading the push to the counter-pulse spire.", "effects": ["command %+ 10", "set c8_role \"ground\""], "goto": "c8_l_ground"},
+    {"text": "Taking a small team in quiet — under the spire's feet, through the maintenance dark.", "effects": ["guile %+ 10", "set c8_role \"infil\""], "goto": "c8_l_infil"}
+   ]
+  },
+
+  "c8_l_board": {
+   "text": [
+    "Boarding torpedoes are coffins that apologize by being fast. Yours hits Yard Battery Theta-Nine at an angle the designers would have called survivable, and then you are out of the smoking breach with your blade lit and the galaxy reduced to corridor, droid, corridor.",
+    {"if": "saber >= 55", "text": "This is the thing your body was trained to be, and on this day you are equal to all of it. B2s are slow thunder; commando droids are fast rain; you are the line the rain breaks on. The battery's fire control dies under your blade twelve minutes ahead of schedule, and the troopers pouring in behind you are grinning inside their buckets — you can hear it on the net."},
+    {"if": "saber < 55", "text": "You are good. The droids are many. The margin between those two facts is paid by the men behind you, and you take a vibroblade gash across the ribs buying back a corridor you should have held the first time. The battery's fire control dies under your blade on schedule, but the casualty list runs long, and you memorize it the way Havoc taught you, name by name."},
+    "Through the battery's viewports, Vethari's horizon rolls beneath you — and across the killing dark between fleets, you feel it: a familiar attention, cool and amused, turning toward you like a face. *There you are,* says Sev'ara Nyx, in the place where words are not. *I kept your seat.*"
+   ],
+   "effects": ["war_score %+ 15"],
+   "goto": "c8_l_spire"
+  },
+
+  "c8_l_ground": {
+   "text": [
+    "The drop is bad and the beach is worse. The 117th comes down the spire's defended approach through flak you could walk on, and by the time the battalion shakes out into assault order, the only cover is wreckage and the dead make up the rest.",
+    "Havoc slides into the crater beside you, visor reflecting fire. 'Spire's three klicks up the only road there is, ${sir}. Armor support's pinned on the far beach — could be twenty minutes, could be never.' He doesn't say the rest. The longer the battalion waits in the open, the longer the flak eats it; the sooner it charges, the more the road costs. Longshot is already glassing the approach, calling gun positions in a voice with no opinion in it.",
+    "Twenty minutes, or never. Four hundred men in the open. Three klicks of road."
+   ],
+   "choices": [
+    {"text": "Charge now, behind your blade — speed is the only armor the road will give them.", "effects": ["dark %+ 5", "war_score %+ 15"], "goto": "c8_l_ground_press"},
+    {"text": "Hold the battalion in cover and carve the gun line apart yourself — alone, so no one else pays for the delay.", "effects": ["saber %+ 10"], "goto": "c8_l_ground_hold"},
+    {"text": "Wait for the armor, dig the men in, and accept what the flak takes — the assault arrives whole or it doesn't arrive at all.", "effects": ["command %+ 10", "war_score %- 10", "havoc_rel %+ 10"], "goto": "c8_l_ground_hold"}
+   ]
+  },
+
+  "c8_l_ground_press": {
+   "text": [
+    "You go up the road like a storm front, blade weaving a wall the flak cannot find a way through, and the Hundred-and-Seventeenth comes howling behind you because following you is the religion you have spent three years teaching them.",
+    "It works. That is the horror of it — it works. The gun line cracks, the road opens, the spire's shield perimeter is breached forty minutes early, and the after-action reports will call it decisive.",
+    "It is Tally who finds you afterward, and his voice over the net is wrong before the words are. 'Longshot's down, ${sir}. Covering the third squad's rush. He'd have made the shot that got him, is the stupid thing. He'd have made it twice.'",
+    "Longshot, who zeroed a rifle that was already zeroed, all the way to Vethari. The road cost what roads cost. You chose the speed, and the speed chose him.",
+    {"if": "havoc_rel >= 60", "text": "Havoc finds you at the rally point and paints the new mark on his vambrace where you can see it done. He doesn't make you say anything. 'He knew the trade, ${sir},' the captain says quietly. 'We all did. You gave us a fast road and most of us are alive because of it. Don't you dare carry him crooked.'"}
+   ],
+   "effects": ["set longshot_dead true", "havoc_rel %- 5"],
+   "goto": "c8_l_spire"
+  },
+
+  "c8_l_ground_hold": {
+   "text": [
+    "It is slower your way. Slower, and dearer in patience, and when the armor finally grinds up off the far beach and the assault goes in behind walking thunder, the battalion arrives at the spire's shield perimeter intact — bled, but intact, every named man still answering the net.",
+    {"if": "c8_role == 'ground'", "text": "Havoc falls in at your shoulder as the breaching charges go on the wall. 'For what it's worth, ${sir} — the men noticed.' That is all. From Havoc, it is a parade and a medal and a long letter home, all in four words."},
+    "Then the perimeter cracks open, and the spire stands over you like a held breath, and the day narrows to what is waiting inside it."
+   ],
+   "effects": ["war_score %+ 5"],
+   "goto": "c8_l_spire"
+  },
+
+  "c8_l_infil": {
+   "text": [
+    "You go in under the spire's feet, through the maintenance dark, with a five-man team and a silence so practiced it has a texture.",
+    {"if": "background == 'sentinel'", "text": "This is the old work, the undercity work, and it fits you like a glove broken in years ago. You read the patrol lattice the way other people read signage; you spend exactly one thermal charge and zero lives getting to the sub-levels, and the team starts looking at you the way the shinies look at Havoc."},
+    {"if": "guile >= 55 and background != 'sentinel'", "text": "The patrol lattice is dense and proud of itself, and you unpick it seam by seam — a spoofed rotation here, a borrowed maintenance code there. It takes four hours to make three klicks, and at the end of them the spire's sub-levels open to you like a confession."},
+    {"if": "guile < 55 and background != 'sentinel'", "text": "Quiet is not your native country. Twice the lattice nearly closes on you; once it does, and the eleven seconds of noise that follow cost you a man named Veil and any pretense the garrison doesn't know something is in the walls. You make the sub-levels anyway, hunted now, the dark behind you full of metal feet."},
+    "Above your head, through kilometers of stone and steel, the counter-pulse spire thrums its terrible heartbeat — and threaded through the structure of it, faint as perfume in a burned house, you feel a signature you know. She is here. She has been waiting to be found."
+   ],
+   "effects": ["war_score %+ 10"],
+   "goto": "c8_l_spire"
+  },
+
+  "c8_l_spire": {
+   "text": [
+    "The counter-pulse spire dies at 1409 local, and the sky falls — dropships by the hundred, the army out of its cans at last, the siege tipping like a table. By 1500 you are inside the spire's crown with Joren and a vanguard squad, mopping toward the control galleries.",
+    "Which is when every blast door on the level closes at once, in sequence, around you — not random. Choreographed. A voice you last heard aboard the *Penumbral* comes warm out of the gallery speakers.",
+    {"if": "escaped_how == 'havoc'", "text": "'Your captain isn't here to pull you out of this one,' Sev'ara Nyx says, gently, like a hostess noting an absent guest. 'I checked.'"},
+    {"if": "escaped_how == 'alone'", "text": "'You slipped my ship once,' Sev'ara Nyx says, and there is real, rueful admiration in it. 'I've thought about that more than I should admit. This room doesn't have the flaws that cell had. I built it for you.'"},
+    {"if": "escaped_how == 'nyx'", "text": "'You walked out at my side once,' Sev'ara Nyx says, softer than the speakers should allow. 'Whatever you told them afterward. We both keep knowing that, don't we.'"},
+    "The far doors part just enough to swallow Joren — a wrist-thick cable of tow-field snapping him backward off his feet into the dark, his shout cut off by distance — and then her voice again, all business: 'The gallery, alone, if you want him back with his lungs working. Or chase me with your whole army, and find out what I leave behind when I'm rushed.'"
+   ],
+   "choices": [
+    {"text": "Go after Joren first. Nyx wants you chasing her; that is exactly why you won't.", "effects": ["joren_rel %+ 20", "dark %- 5"], "goto": "c8_l_save_joren"},
+    {"text": "Go to the gallery, alone, as asked. End this between the two of you.", "effects": ["nyx_rel %+ 10"], "goto": "c8_l_chase"},
+    {"text": "Comm Havoc to cut power to the level, then take the dark away from her. No terms. No games.", "if": "command >= 50 or guile >= 55", "effects": ["command %+ 10"], "goto": "c8_l_save_joren"}
+   ]
+  },
+
+  "c8_l_save_joren": {
+   "text": [
+    "You choose the friend over the hunt, and it costs you exactly what she designed it to cost: by the time you cut Joren free of the tow-rig in a junction full of dead commando droids — he got three of them himself, hanging upside down, which he will be insufferable about for years — the gallery is empty and the *Penumbral's* shuttle is lifting off the spire's crown.",
+    "'Go,' Joren rasps, working blood back into his hands. 'I'm fine. Go — I'm right behind you.'",
+    "You take the crown stairs three at a time and come out under a burning sky, onto a landing ring scoured by wind, and she is there — not fled yet after all. Standing by the shuttle's open ramp with her paired blades unlit, watching you arrive, as if the entire war had been arranged to produce this one rooftop.",
+    "'You picked him,' she says. There is something complicated in her voice — disappointment and approval fighting over the same syllables. 'You always pick them. It's the most infuriating thing about you, and I have made a list.'"
+   ],
+   "effects": ["set joren_alive true"],
+   "goto": "c8_l_turning"
+  },
+
+  "c8_l_chase": {
+   "text": [
+    "You go alone, as asked, up through the spire's crown with your blade lit and your heart in an old familiar knot — and behind you, unbidden, the net crackles: Joren, freeing himself with a vibroshiv and sheer bloody-mindedness, hunting through the dark to reach you.",
+    {"if": "joren_rel >= 55", "text": "He makes it. You hear the tow-rig die and his voice, ragged but whole, swearing at commando droids in High Coruscanti — three years of war have taught Joren Kade to be very hard to kill, and tonight it is enough. 'Right behind you,' he pants on the net. 'Don't you dare finish this without me watching.'"},
+    {"if": "joren_rel < 55", "text": "He doesn't make it. You hear it happen on the open net — the tow-rig, the droids, Joren fighting alone in the dark because you went the other way, his last transmission not a scream but a sentence, careful and complete, the way he did everything: 'Tell the Council it was my error, not—' And then the net is just the wind. Joren Kade, who was a step ahead or a step behind you the whole war, finishes it one corridor short."},
+    "The crown stairs end in burning sky. She is waiting on the landing ring by her shuttle, blades unlit, watching you come."
+   ],
+   "effects": ["dark %+ 5"],
+   "choices": [
+    {"text": "Continue.", "if": "joren_rel >= 55", "effects": ["set joren_alive true"], "goto": "c8_l_turning"},
+    {"text": "Continue.", "if": "joren_rel < 55", "effects": ["set joren_alive false", "dark %+ 10"], "goto": "c8_l_turning"}
+   ]
+  },
+
+  "c8_l_turning": {
+   "text": [
+    "Before either of you moves, the sky interrupts.",
+    "Above the yards, the battle turns on its hinge: the Separatist line is folding back to cover the *Penumbral*, and into the gap — too early, against the plan — drives the Republic reserve group, signaling for permission to commit. Your permission. The voice on the command net is the fleet's, but the decision, by every protocol of this theater, is yours.",
+    {"if": "master_alive", "text": "The reserve group is Ilara Venn's. If it commits now, the line shatters and the siege ends tonight — and the reserve takes the focused fire of everything Dooku has left, flagship first. You know exactly what your master would say, because she is saying it, on the net, calm as a teacher: 'It's good math, Commander. Don't you dare do sentiment at me. Give the word.'"},
+    {"if": "not master_alive", "text": "If the reserve commits now, the line shatters and the siege ends tonight — and the reserve takes the focused fire of everything Dooku has left. Strangers' lives, spent or saved on your word. It never gets easier. You have stopped wanting it to."},
+    "Across the landing ring, Sev'ara Nyx watches you take the weight of it, head tilted, genuinely curious. She has always loved watching you choose."
+   ],
+   "choices": [
+    {"text": "Give the word. End the siege tonight, and let the reserve pay the price of ending it.", "if": "master_alive", "effects": ["set master_alive false", "war_score %+ 20", "set sent_venn true"], "goto": "c8_l_nyx"},
+    {"text": "Hold the reserve back. The siege grinds on longer and bloodier — but not with her life as the down payment.", "if": "master_alive", "effects": ["war_score %- 10", "master_rel %+ 10"], "goto": "c8_l_nyx"},
+    {"text": "Give the word. It's good math.", "if": "not master_alive", "effects": ["war_score %+ 15"], "goto": "c8_l_nyx"},
+    {"text": "Hold the reserve. You have buried enough people on good math.", "if": "not master_alive", "effects": ["war_score %- 10", "dark %- 5"], "goto": "c8_l_nyx"}
+   ]
+  },
+
+  "c8_l_nyx": {
+   "text": [
+    {"if": "sent_venn", "text": "The reserve commits. The line shatters. And high over Vethari Prime, doing arithmetic with her own life the way she taught you to do it with everyone else's, Ilara Venn's flagship takes the fire meant for the fleet and burns like a second sunrise. Her last transmission is to you, and it is entirely in character: 'Good word, Commander. Finish the lesson.' You will hear it for the rest of your life. You know that already, standing on the ring, watching the light come down."},
+    "Sev'ara Nyx ignites neither blade. She walks the landing ring's edge instead, fire below, fleet dying above, and looks at you across ten meters of wind.",
+    "'Here is what I know,' she says. 'Your Republic is weeks from something terrible — I can feel the shape of it even if I can't see its face, and so can you, if you're honest. Dooku is a dead man who hasn't been told. I have spent this whole war recruiting you because you are the only person I ever met who might actually walk out of what's coming.' A beat. 'So. Last offer, and this time it's not the dark, it's just the door: come with me, or kill me, or talk me out of the war, Jedi. But pick. The sky is falling on both of us.'",
+    {"if": "holocron == 'kept'", "text": "And quieter, with a small terrible smile: 'You still have it, don't you. I can hear it from here. Whatever you choose — choose knowing the holocron already chose you back.'"}
+   ],
+   "choices": [
+    {"text": "Ignite your blade. She has spent the war turning your battles into recruiting pitches; it ends on this roof.", "effects": ["saber %+ 5"], "goto": "c8_l_duel"},
+    {"text": "Clip your saber to your belt, and talk — not the Council's words. Yours.", "if": "nyx_rel >= 45", "effects": ["force %+ 5"], "goto": "c8_l_words"},
+    {"text": "Reach into the Force, openly, holding nothing back — and let her feel everything you actually are. No argument. Just truth.", "if": "force >= 55", "goto": "c8_l_words"},
+    {"text": "Let her go. Whatever she is, whatever's coming — you are done killing for the shape of things.", "effects": ["dark %- 5"], "goto": "c8_l_fled"}
+   ]
+  },
+
+  "c8_l_duel": {
+   "text": [
+    "Her blades come up in a red cross, and what happens on the landing ring is what three years of war were always building toward: the duel neither of you ever quite finished, fought at last with nothing held in reserve.",
+    "She is magnificent. You always knew she would be. Twin red lines weaving a cage of light, the Dathomirian war-forms flowing into Dooku's precise geometries — and through all of it, even now, her voice, working at you, because for Sev'ara Nyx the argument and the duel were only ever one thing: 'They'll spend you like ammunition — you've seen it — you've SIGNED it—'",
+    {"if": "saber >= 60", "text": "But you are not the Padawan from the tomb world anymore. The war made you a blade the same as it made her one, and yours was forged in defense of things, which is — on this roof, on this night — the heavier metal. The cage of red light breaks. One of her sabers goes spinning into the burning dark below, and then the other, and she is on her knees at the ring's edge, disarmed, finished, looking up at you with the wind in her scars."},
+    {"if": "saber < 60", "text": "She is better. You knew that too, and tonight the margin nearly kills you — a red line opens your shoulder, another your thigh, and it is only when she overcommits to the finish, too eager, too sure, that the Force gives you the half-second that matters. You take it. Her balance goes; the ring's scorched deck takes her hard; one red blade skitters away into the dark, and your saber comes to rest at her throat while your own blood taps a rhythm on the deck. 'Sloppy,' she breathes — at herself, not you — and waits to see what you are."}
+   ],
+   "choices": [
+    {"text": "Finish it. For every grave her war dug, finish it.", "effects": ["set nyx_fate \"dead\"", "dark %+ 20"], "goto": "c8_l_kill"},
+    {"text": "Lower your blade. 'Get up. You're coming back with me — alive, and tried, and treated better than you'd treat me. That's the whole argument.'", "effects": ["set nyx_fate \"fled\"", "council_rep %+ 5"], "goto": "c8_l_fled"},
+    {"text": "Kneel down to her level, blade dark, and say what no one ever said to her in the Order that threw her away: 'Come home. Not to them. Doesn't have to be to them.'", "if": "nyx_rel >= 50", "effects": ["set nyx_fate \"redeemed\""], "goto": "c8_l_redeem"}
+   ]
+  },
+
+  "c8_l_words": {
+   "text": [
+    "You put your weapon away on a roof above a burning world, in front of the most dangerous person you know, and you talk.",
+    "Not the Council's catechism. Yours. The mud at Jabiim and what Venn carried you out of. Calden Spire and the arithmetic that still wakes you. The tally on Havoc's vambrace. Every half-truth she ever told you, you hand back to her with the missing half restored: yes, the Order failed her; yes, the war is a lie wearing a flag; yes, you have felt the dark and it felt like being finally, mercifully fair. 'And it was lying,' you say. 'It is the *fairest-seeming* lie there is. You know that better than anyone alive, Sev'ara. You've been on both sides of it.'",
+    {"if": "nyx_rel >= 55", "text": "And because it is you — because of the cell on the *Penumbral*, because of the tomb world, because of every conversation that was a duel and every duel that was a conversation — she actually listens. You watch a thing happen in her face that her masters spent fifteen years making impossible: doubt, arriving like weather. 'Damn you,' she says at last, almost laughing, entirely broken. 'Damn you. Nobody sane walks away from a war they're winning.' She looks down at the paired hilts in her hands as if they belong to someone else. 'Show me how it's done, then.'"},
+    {"if": "nyx_rel < 55", "text": "She listens — really listens, head tilted, blades lowering centimeter by centimeter — and for one suspended moment you believe you have done the impossible thing. Then the moment ends, and she shakes her head slowly, and the armor goes back on behind her eyes. 'Almost,' she says, and means it as the highest compliment she owns. 'Fifteen years too late, Jedi. But almost.' She steps backward onto her shuttle's ramp, unhurried, daring the whole burning sky to stop her."}
+   ],
+   "choices": [
+    {"text": "Continue.", "if": "nyx_rel >= 55", "effects": ["set nyx_fate \"redeemed\""], "goto": "c8_l_redeem"},
+    {"text": "Let her go — the doubt is planted; war or no war, it will grow.", "if": "nyx_rel < 55", "effects": ["set nyx_fate \"fled\""], "goto": "c8_l_fled"},
+    {"text": "Stop her — blade lit, before the ramp closes. Words are done.", "if": "nyx_rel < 55", "effects": ["saber %+ 5"], "goto": "c8_l_duel"}
+   ]
+  },
+
+  "c8_l_kill": {
+   "text": [
+    "It is one motion, and then it is done, and the wind on the landing ring does not change at all.",
+    "Sev'ara Nyx — Dooku's finest blade, the Order's discarded child, the voice in three years of your worst nights — goes out of the galaxy quietly, on her knees, on a roof above a world she helped set on fire. The last thing in her eyes is not hatred. You will spend years deciding what it was, and never quite manage, and the not-managing is part of the price.",
+    "The dark side rises in you like floodwater as the blade falls — vindication, completion, a terrible singing rightness — and you stand in it, and you feel exactly how easy it would be to call this feeling justice.",
+    "Below you, the siege of Vethari Prime is ending. The yards are taken or the yards are slag; the fleets are breaking up; the war has one less monster in it, and so, whispers something old and patient at the bottom of you, *do you. One less. One more.*"
+   ],
+   "goto": "c8_l_after"
+  },
+
+  "c8_l_redeem": {
+   "text": [
+    "Her sabers come apart in her hands — she does it herself, methodically, kneeling on the scorched deck: emitter, lens, the two corrupted crystals bleeding their angry light into the wind. She holds the pieces out to you like a child showing a wound.",
+    "'They'll want me dead,' she says. 'Both sides. You understand that. What I know about Dooku's masters — about where this war actually comes from — there is no cell that holds that and stays a cell.' Her eyes come up, and for the first time since the tomb world there is no performance in them at all. 'So not the Council. Somewhere dark and green and far away, until I can stand to be looked at. If you ever need —' she stops, restarts, smaller: 'You knew the way back when nobody else believed there was one. I will owe you the rest of my life, and I hate owing things, so expect to see me again.'",
+    "Her shuttle lifts into the burning sky on a heading no one will ever reconstruct, and the most dangerous person you know goes out of the war not as a casualty but as a defection from the entire idea of sides.",
+    "You stand alone on the ring for a long moment, in the wind and the firelight, feeling the Force settle around what you did like ground accepting rain."
+   ],
+   "effects": ["dark %- 10", "nyx_rel %+ 20"],
+   "goto": "c8_l_after"
+  },
+
+  "c8_l_fled": {
+   "text": [
+    "Her shuttle climbs through the falling sky, threads the dying battle like a needle through smoke, and is gone — outbound, untracked, alive.",
+    "You will tell the Council what happened on the roof, or most of it, and watch them decide what to write down. Sev'ara Nyx, at large. The words will follow you in mission briefings for months.",
+    "But standing on the ring with the wind pulling at you, what you feel is not failure. The duel that was a conversation, the conversation that was a duel — none of it is finished, and some old quiet part of you suspects it is not supposed to be. The Force holds its breath around her name the way it does around things that still have work to do in the world.",
+    "Below, the Siege of Vethari Prime burns toward its end without either of you."
+   ],
+   "effects": ["set nyx_fate \"fled\""],
+   "goto": "c8_l_after"
+  },
+
+  "c8_l_after": {
+   "text": [
+    "By dawn it is arithmetic.",
+    {"if": "vethari == 'republic'", "text": "The yards hold. Battered, half-built hulls scorched on their gantries — but Republic, still, and the world that chose you three years ago wakes up still able to say so. The fleet's signal traffic is almost giddy. Vethari Prime is the kind of victory the holonet has been starving for."},
+    {"if": "vethari == 'separatist'", "text": "The yards are taken — and breaking them loose of the Separatists broke most of what made them worth taking. The fleet calls it a victory because fleets always do. The fires on the surface will burn for a week, and the world that signed the other treaty has learned what both sides' attention costs."},
+    {"if": "vethari == 'burned'", "text": "Nobody won the yards. Both fleets fed them into the fire rather than let the other side have them, and the world that chose no one pays for everyone. The after-action reports will need a new word for what happened here, and will settle, as always, for 'contested.'"},
+    {"if": "longshot_dead", "text": "The 117th holds its own small ceremony on the beach at sunrise — a rifle, zeroed one last time by hands that aren't his, planted bayonet-down in the sand. Havoc reads the tally aloud, all of it, from Jabiim forward, and Longshot's name lands in its place like a round going home."},
+    {"if": "sent_venn", "text": "The fleet observes one minute of net silence for the reserve group, and for General Ilara Venn. You stand on the *Resolute Dawn's* bridge for the whole of it with her last transmission in your ears. Good word, Commander. Finish the lesson. You are beginning to understand, with a cold sliding dread, that you don't know which lesson she meant."},
+    {"if": "master_alive", "text": "Venn's flagship signals from the edge of the debris field, scorched and singing. Her message to you is one line: 'Held the reserve, held your nerve, held the roof. Adequate.' From Ilara Venn, the word lands like a decoration."},
+    {"if": "joren_alive", "text": "Joren finds you at the rail, both of you too tired for the old rivalry, and stands in companionable wreckage a while. 'Whatever's next,' he says finally, 'and something is next — I can feel it grinding under everything, like a hull about to give — whatever it is: I'm glad it's you beside me for it.' He has never said anything like that in his life. Somehow that is the most ominous thing about the whole burning morning."},
+    {"if": "not joren_alive", "text": "They find Joren's saber in the spire and bring it to you, because there is no one else. You hold the cold hilt of the man who was a step ahead or a step behind you the whole war and finally, terribly, neither. The report you write the Council is careful and complete, the way he did everything. It does not make the weight in your hand one gram lighter."},
+    "The war is won here. The war is almost over everywhere — everyone says so now, openly, the way exhausted families talk about spring.",
+    "You have never trusted the feeling of an ending less."
+   ],
+   "goto_chapter": 9
+  },
+
+  "c8_s_brief": {
+   "text": [
+    "You fight the Siege of Vethari Prime as two people, and only one of them appears in the war council.",
+    "That one is exemplary: crisp at the plot, decisive on the net, the young commander the commendations describe. Joren watches that one from the auxiliary station with an expression you have decided not to read — watcher and second and almost-friend, the Council's eyes wearing a familiar face.",
+    "The other one of you spends the council's dull stretches listening. Because she is out there — the *Penumbral* sits the enemy line like a held note — and ever since the fleet dropped out of hyperspace you have felt her attention on you, patient and warm as a hand on the back of the neck. *There you are,* it says. *I kept your seat.*",
+    {"if": "holocron == 'kept'", "text": "And beneath even that, in the sealed compartment of your campaign chest, the holocron hums against the hull's vibration like a tuning fork finding its note. It has been getting louder for weeks. Here, above this world, with that ship on the horizon, it is very nearly a voice."},
+    "The plot is ugly: a fortified line, orbital yards, a counter-pulse spire grounding the army. The fleet needs the spire dead and the line broken, and it needs you to be the exemplary one for at least one more day."
+   ],
+   "choices": [
+    {"text": "Be exemplary. Take the spire assault yourself, by the manual, with Joren at your side where you both can watch each other.", "effects": ["command %+ 10", "joren_rel %+ 10"], "goto": "c8_s_battle"},
+    {"text": "Open the campaign chest first. The holocron's teaching has won you battles before; this siege deserves every blade you have, including the ones nobody sanctioned.", "if": "holocron == 'kept'", "effects": ["dark %+ 15", "force %+ 15", "set holocron_used true"], "goto": "c8_s_battle"},
+    {"text": "Let the other one of you do the planning tonight — the cold one, the one that sees the whole board and doesn't flinch at any square of it.", "effects": ["dark %+ 10", "war_score %+ 10"], "goto": "c8_s_battle"}
+   ]
+  },
+
+  "c8_s_battle": {
+   "text": [
+    {"if": "holocron_used", "text": "The teaching works. That is the unforgivable thing about it — it works. You move through the spire assault inside a clarity like black glass: every feint visible before it is thrown, every droid's firing solution a slow bright line you have already stepped out of. The men think it is luck. Joren, fighting at your flank, knows exactly what it isn't, and says nothing, and the saying-nothing piles up between you like snow on a roof."},
+    {"if": "not holocron_used", "text": "The spire assault goes in at dawn and you fight it as the exemplary one — by the manual, by the numbers, Joren's blade weaving cover for yours and the 117th rolling forward behind you like the tide. It is clean, as such things go. It costs what such things cost. You keep the other one of you in its box the whole long screaming day, and only you know what that holding costs on top."},
+    "The spire dies at 1409. The sky fills with dropships. And as the gallery levels fall silent around you, the speakers wake with a voice that bypasses three years and lands directly on the nerve:",
+    "'Commander.' Sev'ara Nyx, warm as ever. 'I watched today. You were *luminous* — and we both know with what.' A pause, precise as a blade's. 'The crown landing ring. Alone. Come up where the wind is, and let's finish the conversation your Council keeps interrupting. Or bring your watcher, and I'll say everything I know in front of him instead. Your choice. It was always going to be your choice.'"
+   ],
+   "choices": [
+    {"text": "Go up alone. Whatever she knows, whatever she offers — no one hears it but you.", "effects": ["dark %+ 10", "nyx_rel %+ 10"], "goto": "c8_s_roof_alone"},
+    {"text": "Bring Joren. Let her say it all in front of the Council's eyes — you are done having secrets managed out of you.", "effects": ["joren_rel %+ 15", "dark %- 10"], "goto": "c8_s_roof_joren"}
+   ]
+  },
+
+  "c8_s_roof_alone": {
+   "text": [
+    "The crown landing ring is wind and firelight, and she is waiting at the edge of it with her blades on her belt and her arms open to the burning sky, like a woman showing you a kingdom.",
+    "'There you are,' she says. 'The real one. Not the commander they commend — the one I met in that cell, the one who's been doing the arithmetic ever since and getting my answer.' She walks the ring's edge as she talks, unhurried, and the war burns beneath her like scenery. 'I know what's in you. I can hear it from here.' ",
+    {"if": "holocron_used", "text": "'You opened it. Today, finally, in front of everyone, you opened it and you were MORE.' Her eyes are bright as fever. 'How did it feel, being the whole of yourself for one day? You don't have to answer. I stood where you're standing. I know the answer to four decimal places.'"},
+    {"if": "war_crime", "text": "'Korthos,' she says, gently, like a password. 'I read what you secured and how. The Chancellor's office sent you a commendation; your captain stopped looking at you. One of those two reactions is the truth, Commander, and you've known which since the flimsi hit your hand.'"},
+    "She stops walking. The wind pulls at her scars. 'Last offer, and it's not even the dark, it's just honesty: stop being two people. Pick one. Pick either, truly pick, and I'll call this whole bloody recruiting campaign a success. But pick on this roof, tonight, in front of someone who'll know if you lie.'"
+   ],
+   "choices": [
+    {"text": "Pick the Jedi — truly. Say her own words back into her teeth: the dark is the fairest-seeming lie there is, and you are done halfway-believing it.", "effects": ["dark %- 20", "nyx_rel %+ 5"], "goto": "c8_s_pullback"},
+    {"text": "Kill her. She is the voice in your worst nights, and the voice ends here, whatever it costs to end it.", "effects": ["dark %+ 20"], "goto": "c8_s_kill"},
+    {"text": "Tell her the truth: you don't know. And watch what she does with the only honest answer you have.", "if": "nyx_rel >= 55", "goto": "c8_s_honest"}
+   ]
+  },
+
+  "c8_s_roof_joren": {
+   "text": [
+    "You bring your watcher, and the look on Sev'ara Nyx's face when Joren Kade walks out of the stairwell behind you is, for one flickering instant, the purest surprise you have ever caused her.",
+    "'Well,' she says, recovering, circling. 'The commander shows the Council its own surveillance. That's either growth or theater, and I genuinely can't tell which, and that's new.' She addresses Joren directly, conversationally: 'Do you know what you've been watching, Knight Kade? Shall I list it?' And she does — the slips, the shortcuts, the cold solutions, each one named precisely and without malice, a surgeon reading a chart aloud.",
+    {"if": "holocron_used", "text": "She saves it for last, of course. 'And in the campaign chest, sealed under a commander's privacy cipher, a Sith holocron your Council believes is in their vault. Used. Today. Beautifully.' The silence that follows has Joren's whole face in it."},
+    "When the list is done she spreads her hands. 'I'm not even recruiting tonight. I'm just tired of being the only one who sees you whole. Now your watcher sees it too. Do whatever you were always going to do, Commander — but do it as one person, finally, in front of witnesses.'"
+   ],
+   "choices": [
+    {"text": "Confess the rest yourself — to Joren, here, on the roof. Every slip she didn't know about too. All of it, out loud, as one person.", "effects": ["dark %- 20", "joren_rel %+ 20", "council_rep %- 10", "set confessed true"], "goto": "c8_s_pullback"},
+    {"text": "Deny it — coldly, completely, and let it be her word against a commander's. Joren wants to believe you. Make it easy for him.", "effects": ["dark %+ 15", "guile %+ 10", "joren_rel %- 15"], "goto": "c8_s_deny"},
+    {"text": "End the source. Two of you, one of her — she talks because talking has always been free. Make it cost.", "effects": ["dark %+ 15"], "goto": "c8_s_kill"}
+   ]
+  },
+
+  "c8_s_honest": {
+   "text": [
+    "'I don't know,' you say, and the wind takes it, and Sev'ara Nyx goes very still.",
+    "It is the one answer she has no speech for. Recruiters are armored against yes and against no; against *I don't know, and I'm done pretending otherwise to either of us*, she stands in the firelight with her head tilted, recalculating you in real time.",
+    "'Fifteen years,' she says finally, quietly, 'I have told people certainty is a door. Walk through it in either direction, but walk.' She looks out at the burning fleet, her own life's work, and something in her face you have never seen before: the recruiter's pitch running backward, examining its author. 'And here you stand in the doorway, refusing the door, and the infuriating thing — the *list-topping* thing — is that you're stronger in it than I am on my side.'",
+    "She steps onto her shuttle's ramp. Stops. 'When it breaks — and it will break, Commander, weeks not months, I can feel the shape of it coming — find out what you are before someone else decides for you.' The ramp closes on her watching you, and the question goes up with her into the dark, still open, still yours."
+   ],
+   "effects": ["set nyx_fate \"fled\"", "nyx_rel %+ 15"],
+   "goto": "c8_s_after"
+  },
+
+  "c8_s_pullback": {
+   "text": [
+    "Something lets go in you — not snapping, but unclenching, a fist you have been making for two years finally opening on the roof of a tower above a burning world.",
+    {"if": "confessed", "text": "Joren hears the whole of it without once interrupting, and when you finish he does the last thing the Council's watcher should do: he takes the surveillance log out of his belt pouch, wipes it in front of you both, and says, 'Then we start the record clean from tonight. That's not procedure. I'll answer for it.' Sev'ara Nyx watches the two of you with an expression that has lost its way entirely."},
+    "'You're choosing the lie,' Nyx says, but the wind has gone out of the words — she can feel the difference between suppression and decision the way you can, and what just happened in you was a decision.",
+    "'No,' you say. 'I'm choosing the work. The lie is that there's a version of me that doesn't have to do it.'",
+    {"if": "nyx_rel >= 55", "text": "And because it is you — because of the cell, because of every conversation that was a duel — she takes one step back as if the words had blades on them. 'Get off my roof,' she says, unevenly, 'before you ruin a perfectly good apostate.' It is the closest thing to a blessing she owns."},
+    "Her shuttle climbs into the falling sky, outbound, untracked. You stand on the ring breathing like a swimmer back above the surface, and the Force — quiet for so long under the static of what you were becoming — comes back to you slowly, carefully, like a creature deciding to trust the hand again."
+   ],
+   "effects": ["set nyx_fate \"fled\""],
+   "goto": "c8_s_after"
+  },
+
+  "c8_s_deny": {
+   "text": [
+    "You lie, and you are brilliant at it, and that is the worst thing that has ever happened to you.",
+    "Word by cold word you take everything true that Sev'ara Nyx said and entomb it: enemy disinformation, a known manipulator, a documented campaign to compromise Republic commanders — your voice level, your eyes steady, the performance immaculate. Joren wants to believe you. You watch him choose to. You feel the exact moment the doubt in him lies down and dies, and you feel what it costs him to kill it, and you keep talking anyway.",
+    "Nyx watches the whole thing like a connoisseur. 'There,' she says softly, when it is done. 'One person at last. Wasn't so hard, was it.' She steps onto her shuttle's ramp, satisfied in a way that makes your skin crawl, because you understand at last that this — not the roof, not the offers — this was the recruitment. 'I'll see you soon, Commander. You won't enjoy where, but you'll fit it.'",
+    "The shuttle climbs into the dark. Joren puts a hand on your shoulder — loyal, deceived, yours — and the weight of it is the heaviest thing you have carried in three years of war."
+   ],
+   "effects": ["set nyx_fate \"fled\"", "council_rep %+ 5"],
+   "goto": "c8_s_after"
+  },
+
+  "c8_s_kill": {
+   "text": [
+    "Her blades come up — but late, because she believed in the conversation till the last half-second, and the half-second is the duel.",
+    "Afterward you will remember it in pieces: red light crossing blue, the war-forms of Dathomir against the cold thing the front lines made of you, the wind, the drop, her footwork failing on the scorched deck — and the end, which is quiet, which is always quiet, which no one ever tells you is quiet.",
+    {"if": "joren_rel >= 50", "text": "Joren arrives on the ring in time to see it finish. He says nothing on the way down. He says nothing in the report, either — 'enemy combatant, killed resisting' — and the nothing is a gift, and the gift is a debt, and you are so tired of the bookkeeping of your own soul that you almost miss the moment he stops quite meeting your eyes."},
+    "Sev'ara Nyx, who was thrown away by one Order and forged by another, ends on a landing ring above Vethari Prime, and the voice that has run under your war for three years goes silent.",
+    "The silence is not relief. The silence is a vacancy. And the dark side, which abhors a vacancy, begins — patiently, that very night — to interview you for the position."
+   ],
+   "effects": ["set nyx_fate \"dead\"", "dark %+ 10"],
+   "goto": "c8_s_after"
+  },
+
+  "c8_s_after": {
+   "text": [
+    "By dawn it is arithmetic.",
+    {"if": "vethari == 'republic'", "text": "The yards hold for the Republic — battered, scorched, but building still. The holonet will call Vethari Prime a triumph, and your name will be in the third paragraph, exemplary as ever."},
+    {"if": "vethari == 'separatist'", "text": "The yards are pried loose of the Separatists at a cost that hollows the word 'victory.' The fires on the surface will burn for a week. Your name goes in the dispatches anyway. It always does, now."},
+    {"if": "vethari == 'burned'", "text": "Nobody won the yards; both fleets fed them to the fire rather than yield them. The dispatches will call it 'contested' because the true word hasn't been invented. Your conduct, as always, is called exemplary. You are getting to hate that word."},
+    {"if": "master_alive", "text": "A message from Coruscant catches you at the rail: Ilara Venn, out of the healers' ward, cleared for light duty, her handwriting spiky as ever. 'They show me your reports. I read them twice — once for what they say, once for what they don't. Come see me when this is over, Commander. Bring the second version.' You read it four times and burn it, and cannot decide if the burning was caution or confession."},
+    {"if": "nyx_fate == 'dead'", "text": "The Council's commendation for the death of Sev'ara Nyx arrives within the day. Joren watches you read it. You watch you read it too, from somewhere slightly outside, the way you watch yourself do most things now."},
+    {"if": "nyx_fate == 'fled'", "text": "Sev'ara Nyx, at large. The phrase will sit in your mission briefings for months — and somewhere under your sternum, in the place where her voice lives, the conversation goes on unfinished."},
+    "The war is won here, and almost over everywhere; everyone says so, openly, like exhausted families talking about spring.",
+    "Whatever you are now — one person or two, falling or caught — the ending is coming for all of it at once, weeks not months, and some night-side of you can already feel its shape: vast, patient, and wearing a friendly face.",
+    {"if": "not joren_alive or joren_alive", "text": "Joren Kade survives Vethari Prime at your side, watcher to the last — though what exactly he is watching for has changed, and both of you know it, and neither of you says."}
+   ],
+   "effects": ["set joren_alive true"],
+   "goto_chapter": 9
+  },
+
+  "c8_f_brief": {
+   "text": [
+    "You fight the Siege of Vethari Prime from the wrong side of your own life.",
+    "The *Penumbral's* war room is red-lit and quiet — droids do not banter — and Sev'ara Nyx commands it like a hand commands fingers. You stand at her right, where the fleet has learned to look for you. Dooku's protégé and Dooku's prize: the Jedi who came over. Every tactical feed you glance at is a former friend; the order of battle scrolling past is a list of people who trained beside you, bled beside you, and will burn tonight if the plan holds.",
+    {"if": "double_agent", "text": "Sewn into the lining of your sleeve, a sliver of crystal no scanner has yet found carries everything: fleet codes, the order of battle, the *Penumbral's* shield rotation. You have carried it for weeks, waiting for the battle that would be worth spending it on. Through the viewport, Vethari Prime turns below like an answer."},
+    {"if": "not double_agent", "text": "And the strange thing — the thing you stopped confessing even to yourself somewhere back along the dark — is that you are good at this side too. War is war. The arithmetic doesn't care what color the blade is. Nyx watches you work her fleet and her pride in you is a physical warmth, and you have given up deciding how much of you it reaches."},
+    "Nyx turns from the plot. 'The Republic line breaks tonight or we lose the yards and the war's last good card with them. I need my second blade where it matters most. Choose your ground.'"
+   ],
+   "choices": [
+    {"text": "The vanguard. Lead her boarding assault against the Republic flagship line — let them see exactly who is coming.", "effects": ["saber %+ 10", "dark %+ 10", "war_score %- 10"], "goto": "c8_f_van"},
+    {"text": "The war room. Run her fleet's coordination — your old comrades taught you how Republic lines think, and tonight that knowledge is a weapon.", "effects": ["command %+ 10", "war_score %- 10"], "goto": "c8_f_coord"},
+    {"text": "The vanguard — because the vanguard's chaos is the only place a sliver of crystal can reach a Republic uplink unseen.", "if": "double_agent", "effects": ["guile %+ 15"], "goto": "c8_f_van"}
+   ]
+  },
+
+  "c8_f_van": {
+   "text": [
+    "The boarding assault goes in at the line's hinge, and you go in at the front of it, and the first Republic trooper who sees you light your blade hesitates — not from fear. From recognition. They all hesitate, all night, every one of them, half a second of *but that's—* before training catches up, and you learn what the dark side does with half-seconds, and the learning is ash.",
+    {"if": "double_agent", "text": "In the third hour, in the screaming chaos of a hangar fight, you find your moment: a Republic uplink node, four seconds of contact, the crystal sliver kissing the port. Everything goes — codes, order of battle, shield rotations, and one line in old Temple cipher: WAIT FOR MY SIGNAL. ASSET INSIDE. Four seconds. Then you are fighting again, on the wrong side, for the right reason, in the loneliest place the war has ever put you."},
+    {"if": "not double_agent", "text": "Somewhere in the third hour you stop counting hesitations. The work takes you the way the dark takes everything — gradually, then all at once — and when the boarding klaxons finally stand down, you are sitting in a breached corridor with your blade dark, surrounded by the quiet, unable to remember the moment the night's arithmetic stopped having faces."},
+    "It is nearly dawn, ship-time, when the summons comes: Nyx, to the observation blister, alone. Through its crystal the battle hangs in mid-ruin — and centered in the frame, limping but alive, a Republic flagship whose transponder you knew before you could shave. The *Resolute Dawn*. Your old command. Havoc's ship."
+   ],
+   "goto": "c8_f_choice"
+  },
+
+  "c8_f_coord": {
+   "text": [
+    "You run her fleet the way you ran your own, and the obscenity of it is how naturally it comes. Republic doctrine opens under your hands like a book you wrote; you know where the line keeps its courage and where it keeps its habits, and all night you spend that knowledge like a man burning furniture against the cold.",
+    {"if": "double_agent", "text": "And woven through every order you issue, invisible to the war room's red light, runs the second pattern: a feint pulled half a degree wide here, a squadron rotated off-station four minutes early there. To the droids, noise. To anyone in the Republic plot rooms who remembers how you think — and Havoc remembers, Havoc was *there* when you learned — it is the oldest signal in your shared language: gap coming, hold for it, wait for me."},
+    {"if": "not double_agent", "text": "Twice during the night the plot offers you a choice between an efficient cruelty and an inefficient mercy, and twice you take the efficiency, and the second time you notice you didn't notice the first. That is how it goes now. The dark does not announce its victories in you anymore. It just files them."},
+    "Toward dawn, ship-time, Nyx summons you to the observation blister, alone. Through its crystal the battle hangs in mid-ruin — and centered in the frame, limping but alive, the *Resolute Dawn*. Your old command. Havoc's ship."
+   ],
+   "goto": "c8_f_choice"
+  },
+
+  "c8_f_choice": {
+   "text": [
+    "'There it is,' Sev'ara Nyx says quietly, beside you in the blister's dark. 'Your old life, at one-quarter shields.'",
+    "She doesn't gesture. She doesn't need to. The firing solution is on the boards; one word from her and the *Resolute Dawn* — Havoc, Dice, Tally, four hundred men with your voice still in their training — becomes debris and history.",
+    "'I'm not going to give the order,' she says. 'You are. Or you aren't.' She turns, and in the battle-light her scars are silver and her eyes are perfectly steady. 'This is the last door, Commander. Everything until now could be called circumstance — capture, gratitude, drift. This can't. Sink your old ship and you are mine and the dark's and your own, all the way down, forever. Refuse, and we finally learn what you actually are. I have wanted to know for three years. Pick.'",
+    {"if": "master_alive", "text": "And because the Force has a sense of structure crueler than any dramatist: the blister's comm chimes, and a voice you have not heard since a healer's ward on Coruscant comes through, broadcasting in the clear to the whole burning system. Ilara Venn, with the Republic relief fleet, asking the Separatist commander for parley — and asking, in the old Temple cipher threaded beneath the words, a single private question meant for exactly one set of ears: *Padawan. Is it still you in there?*"}
+   ],
+   "choices": [
+    {"text": "Give the order. All the way down. Forever.", "effects": ["dark %+ 25", "set sank_dawn true"], "goto": "c8_f_sink"},
+    {"text": "Refuse — and put your blade at HER throat. The student surpasses the teacher tonight, one way or the other.", "effects": ["dark %+ 10"], "goto": "c8_f_overthrow"},
+    {"text": "Refuse — quietly. No blade, no speech. Just: no. And let her learn what you are.", "effects": ["dark %- 15"], "goto": "c8_f_refuse"},
+    {"text": "This is the signal. Burn the crystal, blow the shield rotation, and bring the Republic fleet down on the Penumbral's bare hull — from inside.", "if": "double_agent", "goto": "c8_f_reveal"}
+   ]
+  },
+
+  "c8_f_sink": {
+   "text": [
+    "You give the order in a steady voice, and the *Resolute Dawn* dies eleven minutes later, fighting to the last like you taught it.",
+    "There is no transmission from Havoc at the end. That is the detail you will keep. The ship that pulled you out of fire after fire goes into the dark in pieces, and its captain — who painted a tally of every man he lost, who crossed a galaxy off the books to pull you out of a Separatist cell or didn't get the chance, who called you ${sir} like the word meant something — goes with it, untallied, because the man who kept the tally is the tally now.",
+    "The dark side comes up around you like a tide coming in, and this time there is no floor under it and you do not look for one.",
+    "Sev'ara Nyx watches the burning and does not gloat; whatever this night cost you, some of it shows on her too, like a debt co-signed. 'Welcome,' she says simply, 'all the way down.' ",
+    {"if": "master_alive", "text": "The parley channel is still open. You can hear Ilara Venn breathing — she heard the order given, in your voice, in the clear. She does not say anything at all. The channel closes with a click that you will hear, on quiet nights, for the rest of whatever you are now."}
+   ],
+   "effects": ["set havoc_rel 0", "war_score %- 15"],
+   "goto": "c8_f_victorious"
+  },
+
+  "c8_f_overthrow": {
+   "text": [
+    "Your blade is lit and at her throat before the choice finishes becoming a decision — and Sev'ara Nyx smiles along its light like a woman greeting an old friend.",
+    "'*There* it is,' she breathes, and her paired blades answer.",
+    "What happens in the observation blister is the duel three years built: teacher against student, the woman who forged you against the weapon that won't stay in the sheath. The blister's crystal stars wheel around you; the dark side feeds you both impartially, a banker financing both sides of a war.",
+    {"if": "saber >= 60 or dark >= 70", "text": "You are stronger. Whatever you have paid for it — and tonight, at last, you see the bill entire — the dark has given you what it gives, and she taught you herself, and the teaching turns in your hand against her. It ends with her on the deck and her blades in yours, and in her eyes, under the pain, something that is horribly like pride. 'Better,' she manages. 'Better than I ever— ' and waits to see if her life's work will finish her."},
+    {"if": "saber < 60 and dark < 70", "text": "She is stronger. She has always been stronger, and your anger is young and hers is load-bearing, and the duel ends with your blade spinning into the dark and the deck cold against your back and her twin red points at your throat, steady as orbital mechanics. 'Almost,' she says, and means it kindly, which is the worst part. 'A year more and you'd have me. Live the year.' She steps back and lets you up — keeps you, spares you, owns the night entirely — and the fleet is hers, and so, the gesture says, are you, until you are strong enough to make tonight come out differently."}
+   ],
+   "choices": [
+    {"text": "Finish her. The fleet kneels to whoever holds this room.", "if": "saber >= 60 or dark >= 70", "effects": ["set nyx_fate \"dead\"", "dark %+ 15"], "goto": "c8_f_throne"},
+    {"text": "Spare her — and banish her from her own fleet. Let her live as the thing she made: a blade with no hand.", "if": "saber >= 60 or dark >= 70", "effects": ["set nyx_fate \"fled\"", "dark %+ 5"], "goto": "c8_f_throne"},
+    {"text": "Take her hand and live the year.", "if": "saber < 60 and dark < 70", "effects": ["set nyx_fate \"victorious\"", "nyx_rel %+ 10"], "goto": "c8_f_after"}
+   ]
+  },
+
+  "c8_f_refuse": {
+   "text": [
+    "'No,' you say. Just that. No blade, no speech, no counter-offer. The smallest word in Basic, set down between you like a stone too heavy to move.",
+    "Sev'ara Nyx looks at you for a long time, and the battle burns behind her in the crystal, and you watch fifteen years of certainty meet the one result her doctrine has no clause for: a person standing in the dark, all the way down in it, refusing to take the last step — not for the Jedi, not for the Republic, but because four hundred specific men taught you their names.",
+    "'You realize,' she says at last, conversationally, 'that I should kill you where you stand.'",
+    "'Yes.'",
+    "'And you realize that I am not going to, and that I will spend years deciding what that means.'",
+    "'Yes.'",
+    {"if": "nyx_rel >= 65", "text": "What happens then is the strangest thing the war ever does to either of you: she laughs — short, broken, real — and sits down on the blister's sill like the air has gone out of the whole performance at once. 'Three years recruiting you,' she says, 'and at the door of the temple you turn around and start recruiting me. There is a galaxy being born tonight, Commander, and I find I don't believe in either of the bidders. Tell me there's a third thing. Lie if you have to. I'm asking you to say it out loud.'"},
+    {"if": "master_alive", "text": "The parley channel is still open. Across it, faint, in old Temple cipher, Ilara Venn — who heard the silence where an order should have been — sends one word: *Yes.*"}
+   ],
+   "choices": [
+    {"text": "'There's a third thing. Come find it with me — tonight, before the galaxy locks its doors.' Walk away from both sides, together.", "if": "nyx_rel >= 65", "effects": ["set nyx_fate \"redeemed\"", "dark %- 20", "nyx_rel %+ 20"], "goto": "c8_f_walkaway"},
+    {"text": "Walk off her ship alone — through the hangar, past the droids she doesn't order to stop you, out of the dark on your own two feet.", "effects": ["set nyx_fate \"fled\"", "dark %- 15"], "goto": "c8_f_after"},
+    {"text": "Stay — at her side, on her terms, the refusal filed away as a curiosity. The war isn't done with either of you.", "effects": ["set nyx_fate \"victorious\"", "dark %+ 5"], "goto": "c8_f_after"}
+   ]
+  },
+
+  "c8_f_reveal": {
+   "text": [
+    "The crystal burns its cargo in a single squirt-transmission, and four seconds later the *Penumbral's* shield rotation — her secret, lovely, hand-tuned shield rotation — is the most public document in the system.",
+    "The Republic line, waiting weeks for a signal half of them didn't believe in, falls on the bare hull like winter.",
+    "You will remember the next hour in firelight and fragments: the war room red with new alarms; droids pivoting toward you on Nyx's shouted order as the truth lands; your blade carving a corridor of your own captaincy through her flagship while it dies around you both. And at the hangar, where your stolen shuttle waits, *her* — between you and the way out, paired blades lit, the betrayal doing its work on her face in real time. Not rage. You could have stood rage. Grief, going into armor.",
+    "'A *year*,' she says. 'I gave you the fleet, the teaching, the truth about your own Order — and the whole year was a knife.' The deck heaves; the *Penumbral* is going down around her life's work and she does not look away from you once. 'I have one question before I kill you. Was ANY of it—' and she stops, because she will not finish that question in front of you, and the not-finishing is the answer to a different one."
+   ],
+   "choices": [
+    {"text": "Fight through her. The shuttle, the fleet signal, the way home — through her or not at all.", "goto": "c8_f_reveal_duel"},
+    {"text": "Drop your blade. 'Yes. Some of it was real. That's what makes it a tragedy instead of a mission. Come WITH me, Sev'ara — the ship is dying and neither of us owes it our bones.'", "if": "nyx_rel >= 60", "effects": ["dark %- 10"], "goto": "c8_f_reveal_offer"}
+   ]
+  },
+
+  "c8_f_reveal_duel": {
+   "text": [
+    "You fight your teacher in the throat of her dying ship, and the ship takes sides at random — decks heaving, plasma weeping from the walls, gravity stuttering like a faulty heart.",
+    {"if": "saber >= 55", "text": "It is the hardest fight of your life and you win it by a margin the width of a decision: she overextends to kill rather than disarm — grief makes her honest — and you are under the stroke and past her guard, and it ends with Sev'ara Nyx against a bulkhead with your blade at her heart and the ship screaming around you. 'Do it,' she says, and means it, and that — at the very last — is the thing you discover you cannot sell to anyone, not the Republic, not the Council, not the version of you that spent a year as a knife. You break her saber hand instead, cleanly, and leave her alive in a ship with lifepods, and run for the hangar with her silence behind you louder than the alarms."},
+    {"if": "saber < 55", "text": "She is better, and tonight she has grief feeding the blades, and you survive the corridor only because the corridor is dying faster than you are — a structural collapse takes the deck out from under the duel's final exchange, and the last you see of Sev'ara Nyx is her silhouette against venting plasma, upright, blades lit, going down with the life's work you sank. The Force does not show you her death. It shows you nothing at all, which with her was always the more dangerous sign."},
+    "Your stolen shuttle clears the hull thirty seconds before the *Penumbral's* core lets go. Behind you, the flagship of your fallen year becomes a sun, brief and total; ahead, the Republic line opens a single escorted lane, as promised, for the asset coming home."
+   ],
+   "choices": [
+    {"text": "Continue.", "if": "saber >= 55", "effects": ["set nyx_fate \"fled\""], "goto": "c8_f_after"},
+    {"text": "Continue.", "if": "saber < 55", "effects": ["set nyx_fate \"dead\""], "goto": "c8_f_after"}
+   ]
+  },
+
+  "c8_f_reveal_offer": {
+   "text": [
+    "Your saber hits the deck between you, off, rolling with the ship's death-heave, and for three full seconds Sev'ara Nyx stares at it like a sentence in a language she used to speak.",
+    "'Some of it was real.' She says your words back with the blades still up, testing each one for the trap. The ship screams. Somewhere below, the core begins the long sigh it will not finish. 'You burn my fleet, my work, my — *year* — and then you stand there unarmed and offer me the door out of the fire you lit.' Her voice cracks across the middle of it. 'What is WRONG with you?'",
+    "'Everything,' you say. 'Same as you. Ship's dying, Sev'ara. Argue on the shuttle.'",
+    "And — the Force holding its breath, the deck tilting, the whole dark year narrowing to one Dathomirian woman doing arithmetic no holocron teaches — her blades go out.",
+    "She is silent the entire flight out. She watches the *Penumbral* become a sun without a sound. But when the Republic tractor takes the shuttle, and the marines storm aboard to find the war's most wanted acolyte sitting unarmed beside the asset who burned her fleet, her first words to the boarding officer are: 'I surrender to the Commander. Personally. Write it down exactly that way.'",
+    "It is, you understand much later, the first thing she ever trusted to paper."
+   ],
+   "effects": ["set nyx_fate \"redeemed\"", "nyx_rel %+ 25", "dark %- 10"],
+   "goto": "c8_f_after"
+  },
+
+  "c8_f_walkaway": {
+   "text": [
+    "You leave the war in the middle of its loudest hour, and the war, absorbed in its own dying, does not notice for almost a day.",
+    "A blockade runner with no name drops off the *Penumbral's* boards as a casualty and out of the system through the burning lanes where no picket looks twice at debris. At the helm, a fallen Jedi. Beside them, the dark's best recruiter, flying away from the only career she ever had with her hands steady and her face like a held breath.",
+    "'I want it noted,' Sev'ara Nyx says, somewhere past the third nav beacon, 'that I recruited *you* for three years, and you got me in one sentence, and I will never financially recover from the embarrassment.'",
+    "'Noted,' you say, and the word comes out lighter than anything you have said since Jabiim.",
+    "Behind you the Siege of Vethari Prime burns to its arithmetic without either of you, and the two great bidders for your souls go on dividing the galaxy, briefly unaware that the auction lost its lots. They will hunt you, of course. The galaxy being born is going to hunt everyone like you, in pairs and alone, forever.",
+    "Let it learn what it's hunting."
+   ],
+   "effects": ["set joren_alive true", "war_score %- 5"],
+   "goto_chapter": 9
+  },
+
+  "c8_f_throne": {
+   "text": [
+    {"if": "nyx_fate == 'dead'", "text": "Sev'ara Nyx ends on the deck of her own observation blister, by the hand she forged, and the fleet does not mourn — droids cannot, and you discover in the long red silence afterward that you have forgotten how. Her paired hilts go onto your belt. They are lighter than they should be. Everything, after, is lighter than it should be; that is the dark's last fee, and it collects forever."},
+    {"if": "nyx_fate == 'fled'", "text": "You let her live, which she will never forgive, and you take her fleet, which she might. The last you see of Sev'ara Nyx is a single shuttle burning out of the formation she built, exiled by her own creation — and her final transmission, characteristically, is advice: 'Watch the old man, Commander. Dooku's master, not Dooku. We were all of us always auditioning for somebody we never met. Try to find out who before he finds out you matter.'"},
+    "The Separatist battle group accepts its new commander with the perfect loyalty of things that cannot do otherwise. The droids re-key to your command codes by the end of the watch. Somewhere far above the war, in offices that do not officially exist, your name moves from one list to another.",
+    "Below, Vethari Prime burns toward its arithmetic, and you stand in the war room of a stolen fleet — Jedi-trained, Sith-finished, owned by no one — and the dark side settles over your shoulders like a command cloak being fitted.",
+    "Whatever is coming for the galaxy in the next few weeks, it will find you standing on your own ground, at the head of your own guns.",
+    "You are twenty-five years old."
+   ],
+   "effects": ["set joren_alive true"],
+   "goto_chapter": 9
+  },
+
+  "c8_f_victorious": {
+   "text": [
+    {"if": "sank_dawn", "text": "The Separatist line holds the night, and the *Resolute Dawn* is the headstone of its holding. By dawn the Republic assault is broken off; the yards burn or stand by the fortunes of the wider war, but the field — this field, this once — belongs to Sev'ara Nyx, and she won it with you at her right hand, and everyone on both sides of the dark knows it."},
+    {"if": "not sank_dawn", "text": "The line holds the night. The Republic assault breaks off by dawn, and the field — this field, this once — belongs to Sev'ara Nyx, with you at her right hand, held there now by something more complicated than recruitment and less escapable."},
+    "She finds you in the observation blister afterward, two cups of something Dathomirian and medicinal in her hands, and stands beside you watching the wreckage-field catch the sunrise.",
+    "'Whatever is coming,' she says — and she keeps saying that lately, *whatever is coming*, like a woman hearing weather no one else hears — 'it will come for the victors first. Winners are the only thing new regimes fear.' She touches her cup to yours. 'Stay close to me, Commander. I find I have developed a doctrinal objection to losing you.'",
+    "Below, Vethari Prime smolders toward whatever history will call this. You drink with the dark's best blade above a field of your own dead, and the Force — far away, behind glass, patient — keeps its terrible counsel about the weeks ahead."
+   ],
+   "effects": ["set joren_alive true", "set nyx_fate \"victorious\""],
+   "goto_chapter": 9
+  },
+
+  "c8_f_after": {
+   "text": [
+    {"if": "nyx_fate == 'redeemed'", "text": "The war's strangest prize sits in a Republic holding cell being interviewed by people far above your clearance, and surrenders — per her own insistence, in writing — to you personally. What the Republic does with Sev'ara Nyx, and with the asset who brought her in, is a question being argued at altitudes where you cannot breathe. What matters, in the small hours, is simpler: the voice that ran under your whole war chose the door you held open. Both of you are out of the dark's inventory. Whatever is coming, it will have to come for you the long way."},
+    {"if": "nyx_fate == 'fled' and double_agent", "text": "The asset comes home. Debriefers wring the fallen year out of you hour by hour in a sealed compartment, and somewhere in the system behind them, the machinery decides what you are: hero, weapon, embarrassment, or all three on a rotating schedule. Through the compartment's one viewport, the wreck-field where the Penumbral died glitters like a strewn jewel case. Sev'ara Nyx is out there somewhere, alive, broken-handed, owed a question you never answered. The ledger between you is the one document the debriefers will never find."},
+    {"if": "nyx_fate == 'dead' and double_agent", "text": "The asset comes home alone. The debriefers are delighted with the fleet codes and careful around your silences, and the official record will say Sev'ara Nyx died when the Penumbral's core let go, which is true the way official records are true. You alone carry the other version: her silhouette against the plasma, upright, going down with the year you burned. The Republic owes you everything and knows it. You find you cannot locate what you are owed, or by whom, or whether it can be paid."},
+    {"if": "nyx_fate == 'fled' and not double_agent", "text": "You walk off a Separatist flagship through a hangar of droids ordered not to see you, and the dark lets you go the way the tide lets go of a swimmer — without comment, certain of other chances. A salvage tramp runs you to the edge of Republic space for the price of your boots. What you are now has no name on either side's books: deserter, defector, ghost. Behind you, Nyx holds her fleet and her unanswered question. Ahead, a galaxy weeks from something vast and patient that you can finally, in the quiet, feel coming."},
+    {"if": "nyx_fate == 'victorious'", "text": "You remain at her right hand as the fleet stands down from victory, and the strange household of the dark closes around you again — red light, quiet droids, the two of you and the weather she keeps hearing. Wherever this goes now, it goes with you inside it."},
+    "The Siege of Vethari Prime passes into the war's ledger, and the war itself — everyone can feel it now, on every side, in every ranks — tips toward its ending like a table finally going over.",
+    "Weeks, not months. Vast, patient, and wearing a friendly face."
+   ],
+   "effects": ["set joren_alive true"],
+   "goto_chapter": 9
+  }
+ }
+}

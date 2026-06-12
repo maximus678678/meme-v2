@@ -1,0 +1,532 @@
+{
+  "chapter": 5,
+  "title": "The Traitor's Web",
+  "start": "c5_start",
+  "nodes": {
+    "c5_start": {
+      "text": [
+        "Coruscant never sleeps, and neither, lately, do you.\n\nThe Resolute Dawn hangs in a repair berth above the planet's glittering night side, her port batteries scorched to bare alloy. Three ambushes in five weeks. Three times your battle group dropped out of hyperspace into guns that were already hot, at coordinates that existed in a dozen sealed transmissions. The third cost you the frigate Candor and two hundred and six lives. Havoc read the names aloud in the hangar, the way he always does, and the silence afterward followed you down the gravity well.",
+        "Somebody is selling you. Not the war — you, specifically. Your routes, your timetables, your resupply windows. The thought sits in your chest like shrapnel as the shuttle drops toward the Temple's distant spires.",
+        {"if": "holocron == \"kept\"", "text": "In the sea chest at your feet, wrapped in a meditation cloth where no one thinks to look, the holocron stirs. You feel it the way you feel a tooth beginning to ache. A voice like dust settling on bronze: Betrayal is a teacher, little Jedi. The web has a center. Find the spider — and consider, carefully, whether to kill it or to keep it.\n\nYou breathe out and let the thought pass through you. Most of it passes."},
+        {"if": "dark >= 40", "text": "Below, the city's billion lights look less like stars tonight and more like a ledger. Every one of them owes something to the men dying out on the Rim, and not one of them is paying. You notice the anger arrives before the grief does, now. You are not sure when that started."},
+        "Master Tyc Renno of Jedi Intelligence is waiting for you in a briefing cell that smells of caf and recycled air, a Givin with a face like a sorrowful equation. He does not waste time on condolences.\n\n\"Commander. We found your leak. The problem is what's standing in front of it.\""
+      ],
+      "goto": "c5_briefing"
+    },
+    "c5_briefing": {
+      "text": [
+        "Renno spins up a holo: a lattice of credit transfers, shipping waivers, and shell companies blooming like mold across the Core. At its center, a name in cool blue letters.\n\n\"Tessent Reach Holdings. A relief-logistics consortium. Charters, medical freight, refugee transport — all real, all profitable, all moving along corridors that match your battle group's classified routings within eighteen hours of their issue. Tessent is four shells deep, but the trail climbs. It ends at the Senate Logistics Oversight Committee.\" The holo resolves into a face: silver-haired, warm-eyed, the smile of a man who remembers your homeworld's harvest festival and asks after your health. \"Senator Carvel Dunne of the Taldot sector. Eleven-term incumbent. Chair of the committee that approves every relief charter in your theater.\"",
+        "\"Here is your difficulty, Commander. Dunne is beloved, protected, and careful. We have a pattern, not proof. The Chancellor's office has made it clear that an accusation against a sitting senator without an airtight case will end careers — possibly the Order's standing in the Senate along with them. The Council has authorized you to investigate quietly. How you do it is yours to decide.\"\n\nRenno's pale hands fold. \"And Commander — whoever warned the Separatists can warn Dunne about you. Move accordingly.\"",
+        {"if": "background == \"sentinel\"", "text": "Something in you settles into old, familiar gear. Before the war, before the rank, you were trained for exactly this: cities, lies, and the seams between them."}
+      ],
+      "choices": [
+        {
+          "text": "Work the Senate openly — rank, hearings, requisition records. Make the machine cough up its own paper trail.",
+          "effects": ["command %+ 10"],
+          "goto": "c5_senate_1"
+        },
+        {
+          "text": "Go down. Follow the money through the undercity, where Tessent's credits actually change hands.",
+          "effects": ["guile %+ 10"],
+          "goto": "c5_under_1"
+        },
+        {
+          "text": "Shadow Dunne's security chief. Couriers carry what networks won't, and couriers can be intercepted.",
+          "effects": ["saber %+ 10"],
+          "goto": "c5_shadow_1"
+        },
+        {
+          "text": "Get close to Dunne himself. There's a consular gala in two nights — and the Force does not read banking records, but it reads men.",
+          "effects": ["force %+ 10"],
+          "goto": "c5_gala_1"
+        }
+      ]
+    },
+    "c5_senate_1": {
+      "text": [
+        "You go in through the front door, because no one expects a Jedi to do paperwork.\n\nThe Senate Logistics Oversight Committee meets in a chamber the size of a corvette hangar, and you attend in full commander's dress, your lightsaber a quiet argument at your hip. You are the officer whose battle group keeps getting mauled along these corridors; nobody can object when you request the charter records for the affected routes. They can only slow you down.",
+        "Dunne finds you first. He crosses the floor between sessions with both hands out, warm as a hearth. \"Commander ${name}. I followed the action at the Candor — a tragedy, an absolute tragedy. If my committee can do anything, anything at all, my door is open.\" His grief is note-perfect. His grip is firm. And for just a moment, behind the warm eyes, you catch something taking your measure the way a buyer measures livestock.\n\n\"My aide, Liss Avven, will expedite whatever records you need,\" he says, and glides away to console someone else.",
+        "He has just volunteered to choose what you get to see. It is the most elegant obstruction you have ever been offered."
+      ],
+      "choices": [
+        {
+          "text": "Accept Avven's help graciously — and request three times the records you need, so the omissions will map the truth.",
+          "effects": ["command %+ 15", "guile %+ 10"],
+          "goto": "c5_senate_2"
+        },
+        {
+          "text": "Refuse the aide. Invoke your military authority and pull the records directly through Fleet liaison.",
+          "effects": ["command %+ 10", "council_rep %+ 5"],
+          "goto": "c5_senate_2"
+        },
+        {
+          "text": "Smile, accept — and let Dunne believe he's managing you. A handled investigator hears more than a feared one.",
+          "effects": ["guile %+ 15", "dark %+ 5"],
+          "goto": "c5_senate_2"
+        }
+      ]
+    },
+    "c5_senate_2": {
+      "text": [
+        "The Records Hall of the Senate Annex is a cathedral of dead paper and live secrets, and you spend two days in it learning to hate flimsiwork with a purity you usually reserve for battle droids.\n\nBut the pattern is there, once you know its shape. Relief charters approved by Dunne's committee, routed through Tessent Reach, granted military transit waivers — waivers that whitelist civilian traffic along classified fleet corridors. Each waiver is issued days before one of your convoys moves. Each one tells anyone reading Tessent's manifests exactly which lanes the Republic is about to clear, guard, and travel.\n\nHe never sold a document in his life. He sold permissions, and let the Separatists do the arithmetic.",
+        "The hall's senior clerk, a stooped Sullustan, grows more frightened the closer your requests circle to the waiver indices. On the second evening he flatly tells you the originals are 'sealed under committee privilege' — and his eyes flick to the door as he says it, as if privilege were standing out there with a blaster."
+      ],
+      "choices": [
+        {
+          "text": "Lean on him — quietly remind him what obstruction of a military investigation costs, and watch him fold.",
+          "effects": ["dark %+ 10", "command %+ 5"],
+          "goto": "c5_senate_3"
+        },
+        {
+          "text": "Win him. Promise him Judicial protection, witness sealing, transfer offworld for his family — and mean it.",
+          "effects": ["force %+ 5", "master_rel %+ 5", "council_rep %+ 5"],
+          "goto": "c5_senate_3"
+        },
+        {
+          "text": "Don't make him choose at all. Note which index he's shielding, come back after hours, and pull it yourself.",
+          "effects": ["guile %+ 15"],
+          "goto": "c5_senate_3"
+        }
+      ]
+    },
+    "c5_senate_3": {
+      "text": [
+        "The waiver originals are everything you hoped and one thing you didn't.\n\nEvery Tessent transit waiver carries two authorizations. The first is Dunne's committee seal — expected. The second is a naval countersignature, required for any civilian traffic in an active war zone, and the cipher on every single one belongs to the office of Admiral Garrick Holt.\n\nYou sit back in the dead quiet of the Records Hall and feel the floor tilt. Holt. The hero of the Sarrish withdrawal. The admiral who turned his task force around against direct orders to pull eleven thousand troopers off a collapsing line — among them the 117th. Havoc's 117th.",
+        "You read deeper, hunting for innocence, and find it — mostly. Holt's office countersigned Dunne's relief charters in good faith, batch-processed among hundreds, vouched for by a senator the admiral has called a friend for thirty years. Holt is not a traitor. He is a character reference. But the documents do not record intentions, and any prosecutor, any journalist, any board of inquiry will read his cipher on every page of the treason.\n\nExpose Dunne with this, and you expose Holt with him. There is no version of the truth that arrives clean.",
+        "You copy everything, seal the originals, and walk out into the Coruscant dawn with proof enough to hang a senator and ruin a good man — fastened together."
+      ],
+      "goto": "c5_evidence"
+    },
+    "c5_under_1": {
+      "text": [
+        "Credits are like water: however high they're poured, they pool at the bottom.\n\nYou go down. Past the senatorial mesas, past the mid-levels' shabby respectability, down to Level 2141, where the sky is a memory and the air tastes of ozone and fried tubers. You go in civilian gear, saber under a long coat, and you walk like someone who belongs — because once, in another life, you did.",
+        {"if": "background == \"sentinel\"", "text": "The undercity reads you and approves. Three separate lookouts clock the way you move and decide you're trade, not trouble. You'd forgotten how much easier breathing is down here, where everyone's lying and nobody's pretending otherwise."},
+        "Your contact is a Snivvian slicer called Patch, who works out of the back of a droid-repair shop and owes you from before the war. He's grayer now, and he doesn't smile when you say Tessent Reach.\n\n\"Everybody down here knows Tessent freight,\" he says. \"Clean manifests, dirty everything else. Their settlement layer runs through a Falleen broker named Xeth Vorr, who runs auctions — quiet ones. Schedules, manifests, routing data. Buy-in is steep and the clientele is the kind that notices new faces.\" He scratches his tusk. \"You want in, you'll need a seat at Vorr's next sale. And I'll need a reason to risk my neck arranging it.\""
+      ],
+      "choices": [
+        {
+          "text": "Pay him what he asks and double it. Loyalty bought honestly stays bought.",
+          "effects": ["guile %+ 10"],
+          "goto": "c5_under_2"
+        },
+        {
+          "text": "Remind him, gently, of exactly what you know about his pre-war business. Old debts cut both ways.",
+          "effects": ["guile %+ 10", "dark %+ 10"],
+          "goto": "c5_under_2"
+        },
+        {
+          "text": "Tell him the truth: troopers are dying on this leak. Patch has a brother in a clone-run supply depot, and you know it.",
+          "effects": ["master_rel %+ 5", "guile %+ 5"],
+          "goto": "c5_under_2"
+        }
+      ]
+    },
+    "c5_under_2": {
+      "text": [
+        "Two nights later you walk into Vorr's auction wearing a face that isn't yours.\n\nNot literally — although Patch's forger did good work on your identity chits. You are Jessa Vane, procurement agent for a Hutt-adjacent shipping combine with flexible ethics and excellent credit. You've built the cover the way you were taught: ninety percent true things rearranged, ten percent unverifiable. The venue is a defunct turbine gallery dressed in silk, the clientele mercenary brokers, sanction-runners, and at least one Banking Clan observer pretending to be furniture.",
+        "Xeth Vorr holds court at the center, green-skinned and patient as a spider. The lots are projected in cipher: convoy schedules, patrol rotations, dock assignments. Lot Twelve makes your blood go quiet and cold.\n\nRepublic naval transit corridors, Vandos Reach approaches, fourteen-day projection. Provenance guaranteed by the house.\n\nThat's you. Your battle group, your next deployment, on the block between a case of stolen bacta and a Kuati yacht's slave codes. Somewhere far above, Senator Dunne is at a dinner party, and down here his merchandise is being priced.",
+        "The bidding will open within the hour. You can buy the lot — expensive, but the provenance chain inside it could be a map straight back to Dunne. Or you can take the whole auction down and seize everything, cover be damned."
+      ],
+      "choices": [
+        {
+          "text": "Buy Lot Twelve. Stay Jessa Vane. Walk out with the merchandise and the provenance chain, and let the auction never know.",
+          "effects": ["guile %+ 20", "set evidence_strong true"],
+          "goto": "c5_under_3"
+        },
+        {
+          "text": "Bid just enough to get a private inspection — then slice the house ledger while Vorr's people watch the room instead of the data.",
+          "effects": ["guile %+ 15", "set evidence_strong true"],
+          "goto": "c5_under_3"
+        },
+        {
+          "text": "Drop the cover. Ignite your blade, seize the ledgers, and let these vultures scatter.",
+          "effects": ["saber %+ 10", "dark %+ 10", "war_score %+ 5"],
+          "goto": "c5_under_3"
+        }
+      ]
+    },
+    "c5_under_3": {
+      "text": [
+        "By dawn you are back in your quarters topside with the haul spread across the table, and it is better than you dared hope.\n\nThe provenance chain on the routing data is intact — Vorr's house guarantees authenticity, which means his ledger records the supply line. Tessent Reach Holdings sits in it like a tumor: charter approvals, transit waivers, settlement accounts looping through four shells into a blind trust whose beneficiary instruction you crack at four in the morning. Carvel Dunne. Not an associate, not a donor, not a deniable cousin. The senator himself, selling the lanes his committee clears.",
+        "And then the second cipher signature on the waivers stops you cold.\n\nAdmiral Garrick Holt. Every waiver Dunne issued needed a naval countersignature, and Holt's office gave it — batch-processed, vouched by thirty years of friendship, innocent as paper. Innocent, and on every page. The Sarrish withdrawal, eleven thousand troopers pulled off a dying line against orders — the 117th among them. Expose Dunne, and the cipher drags Holt into the fire with him.",
+        {"if": "holocron == \"kept\"", "text": "The whisper arrives like a colleague leaning over your shoulder: A senator, an admiral, and a ledger. You hold all three. Child, do you finally see what power actually looks like? It looks like this table. You catch yourself nodding before you stop."},
+        "But your copy of Vorr's chain is clean and complete — the kind of evidence that can be carved with precision, if precision is what you choose."
+      ],
+      "goto": "c5_evidence"
+    },
+    "c5_shadow_1": {
+      "text": [
+        "Networks can be sliced and ledgers can be burned, but somewhere, always, a being carries the thing that matters in a locked case — because the truly careful trust no signal.\n\nDunne's security chief is a scarred ex-Judicial named Marl Reeve, and Reeve is careful. You spend three days learning his rhythms from rooftops and rented speeders: the counter-surveillance loops, the doubled-back routes, the dead drops he checks and the one — only one — he services personally. Every six days, Reeve takes an unregistered speeder down to a freight transfer station in the Works and hands a courier case to a Clawdite who leaves on a different ship each time.",
+        "Tonight is day six.\n\nYou track him down through the skylanes, your speeder hanging in his blind spot like a patient hawk. The Works at night is all rust and cathedral shadows — dead foundries, autohaulers, rain from leaking condensers a kilometer up. Reeve sets down by a freight gantry. The Clawdite is already there. And so, you realize as your senses prickle, are six others: B2 super battle droids standing dormant in the container shadows, bought muscle in rain ponchos on the catwalks. Dunne's handler protects the handoff.",
+        "The case changes hands in forty seconds or it doesn't change hands at all."
+      ],
+      "choices": [
+        {
+          "text": "Take them now — fast, loud, and finished before the droids finish booting.",
+          "effects": ["saber %+ 15"],
+          "goto": "c5_shadow_2"
+        },
+        {
+          "text": "Reach out through the Force and stall the moment — kill the gantry lights, panic the hired guns into each other.",
+          "effects": ["force %+ 15"],
+          "goto": "c5_shadow_2"
+        },
+        {
+          "text": "Let the handoff happen. Follow the Clawdite instead — the courier leads to the buyer, and the buyer is the bigger prize.",
+          "effects": ["guile %+ 15", "war_score %- 5"],
+          "goto": "c5_shadow_2"
+        }
+      ]
+    },
+    "c5_shadow_2": {
+      "text": [
+        "It goes to blasterfire anyway. It always does.\n\nThe B2s come up out of dormancy with that hydraulic shriek you hear in your sleep, and the catwalk mercenaries open up on anything that moves. Your blade is a blue line in the rain, and the world narrows to wet steel, muzzle-flash, and the singing math of deflection.",
+        {"if": "saber >= 55", "text": "You are very good at this, and tonight it shows. You move through the kill zone like a rumor — six droids in under a minute, the mercenaries throwing down their guns when they see what's left. Reeve gets exactly four steps toward his speeder before your blade arrives at the small of his back."},
+        {"if": "saber < 55", "text": "It's uglier than it should be. A B2's wrist blaster scores your shoulder and the mercenaries pin you behind a container long enough for Reeve to run. You drop the last droid with a desperate throw, and only the Clawdite's bad luck — a slip on rain-slick grating — puts the courier case back within your reach. Reeve is gone into the skylanes. He'll be telling Dunne about you within the hour."},
+        "The case is yours. Inside, snug in shock-foam: a biolocked datacore, and a flimsi envelope of old-fashioned, unsliceable paper. The Clawdite, persuaded by proximity to your blade, gives up the delivery protocol: the core goes to a Tessent Reach freight office. The paper goes onward — to a contact the courier knows only as 'the patron's friend.'",
+        "Dunne's merchandise, in your hand, still warm from his man's grip."
+      ],
+      "choices": [
+        {
+          "text": "Crack the core through Jedi Intelligence — slow, official, admissible.",
+          "effects": ["council_rep %+ 10"],
+          "goto": "c5_shadow_3"
+        },
+        {
+          "text": "Crack it yourself with undercity tools tonight. Admissibility is a problem for people with time.",
+          "effects": ["guile %+ 10", "dark %+ 5"],
+          "goto": "c5_shadow_3"
+        }
+      ]
+    },
+    "c5_shadow_3": {
+      "text": [
+        "The datacore opens like a wound.\n\nFleet routings — yours. Resupply windows — yours. The Vandos Reach corridor schedule, fourteen days projected, annotated in a committee clerk's tidy hand. And the paper envelope is worse: a single sheet listing transit waivers by serial number, each one matched to a price. Dunne didn't even use code. Why would he? Paper burns, and friends don't read friends' mail.",
+        "It takes you one more night with the waiver serials to find the catch. Every waiver carries a naval countersignature, required for civilian traffic in a war zone — and every cipher belongs to Admiral Garrick Holt. You check it four times, hoping for forgery, and the hope dies slowly. Holt countersigned in good faith, batched among hundreds, vouching for a senator he's called a friend since before you were born. The documents don't care about faith. His name is on every page of the treason, and no tribunal in this nervous, bleeding Republic will untangle innocent from indispensable.\n\nThe hero of Sarrish. The man who turned his task force around for eleven thousand troopers Command had written off — the 117th among them.",
+        {"if": "holocron == \"kept\"", "text": "Deep in your sea chest, the whisper sounds almost amused: Strike the senator and you behead the web. But the admiral's name — oh, keep that, child. A good man's secret is worth ten bad men's lives. You realize your hand has been resting on the chest's lid for some minutes."},
+        "Proof enough to hang Dunne. Fastened, link by link, to a man who deserves none of it."
+      ],
+      "goto": "c5_evidence"
+    },
+    "c5_gala_1": {
+      "text": [
+        "The Kallea Ballroom floats a kilometer above the Senate District on commercial repulsors, and tonight it holds four hundred of the Republic's brightest lights, all pretending the war is a weather pattern happening to other people.\n\nYou come in dress robes, openly yourself. A Jedi commander, lately mauled, is exactly the sort of decoration this crowd collects — and you want Dunne relaxed, in his element, surrounded by witnesses he believes are protection. The Force in a room like this is a tide pool: vanity, appetite, boredom, fear in little darting schools. You let it move through you and wait.",
+        "Dunne finds you inside ten minutes, because of course he does. \"Commander ${name}!\" Both hands again, warm as ever. \"The hero of the hour. I won't pretend I haven't been telling people we're acquainted.\" He laughs at himself, charmingly. He asks about your wounded. He remembers — or his briefing remembered — the name of the Candor's captain, and his grief sounds real because some of it is. That's the horror of him, you think. He has simply decided that his sorrow and his invoices live in different rooms.",
+        "You walk the conversation gently toward shipping, relief charters, the Vandos corridors. His voice never changes. But the Force does — every time the war's logistics pass too close, something in him goes smooth and hard, like scar tissue. And once, when an aide murmurs a list of dinner guests in his ear and the name Admiral Holt goes by, fear spikes off him so sharply you nearly turn to look for a weapon."
+      ],
+      "choices": [
+        {
+          "text": "Press on Holt's name, lightly — mention the admiral's countersignature on your convoy waivers, and watch what the Force does.",
+          "effects": ["force %+ 15"],
+          "goto": "c5_gala_2"
+        },
+        {
+          "text": "Withdraw and work the aide instead. Liss Avven drinks alone by the window, and aides know where everything is buried.",
+          "effects": ["guile %+ 10"],
+          "goto": "c5_gala_2"
+        },
+        {
+          "text": "Let him relax. Dance, charm, be the trophy guest — and let him invite you deeper into his confidence on his own.",
+          "effects": ["force %+ 5", "guile %+ 10"],
+          "goto": "c5_gala_2"
+        }
+      ]
+    },
+    "c5_gala_2": {
+      "text": [
+        "Liss Avven is twenty-six, brilliant, and drowning, and it takes you one glass of Chandrilan white to see all three.\n\nFour years as Dunne's senior aide: she files his charters, manages his calendar, and worships him the way you once worshipped — you stop that thought before it reaches Master Venn's name. But underneath the polish, the girl is fraying. The Force around her is all guilt and white noise. She has seen something she has spent months explaining to herself, and the explanations are wearing thin.",
+        "\"The senator says the waiver volume is just the war,\" she tells you, unprompted, third glass, eyes on the city below. \"Everything's the war now, isn't it. Triple the charters, half the oversight. He signs and Admiral Holt's office countersigns and it all just — moves.\" She laughs, too quickly. \"Sorry. You didn't come here to talk about flimsiwork.\"\n\nShe knows. She doesn't know she knows, but she knows."
+      ],
+      "choices": [
+        {
+          "text": "Be honest with her. Tell her men are dying along those waiver routes, and ask her to help you look.",
+          "effects": ["master_rel %+ 5", "council_rep %+ 5"],
+          "goto": "c5_gala_3"
+        },
+        {
+          "text": "Nudge her with the Force — soften the fear, loosen the loyalty, let the truth she's carrying spill on its own.",
+          "effects": ["force %+ 15", "dark %+ 10"],
+          "goto": "c5_gala_3"
+        },
+        {
+          "text": "Say nothing tonight. Memorize everything she's told you and let her keep her innocence a little longer.",
+          "effects": ["guile %+ 10", "master_rel %+ 5"],
+          "goto": "c5_gala_3"
+        }
+      ]
+    },
+    "c5_gala_3": {
+      "text": [
+        "The toast to the Chancellor empties the ballroom's edges, and you take your moment.\n\nDunne keeps a private office off the gallery — senatorial privilege, even at a party. The lock is good; the Force is better. Inside, the room smells of his cologne and old paper, and you stand very still and open yourself the way Master Venn taught you in quieter years. Psychometry was never your discipline, but strong feeling soaks into objects like smoke into cloth, and this room is saturated.\n\nThe desk: satisfaction, decades deep, smooth as river stone. The safe behind the Taldot landscape: nothing — decoy. But the unassuming datapad dock by the window seat hums with secret like a struck bell. He sits there, in the small hours, where he can watch the traffic. He signs things there. He is afraid there.",
+        "The dock's resident pad is keyed, but its transit cache is sloppy with fragments, and you photograph everything: waiver serials, Tessent settlement schedules, and a half-drafted message to someone unnamed that reads, in part — the naval countersignatures continue uninterrupted. G. suspects nothing. His friendship remains, as ever, my best collateral.\n\nG. Garrick Holt. The hero of Sarrish, the admiral who turned back for eleven thousand men, the 117th among them — being worn by this man like a borrowed coat. Dunne's protection isn't muscle or money. It is a good man's name, signed in good faith on every page of the treason, fused to it now in any court the Republic owns.",
+        "Below the window, the city glitters, vast and oblivious. You let yourself out before the toast ends."
+      ],
+      "goto": "c5_evidence"
+    },
+    "c5_evidence": {
+      "text": [
+        "By week's end, the case sits assembled in your quarters like a dismantled bomb.\n\nCarvel Dunne, eleven-term senator, chair of Logistics Oversight, sole beneficiary of a blind trust fed by Tessent Reach Holdings, which has sold Republic fleet routings to Separatist procurement for at least nineteen months. Your three ambushes. The Candor's two hundred and six. Other battle groups too, you suspect — losses filed under bad luck across half the Outer Rim. The proof is real. The proof is sufficient.\n\nAnd stitched through every page of it: Admiral Garrick Holt's countersignature, given in good faith, immovable as a tattoo. Renno's analysts confirm what you already knew. There is no public case against Dunne that does not break Holt — court-martial at worst, disgrace and forced retirement at best. The Republic in its present mood does not do nuance. It does headlines.",
+        {"if": "evidence_strong", "text": "Your copy of the provenance chain is clean enough that a careful hand could carve it — present the treason whole while shaving Holt's cipher to a footnote. It would take nerve and a steady editorial blade. But you, of all people, could do it."},
+        "Renno's last word, before he leaves you with it: \"The Council trusts your judgment, Commander. So will the consequences.\"\n\nThat night, Captain Havoc comms from the Resolute Dawn's repair berth and asks, in his blunt way, whether you've found the leak. He deserves better than a lie. He may not be able to carry the truth. You take the call."
+      ],
+      "goto": "c5_havoc"
+    },
+    "c5_havoc": {
+      "text": [
+        "Havoc's holo-image stands at parade rest amid the scaffolding of the Dawn's gun deck, helmet under his arm, the tally marks etched along his vambrace catching the work lights. Two hundred and six new ones, you know, though the image is too grainy to count.\n\n\"Straight question, ${sir}. Did you find who sold us?\"\n\nYou tell him yes. You watch twenty years of bred discipline hold his face still while something underneath it bares its teeth. \"Then it's handled,\" he says. \"Whoever it is. Whatever it costs. Two hundred and six, ${sir}.\" A pause; the work lights flicker. \"There's chatter the trail runs near Admiral Holt's office. Tell me that's wrong.\"",
+        "You ask him, carefully, what Holt is to him. Havoc's jaw works. \"Sarrish. Command wrote off the whole line — eleven thousand of us, flagged unrecoverable. Holt turned his task force around against direct orders and came back into the fire. I'm standing here because of him. Half the 117th is.\" He looks at you, level. \"Brothers don't forget that, ${sir}. Whatever you've found — the admiral's no traitor. I'd stake the battalion on it.\"\n\nHe is right, and the documents don't care, and he is waiting for you to say something."
+      ],
+      "choices": [
+        {
+          "text": "Tell him the truth — all of it, Dunne and Holt's cipher both. He's earned the real picture.",
+          "effects": ["havoc_rel %+ 15"],
+          "goto": "c5_venn_call"
+        },
+        {
+          "text": "Tell him you have the traitor, and keep Holt's name out of it until you decide what to do.",
+          "effects": ["guile %+ 5"],
+          "goto": "c5_venn_call"
+        },
+        {
+          "text": "Promise him you'll protect Holt, whatever handling the traitor takes.",
+          "effects": ["havoc_rel %+ 10", "set protect_holt true"],
+          "goto": "c5_venn_call"
+        }
+      ]
+    },
+    "c5_venn_call": {
+      "text": [
+        "You are still staring at the dead comm when it chimes again — Temple infirmary routing, priority personal. The image that resolves is thin, gray-tinged, sitting up in a medcot against every visible medical objection, and alive.\n\nMaster Ilara Venn looks at you down the light-years and says, \"You got taller. Or I got shorter. Bacta does terrible things to one's perspective.\"\n\nFor a moment you can't speak. Eight months in a coma since Jabiim — eight months of her being a held breath at the edge of your thoughts — and her first conscious act is a joke at her own expense. The healers hover like anxious moths. She waves them off with two fingers and studies you, and her dry humor settles into something older and more careful.",
+        "\"They tell me you're a commander now. They tell me about the Candor. They tell me a great many things, my Padawan, and the Force tells me more.\" Her eyes — clouded, then sharpening — move over you the way they used to when you came back late from saber drills with your knuckles split. \"You feel different. Heavier. Like a door I used to know that's been rehung on new hinges.\"",
+        {"if": "dark >= 40", "text": "Her gaze stops somewhere behind your eyes. \"There's a shadow keeping pace with you,\" she says quietly. \"I'd know that gait anywhere. I marched beside my own for years.\" The healers stir; she ignores them. \"Don't tell me I'm imagining it. I taught you to lie better than that.\""},
+        {"if": "holocron == \"kept\"", "text": "And then her gaze drifts — past your shoulder, toward the corner of your quarters where the sea chest sits, and the room seems to go very quiet. \"Something hums near you,\" she murmurs. \"At the edge of the Force, like a wasp against a window. Padawan... what have you brought home?\" In the chest, wrapped in cloth, the holocron goes utterly, deliberately silent — a held breath, a hand over a candle. Her eyes lose the thread, and find your face again, troubled."},
+        "\"Talk to me,\" she says. \"While the healers still let me have you.\""
+      ],
+      "choices": [
+        {
+          "text": "Tell her everything — the ambushes, Dunne, Holt, and the weight of all of it. Hold nothing of yourself back.",
+          "effects": ["master_rel %+ 20", "dark %- 5"],
+          "goto": "c5_venn_confide"
+        },
+        {
+          "text": "Give her the case and only the case. She's eight months from death's door; she doesn't need your shadows too.",
+          "effects": ["master_rel %- 10"],
+          "goto": "c5_venn_deflect"
+        },
+        {
+          "text": "Smile. Tell her you're fine, the war is the war, and she should rest.",
+          "effects": ["master_rel %- 15", "dark %+ 10", "guile %+ 5"],
+          "goto": "c5_venn_lie"
+        },
+        {
+          "text": "Tell her about the holocron. She of all people would understand—",
+          "if": "holocron == \"kept\"",
+          "effects": ["master_rel %- 5", "dark %+ 10"],
+          "goto": "c5_venn_holocron"
+        }
+      ]
+    },
+    "c5_venn_confide": {
+      "text": [
+        "You tell her. All of it — the ambushes, the names read in the hangar, the senator who weeps at funerals he scheduled, the admiral whose good name is the treason's binding thread. And the rest: the anger that arrives before the grief now, the nights you plan in your sleep, the moments you've caught yourself weighing lives like cargo.\n\nVenn listens the way she always has — utterly still, missing nothing — and when you finish, she's silent long enough that you wonder if the connection failed.\n\n\"Good,\" she says at last. \"Not the situation. The telling. The war eats Padawans by teaching them to carry everything alone, and I've been a poor excuse for a master, sleeping through your hardest year.\"",
+        "She leans toward the imager, and for a moment she is exactly the woman who stood over you in the mud of Jabiim. \"Hear me on this, my Padawan. The senator is a symptom. Punish him however the law and your conscience allow — but watch what the choosing does to you. The dark side loves an investigator. It dresses itself as thoroughness, as justice, as the willingness to do what softer people won't.\" Her mouth quirks, dry as ever. \"And it never once, in the history of the galaxy, introduced itself by name.\"\n\nThe healers finally win. Her image gutters, but her last words land like a hand on your shoulder: \"Whatever you decide about Dunne — decide it as the person I trained. I'll know if you don't. I always know.\""
+      ],
+      "goto": "c5_decision"
+    },
+    "c5_venn_deflect": {
+      "text": [
+        "You give her the case — clean, professional, complete. Dunne, Tessent, the waivers, Holt's entangled cipher. You give her nothing else: not the anger, not the nights, not the weight. She is eight months out of a coma and gray as ash, and shielding her feels like the only kindness left in your week.\n\nVenn hears you out, and the look on her face when you finish is one you remember from a hundred sparring matches: the look that says she's seen the opening you left and is deciding whether to use it.\n\n\"A thorough briefing,\" she says. \"Renno couldn't have delivered it drier.\" A pause. \"I was not asking for a briefing, Padawan.\"",
+        "You start to answer; she lifts two fingers, the old signal, and you stop out of pure reflex.\n\n\"You've decided I'm too weak to share your weather. Perhaps you're right. But understand what you're practicing, my Padawan, because the Force certainly notices: you are learning to manage the people who love you. It's a useful skill. Senators are made of it.\" She lets that sit exactly long enough to bruise. \"When you're ready to talk to me instead of handling me, I'll be here. Apparently I'm difficult to kill.\"\n\nThe healers close in; the holo dies. You sit in the dark for a while, telling yourself you did the kind thing, and not quite believing it."
+      ],
+      "goto": "c5_decision"
+    },
+    "c5_venn_lie": {
+      "text": [
+        "\"I'm fine, Master. Truly. The war is the war — you should rest.\"\n\nThe lie comes out smooth and warm and perfectly weighted, and that, more than anything, is the frightening part: how good you've gotten. Eight months ago you couldn't hide a stolen sweetcake from this woman. Tonight your face gives her nothing at all.\n\nVenn looks at you for a long moment. Whatever's left of her old strength is mostly spent on sitting upright, and you watch her choose not to spend the remainder on a fight she can't win down a holo-link.\n\n\"Fine,\" she repeats. \"My Padawan stands in the middle of a treason case, fresh from burying two hundred and six, and is fine.\" She nods slowly. \"You know, on Jabiim, when the line broke, I told you I was fine too. You were too young to call me a liar. I find I miss that about you — the age, not the credulity.\"",
+        "She lets the silence do its work, then gathers herself, dry to the last. \"Rest, you say. Excellent advice. Here's mine: whatever you're carrying that's heavy enough to need that polished a 'fine' — set it down before it grows roots. Doors that are rehung enough times stop fitting their frames.\"\n\nThe healers murmur; the image folds into darkness. You realize your hands have been perfectly still in your lap the whole call, the way they're still before a fight, and you wonder when talking to her became one."
+      ],
+      "goto": "c5_decision"
+    },
+    "c5_venn_holocron": {
+      "text": [
+        "The words are at your teeth — Master, on the tomb world, we found — and that is precisely as far as they get.\n\nIt isn't fear that stops them. It's a sensation like a hand closing gently around your tongue: the holocron, across the room in its wrapped silence, pressing one cold thought against the back of your mind. She will take me to the ones who will lock me in the dark, the way they lock away everything they fear to understand. And then, child, when the war asks its next impossible question — you will face it empty-handed, like everyone else.\n\nYou hear yourself say, instead: \"We recovered a relic, on the tomb world. The Council has the matter in hand.\"",
+        "Venn goes very still. \"A relic,\" she echoes. Her eyes drift again to that corner of your quarters, the way a tongue finds a chipped tooth, and her brow knots with the effort of a perception her healing body cannot quite hold. \"Strange. For a moment I would have sworn—\" She presses two fingers to her temple, and the moment breaks. The healers surge in, scolding; her image begins to dissolve.\n\n\"Padawan,\" she says, last of all, gray and earnest, \"whatever has the matter in hand — make certain of whose hand it is.\"\n\nThe holo dies. In the sea chest, the silence relaxes, satisfied, like a creature uncoiling. You sit with what you almost did, and what you actually did, and you find you cannot quite name which one you regret."
+      ],
+      "goto": "c5_decision"
+    },
+    "c5_decision": {
+      "text": [
+        "Past midnight. The case glows on your table; the city howls softly past the viewport, ten thousand speeders carrying people who will never know how close the war sits to their bedrooms.\n\nEvery path is laid out in front of you, and not one of them is clean.\n\nExpose Dunne, and the Republic gets justice in daylight — and Garrick Holt's name is fused to every headline, and Havoc's brothers learn the man who came back for them is finished. Approach Dunne quietly, and the leak becomes a faucet you control: false routes, poisoned intelligence, a senator on your leash feeding Separatist fleets into Republic guns — a weapon no tribunal would ever hand you. Or there is the oldest arithmetic of all, the one that ends with a charming man's heart stopped in his tower office and two hundred and six debts called in at once.\n\nOr send it up sealed and wait for the Council and the courts to do this properly — knowing the leak you found is unlikely to be the only one, and that careful men are warned by careful friends.",
+        {"if": "holocron == \"kept\"", "text": "The whisper doesn't argue for any of them, which is somehow worse. It only observes, mild as a tutor: Notice, child, which option your heart keeps returning to when you stop performing for yourself. That one. Yes. Now ask why you need my permission."},
+        {"if": "dark >= 60", "text": "What surprises you, in the end, is how little any of it weighs. There was a time a night like this would have torn you in half. Now the options sit in rows like munitions — it's only a question of selecting the right yield."},
+        "Dawn is coming. Decide."
+      ],
+      "choices": [
+        {
+          "text": "Take everything to the Council and the courts. Expose Dunne in daylight, whatever it costs Holt.",
+          "goto": "c5_expose_1"
+        },
+        {
+          "text": "Go to Dunne's tower tonight — and turn him. The Republic needs his leak more than his head.",
+          "effects": ["dark %+ 10"],
+          "goto": "c5_blackmail_1"
+        },
+        {
+          "text": "Go to Dunne's tower tonight — and end him. Two hundred and six.",
+          "effects": ["dark %+ 10"],
+          "goto": "c5_kill_1"
+        },
+        {
+          "text": "Seal the case and send it up the chain. Request a closed tribunal and Council authorization before anyone moves.",
+          "effects": ["council_rep %+ 5"],
+          "goto": "c5_wait_1"
+        }
+      ]
+    },
+    "c5_expose_1": {
+      "text": [
+        "You do it in daylight, because daylight is the point.\n\nIt takes four days to arrange: Renno's analysts certifying every link, Judicial warrants sworn in closed session, a Senate Guard detachment briefed in a room with no windows. On the fifth morning, as Senator Carvel Dunne descends from his speeder onto the Grand Convocation platform — smiling, waving to a knot of journalists he tipped off himself — you are waiting at the bottom of the steps with the warrant in your hand.\n\nHe is magnificent, you have to give him that. He laughs at the charges. He appeals warmly to the gathering crowd, to thirty years of service, to friends in high places who will straighten all this out by lunch. He keeps it up right until you read aloud the beneficiary instruction from the blind trust, in his own dictation cadence, and then you watch something behind the warm eyes simply pack up and leave. The smile stays. The man vacates it.\n\n\"You have no idea,\" he says quietly, just for you, as the binders close, \"how far up the ladder the weather goes. They'll let you have me, you know. I was always the part they could afford.\"",
+        {"if": "evidence_strong", "text": "Your evidence is clean enough to carve, and now is the moment to choose the carving. The provenance chain from the auction house can anchor the entire case — which would let Holt's countersignatures be sealed as peripheral, an exploited formality rather than a named disgrace. Or you can release everything and let the chips fall."}
+      ],
+      "choices": [
+        {
+          "text": "Release the full case. The Republic deserves the whole truth, including Holt's part in enabling it.",
+          "effects": ["set dunne \"exposed\"", "council_rep %+ 20", "war_score %+ 10", "havoc_rel %- 15"],
+          "goto": "c5_expose_2"
+        },
+        {
+          "text": "Anchor the case on the auction provenance and shield Holt — careful, surgical, and just inside the truth.",
+          "if": "evidence_strong",
+          "effects": ["set dunne \"exposed\"", "council_rep %+ 10", "guile %+ 10", "havoc_rel %+ 15", "war_score %+ 10"],
+          "goto": "c5_expose_2"
+        },
+        {
+          "text": "Release the full case, but stand before the Admiralty board yourself as Holt's character witness.",
+          "effects": ["set dunne \"exposed\"", "council_rep %+ 15", "havoc_rel %- 5", "master_rel %+ 5", "war_score %+ 10"],
+          "goto": "c5_expose_2"
+        }
+      ]
+    },
+    "c5_expose_2": {
+      "text": [
+        "The Republic does what the Republic does: loudly.\n\nFor a week the HoloNet speaks of nothing else. DUNNE THE TRAITOR. The Taldot delegation recalls itself in disgrace; Tessent Reach's offices are sealed on forty worlds; two more senators retain very good lawyers very quietly. Your name travels with all of it — the Jedi commander who pulled the thread. With the leak cauterized, your battle group's next two convoy runs arrive without a shot fired.",
+        {"if": "havoc_rel >= 50", "text": "Havoc takes the news about Holt standing at attention, which is how he takes everything that hurts. \"He'd have signed off on it, ${sir},\" he says finally. \"The admiral. If you'd asked him — take the hit, catch the traitor — he'd have signed.\" A pause. \"Doesn't make it easier. Makes it right. Those aren't the same thing, turns out. We've noticed that, lately, the men and me.\""},
+        {"if": "havoc_rel < 50", "text": "Havoc receives the news about Holt in silence, and the silence has edges. \"Understood, ${sir},\" is all he says. That night, you hear, the 117th's mess was quiet as a memorial, and somebody scratched SARRISH into the paint above the racks, and no sergeant has ordered it removed."},
+        "Master Venn's message arrives in text only, the healers having confiscated her holo privileges: 'Daylight. Good. It costs the most and rots the least. — V.' You read it several times.\n\nDunne himself, awaiting trial in a tower far more comfortable than his crimes deserve, sends you a single line through his lawyers: 'Ask them, someday, why the Senate's locks were all built to be opened.' You file it under things you refuse to think about tonight, and fail."
+      ],
+      "goto": "c5_aftermath"
+    },
+    "c5_blackmail_1": {
+      "text": [
+        "Dunne's tower office at three in the morning is all dark wood and old maps, and the man himself, summoned from sleep by a security system that mysteriously failed to wake his guards, takes your presence remarkably well.\n\n\"Commander.\" He belts his robe and sits, gesturing you to a chair as though this were a scheduled appointment. \"I'd offer caf, but my night staff appears to be napping. Your doing, I assume. Well.\" He folds his hands. \"How much do you know, and what does it cost?\"\n\nYou lay the case on his desk, item by item — the trust, the waivers, the auction chain, his own half-drafted note about Holt's friendship being collateral. To his enormous credit, he reads all of it before he speaks. To his enormous discredit, what he says is: \"I can have eight million credits in unmarked bearer bonds in this room within the hour.\"",
+        "You tell him what you actually want, and watch a career politician genuinely surprised for what may be the first time in decades.\n\nFrom tonight, Carvel Dunne keeps selling fleet routings — yours, written for him. False corridors. Poisoned schedules. Convoy windows that open onto Republic guns. He stays in his committee chair, keeps his flag and his funerals, and feeds his Separatist buyers whatever you decide they should eat. The first time the product diverges from your script, the case on this desk goes to Judicial with a covering note.\n\n\"You understand,\" he says slowly, \"that you're describing treason. Mine, ongoing, and yours, supervisory.\" His eyes glitter. \"You also understand it will work. That's the unbearable thing about you people, when you finally come down off the mountain. You're so much better at this than we are.\""
+      ],
+      "choices": [
+        {
+          "text": "\"One more condition: Avven, your aide, goes offworld with a clean record. She's not part of your price.\"",
+          "effects": ["set dunne \"blackmailed\"", "master_rel %+ 5", "dark %+ 5"],
+          "goto": "c5_blackmail_2"
+        },
+        {
+          "text": "Take the deal as it stands. Clean lines, no sentiment.",
+          "effects": ["set dunne \"blackmailed\"", "dark %+ 10"],
+          "goto": "c5_blackmail_2"
+        },
+        {
+          "text": "Take the deal — and the eight million too, routed to the 117th's widows-and-orphans fund. Let his money buy back some of its blood.",
+          "effects": ["set dunne \"blackmailed\"", "dark %+ 10", "havoc_rel %+ 10", "guile %+ 5"],
+          "goto": "c5_blackmail_2"
+        }
+      ]
+    },
+    "c5_blackmail_2": {
+      "text": [
+        "The first fruits arrive within a month, and they are sweet.\n\nA Separatist interdiction fleet, acting on Dunne's freshly purchased intelligence, drops out of hyperspace onto the Vandos relay picket — exactly where you advertised a crippled medical convoy. What it finds instead is two Republic battle lines, guns run out, waiting in the dark. The engagement lasts eleven minutes. Fleet Intelligence logs it as the cleanest ambush reversal of the war and never discovers who authored the routing leak that baited it.",
+        "Renno closes the official investigation regretfully: the Tessent trail, you report, went cold — burned shells, dead drops, a broker who left Coruscant. He studies you a moment longer than necessary. \"A pity,\" he says. \"The pattern was so very promising.\" The Council accepts the dead end with a coolness you can feel through the comm relay; whatever the Givin suspects, equations are not evidence.",
+        {"if": "holocron == \"kept\"", "text": "The whisper is warm as a hearth these days. A senator on your leash, fleets dancing to your script, and not one drop of your own blood spent. Tell me, child — what exactly was it your Order said the dark side felt like? Because I notice this feels like winning."},
+        "Dunne sends his reports on schedule, terrified and punctual. You have become, in the war's secret ledger, one of its most effective weapons. You sleep, on the whole, surprisingly well. It's the 'on the whole' that Master Venn would ask about, and so you do not call her."
+      ],
+      "goto": "c5_aftermath"
+    },
+    "c5_kill_1": {
+      "text": [
+        "Dunne's tower office at three in the morning is all dark wood and old maps, and the man himself, summoned from sleep by a security system that failed to wake his guards, understands what you are there for faster than his charm can hide.\n\nTo his credit — his only remaining credit — he doesn't scream. He sits down slowly behind his desk, an old man in a sleeping robe, and tries everything in his arsenal one piece at a time, and his arsenal is considerable.\n\nMoney first: eight million, twenty, name it. Then politics: the names of two more senators in the network, gift-wrapped. Then philosophy, his voice finding its floor-debate warmth: \"I'm a faucet, Commander. The plumbing survives. Kill me and they'll seat my replacement before my funeral — you'll have traded your soul for a news cycle.\" And finally, when all of it slides off the look on your face, the simple, naked thing underneath: \"Please. I have grandchildren. They have never seen a battlefield. Please.\"",
+        "Your blade is in your hand. You don't remember drawing it. The Candor's two hundred and six are in the room with you — you'd swear before any court that you can hear them breathing — and the hilt's worn grip is the only thing in the galaxy with any weight to it at all.",
+        {"if": "holocron == \"kept\"", "text": "And the whisper, soft as a parent at a bedside: He is guilty. You are owed. No tribunal in this rotted Republic will weigh him honestly — but you can. That is not the dark side, child. That is the only justice with clean hands left in the room."}
+      ],
+      "choices": [
+        {
+          "text": "Ignite the blade. Two hundred and six.",
+          "goto": "c5_kill_2"
+        },
+        {
+          "text": "Choke the other names from him first — squeeze the network out of his mind — and then finish it.",
+          "effects": ["dark %+ 10", "force %+ 5"],
+          "goto": "c5_kill_2"
+        },
+        {
+          "text": "Stay your hand. Lower the blade. This isn't who you—",
+          "goto": "c5_escaped_1"
+        }
+      ]
+    },
+    "c5_kill_2": {
+      "text": [
+        "It is over very quickly, which is the last mercy in the room and not one he extended to the Candor.\n\nAfterward, you stand in the silence of the office while your blade-light dies, and the silence is enormous, and the two hundred and six are not in it. That's the thing no one tells you. You expected them to feel — answered. Avenged. Instead there is only a dead old man in a sleeping robe, a smell of cooked air, and you, and the city howling softly past the windows, exactly as oblivious as before.",
+        {"if": "guile >= 55", "text": "What you do next, you do with a craftsman's detachment that will frighten you later. The security logs, already sliced, rewrite themselves around a different intruder. A Separatist hold-out blaster, acquired through Patch weeks ago for contingencies you didn't examine at the time, scorches the wall at the correct angle. By dawn, Coruscant Security is investigating the assassination of a beloved senator by his own paymasters — a falling-out among traitors. They will look down the ladder, not up. They always do."},
+        {"if": "guile < 55", "text": "You are a soldier, not an assassin, and the scene shows it. You leave no name, but you leave a signature no investigator will misread: a single cauterized wound, no blaster, a lock opened without force. Within days, the quiet places where such things are discussed will all be saying the same word. Jedi."},
+        "The leak is dead. The routings stop. Somewhere in the network, his handler reads the morning feeds and begins, unhurriedly, to promote a replacement — but that is a problem for a future you have purchased at a price you will be discovering for years.\n\nThe whisper, if it says anything at all, has the wisdom to say it very quietly."
+      ],
+      "effects": ["set dunne \"dead\"", "dark %+ 25", "council_rep %- 20", "war_score %+ 10"],
+      "goto": "c5_aftermath"
+    },
+    "c5_wait_1": {
+      "text": [
+        "You do it properly. You will spend a long time deciding how you feel about that.\n\nThe case goes up sealed: Renno's certification, your sworn statement, a request for a closed tribunal and Council authorization before any move against a sitting senator. It is correct. It is disciplined. It is what the Order asks. Renno transmits it under triple cipher to the Council and the Judicial high office.\n\nThe authorization comes back in nineteen hours — remarkable speed, all parties agree afterward, everyone moving in the best possible faith.\n\nIt is eleven hours too slow.",
+        "You know it the moment you step onto Dunne's landing platform with the Senate Guard detachment at your back: the tower is too quiet, the staff too rehearsed. The senator, his household regrets to inform you, departed in the night for an urgent constituency matter in the Taldot sector. His office is sterile — not cleaned, sterilized, the desk dock degaussed, the safe standing open and empty with a kind of insolence. On the blotter, where he knew you would be the one to find it, a single sheet of his unsliceable paper, one line in a warm, practiced hand:\n\n'Commander — you play correctly. That has always been your side's most reliable quality. Fondly, C.D.'\n\nSomeone in the chain between your sealed transmission and the tribunal's seal warned him. The thought arrives with a cold that has nothing to do with the tower's air: the chain ends very, very high."
+      ],
+      "goto": "c5_escaped_1"
+    },
+    "c5_escaped_1": {
+      "text": [
+        "The alarm, when it comes, is his.\n\nWhether it was a dead-man's switch under the desk or a bodyguard's nerve or simply a careful man's last instinct, the result is the same: the tower wakes around you all at once — blast shutters, screaming klaxons, security droids unfolding from alcoves like carnivorous flowers — and through it all Carvel Dunne moves with the startling speed of a man who has rehearsed his exits for thirty years.\n\nYou go through the droids rather than around them. You are, by now, very good at going through things. But the delay costs forty seconds, and forty seconds is the difference between your hand and the boarding ramp of the yacht that rises off the tower's private pad, running lights dark, transponder already lying.",
+        {"if": "force >= 55", "text": "You reach out and seize the yacht with everything you have. For three full seconds, eleven hundred tons of Kuati engineering hangs shuddering over the pad, repulsors screaming against your grip, and the rage that floods up your arms whispers that you could hold it, crush it, bring it down in fire on the platform. You let go before you learn which of those is true. The yacht staggers and flees. Your hands shake for an hour."},
+        {"if": "saber >= 55 and force < 55", "text": "You make the leap — an impossible, glorious, furious leap — and your blade opens a molten seam along the yacht's ventral hull before the slipstream tears you off into a nine-meter fall onto duracrete. The seam isn't fatal. Nothing about tonight is, except to your patience."},
+        "By the time Republic pickets scramble, the yacht is gone into the orbital stack, and from the stack into hyperspace on a clearance code sold, with magnificent irony, by a logistics network you now understand far too well."
+      ],
+      "goto": "c5_escaped_2"
+    },
+    "c5_escaped_2": {
+      "text": [
+        "Carvel Dunne resurfaces eleven days later — on Raxus, in the Separatist Senate's visitors' gallery, wearing the expression of a man who has found the climate agreeable.\n\nThe Confederacy trumpets the defection for a week: an eleven-term Republic senator, fleeing 'Jedi persecution.' He gives interviews. He weeps at the right moments. The case you built convicts him in absentia, for whatever that is worth.\n\nThe leak is closed, at least — his routings die with his access, and your convoys stop dying with them. Fleet Intelligence calls that a victory. It does not feel like one.",
+        "What stays with you is the speed of the warning that saved him. Sealed transmission to fled senator in under a day, through channels that should have been airtight at the level of the Council and the Chancellery itself. Renno, when you raise it, goes still in the way of a being doing arithmetic he dislikes. \"I will look into it,\" he says, and then, quietly: \"Commander. Be careful what you transmit, going forward. On any channel. To anyone.\"\n\nHavoc's verdict, when you brief him, is blunter: \"So the hole's plugged and the rat's promoted. Wars end, ${sir}. I'm starting to wonder if this one's been told.\""
+      ],
+      "effects": ["set dunne \"escaped\"", "council_rep %- 10", "war_score %- 10"],
+      "goto": "c5_aftermath"
+    },
+    "c5_aftermath": {
+      "text": [
+        "The week after, the Temple grants you an evening with nothing required of you. You spend it on the Dawn's repair gantries instead, because idleness has started to itch. The ship is nearly whole again — new port batteries, the Candor's name freshly etched on the memorial plate by the main hangar where Havoc reads his lists.",
+        {"if": "dunne == \"exposed\"", "text": "The HoloNet has moved on to a tax scandal already, the way it always does, but the troopers haven't. Twice tonight, ratings you've never met have found reasons to cross your path and say, with great formality, that it was good work, ${sir}, catching the one who sold the Candor. The third time it happens you stop pretending it doesn't reach you."},
+        {"if": "dunne == \"blackmailed\"", "text": "Somewhere over your head, a senator you own is drafting his next report under deadlines you set. The convoys are getting through. The men are alive who would not have been. You have rehearsed the accounting so many times it almost sounds like something other than what it is, and the gantry lights hum, and you let the subject drop down the dark between the scaffolds."},
+        {"if": "dunne == \"dead\"", "text": "Coruscant Security's investigation grinds on without you, as it must. In the Temple you have twice now passed masters mid-conversation who stopped talking a beat too late. Nothing is said. The Council has summoned you for no inquiry, laid no charge; there is only a new temperature in certain rooms, and the careful way Renno does not ask you anything at all."},
+        {"if": "dunne == \"escaped\"", "text": "On Raxus, a traitor sleeps soundly under Separatist guns, and somewhere above your chain of command sits whoever warned him. You have started composing reports differently — rounding certain things, omitting others. It occurs to you, on the gantry in the dark, that this is exactly how Dunne would have told you it begins."},
+        "Havoc finds you at the rail overlooking the hangar. For a while neither of you says anything, which is one of the better conversations you've had all month.\n\n\"New orders came down, ${sir},\" he says at last. \"Convoy escort. We take the relief column through the Vandos Reach to the Rim listening posts, ten days from now.\" He turns his helmet over in his hands. \"Quiet run, Command says. Corridor's been clean since the leak closed.\"\n\nHe doesn't say anything else. Neither do you. But you both stand there a moment longer than a quiet run deserves."
+      ],
+      "goto": "c5_orders"
+    },
+    "c5_orders": {
+      "text": [
+        "The night before departure, you walk the Dawn from bow to stern, the old superstition of commanders since ships first had them.\n\nGun decks: green. Hangar: the 117th's gunships racked and ready, Dice stenciling a fresh name onto his hull — he paints the moons he means to visit after the war. Longshot is asleep under his sniper rig like a hound under a porch. Tally is awake, because Tally is always awake, running inventory by glowlamp. \"All accounted for, ${sir}.\" From Tally, that sentence is a love letter.",
+        {"if": "master_rel >= 50", "text": "In your quarters, a parcel from the Temple infirmary: Venn's old field journal, the one she kept strapped under her armor for twenty years, with a note in her cramped hand. 'They tell me you have a quiet run. I distrust quiet. Take the journal — it's seen me through several wars and at least two correct decisions. Bring it back yourself. That's an order from your master, who is awake now, and watching. — V.'"},
+        {"if": "holocron == \"kept\"", "text": "And beneath it all, packed in the sea chest among your field gear because you could not quite explain to yourself why it shouldn't come along, the holocron rides toward the Vandos Reach in its wrapped silence. Just before sleep, its whisper reaches you one more time, and for once it sounds neither warm nor wise, but simply curious: Something is coming, child. I can taste it on the hyperlanes. How fortunate for you — that you will not face it empty-handed."},
+        "At 0500, the Resolute Dawn slips her berth above Coruscant, gathers her escorts and her fat, slow relief column, and turns her bow toward the Rim.\n\nThe corridor has been clean for weeks. Command said so. The intelligence is solid.\n\nYou know better than most where intelligence comes from."
+      ],
+      "goto": "c5_exit"
+    },
+    "c5_exit": {
+      "text": "Six hours short of the Vandos relay, in the deep blue silence of hyperspace, you wake all at once with your heart slamming and your hand already on your saber, and you could not say why.\n\nOn the bridge, the watch officer reports all boards green. The column rides easy in the corridor. The escort screen is tight, the relay picket answering, the long blue tunnel of the Reach unspooling ahead exactly as charted.\n\nYou stand at the viewport with the certainty draining out of you too slowly, the way it does after the dreams you don't tell the healers about — and the Force, very quietly, like a voice from the bottom of a well, says: too easy.\n\nThen the interdiction field hits, and the stars come back all wrong.",
+      "goto_chapter": 6
+    }
+  }
+}

@@ -1,0 +1,1581 @@
+{
+ "chapter": 9,
+ "title": "Order 66",
+ "start": "c9_start",
+ "nodes": {
+  "c9_start": {
+   "text": [
+    "Months pass.\n\nThe war ages out of its own legend. The holonet has stopped pretending that anyone is winning; it talks instead about ending, the way exhausted families talk about spring. Count Dooku is dead — cut down above Coruscant in a rescue so improbable the Senate gave it a parade — and without him the Confederacy fights like a body after the head is gone, all spasm and no design.",
+    {
+     "if": "vethari == 'republic'",
+     "text": "Vethari Prime, held for the Republic at such cost, builds warships around the clock now. Its yards launched three cruisers last month. People say the name with respect."
+    },
+    {
+     "if": "vethari == 'separatist'",
+     "text": "Vethari Prime, lost to the Separatists and bled white in the siege that followed, is a name people say the way they say Jabiim now: quietly, and not at dinner."
+    },
+    {
+     "if": "vethari == 'burned'",
+     "text": "Vethari Prime never did choose a side, and the war chose for it. The shipyards are slag. Nobody says the name at all anymore."
+    },
+    "You dream, some nights, of mud. Of Master Venn's green blade in the rain on Jabiim, three years and a lifetime ago. You wake each time with the same wordless certainty, gone before you can read it: something in the galaxy is holding its breath.",
+    "The Force does not say what. The Force has not been saying much of anything lately — as if a great hand were slowly closing over a lamp."
+   ],
+   "choices": [
+    {
+     "text": "Continue.",
+     "if": "path == 'fallen' and double_agent",
+     "goto": "c9_da_open"
+    },
+    {
+     "text": "Continue.",
+     "if": "path == 'fallen' and not double_agent",
+     "goto": "c9_fallen_true"
+    },
+    {
+     "text": "Continue.",
+     "if": "path == 'slipping'",
+     "goto": "c9_slip_open"
+    },
+    {
+     "text": "Continue.",
+     "if": "path != 'fallen' and path != 'slipping'",
+     "goto": "c9_loyal_open"
+    }
+   ]
+  },
+  "c9_loyal_open": {
+   "text": [
+    "Threnholm. The last droid foundry in your theater squats in a river gorge under a shield the color of an old bruise, and the 117th holds the trench ring above it. The Outer Rim Sieges, the holonet calls this. The men call it the long mop.",
+    "Captain Havoc finds you at the wire at dusk, helmet under his arm, the gorge wind moving the gray that has come into his temples early — clones age twice as fast as the war that made them. He has kept his tally all three years. He doesn't show it to anyone anymore. He showed it to you once, after Vethari, and you both pretended your eyes were stinging from the smoke.",
+    {
+     "if": "master_alive",
+     "text": "Master Venn writes from Coruscant, where the Council keeps her close — half teacher, half conscience for a Temple that has forgotten how to rest. Her last letter ended: 'The war is nearly over. Be careful. Endings are when people decide what everything meant.'"
+    },
+    {
+     "if": "not master_alive",
+     "text": "Master Venn did not live to see the end she doubted. You carry her lightsaber wrapped in cloth at the bottom of your kit, and you have never once known what to do with it."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Joren Kade holos you from the Mygeeto front when the relays allow. He has stopped competing with you. The war did that, eventually, to everyone who survived it."
+    },
+    {
+     "if": "not joren_alive",
+     "text": "Joren Kade has been dead since Vethari. You still draft messages to him in your head before remembering."
+    },
+    "Tonight feels like a held note. How do you spend it?"
+   ],
+   "choices": [
+    {
+     "text": "Walk the lines with the men. Whatever is coming, you want to be standing with them when it arrives.",
+     "effects": [
+      "havoc_rel %+ 10",
+      "set spent_night 'lines'"
+     ],
+     "goto": "c9_loyal_news"
+    },
+    {
+     "text": "Meditate. Something in the Force has been wrong for weeks, and you mean to stare at it until it blinks.",
+     "effects": [
+      "force %+ 5",
+      "set premonition true",
+      "set spent_night 'meditate'"
+     ],
+     "goto": "c9_loyal_news"
+    },
+    {
+     "text": "Open the holocron one more time, alone, the way you always do.",
+     "if": "holocron == 'kept'",
+     "effects": [
+      "dark %+ 10",
+      "set spent_night 'holocron'"
+     ],
+     "goto": "c9_loyal_news"
+    },
+    {
+     "text": "Comm the people you love, while the relays still carry.",
+     "effects": [
+      "master_rel %+ 5",
+      "joren_rel %+ 5",
+      "set spent_night 'comm'"
+     ],
+     "goto": "c9_loyal_news"
+    }
+   ]
+  },
+  "c9_loyal_news": {
+   "text": [
+    {
+     "if": "spent_night == 'lines'",
+     "text": "You walk the trench ring until the small hours. Dice's old squad teaches you a card game with rules that change whenever you start winning; a shiny too young for his armor asks if it's true you carried Captain Havoc off Vethari, and Havoc says, 'Other way around, kid,' and the laughter runs down the line like current. You remember Tally trying to teach you sabacc on the Resolute Dawn, two years ago, and losing on purpose so badly you both gave up. These are your people. Whatever else the war took, it gave you that."
+    },
+    {
+     "if": "spent_night == 'meditate'",
+     "text": "You meditate until the gorge wind dies. The wrongness will not blink. It is not an event you are sensing, you decide near dawn — it is an absence, a place where the future should be and isn't, as if someone had cut tomorrow out of a holo with a knife. You open your eyes knowing one thing only: when it comes, it will come from behind you."
+    },
+    {
+     "if": "spent_night == 'holocron'",
+     "text": "The holocron's red facets turn above your palm, and the dead Sith inside it is almost gentle tonight. 'You feel it too,' it says. 'The closing hand. My age ended the same way. Survivors, little Jedi, are those who decide before the moment what they will not die for.' You put it away angry, because it is the most useful counsel anyone has given you in months."
+    },
+    {
+     "if": "spent_night == 'comm' and master_alive",
+     "text": "You reach Master Venn near midnight, Coruscant time. She looks older and somehow lighter, as if doubt had finally become a thing she could set down. 'When it ends,' she says, '— and ${name}, it ends within days, everyone here feels it — come home by way of nowhere. Take the slow route. Let the Order remember what you look like rested.' She pauses. 'Whatever happens. Trust the Force, not the uniform.' You comm Joren's relay too, and leave a message that says less than you mean."
+    },
+    {
+     "if": "spent_night == 'comm' and not master_alive",
+     "text": "There are fewer people to comm than there were. You reach who you can — old crewmates from the Resolute Dawn, a quartermaster on Coruscant who owes you sabacc money — and you say goodnight to the rest the only way left, sitting with their names in the dark. Venn's lightsaber lies wrapped in cloth at the bottom of your kit. You almost take it out. You don't."
+    },
+    "Dawn brings the word the whole galaxy has been waiting on. General Grievous is dead — cornered at last on Utapau, the Separatist military gutted in a single stroke. The trench line erupts. Men are beating their helmets on the parapet and howling at the shield dome like it's already down. The war is over. It is actually, finally over.",
+    {
+     "if": "premonition",
+     "text": "And under the cheering, that cut-out hole where tomorrow should be yawns wider than ever."
+    },
+    "Havoc doesn't cheer. He watches the men do it, counting them the way a man counts what he's carrying home."
+   ],
+   "choices": [
+    {
+     "text": "Stay with the Hundred-and-Seventeenth until the last order is given. You started this beside them; you'll end it beside them.",
+     "effects": [
+      "havoc_rel %+ 5"
+     ],
+     "goto": "c9_o66_loyal"
+    },
+    {
+     "text": "Press the assault today, before the surrender bureaucracy starts. Finish the foundry. Finish it all.",
+     "effects": [
+      "war_score %+ 10",
+      "dark %+ 5",
+      "set pressed_attack true"
+     ],
+     "goto": "c9_o66_loyal"
+    },
+    {
+     "text": "It's over. Lay down your command and walk — before the machine that ran this war finds a new use for you.",
+     "goto": "c9_exile_road"
+    },
+    {
+     "text": "Sev'ara's coded message has sat in your pocket for months: coordinates, and one word — 'when.' Answer it: now.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_o66_loyal": {
+   "text": [
+    {
+     "if": "pressed_attack",
+     "text": "You take the forward sap at midmorning, the 117th flowing down the gorge wall behind you, the foundry shield flickering under the guns. It is going to work. It is the last attack of your war and it is going to work."
+    },
+    {
+     "if": "not pressed_attack",
+     "text": "Midmorning. Stand-down protocols crawl across the command net; somewhere above, the fleet is already practicing the word 'peacetime.' You stand on the parapet with the men, watching the foundry shield flicker, feeling the strange weightlessness of a war with nothing left to ask of you."
+    },
+    "Then every helmet on the line tilts, at once, by one degree.",
+    "You will remember it that way forever: not the blaster fire, not what came after, but that single synchronized degree, four hundred men listening to a voice that wasn't talking to you. A comms click. A silence with teeth.",
+    "The Force screams.",
+    "Behind you, with the smooth unhurried competence you have trusted with your life a hundred times, the Hundred-and-Seventeenth Ghost Battalion brings its rifles around."
+   ],
+   "choices": [
+    {
+     "text": "Continue.",
+     "if": "havoc_rel >= 70",
+     "goto": "c9_o66_warned"
+    },
+    {
+     "text": "Continue.",
+     "if": "havoc_rel < 70 and (premonition or force >= 60)",
+     "goto": "c9_o66_flash"
+    },
+    {
+     "text": "Continue.",
+     "if": "havoc_rel < 70 and not premonition and force < 60",
+     "goto": "c9_o66_caught"
+    }
+   ]
+  },
+  "c9_o66_warned": {
+   "text": [
+    "Havoc's rifle comes up faster than any of them — and swings past you, hammering bolts into the ridge line. 'CONTACT LEFT!' he roars at his own battalion, a lie so enormous and so instant that the volley meant for your back tears into empty rock instead. 'Droid pop-ups, suppress, suppress!'",
+    "Then his hand is on your arm, grip like a hull clamp, walking you backward toward the supply trench while four hundred rifles chew the ridge. Under the helmet his voice is wrong. His voice has never been wrong.",
+    "'It's a kill order, ${sir}. Order Sixty-Six, straight from Coruscant, marked Jedi as traitors — all of you, everywhere, right now.' A half-second. 'It's in my head like a hand on my neck, and I can't — I won't hold this line long. The gunship on pad three is fueled. Don't make my last order to you be begging.'",
+    "Down the trench, a sergeant is already turning, already realizing there are no droids on the ridge."
+   ],
+   "choices": [
+    {
+     "text": "Run. Live. Carry all of it — the names, the dead, the truth.",
+     "effects": [
+      "set escape_clean true"
+     ],
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Cut your way to the pad — through anyone whose rifle finds you. You did not survive three years of this to die polite.",
+     "effects": [
+      "dark %+ 15",
+      "set cut_through true"
+     ],
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Refuse to run. These are your men. You will not bleed them, and you will not leave them.",
+     "effects": [
+      "set last_act 'stood'"
+     ],
+     "goto": "c9_martyr_fall"
+    },
+    {
+     "text": "Go — but not into the wild. To her. To the coordinates Sev'ara left you.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_o66_flash": {
+   "text": [
+    "No warning comes from any human throat. The warning is the Force itself, the cut-out hole in tomorrow tearing wide open, and it buys you exactly half a second.",
+    "You are moving before the first volley arrives. Bolts crack through the space your spine occupied. A trooper you have shared rations with for two years walks his fire after you with perfect textbook discipline and nothing at all behind his visor, and the worst part, the part that will wake you for years, is that he is crying while he does it.",
+    "Half the line is firing now. The other half is turning. You have one breath to decide what your life is for."
+   ],
+   "choices": [
+    {
+     "text": "Become the storm. Deflect, advance, carve a corridor to the gunship pad.",
+     "if": "saber >= 55",
+     "effects": [
+      "set escape_fought true"
+     ],
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Drop your saber, drop a smoke charge, drop into the mud — become one more corpse in a trench full of them, and be gone before the count.",
+     "if": "guile >= 55",
+     "effects": [
+      "set escape_ghost true"
+     ],
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Tear the trench wall down between you and four hundred rifles, and run.",
+     "if": "force >= 55",
+     "effects": [
+      "set escape_force true"
+     ],
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Stand. Light your blade. Let them see a Jedi at the end of all this — not a target. A Jedi.",
+     "effects": [
+      "set last_act 'blade'"
+     ],
+     "goto": "c9_martyr_fall"
+    }
+   ]
+  },
+  "c9_o66_caught": {
+   "text": [
+    "No warning comes. Not from the men, not from the Force, not from anywhere — the hand closing over the lamp closes all the way, and the first volley takes you off your feet before you hear it.",
+    "You are down in the mud of one more world, breath gone, side burning, and the Hundred-and-Seventeenth is advancing on you in good order with their rifles level, exactly the way you taught them.",
+    "You have seconds, and you know it the way you have always known things, too late and with perfect clarity. The question is only what the seconds are for."
+   ],
+   "choices": [
+    {
+     "text": "Spend them shielding the wounded shiny who fell beside you — the one who doesn't know why he's crying as he fires.",
+     "effects": [
+      "set last_act 'shield'"
+     ],
+     "goto": "c9_martyr_fall"
+    },
+    {
+     "text": "Spend them crying a warning into the Force, as loud as a life can shout — to every Jedi anywhere who can still hear.",
+     "effects": [
+      "force %+ 5",
+      "set last_act 'cry'"
+     ],
+     "goto": "c9_martyr_fall"
+    },
+    {
+     "text": "Spend them on your feet, blade lit, facing them.",
+     "effects": [
+      "set last_act 'blade'"
+     ],
+     "goto": "c9_martyr_fall"
+    }
+   ]
+  },
+  "c9_knight_escape": {
+   "text": [
+    {
+     "if": "escape_clean",
+     "text": "Havoc's lie holds for ninety seconds, which is eighty more than you need. You go over the trench wall and down the supply cut at a dead sprint, and you do not look back, because if you look back you will see him holding a line against his own brothers for you, and you will turn around."
+    },
+    {
+     "if": "cut_through",
+     "text": "You go through them. You are fast and you are terrible and you take the gunship pad in forty seconds, and you make yourself count the men who didn't get up, because somebody should. Three. Their names were on Havoc's tally as the living. They aren't now, and that ledger is yours."
+    },
+    {
+     "if": "escape_fought",
+     "text": "Your blue blade is everywhere at once, turning death back along its own paths — never at the men, you will hold to that detail later like a spar in deep water, at rifles, at hands, at the ground before their feet. You take the pad alive. Barely. The bacta will be finding scorch marks for a month."
+    },
+    {
+     "if": "escape_ghost",
+     "text": "You die in the trench at Threnholm — on paper, in the smoke, in the official count. A body burned past knowing wears your rank tabs. You walk out of the gorge that night among the stretcher bearers, head down, just one more man carrying the war's last casualties."
+    },
+    {
+     "if": "escape_force",
+     "text": "Forty meters of trench revetment comes down like a closing book, and you are running before the dust does, the Force a white roar in you, every sense you have screaming in a language you finally, finally understand."
+    },
+    "Hyperspace. Breath. Blood roaring in your ears.\n\nThe holonet finds you mid-jump, every channel at once: the Jedi have committed treason against the Republic; the Republic, to safeguard against further betrayal, will be reorganized — the voice pauses, savoring it — into the first Galactic Empire. Thunderous applause. You sit alone in a stolen gunship at the bottom of the universe and listen to a Sith Lord being given the galaxy by acclamation, and you understand at last what the war was for. All of it. From the first day. From Jabiim.",
+    "The nav computer is asking for a destination."
+   ],
+   "choices": [
+    {
+     "text": "The deep Rim. Somewhere the Force is quiet — until the day it isn't.",
+     "effects": [
+      "set knight_coda 'rim'"
+     ],
+     "goto": "c9_ending_knight"
+    },
+    {
+     "text": "Wherever the survivors gather. There will be others. There must be others.",
+     "effects": [
+      "set knight_coda 'survivors'"
+     ],
+     "goto": "c9_ending_knight"
+    },
+    {
+     "text": "Nowhere far. You will shadow the 117th — and Havoc — from the dark, for as long as it takes.",
+     "effects": [
+      "set knight_coda 'watch'"
+     ],
+     "goto": "c9_ending_knight"
+    }
+   ]
+  },
+  "c9_slip_open": {
+   "text": [
+    "Threnholm. The last droid foundry in your theater, a trench ring, a siege — and you, the commander the holonet praises in carefully chosen words and the Temple discusses behind soundproofed doors. You win. You have never stopped winning. The how of it sits in the room with you like a guest no one introduces.",
+    {
+     "if": "joren_alive",
+     "text": "Joren Kade is attached to your command as 'liaison.' Both of you know the real word. He watches you with the particular sadness of a man assigned to be his friend's conscience, and files reports you are not supposed to have read, and you have read every one. The last said: 'I no longer know which way ${they} will fall. I am no longer sure ${they} knows.'"
+    },
+    {
+     "if": "not joren_alive",
+     "text": "The Council's last watcher, Joren, died at Vethari. They never assigned another. Some nights you think it's trust. Most nights you know it's triage."
+    },
+    {
+     "if": "master_alive",
+     "text": "Master Venn's letters from Coruscant have gotten shorter as the war has gotten older. The last one was one line: 'Whatever you are becoming, you are not finished becoming it. Choose.'"
+    },
+    {
+     "if": "not master_alive",
+     "text": "Venn is dead, and the voice in your head that used to argue in her dry Mirialan cadence has been getting quieter. You miss it the way you'd miss a hand."
+    },
+    {
+     "if": "holocron == 'kept'",
+     "text": "And in the bottom of your kit, the holocron waits. It doesn't whisper anymore. It doesn't need to. You know its counsel before you open it, the way you know your own pulse."
+    },
+    "The war is days from over. Everyone feels it. Endings, Venn told you once, are when people decide what everything meant. Tonight you decide."
+   ],
+   "choices": [
+    {
+     "text": "Take the holocron to the engine deck and feed it to the reactor. Whatever you are, you will not be its student.",
+     "if": "holocron == 'kept'",
+     "effects": [
+      "dark %- 20",
+      "set pulled_back true",
+      "set slip_act 'burned'"
+     ],
+     "goto": "c9_slip_news"
+    },
+    {
+     "text": "Write the letter you have been avoiding for a year — to Venn, or to her memory. All of it. Everything you've done, in plain words, signed.",
+     "effects": [
+      "dark %- 15",
+      "master_rel %+ 10",
+      "set pulled_back true",
+      "set slip_act 'confessed'"
+     ],
+     "goto": "c9_slip_news"
+    },
+    {
+     "text": "You are what the war required. The dead required it, the living required it, and you are done apologizing for being the one who could.",
+     "effects": [
+      "dark %+ 10",
+      "war_score %+ 5",
+      "set slip_act 'embraced'"
+     ],
+     "goto": "c9_slip_news"
+    },
+    {
+     "text": "Decide nothing. Keep your head down and survive the peace the way you survived the war: one watch at a time.",
+     "effects": [
+      "set slip_act 'quiet'"
+     ],
+     "goto": "c9_slip_news"
+    }
+   ]
+  },
+  "c9_slip_news": {
+   "text": [
+    {
+     "if": "slip_act == 'burned'",
+     "text": "The holocron screams when the containment field takes it — a sound only you hear, ancient and furious and, at the very end, almost approving. You stand in the reactor room's red light feeling lighter than you have in two years, and lonelier. Quiet has moved into the space where the whispers lived. You had forgotten quiet."
+    },
+    {
+     "if": "slip_act == 'confessed'",
+     "text": "The letter takes until dawn. You spare yourself nothing — the choices, the shortcuts, the bodies, the exact moment each line got easier to cross. When it's done you transmit it before you can stop yourself, and sit back feeling scoured, emptied, strange. Whatever happens now happens to someone who told the truth once."
+    },
+    {
+     "if": "slip_act == 'embraced'",
+     "text": "You sleep that night without dreams for the first time in months. Decisions do that. Even the wrong ones. Especially the wrong ones."
+    },
+    {
+     "if": "slip_act == 'quiet'",
+     "text": "You sit your watch and decide nothing, and the night passes the way undecided nights do — slowly, and with the sense of something circling."
+    },
+    "Dawn brings the word: Grievous is dead on Utapau. The Separatist military is a chicken running on memory. The trench line erupts in cheering, men beating helmets on the parapet, the war ending in real time on every channel.",
+    {
+     "if": "joren_alive",
+     "text": "Joren finds you on the parapet and — for the first time since Vethari — smiles at you like the boy from the Temple crèche. 'We made it,' he says, and almost believes it."
+    },
+    "Havoc doesn't cheer. Havoc is watching the men, counting them, the way a man counts what he is carrying home — and once, briefly, he looks at you the way he looks at the tally."
+   ],
+   "choices": [
+    {
+     "text": "Stand with your men for the end of it. Whatever the Council decides you are, the 117th earned your presence at the finish line.",
+     "goto": "c9_o66_slip"
+    },
+    {
+     "text": "Resign. Today, in writing, effective immediately — walk away before the Council or the peace decides what to do with what you've become.",
+     "goto": "c9_exile_road"
+    },
+    {
+     "text": "Sev'ara's coordinates have waited in your pocket for months, with one word: 'when.' Answer: now.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_o66_slip": {
+   "text": [
+    "Midmorning. Stand-down orders crawling across the net. And then every helmet on the line tilts, at once, by one degree — four hundred men listening to a voice that isn't talking to you.",
+    "The Force screams.",
+    "The Hundred-and-Seventeenth Ghost Battalion turns, in good order, and brings its rifles to bear on you.",
+    {
+     "if": "dark >= 60",
+     "text": "But no one fires. They hold — perfect firing positions, fingers on triggers, a ring of patient plastoid — and your private comm chimes with a priority channel that should not exist. The ring of rifles, you realize, is not an execution. It is an honor guard. Somebody important wants to talk."
+    },
+    {
+     "if": "dark < 60",
+     "text": "There is no pause, no parley, no honor among the day's arithmetic. The order is the order. It has already begun."
+    }
+   ],
+   "choices": [
+    {
+     "text": "Continue.",
+     "if": "dark >= 60",
+     "goto": "c9_slip_offer"
+    },
+    {
+     "text": "Continue.",
+     "if": "dark < 60 and havoc_rel >= 70",
+     "goto": "c9_slip_warned"
+    },
+    {
+     "text": "Continue.",
+     "if": "dark < 60 and havoc_rel < 70",
+     "goto": "c9_slip_caught"
+    }
+   ]
+  },
+  "c9_slip_offer": {
+   "text": [
+    "The voice on the channel is old, amused, and infinitely patient, and you have heard it once before — at a Senate reception, wishing you well, holding your hand one second too long.",
+    "'The Jedi Order has betrayed the Republic,' it says, conversationally, while four hundred rifles hold their aim on your heart. 'It is being corrected. You, however, were never really one of them, were you? They watched you. Reported on you. Feared you. I have read every file, and I find — promise.'",
+    "A pause you could fall into.",
+    "'The Republic is becoming something with no further use for Jedi. It will have great use for power that has stopped lying to itself. Stand down, and be remade. Or be one more line in tomorrow's casualty report. I confess the choice does not greatly move me either way.'",
+    "Across the trench, Havoc's rifle is aimed at you like all the others. His finger is not on the trigger. It is the only one that isn't."
+   ],
+   "choices": [
+    {
+     "text": "Kneel. Live. Power has only ever asked this one small thing of you, and the dead don't care about your posture.",
+     "effects": [
+      "set knelt_how 'chose'"
+     ],
+     "goto": "c9_kneel"
+    },
+    {
+     "text": "Rally the Hundred-and-Seventeenth. These are YOUR men — three years of mud and blood say so — not his.",
+     "goto": "c9_rally"
+    },
+    {
+     "text": "Neither kneel nor fight. Vanish — let the Emperor and the Jedi both bury an empty grave.",
+     "effects": [
+      "set gray_how 'vanished'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "There is exactly one person left in the galaxy who would understand this moment. Survive it, and find her.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_rally": {
+   "text": [
+    "You step up onto the parapet with your hands empty, in front of four hundred rifles, and you call them by name.",
+    "'Ghost Battalion. You know me. Three years. Calden Spire. Vethari. Every name on the captain's tally — I was there for every one of them, and so help me, I am not done standing where you stand.'",
+    {
+     "if": "havoc_rel >= 60",
+     "text": "For one terrible second, nothing. Then Havoc's rifle comes off you and swings to high port, and his voice cracks across the trench like the first day of the war: 'GHOST BATTALION! Weapons DOWN — on the ${sir}, by squads!' Not all of them. The order in their heads is a hand on the neck, and some of them can't — a dozen rifles stay up, then fire, and their own brothers cut them down weeping, and it is the ugliest thing you have seen in a war made of ugly things. But when the smoke clears, the Hundred-and-Seventeenth — most of it, the bleeding heart of it — is standing with you, in mutiny against the entire galaxy."
+    },
+    {
+     "if": "havoc_rel < 60",
+     "text": "For one second you think it lands. Then the volley comes anyway, because three years of mud is no match for a hand on the neck, and whatever the men feel about it stays sealed behind their visors where you will never read it."
+    }
+   ],
+   "choices": [
+    {
+     "text": "Continue.",
+     "if": "havoc_rel >= 60",
+     "effects": [
+      "set warlord_src 'ghost'"
+     ],
+     "goto": "c9_warlord_rise"
+    },
+    {
+     "text": "Continue.",
+     "if": "havoc_rel < 60",
+     "effects": [
+      "set last_act 'rally'",
+      "set rallied true"
+     ],
+     "goto": "c9_martyr_fall"
+    }
+   ]
+  },
+  "c9_slip_warned": {
+   "text": [
+    "Havoc's rifle swings past you and hammers the ridge line. 'CONTACT LEFT!' — a lie so huge and instant that the volley meant for your spine tears into rock. Then his hand is on your arm, walking you toward the supply cut.",
+    "'Kill order, ${sir}. All Jedi, everywhere, right now — it's in my head like a hand on the neck and I will not hold long.' His visor turns to you, and the next part comes out low. 'I read the reports they wrote about you. I watched you all year, walking the edge of something. Whatever you were becoming — don't die as it, and don't you dare live as it either. Pad three. GO.'"
+   ],
+   "choices": [
+    {
+     "text": "Run. Live as neither thing — not theirs, not the Temple's. Yours.",
+     "effects": [
+      "set gray_how 'ran'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "You pulled back from the edge once already. You are still a Jedi — survive as one, and make it mean something.",
+     "if": "pulled_back and dark < 40",
+     "goto": "c9_knight_escape"
+    },
+    {
+     "text": "Stay. Die with them, rather than live as what you almost became.",
+     "effects": [
+      "set last_act 'stood'"
+     ],
+     "goto": "c9_martyr_fall"
+    },
+    {
+     "text": "Go — to the coordinates Sev'ara left you. To the one person who walked this same edge and came back.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_slip_caught": {
+   "text": [
+    "No warning, no parley, no pause. The first volley takes you off your feet, side burning, breath gone, the Hundred-and-Seventeenth advancing on you in textbook order through the morning light.",
+    "You are slipping in the mud of one more world with seconds left, and the strange detached part of you that has been keeping score all war observes: this is what the edge looks like from the bottom.",
+    "Seconds. What are they for?"
+   ],
+   "choices": [
+    {
+     "text": "Die on paper. Blow the ammunition stores, leave a body's worth of ash and your rank tabs, and crawl out under the smoke.",
+     "if": "guile >= 55",
+     "effects": [
+      "set gray_how 'ghost'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "Bend their aim. Bend their minds. Bend the whole morning, just long enough to reach the treeline.",
+     "if": "force >= 55",
+     "effects": [
+      "set gray_how 'force'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "Shield the wounded medic beside you. Last act, best act.",
+     "effects": [
+      "set last_act 'shield'"
+     ],
+     "goto": "c9_martyr_fall"
+    },
+    {
+     "text": "Up. Blade lit. Facing them.",
+     "effects": [
+      "set last_act 'blade'"
+     ],
+     "goto": "c9_martyr_fall"
+    }
+   ]
+  },
+  "c9_da_open": {
+   "text": [
+    "Coruscant. A tower apartment that is neither prison nor home, with a view of the Temple you have stopped looking at and a Republic Intelligence droid in the corridor whose restraining bolt you have mentally removed forty times.",
+    "You betrayed Sev'ara Nyx for the Republic. You wore the Separatists' trust like a coat for half a year and handed its contents to men in gray suits, and the Republic's gratitude has been seventeen weeks of debriefings and a security classification instead of a name. The Jedi do not quite trust you. Intelligence does not quite release you. You have become the war's most decorated piece of evidence.",
+    {
+     "if": "joren_alive",
+     "text": "Joren comes when he can. He vouched for you in front of the full Council — staked his knighthood on what you really were under the coat — and he brings dumplings from the place near the Senate district and never once asks the question he wants to ask, which is: at the worst of it, did you forget which side the coat was?"
+    },
+    {
+     "if": "not joren_alive",
+     "text": "Joren would have vouched for you. Joren died at Vethari believing in what you really were, which on bad nights you suspect makes one of you."
+    },
+    {
+     "if": "dunne == 'escaped'",
+     "text": "Senator Carvel Dunne, who you could never quite pin, chairs the committee that reviews your testimony. He smiles at you across the table like a man admiring a museum piece of his own donation."
+    },
+    {
+     "if": "dunne == 'exposed'",
+     "text": "Your testimony helped keep Carvel Dunne buried; his appeals die in committee, your classified file a quiet stone on the coffin lid."
+    },
+    {
+     "if": "master_alive",
+     "text": "Venn visits monthly. She is the only person who treats you as a Padawan she trained rather than an asset to be assessed, and you would not trade those hours for a pardon."
+    },
+    "Months pass like this. Dooku dead. The war guttering. How do you spend them?"
+   ],
+   "choices": [
+    {
+     "text": "Give them everything — every name, route, and cipher you learned at Nyx's side. Empty the coat completely.",
+     "effects": [
+      "council_rep %+ 10",
+      "set da_months 'cooperated'"
+     ],
+     "goto": "c9_o66_da"
+    },
+    {
+     "text": "Give them enough. Keep the rest in your head, unwritten. Insurance has kept you alive this long.",
+     "effects": [
+      "guile %+ 5",
+      "set da_months 'held'"
+     ],
+     "goto": "c9_o66_da"
+    },
+    {
+     "text": "Skip the debriefs when you can get away with it; spend the months at the 117th's barracks, relearning whose ${sir} you are.",
+     "effects": [
+      "havoc_rel %+ 10",
+      "set da_months 'troops'"
+     ],
+     "goto": "c9_o66_da"
+    }
+   ]
+  },
+  "c9_o66_da": {
+   "text": [
+    "The day the war ends, you know before the holonet does, because the Temple is burning.",
+    "You stand at the window you stopped looking out of and watch smoke climb off the ziggurat into the Coruscant dusk, gunships circling it like carrion birds, and the Force is full of a sound you will never describe to anyone: thousands of candles going out arguing.",
+    {
+     "if": "da_months == 'cooperated'",
+     "text": "Your door does not unlock for you. It unlocks for a gray-suited man you've testified to a dozen times, who steps in flanked by clones with their rifles half-raised, neither aimed nor slung."
+    },
+    {
+     "if": "da_months == 'held'",
+     "text": "Your door chimes and unlocks both at once — courtesy and threat in a single gesture. The gray-suited man from your debriefings steps in flanked by clones, rifles half-raised, and his first glance is at your hands."
+    },
+    {
+     "if": "da_months == 'troops'",
+     "text": "You are halfway to the door, jacket on, thinking of the barracks, when it opens from outside: the gray-suited man from your debriefings, flanked by clones with rifles half-raised."
+    },
+    "'The Jedi,' he says, 'have committed treason. You, of course, ceased to be a Jedi in any meaningful sense quite some time ago — our files are clear on that. The new order values people of demonstrated... flexibility.' He extends a data chit like a sacrament. 'You have been a traitor twice already. Third time pays for all.'"
+   ],
+   "choices": [
+    {
+     "text": "Kneel. Take the chit. Be the Empire's blade as you were the Republic's — survival is the one cause that never betrayed you.",
+     "effects": [
+      "set knelt_how 'chose'"
+     ],
+     "goto": "c9_kneel"
+    },
+    {
+     "text": "Run. You have spent years as somebody's instrument. Be no one's — starting now.",
+     "effects": [
+      "set gray_how 'ran'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "Fight through the squad at your door and take their gunship. The coat comes off tonight, one way or the other.",
+     "if": "saber >= 55",
+     "effects": [
+      "set gray_how 'fought'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "The coordinates Sev'ara left you, before the end. Go. Now, while the galaxy is too busy burning to count its traitors.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_fallen_true": {
+   "text": [
+    "You watch the war end from the other side of it.",
+    {
+     "if": "nyx_fate == 'victorious'",
+     "text": "Sev'ara, victorious at Vethari, wears her triumph like armor that no longer quite fits. The two of you hold the Tarkand Reach between you — her fleets, your legend, a Confederacy province run by apostates — and lately you catch her watching the deep dark beyond the viewports as if expecting a bill to arrive."
+    },
+    {
+     "if": "nyx_fate == 'dead'",
+     "text": "Sev'ara is dead at Vethari, and the fleet that was hers answers to you alone. Her paired red sabers hang crossed on your cabin wall. Crews whisper that you keep them as trophies. You let them whisper. It is easier than the truth, which is that you cannot decide whether they are a warning or a mirror."
+    },
+    {
+     "if": "nyx_fate == 'fled'",
+     "text": "Sev'ara fled Vethari rather than face the end beside you, and the Penumbral is yours now. Her chair on the bridge stays empty. You have let no one sit in it, and you decline to examine why."
+    },
+    {
+     "if": "nyx_fate == 'redeemed'",
+     "text": "Sev'ara turned at Vethari — turned all the way, past you, out the far side of the dark — and asked you to come. You chose the fleet. Her last message still sits in your pocket: coordinates, and one word. 'When.'"
+    },
+    "Dooku's death beheaded the Confederacy months ago; Grievous holds its corpse upright by raw momentum. Your reach of space obeys you because you are Force-blessed, terrifying, and — unlike the dead Count — you keep your supply lines honest. Warlords, senators-in-exile, and guild magnates orbit you like cold moons.",
+    "Power, you have learned, is mostly administration with occasional lightning. How do you hold yours?"
+   ],
+   "choices": [
+    {
+     "text": "By fear. It is cheap, fast, and — unlike loyalty — honest about its terms.",
+     "effects": [
+      "dark %+ 10",
+      "set fallen_rule 'fear'"
+     ],
+     "goto": "c9_fallen_collapse"
+    },
+    {
+     "text": "By competence. Feed your crews, win small, keep them alive. Fear is a debt; gratitude compounds.",
+     "effects": [
+      "command %+ 5",
+      "set fallen_rule 'competence'"
+     ],
+     "goto": "c9_fallen_collapse"
+    },
+    {
+     "text": "Lightly. Very lightly. You have started, in the privacy of your own skull, planning your exit.",
+     "effects": [
+      "guile %+ 5",
+      "set fallen_rule 'exit'"
+     ],
+     "goto": "c9_fallen_collapse"
+    }
+   ]
+  },
+  "c9_fallen_collapse": {
+   "text": [
+    "The end, when it comes, takes one afternoon.",
+    "Grievous dies on Utapau at midday, galactic standard. By evening, every battle droid in your reach of space stops mid-stride — mid-sentence, mid-salute — as a single shutdown command crawls out from Mustafar, where, the panicked traffic says, the Separatist Council has gone silent in a way that needs no elaboration. The Confederacy does not surrender. It is simply turned off, like a holo after the credits, and the hand on the switch was never Separatist at all.",
+    {
+     "if": "fallen_rule == 'competence'",
+     "text": "Your organic crews — the mercenaries, the true believers, the stranded — hold their posts and look to you. You fed them. They wait to see what that was worth."
+    },
+    {
+     "if": "fallen_rule == 'fear'",
+     "text": "Your organic crews hold their posts out of habit and terror, and you can feel both curdling by the hour into arithmetic: what is fear of you worth, against fear of what just switched off a galaxy?"
+    },
+    {
+     "if": "fallen_rule == 'exit'",
+     "text": "Your go-bags have been packed for a month. Some part of you, you note with grim respect, saw the shape of this before you let yourself think it."
+    },
+    "On the holonet, Coruscant: the Jedi branded traitors, the Republic reborn as an Empire, a million beings cheering a chancellor with a melted face. And on your private array, flagged with codes that died with Count Dooku, a single message in a voice you have heard once before — silken, patient, amused:",
+    "'Lord Tyranus left an absence. Absences must be filled. Come and be considered... or be tidied. The choice, child of two broken orders, is the last one anyone will ever offer you for free.'"
+   ],
+   "choices": [
+    {
+     "text": "Answer the summons. Whatever sits on that new throne, you mean to look it in the eye.",
+     "goto": "c9_fallen_summons"
+    },
+    {
+     "text": "Refuse. Tear out the transponders, take the fleet dark. You knelt once in your life, and never again.",
+     "effects": [
+      "set warlord_src 'fleet'"
+     ],
+     "goto": "c9_warlord_rise"
+    },
+    {
+     "text": "Scuttle everything. Walk out of history's way, and let the giants bury each other.",
+     "effects": [
+      "set gray_how 'scuttled'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "Her one word: 'when.' Answer it: now.",
+     "if": "nyx_fate == 'redeemed'",
+     "goto": "c9_redeemer_meet"
+    }
+   ]
+  },
+  "c9_fallen_summons": {
+   "text": [
+    "They do not search you. That is the first message: your lightsaber stays on your hip the whole long walk through the Palace district, because nothing you could do with it matters here.",
+    "The audience chamber is dark in the way of deep water. The figure in the chair is small, hooded, ruined — and the Force around him goes down and down and down, past anything Sev'ara ever showed you, past the tomb world, past the holocron's dead voice, into something that was old before the Republic had a name.",
+    "'Three years,' the Emperor says pleasantly, 'I have watched you fall. Watched the Jedi push you, the war teach you, my apprentice's apprentice polish you. Did you imagine any of it was accident?' The hood tilts. 'Lord Tyranus left an absence. Absences must be filled — by something.'",
+    {
+     "if": "dark >= 75",
+     "text": "And the room sings to you. That is the terrible part. The down-and-down of him is not a threat, it is an invitation — here is the bottom of the ocean you have been diving toward your whole fallen life, and it has a chair in it, and the chair is almost, almost yours."
+    },
+    {
+     "if": "dark < 75",
+     "text": "And the cold goes through you like a blade through wet paper. You understand, suddenly and completely, how small you are: a campfire being interviewed by winter. Whatever you thought you had become on the way down — it does not reach the bottom of this."
+    }
+   ],
+   "choices": [
+    {
+     "text": "Take what is offered. And one day — a day he will teach you to want correctly — take the rest.",
+     "if": "dark >= 75",
+     "goto": "c9_sith_ascend"
+    },
+    {
+     "text": "Kneel. Live. Learn. Power is patient, and so, now, are you.",
+     "effects": [
+      "set knelt_how 'chose'"
+     ],
+     "goto": "c9_kneel"
+    },
+    {
+     "text": "Turn, and walk out of the dark, and keep walking.",
+     "goto": "c9_fallen_lastrun"
+    }
+   ]
+  },
+  "c9_fallen_lastrun": {
+   "text": [
+    "You turn your back on the most dangerous being in the galaxy, and the laugh that follows you out is the worst sound you have ever heard, because it is genuinely delighted.",
+    "'Run, then,' the Emperor says to your back. 'It improves the flavor.'",
+    "Leaving the chamber alive is a courtesy. Leaving Coruscant alive is a test, and it begins before you reach the lift: red-robed guards peeling from alcoves, traffic control already rewriting itself around your name."
+   ],
+   "choices": [
+    {
+     "text": "Continue.",
+     "if": "guile >= 55 or force >= 60",
+     "effects": [
+      "set gray_how 'walked'"
+     ],
+     "goto": "c9_gray_escape"
+    },
+    {
+     "text": "Continue.",
+     "if": "guile < 55 and force < 60",
+     "effects": [
+      "set knelt_how 'taken'",
+      "set leashed_unwilling true"
+     ],
+     "goto": "c9_kneel"
+    }
+   ]
+  },
+  "c9_sith_ascend": {
+   "text": [
+    "You kneel, and it does not feel like kneeling. That is the genius of it. It feels like a hawk stooping — a gathering before the strike, a posture with a future in it.",
+    "'Rise,' the Emperor says, and gives you a name that is not yours, and the dark closes over your head as warm as bathwater.",
+    "There is another, you learn soon enough — younger, burning, more machine than flesh, the Emperor's blunt instrument. You measure each other exactly once across the throne room, and the old man smiles to see it, and you understand that you are not colleagues. You are the two halves of a bet he has placed against himself, and he collects either way.",
+    "No matter. Apprentices, the dead Count's example teaches, are a temporary condition. Your first act in the new order:"
+   ],
+   "choices": [
+    {
+     "text": "Hunt the Jedi who escaped the purge. The old order's embers, stamped out by an old order's child — there is a rightness to it that tastes like iron.",
+     "effects": [
+      "set sith_first 'jedi'"
+     ],
+     "goto": "c9_ending_sith"
+    },
+    {
+     "text": "Consolidate. The fleets, the foundries, the dark hollow places Dooku kept — gather every string of power into your own fist before anyone counts them.",
+     "effects": [
+      "set sith_first 'power'"
+     ],
+     "goto": "c9_ending_sith"
+    },
+    {
+     "text": "Find Sev'ara Nyx. She kneels to the new order — or she burns. Old teachers should see what their students became.",
+     "if": "nyx_fate == 'fled' or nyx_fate == 'victorious'",
+     "effects": [
+      "set sith_first 'nyx'"
+     ],
+     "goto": "c9_ending_sith"
+    }
+   ]
+  },
+  "c9_kneel": {
+   "text": [
+    {
+     "if": "leashed_unwilling",
+     "text": "They take you at the spaceport, politely, overwhelmingly, with stun fields and patience. You wake in a white room that smells of nothing, and the reeducation begins, and the bitterest part is how good they are at it — how the breaking is built from true things, your own files, your own choices, read back to you in a kind voice until they sound like a confession you once made."
+    },
+    {
+     "if": "not leashed_unwilling and knelt_how == 'chose'",
+     "text": "You kneel, and the moment is smaller than you expected. No thunder. A floor, a knee, a quiet 'good' from somewhere above, and the entire weight of every blade aimed at you simply... withdrawing, like tide. Survival, the holocron told you once, belongs to those who decide before the moment what they will not die for. It turns out the list was shorter than you thought."
+    },
+    "What follows is called training. Some of it happens in white rooms. The instruments are mostly true things, said kindly, repeated: the Jedi feared you. The Council watched you. The war used you. There was never a version where they let you come home.",
+    "You are aware, throughout, of one small door in yourself, and of the choice of whether to lock it."
+   ],
+   "choices": [
+    {
+     "text": "Let go of the person you were. It is easier, and easier is the only mercy on offer.",
+     "effects": [
+      "dark %+ 10",
+      "set kneel_hold 'letgo'"
+     ],
+     "goto": "c9_ending_inquisitor"
+    },
+    {
+     "text": "Keep one ember of yourself hidden — even from him. Especially from him.",
+     "effects": [
+      "set kneel_hold 'ember'"
+     ],
+     "goto": "c9_ending_inquisitor"
+    },
+    {
+     "text": "No. At the last instant, at the bottom of everything — no. Run, whatever it costs, while there is anything left to save.",
+     "if": "dark < 60",
+     "effects": [
+      "set gray_how 'lastsecond'"
+     ],
+     "goto": "c9_gray_escape"
+    }
+   ]
+  },
+  "c9_warlord_rise": {
+   "text": [
+    {
+     "if": "warlord_src == 'fleet'",
+     "text": "The fleet goes dark in eleven minutes — transponders torn out, droid receivers slagged with cutting torches, every hull answering to your codes and no one else's in the galaxy. The mercenaries stay for pay, the true believers stay for spite, and the stranded stay because you are the only flag left that ever fed them."
+    },
+    {
+     "if": "warlord_src != 'fleet'",
+     "text": "What is left of the Hundred-and-Seventeenth lifts off Threnholm in stolen hulls before the Empire is a day old: Havoc, the bleeding heart of three companies, and a gunship full of men who shot their own brothers rather than shoot you. Deserters now. Traitors, says the new order. Havoc carves the tally into the new ship's bulkhead the first night, every name, and adds the day's dead at the bottom in deeper strokes."
+    },
+    "Within a month the holonet has a word for you: insurgent. Within three, a better one: warlord. Your strikes are surgical, vicious, and impossible — supply convoys, clone transit hubs, the slow soft logistics under the Empire's new armor. You know exactly where it is soft. You spent three years learning, from inside.",
+    "Every war needs a flag, even a doomed one. Yours:"
+   ],
+   "choices": [
+    {
+     "text": "No flag. You fight for the beings beside you, and nothing larger, ever again.",
+     "effects": [
+      "set warlord_coda 'men'"
+     ],
+     "goto": "c9_ending_warlord"
+    },
+    {
+     "text": "The old Republic's colors — the thing it was supposed to be, flown against the thing it became.",
+     "effects": [
+      "set warlord_coda 'republic'"
+     ],
+     "goto": "c9_ending_warlord"
+    },
+    {
+     "text": "Your own name. Make the Rim learn it, and make the Empire flinch at it.",
+     "effects": [
+      "dark %+ 10",
+      "set warlord_coda 'name'"
+     ],
+     "goto": "c9_ending_warlord"
+    }
+   ]
+  },
+  "c9_gray_escape": {
+   "text": [
+    {
+     "if": "gray_how == 'vanished'",
+     "text": "You go over the parapet in the smoke of your own diversion charges and you simply do not stop, out from under the guns, out from under the offer, out from under every flag that ever claimed you."
+    },
+    {
+     "if": "gray_how == 'ran'",
+     "text": "You run. There is no nobler word for it and you have stopped needing one. Doors, vents, a cargo lift, a freighter whose pilot owes you nothing and accepts your saber's power cell as fare."
+    },
+    {
+     "if": "gray_how == 'ghost'",
+     "text": "The ammunition stores go up like a small sunrise, and the official record closes over your name: killed in action, the last day of the war. It is the cleanest document anyone ever wrote about you."
+    },
+    {
+     "if": "gray_how == 'force'",
+     "text": "You bend the morning. Aim wanders, visors fog with sudden doubt, and a corridor of hesitation opens through four hundred rifles just long enough for one body to fall through it into the treeline."
+    },
+    {
+     "if": "gray_how == 'fought'",
+     "text": "The squad at your door learns in eight seconds why the files carried warnings, and you take their gunship into the burning dusk with the Temple smoke behind you like a closed chapter."
+    },
+    {
+     "if": "gray_how == 'scuttled'",
+     "text": "You scuttle a fleet that emperors and admirals would have killed for, hull by hull, and walk away from the light of it with one bag and no titles."
+    },
+    {
+     "if": "gray_how == 'walked'",
+     "text": "You go out through Coruscant's underlevels, down where your old investigator's instincts still know every grift and gap, and the Empire's net closes magnificently on nothing."
+    },
+    {
+     "if": "gray_how == 'lastsecond'",
+     "text": "You break on the third week, in the white room, in the kind voice's pause for breath — break outward, through a wall and a window and a night you do not fully remember, and come back to yourself in a freight container breathing hard, still, somehow, yourself."
+    },
+    "Days later, in the back of a crowded cantina on a world whose name you didn't catch, you watch the Emperor's address again with the sound off, and you realize you are nobody. No rank. No order. No file that matches your face. It feels like amputation. It feels like the first full breath in years.",
+    "What now?"
+   ],
+   "choices": [
+    {
+     "text": "Go where no one needs anything from you. Stay there. You have given enough.",
+     "effects": [
+      "set gray_coda 'quiet'"
+     ],
+     "goto": "c9_ending_gray"
+    },
+    {
+     "text": "Find the others who fell through the cracks — deserters, failed Padawans, half-things like you — and build something small and stubborn.",
+     "effects": [
+      "set gray_coda 'others'"
+     ],
+     "goto": "c9_ending_gray"
+    },
+    {
+     "text": "Keep a list of names — yours, theirs, his. Someday there will be an accounting, and somebody literate should survive to present the bill.",
+     "effects": [
+      "set gray_coda 'list'"
+     ],
+     "goto": "c9_ending_gray"
+    }
+   ]
+  },
+  "c9_redeemer_meet": {
+   "text": [
+    "The coordinates are nowhere: a moonlet in an uncharted ring system, a single landing light in a sea of tumbling ice.",
+    "Sev'ara Nyx is waiting at the foot of the ramp, and your first thought is that she has gotten smaller — no, that is wrong. The armor of her is gone, the performance of her, the recruiter's stage presence that filled rooms. What is left is a Dathomirian woman with old scars and new silence, and one lightsaber on her belt where two used to ride.",
+    "'I keep waiting to feel hunted,' she says, instead of hello. 'Turns out that was just how I felt all the time. I thought it was the Jedi. Then I thought it was Dooku. It was the dark, the whole while. It hunts you from inside, where running doesn't help.' She looks at you the way she did once in the tomb world's vault, but with the hook removed. 'You came.'",
+    {
+     "if": "path == 'fallen'",
+     "text": "'You fell further than I did,' she adds quietly, without judgment, taking in whatever the months have written on you. 'Good. Then you know the way back is real. Nobody believes it secondhand.'"
+    },
+    {
+     "if": "escaped_how == 'nyx'",
+     "text": "You walked out of the Penumbral at her side once, when she was the temptation. The symmetry of standing here now, both of you out the far side of it, is not lost on either of you."
+    },
+    "Behind her, in the hangar cave, an old blockade runner is fueled. The galaxy that is being born tonight will hunt Force users in pairs and alone, forever, and neither of you says so because both of you know.",
+    "'So,' she says. 'Where does redeemed go?'"
+   ],
+   "choices": [
+    {
+     "text": "Deep Rim. Somewhere green. You are going to learn what healing is, both of you, however many years it takes.",
+     "effects": [
+      "set redeemer_coda 'heal'"
+     ],
+     "goto": "c9_ending_redeemer"
+    },
+    {
+     "text": "Wherever the lost ones are. Two people who found the way back, quietly pulling others out of the fire — that is a life.",
+     "effects": [
+      "set redeemer_coda 'rescue'"
+     ],
+     "goto": "c9_ending_redeemer"
+    },
+    {
+     "text": "Anywhere — but you keep the sabers close. The galaxy is not done with either of you, and you both know it.",
+     "effects": [
+      "set redeemer_coda 'ready'"
+     ],
+     "goto": "c9_ending_redeemer"
+    }
+   ]
+  },
+  "c9_exile_road": {
+   "text": [
+    "You write it longhand, the way Venn taught you: resignation of commission, renunciation of rank, effective on transmission. The words take four minutes. The decision took the whole war.",
+    "The hardest part is the gear. A Jedi Commander owns almost nothing, and every gram of it argues.",
+    {
+     "if": "guile >= 50",
+     "text": "Transit papers are no obstacle; you've been quietly maintaining a clean identity since Coruscant, the old investigator's habit of always knowing where the exits are."
+    },
+    {
+     "if": "guile < 50",
+     "text": "It takes three days and most of your back pay to buy papers from a dock clerk who carefully does not look at your face."
+    },
+    "What do you take?"
+   ],
+   "choices": [
+    {
+     "text": "Leave the lightsaber on Havoc's bunk, with the tally. Let the Jedi die here, in good company.",
+     "effects": [
+      "set exile_take 'left'"
+     ],
+     "goto": "c9_ending_exile"
+    },
+    {
+     "text": "Keep the saber. You are done with the war — not with yourself.",
+     "effects": [
+      "set exile_take 'kept'"
+     ],
+     "goto": "c9_ending_exile"
+    },
+    {
+     "text": "Take the holocron too — and feed it to the first star you pass. Some things should not survive you.",
+     "if": "holocron == 'kept'",
+     "effects": [
+      "dark %- 10",
+      "set exile_take 'burned'"
+     ],
+     "goto": "c9_ending_exile"
+    }
+   ]
+  },
+  "c9_ending_knight": {
+   "text": [
+    "The Empire is loud for years. You learn to be quiet.",
+    {
+     "if": "knight_coda == 'rim'",
+     "text": "You go deep into the Rim, past the last reliable star charts, to a world of slow rivers and shorter wars, and you take work that needs strong hands and asks no history. You do not use the Force for two years. Then a flood takes a bridge with children on it, and you use it without thinking, and afterward, in the crowd's stunned silence, an old woman touches your sleeve and says only: 'We never saw anything.' There are still people worth a galaxy. That is the lesson you carry out of the dark years, and it holds."
+    },
+    {
+     "if": "knight_coda == 'survivors'",
+     "text": "You find them the way lost things find each other: a rumor in a refugee line, a knight's hand-signal scratched on a docking bollard, a meditation felt at the edge of sleep like a distant light. There are others. Never many, never together long — the Inquisitors see to that — but you build the web anyway, knot by knot: safehouses, ciphers, names. You become the person frightened survivors are told to find. It is not the Order. It is, perhaps, what the Order was for."
+    },
+    {
+     "if": "knight_coda == 'watch'",
+     "text": "You stay close, which every rule of survival forbids, and you watch over the Hundred-and-Seventeenth from the shadows of a dozen garrison towns. You cannot save them from what was done to them. But twice, when Imperial inquiries come sniffing after the events on Threnholm — after the captain whose fire discipline failed so conveniently — evidence goes missing, witnesses recant, datawork burns. Havoc never learns why. You make sure he never learns why."
+    },
+    {
+     "if": "cut_through",
+     "text": "Three names travel with you — the men who didn't get up when you cut your way out. You write them on flimsi each year, on the anniversary, and burn it, and you have stopped expecting that to start helping."
+    },
+    {
+     "if": "havoc_rel >= 70",
+     "text": "Of Havoc: the official record says CT-7719's battalion suffered a discipline failure on Threnholm, casualties one Jedi traitor, body unrecovered. He survives the inquiry. Years on, gray and decommissioned, he finds you — of course he finds you; he always could read your tracks — and he stands in your doorway with three years of tally in his eyes and says, 'Took your time staying alive, ${sir}.' You owe your life to the only army ever bred to take it. You tell him that. 'Wrong,' he says. 'You owe it to the men. So spend it right.'"
+    },
+    {
+     "if": "master_alive",
+     "text": "Master Venn lives. It takes you four years to confirm it — a Mirialan healer in the refugee corridors, dry-witted, asking after a Padawan she trained. When you finally stand in the same room again she looks at you a long moment and says, 'Well. The uniform is gone and the Jedi remains. I did wonder which way that would go.' You meditate together, sometimes, across the years and the distance, the way she taught you on Jabiim."
+    },
+    {
+     "if": "not master_alive",
+     "text": "You carry Venn's green-bladed saber beside your own. You never ignite it. It is not for igniting. It is for remembering what a conscience sounds like when it is dry, Mirialan, and right."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Two years in, a message finds you in an old Padawan cipher you and Joren made up as initiates, badly, in the crèche: 'Still a step behind you, it seems. Mygeeto was bad. I got out worse. There is a healer on Thabeska. Come argue with me about the Council like old times.' You go. He is scarred and limping and alive, and the argument lasts a beautiful week."
+    },
+    {
+     "if": "not joren_alive",
+     "text": "Joren never had the chance to face this new galaxy, and on the bad nights you tally it as mercy and hate yourself for the arithmetic. You speak his name in your evening meditation, between Venn's teaching and the tally's dead."
+    },
+    {
+     "if": "vethari == 'republic'",
+     "text": "Vethari Prime's yards build Star Destroyers now. The world you saved was saved into harness — that is the Empire's favorite trick, you have learned. Some of its shipwrights sabotage hull welds anyway, and are caught, and keep doing it. You hold them in the light of your meditation too."
+    },
+    {
+     "if": "vethari == 'separatist' or vethari == 'burned'",
+     "text": "Vethari Prime is an Imperial reclamation zone now, which is the new order's word for a grave it intends to loot. You light a candle for it on Remembrance Day, in whatever port you are in, with whoever else remembers."
+    },
+    {
+     "if": "dunne == 'exposed' or dunne == 'dead'",
+     "text": "Of Senator Dunne, who sold fleets and men: the Empire pardoned every crime it found useful, but his it found embarrassing, and history closes over him without a ripple. The admiral's name Havoc revered was quietly cleared. You permit yourself exactly one evening of satisfaction."
+    },
+    {
+     "if": "dunne == 'blackmailed' or dunne == 'escaped'",
+     "text": "Senator Dunne becomes Moff Dunne inside a year — treachery being the new order's most transferable credential. Sometimes his shipping ledgers develop inexplicable errors that route medical cargo to refugee worlds. He never traces the ghost in his books. You were always good at homework."
+    },
+    {
+     "if": "civvies_saved",
+     "text": "And on Pellior, in rebuilt Calden Spire, there is a small custom on the spring festival: a blue lantern on the water for the Republic officer who would not trade the town for time. Lanterns outlast empires. You learned that somewhere in the dark years, and you believe it."
+    },
+    "You still have your lightsaber. You are still, in the oldest sense of a broken word, a Knight: someone who stands between the fire and the small. The Force is with you — quieter than it was, deeper than it was — and somewhere out in the dark you can feel the others, embers under ash, waiting for a wind.",
+    "Hope, it turns out, is a discipline. You practice daily."
+   ],
+   "ending": {
+    "id": "ending_knight",
+    "title": "The Last Knight"
+   }
+  },
+  "c9_ending_martyr": {
+   "text": [
+    {
+     "if": "last_act == 'stood'",
+     "text": "You stand your ground in the trench at Threnholm with your blade unlit, calling them by name to the end — Havoc, the sergeants, the shinies whose first battle was Vethari — and the volley, when it finally comes, comes ragged, as if four hundred fingers fought four hundred triggers. You do not raise your saber against your men. It is the last order you give yourself, and you hold it."
+    },
+    {
+     "if": "last_act == 'blade'",
+     "text": "You die on your feet with your blade lit, a single blue line against the morning, turning fire for eleven full seconds that garrison legend will stretch to a minute, then an hour. You hurt no one. Afterward, men who were there will swear the blade's light stayed in their visors for days, like a sun glanced at too long."
+    },
+    {
+     "if": "last_act == 'shield'",
+     "text": "You spend your last seconds as a wall. The wounded trooper behind you lives — they will carry him to the medics still crying without knowing why, and he will live to be old, and he will spend the rest of a long strange life telling anyone who buys him a drink about the Jedi who chose his life over theirs with the galaxy's whole weight falling."
+    },
+    {
+     "if": "last_act == 'cry'",
+     "text": "You spend your last seconds wide open, every shield down, shouting one word into the Force — RUN — with a whole life's strength behind it. Across the galaxy, in that exact hour, a handful of Jedi flinch for no reason their training explains, and turn left instead of right, and live. You never learn their names. They never learn yours. The Force keeps the ledger."
+    },
+    {
+     "if": "last_act == 'rally'",
+     "text": "You die reaching for them — for three years of shared mud, for the names on the tally, for the brotherhood you honestly believed could outvote a hand on the neck. You are wrong, and the manner of your wrongness is the most human thing about you, and the men behind the visors will carry it the rest of their accelerated lives."
+    },
+    {
+     "if": "dark >= 60",
+     "text": "It is not a clean death; you were not, by the end, a clean person. But the record of your last morning is unambiguous, and it is the morning, not the war, that the Force remembers."
+    },
+    {
+     "if": "havoc_rel >= 60",
+     "text": "Captain Havoc's rifle, the after-action sensors note, was aimed one half-meter wide of you for the duration of the engagement, a discrepancy the inquiry attributes to barrel damage. That night he takes out the tally and adds, beneath four hundred and six troopers' names, one more line — your name, your rank, and the only epitaph he trusts: 'Stood with us.' The tally is contraband three ways under Imperial law. He carries it the rest of his life."
+    },
+    {
+     "if": "havoc_rel < 60",
+     "text": "The 117th polices the trench in silence and files a flawless report. But that winter, on a transport between garrisons, a trooper who was on Threnholm gets drunk enough to say what they all carry: 'Best officer I ever had, and I was the third one to fire.' Nobody reports him. That is its own kind of monument."
+    },
+    {
+     "if": "master_alive",
+     "text": "On Coruscant, in the burning Temple's chaos, Master Ilara Venn feels you go — a candle's worth of cold in a night of cold — and survives the hour because of it: grief drops her to one knee in a shadowed archive doorway at the precise moment a patrol sweeps the corridor. She escapes into the underlevels carrying your death like a coal in her hands. Whatever she builds in the dark years after, your name is in its foundation."
+    },
+    {
+     "if": "not master_alive",
+     "text": "You die believing you will not be remembered, your master gone before you, and you are wrong about that too."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Joren Kade survives Order 66 on the Mygeeto front by a margin he never explains, and spends the next decade explaining you instead — to scared younglings in hidden cellars, to deserters, to anyone who asks how the Jedi really ended. 'Not the way they tell it,' he always begins. 'I knew one. Let me tell you about the last morning of the war.'"
+    },
+    {
+     "if": "civvies_saved",
+     "text": "On Pellior, in Calden Spire, the town you would not trade for time, news of your death arrives months late, garbled, traitor-flagged. They light the lanterns anyway. The Empire eventually bans the festival. The festival outlasts the Empire."
+    },
+    {
+     "if": "bombarded",
+     "text": "On Pellior they remember a different commander — the one who fired on Calden Spire to end a siege — and when your death reaches the holonet, opinion there is divided and bitter. You died beside your troops. You also gave that order. Both things ride in the same archive, and history declines to simplify you. Perhaps that is the honest monument."
+    },
+    {
+     "if": "vethari == 'republic'",
+     "text": "On Vethari Prime, dockworkers who survived the siege weld a small blue chevron — your battalion's mark — inside the keel of every hull the Empire makes them build, where no inspector ever looks. Ships carry it to the galaxy's far end. Some of them, decades on, defect to a rebellion neither you nor they could have imagined, with your mark in their bones."
+    },
+    "The Hundred-and-Seventeenth is folded into the Imperial Army and ground away by attrition and decommission, as all the clone battalions are. But your name moves quietly among clones for years — barracks to barracks, transport to transport, in the wordless freemasonry of men who were used — a password meaning: some of them stood with us, to the very end, and one of them was ours.",
+    "You were the hundred and eighteenth name on a dead captain's tally. As epitaphs go, there are emperors who will get worse."
+   ],
+   "ending": {
+    "id": "ending_martyr",
+    "title": "The Last Name on the Tally"
+   }
+  },
+  "c9_ending_exile": {
+   "text": [
+    "You are three jumps into nowhere, standing in a freighter's galley with bad caf in your hand, when the war ends and the galaxy you resigned from is repealed.",
+    "The holonet shows it in fragments between freight manifests: the Temple burning. The Jedi declared traitors — all of them, everywhere, the dead and the living alike. A chancellor with a ruined face accepting an empire from a chamber that applauds until its hands must have bled. The other beings in the galley watch with mild interest, the way people watch weather on someone else's continent, and you grip the cup and say nothing, because nothing is what you are now. It is the hardest hour of your life, and you have had hours against which that claim means something.",
+    "You saw the rot early. Walking away did not stop it — you never imagined it would — but you are alive tonight precisely because you trusted what you saw over what you were told. Every Jedi who stayed in the machine died inside it on the same afternoon. Survival, you will think for the rest of your life, should not feel this much like guilt. It does anyway. You learn to carry both.",
+    {
+     "if": "exile_take == 'left'",
+     "text": "Your lightsaber lies on a bunk on Threnholm, or in an evidence locker, or in the mud — you will never know. Some nights your hand still drifts to your hip and finds nothing, and the nothing is the truest record of the choice you made. You were a Jedi. Then you were ${name}. The second one survived."
+    },
+    {
+     "if": "exile_take == 'kept'",
+     "text": "The lightsaber stays wrapped at the bottom of your bag through a dozen worlds and a dozen names. You take it out once a year, clean it, and put it away. It is not a weapon anymore. It is a question — who were you, and is that person finished? — and the answer stays open, which after everything feels less like indecision and more like mercy."
+    },
+    {
+     "if": "exile_take == 'burned'",
+     "text": "You fed the holocron to a red giant from the freighter's waste lock and watched the star not notice. Whatever the dead Sith inside it knew about surviving the death of an age, it survives nothing now. It is the only purely good decision in your ledger that cost you nothing, and you treasure it for that."
+    },
+    {
+     "if": "havoc_rel >= 60",
+     "text": "Havoc never reported your gear missing, you learn much later; for three crucial days the 117th's paperwork insisted you were on a liaison rotation, and by the time Order 66 came down, no clone in your old command had a Jedi on their roster to kill. You cannot prove he did it on purpose. You knew him. You can prove it to yourself."
+    },
+    {
+     "if": "master_alive",
+     "text": "Of Master Venn there is no record after the Temple burned — no body, no bounty claimed, nothing, and from her, nothing is hope. She taught you to read silences. You choose to read this one as a Mirialan healer somewhere in the refugee corridors, dry-witted, unfindable, alive."
+    },
+    {
+     "if": "not master_alive",
+     "text": "Venn died before the betrayal could reach her, and you have arrived, slowly, at calling that a mercy without flinching."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Joren's name never appears on the Imperial dead lists, which you check, every release, for years, in dockside terminals under borrowed logins. Once — just once — a spaceport security holo flags a face nine-tenths familiar boarding a tramp freighter two berths over. You do not approach. Where you live now, not approaching is how you love people."
+    },
+    {
+     "if": "dunne == 'blackmailed' or dunne == 'escaped'",
+     "text": "Senator Dunne thrives, naturally — the new order being a seller's market for exactly his inventory of soul. You watch him on a cantina holo collecting an Imperial governorship and feel the old investigator's itch in your hands, and let it pass. Not your file anymore. You tell yourself that for about a decade, and then, comfortably middle-aged and terminally bored, you mail an anonymous, immaculately documented dossier to his rivals. Old habits."
+    },
+    {
+     "if": "dunne == 'exposed'",
+     "text": "Even Dunne's conviction is repealed by the Empire eventually — useful men being scarce — but he never regains altitude, and the admiral he framed died with a clean name. You pulled one true thread out of the great lie before you walked. On the bad nights, you hold onto that."
+    },
+    {
+     "if": "vethari == 'burned'",
+     "text": "You pass within a parsec of Vethari Prime once, years on, and do not stop. Some debts cannot be paid at the scene."
+    },
+    "You live. You work freight, then a farm, then a harbor office on a world where it rains gently and nobody has ever seen a lightsaber. Sometimes the Force brushes against you, hopeful, like a dog that remembers you, and sometimes you let it.",
+    "You are the one who walked away. Every age produces a few — the ones who saw the cliff early, said so quietly, and stepped out of the column. History never thanks them. History is written by people who stayed in the column. But you are alive to read it, and you read it very, very carefully.",
+    "The galaxy will need walkers-away again someday — needs them already, somewhere out there in the dark. You keep the spare room ready."
+   ],
+   "ending": {
+    "id": "ending_exile",
+    "title": "The Long Road Out"
+   }
+  },
+  "c9_ending_redeemer": {
+   "text": [
+    "The blockade runner lifts off the ice moonlet an hour before the Empire's first patrol sweep, and the galaxy never sees either of you again. That is the official version, and you both work hard, for years, to keep it true.",
+    "The first months are the strangest of your life. You have been a soldier, a commander, a target, a legend; you have never once been a private person, and neither has she. You learn it together, clumsily — how to argue about ration flavors instead of theology, how to sleep through a night, how to stand in a market crowd without reading it for threats. Sev'ara laughs for the first time on a rainy world in the Kathol reaches, at something entirely unremarkable, and looks as shocked by the sound as you are.",
+    "The nightmares come on schedule, hers and yours in alternation like sentry shifts. Hers are Dathomir and the Temple that gave her back; yours are the war. The arrangement is unspoken and absolute: whoever is awake holds the line. The dark, she told you once, hunts from inside, where running doesn't help. It is true. It is also true that it hunts less well against two.",
+    {
+     "if": "path == 'fallen'",
+     "text": "You both fell. That is the thing no Jedi text ever prepared you for: the way back is real, but it is a road, not a door — walked daily, in small choices, forever. Some mornings you wake up and choose it grudgingly. She tells you that grudging counts. Of the two of you, she has been walking it longer, and on the worst days, when your own years as a power in the dark come back with their seductive arithmetic, she does not argue. She just stays. It is the most persuasive argument anyone has ever made to you."
+    },
+    {
+     "if": "redeemer_coda == 'heal'",
+     "text": "You settle, eventually, on a green world far down the Rimward spiral arms, under names so plain they're invisible. You farm, badly at first. She discovers an outrageous talent for machinery. The Force comes back to you both slowly, shyly, like circulation into a numb limb — not the war's roaring instrument, but the original quiet thing from the crèche, the thing that was the whole point. Years in, watching her teach a neighbor's child to whistle, you realize the war is finally, actually over. Yours, anyway."
+    },
+    {
+     "if": "redeemer_coda == 'rescue'",
+     "text": "Quietly, carefully, the two of you become a rumor: a pair of strangers who arrive where the Inquisitors are hunting and leave with the prey. Force-sensitive children spirited off census worlds. A failed Padawan lifted out of a labor camp. A broken acolyte — there are more of Dooku's orphans than anyone knew — talked down off the dark's ledge by the one person in the galaxy with standing to do it. You keep no records and take no name. The Empire eventually assigns the rumor a file. The file never closes."
+    },
+    {
+     "if": "redeemer_coda == 'ready'",
+     "text": "You vanish — but the sabers stay close, hers and yours, oiled and charged in a locker by the airlock. You both feel it some nights, meditating in the running dark between stars: a wrongness gathering at the galaxy's center, patient, generational. Not your fight, this decade. The locker stays stocked anyway. 'When,' she says once, catching you looking at it, and smiles — her old word, your old answer — and you say, 'Not yet,' and you both go back to dinner. The galaxy will know where to find you. The worthy parts always do."
+    },
+    {
+     "if": "joined_nyx",
+     "text": "Once, you walked out of a prison at her side because she was the most convincing lie you had ever heard. Now you stand at her side because she became the truest thing you know. You have stopped marveling at the symmetry. Mostly."
+    },
+    {
+     "if": "havoc_rel >= 70",
+     "text": "Word reaches you, years on, through the deserter networks: an old clone captain, decommissioned, gray, running cargo on the Rimward routes — and twice, freight of his has detoured unscheduled through systems where, the rumor goes, hunted people needed a way out. You never make contact. You send, through four cutouts, a case of the caf he liked. It comes back with a one-word note in unmistakable block capitals: 'OBVIOUSLY.'"
+    },
+    {
+     "if": "master_alive",
+     "text": "And once — only once — a Mirialan healer passes through the port nearest your world, asking no questions, healing a season's worth of hurts, leaving before thanks. On your table, afterward, you find a scrap of flimsi in handwriting you'd know in the dark: 'So that's what you were becoming. Good.'"
+    },
+    {
+     "if": "joren_alive",
+     "text": "Joren survives the purge; you learn it from a smuggler's manifest with a familiar cipher in the margin. The three of you never meet again — geometry and bounty postings forbid it — but twice a year, relayed through dead drops, you and he still argue about the Council. He maintains it could have been saved. You maintain it had to fall to be reborn. Sev'ara, asked to arbitrate, rules with great ceremony that you are both insufferable."
+    },
+    "Two people the dark side groomed from childhood, for war, from opposite ends of a lie — and the lie lost. Lord of nothing, master of no one, you are the rarest thing the Force ever makes:",
+    "Free."
+   ],
+   "ending": {
+    "id": "ending_redeemer",
+    "title": "Two Lanterns, Going Out Together"
+   }
+  },
+  "c9_ending_inquisitor": {
+   "text": [
+    "They take your name first. That is policy, and you come to understand the wisdom of it: names have histories, and histories have doors in them, and your handlers want every door welded shut. The files call you by a designation. In time, so do you.",
+    {
+     "if": "leashed_unwilling",
+     "text": "You did not choose this — you will hold to that, in the small hours, for the first years: you ran, and were taken, and were made. But the white rooms' deepest cruelty is patience, and the kind voice's deepest insight was this: the difference between broken and persuaded erodes under repetition, like a coastline. By the fifth year you can no longer locate the join. Perhaps that was the point. Perhaps that was always the point of all of it, the whole war, every choice they ever offered you."
+    },
+    {
+     "if": "not leashed_unwilling and knelt_how == 'chose'",
+     "text": "You chose this. Your handlers never let you forget it, and they are right not to: the kneeling was yours, freely given, and every door that has closed since closed on hinges you installed. Power has only ever asked the one small thing. It asks it again every morning. You pay."
+    },
+    "The work is hunting. You are good at it — you were always good at everything, that was the tragedy the Temple never named — and the prey is your own past: knights in deserter's clothes, Padawans grown feral in the undercities, crèche-mates whose faces you have to consult files to stop recognizing. You bring them back when ordered, and otherwise you bring them down. The Emperor's design has no further use for Jedi. It has endless use for what Jedi can be unmade into.",
+    {
+     "if": "joren_alive",
+     "text": "They have given you Joren Kade's file. He survived Mygeeto; he runs; he is, the analysts note, uncannily good at being two systems ahead of every sweep. You have hunted him for years across half the Rim, and you have not caught him, and you tell yourself it is skill on his part. You are the best tracker in the Inquisitorius. He was always a step behind you. You file your reports, sweep the wrong systems with impeccable thoroughness, and decline, with great care, to examine the arithmetic."
+    },
+    {
+     "if": "master_alive",
+     "text": "There is one file you keep closed: a Mirialan healer, sighted and lost, sighted and lost, threading the refugee corridors for a decade like a green thread through gray cloth. Twice the file has crossed your desk for assignment. Twice you have routed it, with forged justifications, to the Inquisitorius's most incompetent blade. You do not ask yourself why. Questions are doors."
+    },
+    {
+     "if": "holocron == 'kept'",
+     "text": "They took the holocron from your kit during the remaking, of course. You glimpse it once, years later, in a vault on Coruscant among a hundred others — the dead Sith who taught you survival, archived by the survivor-in-chief. It does not speak to you. You are no longer anyone it would recognize."
+    },
+    {
+     "if": "havoc_rel >= 60",
+     "text": "Once, reviewing garrison columns on a Rim world, you pass the remnant of the Hundred-and-Seventeenth — old men now, clone-aged, gray at thirty — and Captain Havoc is at their head, and his eyes pass over your black armor and your red blade without one flicker of recognition. It is flawlessly done. It is a courtesy. You understand, with the part of you that still understands things, that he is the last person alive who knew you, and that he has just, deliberately, finished the Empire's work of erasing your name — because the man he knew would have begged him to."
+    },
+    {
+     "if": "kneel_hold == 'ember'",
+     "text": "And yet. Sunk beneath the designation, beneath the conditioning, beneath ten years of red, there is a room with a door that never welded shut, and in it one ember: a name, a green blade in the rain on Jabiim, a tally of the cared-for dead. You visit it rarely. It hurts, the way circulation hurts a frozen limb. You cannot decide — across all the gray years you never decide — whether the ember is hope, or simply the cruelest thing you kept. But you keep it. Whatever else they made of you, the keeping stays yours, and somewhere on the far side of the dark years, it is waiting to be fanned."
+    },
+    {
+     "if": "kneel_hold == 'letgo'",
+     "text": "You let the last of it go in the white rooms, and in fairness, they told the truth: it was easier. There is a mercy in being only what you are for. On the rare nights something stirs — a green flash in a market crowd, rain on a trench-smelling world — it reports itself as malfunction, and you log it, and it is dealt with. You sleep well. That is the horror, if anyone were left to name it: you sleep well."
+    },
+    "You are spared. You are valued. You are, by every metric the new order keeps, a success.",
+    "You are also the leash's favorite proof that it works — exhibited, now and again, before newly taken Force-sensitives, as the reasonable alternative. They look at you and stop fighting. You have become the argument.",
+    "Somewhere beneath the black armor, a heart bred for the light keeps time anyway. The Empire has decided this does not matter. The Empire, on this one point, has always been wrong about hearts — but that is another decade's story, and someone else's."
+   ],
+   "ending": {
+    "id": "ending_inquisitor",
+    "title": "The Leash"
+   }
+  },
+  "c9_ending_sith": {
+   "text": [
+    "History does not record your name. It records the name he gave you, and in time, the fear of it.",
+    "You rise the way you fell: faster than anyone believed, on talent the Temple wasted and the war whetted and the dark, finally, pays for in full. Within two years you hold what Dooku held — the hidden fleets, the client warlords, the long-game treacheries the Emperor delegates the way other rulers delegate paperwork. The Rim provinces learn your silhouette. Admirals twice your age go quiet when your shuttle docks. It is everything the holocron promised in the tomb dark, and it is paid for on time, every month, in the only currency the dark accepts: more.",
+    {
+     "if": "sith_first == 'jedi'",
+     "text": "You hunt the survivors first, and you are devastating at it, because you think like them — you were the best of them, which is now the worst thing about you from their perspective and the most useful from his. Each one you bring down feels like sealing a door behind you. It takes years to understand that this was the design: a galaxy with no Jedi left in it is a galaxy with no one left who remembers who you were. He had you wall up your own witnesses."
+    },
+    {
+     "if": "sith_first == 'power'",
+     "text": "You consolidate first — fleets, foundries, the dark hollow places Dooku kept — and you do it so well that the Emperor lets you, which should have been your warning. Every string of power you gather into your fist runs, you discover at length, through his. You have spent a decade building yourself a magnificent cell and installing the locks personally, to the highest standard. He thanks you for the craftsmanship. He appears to mean it."
+    },
+    {
+     "if": "sith_first == 'nyx'",
+     "text": "You go after Sev'ara first. Old teachers should see their students' graduation. The hunt takes two years, through every bolt-hole the dark side ever dug in the Rim, and when you finally stand over her she looks up at your borrowed name and your unborrowed face and starts, infuriatingly, to laugh. 'He had me recruit my own replacement,' she says. 'Tell me you see it. Tell me you at least see it.' What happens next varies in the telling. What never varies: you do see it. Seeing it changes nothing. That is what the leash is."
+    },
+    {
+     "if": "nyx_fate == 'dead'",
+     "text": "Her paired sabers hang in your private chambers still, the one sentimentality your handlers tolerate, catalogued in your file as a trophy. It is not a trophy. It is the syllabus: this is what the dark does with its true believers, displayed where you dress each morning. You keep it there to stay angry. The anger keeps you climbing. He knew it would. Everything keeps you climbing; that is what the mountain is for."
+    },
+    {
+     "if": "holocron == 'kept'",
+     "text": "The holocron sits on a shelf in your meditation chamber, yours at last, openly, no Council to hide it from. It has stopped speaking to you. You outrank it now — and that, you eventually understand, was its final lesson, delivered in the dead Sith's preferred medium of silence: there is no one at the top of this staircase. There is only the staircase."
+    },
+    {
+     "if": "master_alive",
+     "text": "Somewhere in the refugee corridors a Mirialan healer is still alive. Your networks have brushed her trail four times. Four times you have not given the order, and you tell yourself it is because she is beneath your attention, and the dark, which always knows, files the lie where it files all of yours: as a debt, accruing."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Joren Kade is out there too — alive, hunted, a step behind you to the very last. Your inquisitors ask for assets to run him down. You always have a better use for the assets. Let one witness live. Even here, even now, some buried ledger-keeping part of you wants one person left in the galaxy who could say what you were before, on the day the question finally matters."
+    },
+    "There is another at the Emperor's side — the burning man, the machine — and the two of you circle each other across the years like binary stars, each the proof of the other's replaceability. The old man feeds the rivalry with the exquisite economy of a gardener. You both know it. Knowing it changes nothing. That is what the leash is.",
+    {
+     "if": "dark >= 90",
+     "text": "Or perhaps there is no leash. Perhaps that is just the bitterness of smaller beings, the ones who stalled on the staircase. You feel no collar. You feel the power, the speed, the magnificent frictionless yes of it, all the way down — and if some nights the yes has an echo, as of a vast amused patience enjoying your progress, then let it enjoy. You are climbing. You will always be climbing. There is no one at the top of the staircase, and you have decided, with the whole of what is left of you, that this means the top is vacant."
+    },
+    {
+     "if": "dark < 90",
+     "text": "Some nights — fewer each year — you feel it: a thin cold line around the throat of everything you have won, running back through the dark to a withered hand on Coruscant. You took Dooku's place. Dooku's place was always, precisely, this: the magnificent expendable, the heir who exists to be outgrown. You realized it years too late, in this very chair, which is of course where every occupant realizes it. The chair is the realization. You pour the wine. You hold the Rim. You wait, as he waits, as the dark waits, for the day the staircase needs you to be a step."
+    },
+    "A long time from now, in this same galaxy, the Empire you helped raise will burn. You will not see it. Men like the one you became never do; that, too, is in the design.",
+    "The dark side is generous, little Jedi. It gives everything you ask. It merely keeps, forever, the one thing you never thought to ask back:",
+    "You."
+   ],
+   "ending": {
+    "id": "ending_sith",
+    "title": "Heir to an Empty Throne"
+   }
+  },
+  "c9_ending_warlord": {
+   "text": [
+    "The Empire gives you six months to live. You take eleven years.",
+    {
+     "if": "warlord_src == 'fleet'",
+     "text": "Sev'ara's old fleet — your fleet — becomes the ghost of the Rim: thirty hulls, then twenty, then a hard bright core of nine that no admiral ever brings to decisive battle. You fight the way the dark taught you and supply the way the Republic taught you and vanish the way nobody taught you, and the Imperial war college will still be teaching your campaigns, under a sanitized designation, when the Death Star is a line item."
+    },
+    {
+     "if": "warlord_src != 'fleet'",
+     "text": "The Hundred-and-Seventeenth dies the way it lived: by squads, expensively, facing the enemy. Havoc is your right hand for nine of the eleven years — graying at speed the way clones do, carving the tally into each new flagship's bulkhead, profane and constant as gravity. The Empire calls your men the Ghost Mutiny and budgets a task force to them. The men call themselves what they always did. There is no force in the galaxy like soldiers who have already been written off twice."
+    },
+    {
+     "if": "warlord_coda == 'men'",
+     "text": "You fly no flag. Recruiters from a dozen proto-rebellions come courting over the years — senators in exile, idealists with manifestos, once a Mon Calamari with genuinely sound strategic instincts — and you turn every one of them away with the same sentence: 'I fight for the beings on my ships, and nothing larger, ever again.' Causes, you have learned, are how good people get used. The Rim's small worlds understand. They feed you quietly for a decade, and you keep the Empire's worst off their backs, and no one signs anything."
+    },
+    {
+     "if": "warlord_coda == 'republic'",
+     "text": "You fly the old Republic's colors — the thing it was supposed to be, raised against the thing it became — and the symbol does work no fleet could: garrison clones desert toward it, Rim worlds shelter it, and the Empire is forced to shoot at its own flag on the holonet, badly explained, for years. Long after, when a real rebellion finally rises, its founders will study how one rogue commander kept the corpse of an idea breathing through the regime's hardest decade. You are a footnote in their files and a foundation under their feet."
+    },
+    {
+     "if": "warlord_coda == 'name'",
+     "text": "You fly your own name, and the Rim learns it, and so does the Imperial court — where, your informants report with relish, the Emperor himself has been heard to pronounce it with something between irritation and appetite. Twice he sends emissaries instead of fleets: offers, each richer than the last, of amnesty, command, a place at the dark's high table. You send the second one back with his shuttle's weapons systems gift-wrapped in a cargo crate, disassembled, every part polished. The third visitor is an Inquisitor. The Inquisitor does not report back."
+    },
+    {
+     "if": "vethari == 'separatist' or vethari == 'burned'",
+     "text": "You base out of the Vethari system's wreckage for three of the eleven years — the dead shipyards you once fought over, a graveyard the Empire considers not worth garrisoning. Your machinists rebuild your hulls from the bones of the siege. There is a justice in it too bleak to say aloud, so nobody does, but the whole fleet feels it: the war's first lie, repurposed as the resistance's dry dock."
+    },
+    {
+     "if": "dunne == 'blackmailed' or dunne == 'escaped'",
+     "text": "In year four, Moff Carvel Dunne's personal convoy crosses your patrol line — the senator who sold fleet movements and bought a governorship with the proceeds. You take the convoy, audit his books at gunpoint for the benefit of a live holonet feed, and put him adrift in an escape pod aimed, with elaborate courtesy, at an Imperial customs station. The Empire executes him for embezzlement within the month. You did not fire a shot. It is, Havoc says, the most cheerful you have been in years."
+    },
+    {
+     "if": "master_alive",
+     "text": "Master Venn finds you once, in year six, through channels you never trace — comes aboard, walks your decks, says nothing about the dark in you or the dead in your wake. At the airlock, leaving, she says only: 'You were my Padawan. You are still someone's hope. Try to be alive about it.' You fly angrier for a month and more carefully forever."
+    },
+    {
+     "if": "joren_alive",
+     "text": "And twice across the years, intelligence comes in clean and early from a source flagged only with an old Temple cipher — Joren, alive somewhere in the cracks, still a step behind you, still covering it. You never acknowledge. He never asks you to."
+    },
+    "It ends the way these stories end — the only way they're allowed to. An interdiction web off the Arkanis spine, six Star Destroyers, no exits, the math final from the first minute. The Empire publishes the kill within the hour and never, in eleven years of trying, manages to publish a body.",
+    "But ask in the Rim's dockside cantinas — for decades they will tell it — about the last transmission off your flagship, broadcast in the clear on every channel the web couldn't close, a voice like the war's own ghost:",
+    "'This is ${name}. We were never yours. PASS IT ON.'",
+    "They passed it on.",
+    "You burned. You did not bow. In the long cold ledger of the dark years, more rebellions trace their first spark to that distinction than to any battle anyone won."
+   ],
+   "ending": {
+    "id": "ending_warlord",
+    "title": "The Burning Banner"
+   }
+  },
+  "c9_ending_gray": {
+   "text": [
+    "You survive. Strip everything else away — the titles, the orders, the sides, the war's whole roaring grammar of loyalty and betrayal — and that is the sentence history is left with: you survive.",
+    {
+     "if": "double_agent",
+     "text": "You were a Jedi who served the Separatists who served the Republic, a coat over a coat over a coat, and you alone know the truth at the center, which is that there came a point — you can name the month — when even you wore the coats blind, holding the layers apart by raw discipline, no longer certain which betrayal was the real one and which the cover. Nobody ever found out. Including, on the bad nights, you. The new galaxy has no file that matches your face, because every file contradicts the others. You are the war's best-kept secret, and the secret is that there was no secret. There was just someone trying to come out the far side alive. You did."
+    },
+    {
+     "if": "pulled_back",
+     "text": "You walked the edge of the dark for years, far enough out that you felt the air change, and then — this is the part no Jedi text describes, because the texts were written by people who never went — you walked back. Not in one shining moment. In a series of small, grinding, unglamorous turns: a holocron burned, a letter written, a no said quietly at the bottom of everything. The dark forgives the ones who never came near it. The light celebrates the ones who never left. For the ones who went and returned there is no liturgy at all, only the private knowledge, surer than either side's certainty, of exactly what you are capable of and exactly what it costs to refuse."
+    },
+    {
+     "if": "gray_coda == 'quiet'",
+     "text": "You go where no one needs anything from you, and you stay. A weather-moon, a harbor town, a job at a desalination plant with honest hours. The locals know you as the quiet one who is good in a crisis and bad at festivals. The Force stays with you, undemanding, like an old friend who has finally stopped giving advice — you use it for nothing but small kindnesses and never twice in front of the same person. You sleep, after the first years, well enough. Enough is a word you have made peace with. It is, you would tell anyone who asked — no one asks — the entire treasure of your life."
+    },
+    {
+     "if": "gray_coda == 'others'",
+     "text": "You find the others, because takes one to know one: deserter clones with serial numbers filed off their souls, failed Padawans, Separatist orphans, half-things, walkers-away. It is never an organization — organizations are how people get used — just a web of bolt-holes and vouches and quiet ships that grows across the Rim like root systems under a burned field. The Empire never names it because the Empire never sees it. Decades on, when louder rebels need rat-lines and safe harbors, they will find them already there, old and worn smooth, and wonder who built them. Nobody built them. Somebody survived them into existence."
+    },
+    {
+     "if": "gray_coda == 'list'",
+     "text": "You keep the list. Names, dates, orders, coordinates — who gave the word, who pulled the trigger, who signed the form and went to dinner; the whole machinery of the great betrayal, documented in a cipher of your own design, copied threefold, buried on three worlds. It takes years. It is not revenge; revenge wants heat and the list is cold, patient, actuarial. It is the bet — the only bet you have left — that the galaxy will someday again contain a court. You will not live to testify. The list will. Survivors, a dead voice told you once, are those who decide before the moment what they will not die for. You have decided what you will not let die: the record."
+    },
+    {
+     "if": "havoc_rel >= 60",
+     "text": "Years on, a clone walks into wherever you are — gray-templed, discharged, carrying his age like a full pack — and stands there a moment reading your face the way he used to read terrain. 'Knew the body count was wrong,' Havoc says at last, and sits, and you pour, and for one evening two survivors of an extinct allegiance audit the war nobody else remembers correctly. He leaves the tally with you. 'You're the one taking the long way,' he says. 'Somebody who'll outlast me ought to hold it.' You hold it."
+    },
+    {
+     "if": "master_alive",
+     "text": "Of Venn: a rumor of a Mirialan healer in the refugee corridors, threading the dark years. You never seek her out. She taught you everything that kept you alive, including this: some bonds are best honored by not leading the hunters to them."
+    },
+    {
+     "if": "joren_alive",
+     "text": "Once, in a spaceport on the Perlemian, you and Joren Kade pass within two meters of each other — older, both of you traveling under names that fool everyone else — and your eyes meet for exactly the length of a stride. Neither of you stops. Neither of you ever mentions it, anywhere, to anyone, for the rest of two careful lives. It is the warmest conversation you have all decade."
+    },
+    {
+     "if": "holocron == 'kept' and slip_act != 'burned'",
+     "text": "The holocron you drop into a star, early on, almost casually, somewhere in the running. The dead Sith inside it taught you one true thing — decide before the moment — and everything else it knew was staircase. You feel the silence where its whispers lived for about a month. Then you feel the quiet."
+    },
+    {
+     "if": "dunne == 'escaped' or dunne == 'blackmailed'",
+     "text": "You see Dunne on the holonet sometimes, ascending through the new order smile by smile, and feel nothing but a professional's distant interest, the way a retired safecracker reads about banks."
+    },
+    "Neither Jedi nor Sith. Neither the Republic's nor the Empire's nor the Confederacy's nor the Order's. The war spent three years teaching you what every side does with people who belong to it, and you graduated.",
+    "There is a price, and you pay it daily: no banner, no brotherhood, no liturgy for your dead, no one who knew you when. You are scarred in the place where belonging used to live, and on festival nights it aches like weather coming.",
+    "And there is what the price buys. The Jedi who owned your childhood are gone. The Sith who wanted your soul never got it. The Emperor who inventoried a galaxy missed exactly one line.",
+    "You. Still here. Still yours.",
+    "In the gray years, in the space between, that turns out to be the rarest ending of all."
+   ],
+   "ending": {
+    "id": "ending_gray",
+    "title": "The Space Between"
+   }
+  },
+  "c9_martyr_fall": {
+   "text": [
+    "The world goes very simple at the end. There is no Council, no war, no Order with a number; there is mud, and morning, and the men you trained doing what was done to them, and the small bright thing you have decided to do with your last few seconds.",
+    {
+     "if": "last_act == 'rally'",
+     "text": "You are still speaking when it takes you. That matters, somehow — that the last sound in the trench is your voice saying their names, not the volley."
+    },
+    {
+     "if": "havoc_rel >= 60 and last_act != 'rally'",
+     "text": "Somewhere behind the line of rifles a voice is screaming an order no one can obey, over and over, cracking on the second word. You know whose. You spend a fraction of your last second forgiving him, and hope it reaches whatever the chip has left him."
+    },
+    "The Force does not catch you the way the crèche stories promised. It does something better: it opens, the way a door opens on a lit room, and the fear simply runs out of you like water finding its level.",
+    "There is no death. There is only this."
+   ],
+   "goto": "c9_ending_martyr"
+  }
+ }
+}

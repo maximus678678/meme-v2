@@ -1,0 +1,366 @@
+{
+  "chapter": 1,
+  "title": "Fires of Jabiim",
+  "start": "c1_start",
+  "nodes": {
+    "c1_start": {
+      "text": "The rain on Jabiim doesn't fall so much as collapse, grey sheets of it hammering the trenchworks until mud and sky are the same color. Lightning walks the ridgeline — except it isn't lightning. It's artillery, Separatist guns dug into the high ground, methodically erasing the Republic's twenty-third attempt to take Razor's Rim.\n\nYou stand calf-deep in the trench beside Master Ilara Venn, your boots long since lost to the mud, your robes a sodden weight you stopped noticing days ago. Her green blade throws shifting light across the water streaming down her tattooed Mirialan face. She looks, as always, faintly unimpressed with the apocalypse.\n\n\"Padawan,\" she says, pitched under the shriek of incoming fire, \"I count four hundred battle droids coming up the forward slope, and I find myself short of opinions. Care to volunteer one?\"\n\nDown the line, a clone trooper drags a wounded brother toward the aid trench and doesn't make it — slips, goes down, both of them exposed on the lip of the works as the droid wave's vanguard crests through the smoke. Red blaster bolts begin chewing the sandbags around them.\n\nThe Force is screaming in every direction at once. You pick one.",
+      "effects": [
+        "set dark 20",
+        "set master_rel 50",
+        "set joren_rel 40",
+        "set council_rep 50",
+        "set war_score 40",
+        "set master_alive true"
+      ],
+      "choices": [
+        {
+          "text": "Get between the droids and the fallen troopers. Whatever comes through that smoke comes through you first.",
+          "effects": ["set opening shield", "master_rel %+ 10"],
+          "goto": "c1_push"
+        },
+        {
+          "text": "Go over the top and into them. Break the wave before it breaks the line.",
+          "effects": ["set opening blade", "dark %+ 8", "war_score += 5"],
+          "goto": "c1_push"
+        },
+        {
+          "text": "Raise your voice over the storm — drag the scattered platoon into a single firing line.",
+          "effects": ["set opening voice", "war_score += 5", "master_rel %+ 5"],
+          "goto": "c1_push"
+        }
+      ]
+    },
+    "c1_push": {
+      "text": [
+        {"if": "opening == \"shield\"", "text": "You vault the sandbags and plant yourself over the two troopers, blade weaving, sending bolt after bolt screaming back into the smoke. The downed men crawl behind your boots. \"Go,\" you grind out, \"go, go—\" and they go, and you back step by step after them while the droids walk their fire across everything you just were."},
+        {"if": "opening == \"blade\"", "text": "You go over the top alone. It is a kind of madness and it works the way madness sometimes does — you hit the droid vanguard out of the rain like something they have no protocol for, blade shearing through duranium, and for nine glorious seconds the advance stops dead. Then Master Venn's hand closes on your collar and hauls you bodily back into the trench. \"Borrow my patience,\" she says. \"You've clearly spent yours.\""},
+        {"if": "opening == \"voice\"", "text": "You fill your lungs and your voice comes out carrying more than air — it carries certainty, borrowed from the Force and lent to forty terrified men. \"Seventeenth squad, LEFT! Volley fire on my mark!\" And the beautiful thing, the thing that still astonishes you about these soldiers, is that they simply do it. The ragged line becomes a wall. The wall becomes a storm of blue fire."},
+        "The droid wave staggers, gap-toothed, and falls back into the murk to re-form. A breath. On Jabiim that's all a victory ever is — one more breath.\n\nMaster Venn deactivates her blade and crouches below the parapet, rain sheeting off her hood. \"Adequate,\" she says, which from her is a parade in your honor. \"They'll come again within the hour. Hold this thought.\"\n\nA clone trooper slides into the trench beside you in a spray of mud — armor factory-white under the filth, a shiny, so new his boots still have tread. He can't be more than weeks out of Kamino and his eyes behind the visor are very young and very wide.\n\n\"Sir! CT-5513, transferred up from the reserve line — they said report to the Jedi, but nobody — I don't —\" He catches himself, steadies. \"Who do I report to?\""
+      ],
+      "goto": "c1_name"
+    },
+    "c1_name": {
+      "text": "Master Venn glances at you with one raised brow, amusement flickering even here, even now. \"Well,\" she says. \"Introduce yourself, Padawan. He's asking for the officer who just saved this trench.\"\n\nYou give the trooper your name.",
+      "input": {"var": "name", "prompt": "What is your name?"},
+      "goto": "c1_pronouns"
+    },
+    "c1_pronouns": {
+      "text": "\"${name}.\" The trooper says it carefully, like it might be on a test later. He fumbles his datapad out of a belt pouch, shielding it from the rain with his body. \"Logging it for the squad net, sir — uh —\" He hesitates, suddenly mortified. \"Sorry. How should I — how do I address you? For the record?\"\n\nMaster Venn pointedly studies the artillery flashes on the ridge, leaving you to it.",
+      "choices": [
+        {
+          "text": "\"He's fine. And 'sir' will do, trooper.\"",
+          "effects": ["set they he", "set them him", "set their his", "set theirs his", "set sir \"sir\""],
+          "goto": "c1_background_intro"
+        },
+        {
+          "text": "\"She. And it's 'ma'am.'\"",
+          "effects": ["set they she", "set them her", "set their her", "set theirs hers", "set sir \"ma'am\""],
+          "goto": "c1_background_intro"
+        },
+        {
+          "text": "\"They. Just call me 'Commander' — that's what the rank tabs say.\"",
+          "effects": ["set they they", "set them them", "set their their", "set theirs their", "set sir \"commander\""],
+          "goto": "c1_background_intro"
+        }
+      ]
+    },
+    "c1_background_intro": {
+      "text": "\"Understood, ${sir}!\" The trooper stows the pad like it's ammunition. Somewhere behind the rain, the droid advance is grinding back into motion — you can feel it in the Force, a cold tide gathering.\n\nVenn's comlink crackles. She listens, and her face does the thing it does when the news is bad and she refuses to let it show. \"The eastern trench is breached,\" she says. \"Droids inside the works, two hundred meters down the line, and every officer in that sector is dead. Someone has to close that breach before it unzips the entire position.\" She looks at you — really looks, the way she did the day she chose you at the Temple. \"I have to hold here. So tell me, my Padawan: twelve years I've trained you. What did I train?\"\n\nIt's not a rhetorical question. It's the question. Who are you, when the line breaks?",
+      "choices": [
+        {
+          "text": "A Guardian. The blade is the answer — you were raised for the front, and the front is two hundred meters away.",
+          "effects": ["set background guardian", "set saber 50", "set force 30", "set command 30", "set guile 30"],
+          "goto": "c1_bg_guardian"
+        },
+        {
+          "text": "A Consular. The Force is the answer — sense, leverage, the unseen hand that moves battles without swinging at them.",
+          "effects": ["set background consular", "set force 50", "set saber 30", "set command 30", "set guile 30"],
+          "goto": "c1_bg_consular"
+        },
+        {
+          "text": "A Sentinel. The shadows are the answer — you've spent your apprenticeship in undercities and back corridors, and a battlefield is just a louder one.",
+          "effects": ["set background sentinel", "set guile 50", "set saber 30", "set force 30", "set command 30"],
+          "goto": "c1_bg_sentinel"
+        }
+      ]
+    },
+    "c1_bg_guardian": {
+      "text": "\"A sword,\" you say, and Venn's mouth twitches — half pride, half the old worry she's never quite hidden.\n\n\"Then go be one. And ${name} —\" she calls as you're already moving, \"a sword that swings at everything is just a flail.\"\n\nYou take the trench at a dead run, water exploding under your boots, and come up out of the communication sap into the breach like judgment. It's worse than reported: B1s pouring through a collapsed revetment, a super battle droid stomping the parapet flat, troopers fighting hand-to-hand in the mud with rifle butts because there's no room to shoot.\n\nYour blade snaps to life, blue light in all that grey, and the nearest droids actually pause — some flicker of programming that has learned, lately, what that color means.\n\nThe super battle droid swivels its wrist cannon toward a knot of wounded men.",
+      "choices": [
+        {
+          "text": "Take the super battle droid head-on — carve the heart out of the breach and let the troopers see it die.",
+          "effects": ["saber %+ 10", "war_score += 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Fight defensively — anchor the troopers, walling them behind your blade while they re-form and do the killing themselves.",
+          "effects": ["command %+ 10", "master_rel %+ 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Let the cold focus take you — the place past fear where everything slows and nothing that stands in front of you matters. It's so much easier there.",
+          "effects": ["saber %+ 10", "dark %+ 10"],
+          "goto": "c1_ridge"
+        }
+      ]
+    },
+    "c1_bg_consular": {
+      "text": "\"A mind,\" you say. \"The blade's just punctuation.\"\n\n\"Then go punctuate,\" Venn says dryly. \"Quickly.\"\n\nYou move down the communication trench with your eyes half closed, reading the battle the way she taught you — not as noise but as currents. The breach announces itself in the Force before you see it: a cold sucking absence where droids pour through a collapsed revetment, and around it the bright panicked sparks of living men about to be extinguished.\n\nYou come up over the lip and take the whole picture in one breath. A wrecked AT-TE half-buried in the slope above the breach, eighty tons of dead metal. A super battle droid wading through troopers. The geometry of it is almost kind.\n\nYou reach out. The walker's carcass groans, shifts, sheds a waterfall of mud.",
+      "choices": [
+        {
+          "text": "Bring the wreck down across the breach — slow, controlled, a door closing. Let no one else die here, on either side of the parapet.",
+          "effects": ["force %+ 10", "master_rel %+ 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Bring it down ON them — drop eighty tons of walker onto the droid column and feel the breach die all at once.",
+          "effects": ["force %+ 10", "dark %+ 8", "war_score += 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Hold the wreck overhead as a shield and walk the wounded out under it, one trench-length at a time, while troopers retake the gap.",
+          "effects": ["force %+ 8", "command %+ 8"],
+          "goto": "c1_ridge"
+        }
+      ]
+    },
+    "c1_bg_sentinel": {
+      "text": "\"A knife,\" you say. \"You don't close a breach by standing in it. You close it by cutting whatever's feeding it.\"\n\nVenn sighs the sigh of a woman who chose an apprentice from the Temple's worst hide-and-seek records and has lived with the consequences. \"Go. Cut.\"\n\nYou don't go down the trench. You go under it — through the flooded drainage sap the engineers gave up on, chest-deep in water the color of rust, and come out forty meters BEHIND the droid column pushing the breach. From here you can see what no one in the trench can: a tactical droid on the slope, hunched under a sensor mast, conducting the assault like an orchestra. Its relay is what's keeping four hundred B1s marching in lockstep instead of stumbling into each other.\n\nNobody is watching the conductor. Nobody ever watches the conductor.",
+      "choices": [
+        {
+          "text": "Ghost up the slope and put your blade through the relay mast — let the droid column go stupid and blind mid-assault.",
+          "effects": ["guile %+ 10", "war_score += 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Take the tactical droid intact — rip its memory core. Painful minutes, priceless intelligence.",
+          "effects": ["guile %+ 10", "command %+ 5"],
+          "goto": "c1_ridge"
+        },
+        {
+          "text": "Slice the relay itself and feed the column FALSE orders — march two hundred droids into their own minefield and watch from the dark.",
+          "effects": ["guile %+ 12", "dark %+ 8", "war_score += 5"],
+          "goto": "c1_ridge"
+        }
+      ]
+    },
+    "c1_ridge": {
+      "text": [
+        "The breach dies. Not cleanly — nothing on Jabiim is clean — but it dies, and the eastern trench holds, and for a moment the men around you are cheering your name through the rain. ${name}. ${name}. CT-5513 is loudest of all, like he personally invented you.",
+        {"if": "background == \"guardian\"", "text": "You stand in the re-taken trench with your blade still lit, droid wreckage steaming around your boots, and the troopers look at you the way drowning men look at a rope. Venn's voice arrives over comms before you can enjoy it: \"I felt that from here. Tidy work. Pace yourself — heroism is a marathon.\""},
+        {"if": "background == \"consular\"", "text": "The walker's carcass sits across the breach like a tombstone, and the troopers keep glancing from it to you, recalibrating what they think a Jedi is. Venn's voice arrives over comms: \"I felt that from here. Elegant. Don't let it make you proud — elegance is what the Force does. You just got out of its way.\""},
+        {"if": "background == \"sentinel\"", "text": "By the time you slip back into the trench, soaked to the bone, the droid assault has dissolved into leaderless milling and the troopers are servicing targets like it's a live-fire exercise. Venn's voice arrives over comms: \"The column just forgot how to be an army. I assume that was you. One day you'll do something I actually see you do.\""},
+        "Then the sky tears open.\n\nThe Separatist guns on the Rim have finished re-registering, and the first salvo lands not on the trenches but BEHIND them — on the support line, the aid station, the road home. A second salvo. A third, walking forward. They're not trying to break the line anymore.\n\nThey're boxing it in."
+      ],
+      "goto": "c1_retreat_order"
+    },
+    "c1_retreat_order": {
+      "text": "\"All units, all units — Shelter Base is compromised, the position is flanked. General Norcuna is dead.\" The voice on the command net is too young for the words it's saying. \"Withdrawal order is general. Fall back by the Crooked Road to the Cobalt Station evac point. Repeat, the withdrawal is general—\"\n\nThe net dissolves into a hundred units talking at once.\n\nMaster Venn appears out of the rain at your shoulder as if she'd never left it. For once there's no dryness in her face at all. \"Twelve kilometers of open mud under those guns,\" she says quietly. \"This is the part they don't teach at the Temple, Padawan. Retreats kill more soldiers than battles do. How do we do this?\"\n\nShe's asking you. She's been asking you things all day, you realize — and not because she doesn't know the answers.",
+      "choices": [
+        {
+          "text": "\"Leapfrog withdrawal. Half the line moves while half covers, by the numbers, all the way home.\" Slow, disciplined, survivable.",
+          "effects": ["command %+ 12"],
+          "goto": "c1_rearguard"
+        },
+        {
+          "text": "\"The wounded go first and they ALL go.\" Take personal charge of the aid trench — carry men on your own back if it comes to that.",
+          "effects": ["master_rel %+ 10", "dark %- 5"],
+          "goto": "c1_wounded"
+        },
+        {
+          "text": "\"Withdraw? Those guns are the only thing killing us. Give me forty men and I'll give you that ridge.\" The enemy would never expect it.",
+          "effects": ["dark %+ 10", "saber %+ 5"],
+          "goto": "c1_counter"
+        }
+      ]
+    },
+    "c1_rearguard": {
+      "text": "Venn nods once, and then — this is the part you'll remember — she steps back and lets you run it.\n\nYou break the battalion's survivors into bounds on the squad net, your voice flattening into something older than you feel. \"Odd squads, displace two hundred meters and set. Even squads, covering fire until they call set. NOBODY runs. Running is how you die today.\" And it works. It works because clone troopers are the finest soldiers the galaxy has ever produced and all they have ever needed was someone to make the chaos into arithmetic.\n\nThe column begins to flow backward down the Crooked Road, bound by bound, a creature with one mind. Shells chase it. Mud geysers swallow men whole and their brothers haul them out by the webbing and keep moving.\n\n\"Textbook,\" Venn says, falling in beside you. The rain has plastered her hood flat. \"I'd tell you the Council will hear about this, but I suspect the Council is about to hear about a great many things from Jabiim, and very little of it good.\"",
+      "goto": "c1_collapse"
+    },
+    "c1_wounded": {
+      "text": "The aid trench is a horror you will not let yourself look away from: forty-one men who cannot walk, two medics, and water rising past the stretcher poles. The senior medic looks up at you with the eyes of a man who has already done the triage math and hates every number.\n\n\"All of them,\" you say, before he can speak.\n\n\"${sir}, the math—\"\n\n\"All of them.\"\n\nYou take the heaviest stretcher yourself, the Force flowing down your spine and into your legs, and you walk out of the trench into the shellfire like it's weather. And because you do it, others do it. Riflemen sling their weapons and take stretcher poles. A gunnery sergeant with shrapnel in his own arm carries a man on his back for nine kilometers.\n\nMaster Venn takes the other end of your stretcher and doesn't say anything for a long time. Then: \"When I took you as my Padawan, Master Bin warned me you'd never learn cost-benefit analysis.\" A shell lands close enough to slap mud across you both. \"I told him that was rather the point of you.\"",
+      "goto": "c1_collapse"
+    },
+    "c1_counter": {
+      "text": "\"Give me forty men,\" you say again, and you can feel how RIGHT it would be — the guns are arrogant, exposed, certain no one would dare. You could be among the crews before they knew. You can already feel the recoil of it in your hands, the beautiful simple violence of solving the problem at its source.\n\n\"No,\" Venn says.\n\n\"Master—\"\n\n\"Look at me.\" She takes your shoulder and turns you bodily from the ridge, and her grip is iron. \"I feel it too. The certainty. The HEAT of it. That is not the Force showing you victory, Padawan, that is anger wearing tactics as a costume — and forty men would die on that slope to dress it.\" Her voice gentles by a single degree. \"There will be a day I am not here to say no. Practice saying it yourself.\"\n\nShe releases you. The guns thunder on, untaken, infuriatingly alive, and you swallow something that tastes like coals and turn to help break the battalion into withdrawal bounds instead.\n\nThe column begins to flow backward down the Crooked Road, and you do not look at the ridge again. Mostly.",
+      "goto": "c1_collapse"
+    },
+    "c1_collapse": {
+      "text": "Six kilometers out from Cobalt Station, the Separatists spring the rest of the trap.\n\nIt comes apart all at once, the way disasters do: vulture droids screaming out of the cloud deck, strafing the column; and then, from the flooded quarry the maps swore was impassable, an entire fresh droid battalion rising out of the water like corpses refusing to stay buried. They cut the Crooked Road in half. Behind you, artillery. Ahead, droids. On either side, mud that swallows AT-TEs whole.\n\nThe command net is one long scream.\n\nMaster Venn stands very still in the middle of the dissolving column, and you feel her reach a decision the way you'd feel a door close in a quiet house.\n\n\"There's a drainage cut west of the road,\" she says, calm as a lecture hall. \"It'll pass the column one squad at a time, and the droids haven't found it because they're looking at the road. Someone holds the junction to keep them looking at the road.\" She's already turning. \"Take them through, Padawan. Count every man. I'll be along.\"\n\nIt's a lie. You both know the arithmetic of one Jedi holding a battalion's attention. She's not planning to be along.",
+      "goto": "c1_venn_stand"
+    },
+    "c1_venn_stand": {
+      "text": "The withdrawal through the cut is agony made procedural — squad after squad wading the drainage channel while you stand at its mouth counting helmets, and the whole time, behind you at the junction, a single green blade burns in the rain.\n\nYou can feel her through the training bond, a steady flame in the cold. You feel the droids wheel toward her — battalion fire control designating one (1) Jedi as priority target. You feel her amusement at it, actual amusement, dry as Tatooine even now.\n\nThen you feel the Separatist guns on the Rim begin to traverse. All of them. Onto one grid square.\n\nThey're going to spend an artillery regiment to kill one woman, and she has nowhere to go, and there are still three squads in the cut, and she told you — she TOLD you — take them through, count every man.\n\nThe Force does not tell you what to do. It never does, at the moments it matters most. It just holds the question open like a wound.",
+      "choices": [
+        {
+          "text": "Go back for her. Orders or not — give the last squads to the sergeants and RUN.",
+          "effects": ["set venn_how \"self\"", "master_rel %+ 15"],
+          "goto": "c1_back"
+        },
+        {
+          "text": "Obey. Take them through, count every man. Honor what she's buying with the only currency that doesn't insult it.",
+          "effects": ["set venn_how \"obeyed\"", "command %+ 10"],
+          "goto": "c1_obey"
+        },
+        {
+          "text": "Split the difference like a commander: send a picked squad of volunteers back for her while you hold the column moving.",
+          "effects": ["set venn_how \"squad\"", "command %+ 8"],
+          "goto": "c1_squad"
+        }
+      ]
+    },
+    "c1_back": {
+      "text": [
+        "\"Sergeant — the column is yours, count every man!\" And then you're running back up the cut against the current of retreating troopers, and the Force pours into you, and the mud cannot hold your boots.",
+        {"if": "saber >= 45", "text": "You hit the junction like weather. Droids stand between you and the green blade, and they simply stop being relevant — your saber moves the way it's moved in your hands since you were small, and you cut a corridor through the Separatist battalion the way other people open doors."},
+        {"if": "saber < 45 and force >= 45", "text": "You don't cut your way to her — you UNMAKE your way to her, hurling wrecked speeders and droid carcasses ahead of you like a bow wave, the Force a battering ram with your fear inside it."},
+        {"if": "saber < 45 and force < 45", "text": "You go through the wreckage line on your belly and your wits, under the droids' firing arcs, through gaps in their formation their sensors insist can't hold anyone — slower than your heart can stand, faster than anyone else alive could have done it."},
+        "She sees you coming. Across two hundred meters of carnage, over the heads of a droid battalion, Master Ilara Venn sees you, and her exasperation comes down the bond wrapped around something so fierce and warm it has no Temple-approved name.\n\nThat's when the sky lands.\n\nThe regiment's salvo arrives as one sound too large to be sound. You feel her throw the Force up over herself like a shield, feel her swat the first shell aside, the second — and then the world is mud and white fire and you are flying, and the bond goes thin as a thread pulled to breaking.\n\nYou dig her out with your hands."
+      ],
+      "goto": "c1_venn_down"
+    },
+    "c1_obey": {
+      "text": "You count every man.\n\nIt is the hardest thing you have ever done, and you do it the way she taught you to do hard things: completely. Helmet by helmet, squad by squad, your hand on shoulders as they pass, your voice steady — \"Move, trooper, nearly home\" — while behind you the green light burns and the Force sings with her effort, and you do not look back, because looking back is a thing you'd be doing for yourself.\n\nThe last squad clears the cut.\n\n\"Master,\" you send down the bond, \"that's all of them, disengage, COME ON—\"\n\nYou feel her start to move. You feel her — and this is so perfectly her that it will break your heart at odd hours for the rest of your life — pause to drag a wounded trooper out of a shell scrape on her way.\n\nThen the regiment's salvo arrives, one sound too large to be sound, and the junction becomes a column of mud and white fire, and the bond goes thin as a thread pulled to breaking.\n\nYou are running before the debris finishes falling. Orders only reach so far.\n\nYou dig her out with your hands. The trooper she stopped for is alive. That, at least.",
+      "goto": "c1_venn_down"
+    },
+    "c1_squad": {
+      "text": "\"Volunteers — Jedi extraction!\" You don't even finish the sentence before you have eleven of them; you take six and keep the column moving with the rest, helmet by helmet through the cut, splitting your mind in two the way command demands.\n\nThe squad goes back hard and fast, and through the rain you track them by their comm chatter — \"Contact — pushing — we see her, ${sir}, she's holding the junction, she's — General, fall back to us, we are your door!\"\n\nAnd you feel Venn's flicker of wry surprise down the bond: a door. Sent by her Padawan. She breaks toward them.\n\nThen the regiment's salvo arrives, one sound too large to be sound, and the junction becomes a column of mud and white fire.\n\nThe squad walks out of the smoke carrying her. Five of them. The sixth, a rifleman called Brakka who you spoke to for a total of nine seconds of his short life, took the shrapnel that was meant for the stretcher.\n\nYou meet them at the mouth of the cut and take the stretcher's head yourself. The trooper she'd been shielding when the squad reached her is alive too. Arithmetic. It never stops.",
+      "goto": "c1_venn_down"
+    },
+    "c1_venn_down": {
+      "text": [
+        "She is so much smaller than the space she takes up in your life.\n\nThat's the thought that arrives, unwelcome and absolute, as you look at what the guns have done. Shrapnel through her side, low and deep. Burns where she shielded her face a heartbeat slow. One leg wrong. Her breath is a wet, deliberate labor — in, pause, out — like she's filing each one somewhere official.\n\nHer eyes find you. Green as her blade, dimmed.",
+        {"if": "venn_how == \"self\"", "text": "\"You,\" she manages, \"were given... an order.\" Her hand finds your wrist with shocking strength. \"Thank you... for being so bad at them.\""},
+        {"if": "venn_how == \"obeyed\"", "text": "\"Every man?\" she whispers. You nod, unable to manage the words. Something settles in her face, an account balanced. \"Good. THAT'S the Jedi... they'll need. Not the one... who comes back for me.\""},
+        {"if": "venn_how == \"squad\"", "text": "\"A door,\" she whispers, and the ghost of her dryness flickers. \"You sent me... a door. There's hope... for your generalship yet.\" Her eyes lose focus. \"The trooper. Brakka. Say his name... where they can hear it. They keep count.\""},
+        "\"Listen.\" Her voice drops to almost nothing, and you bend close, rain hammering your back, her blood warm on your hands. \"This war... is wrong-shaped. Felt it since Geonosis. Like a sabacc deck... someone stacked. Don't just fight it, Padawan. WATCH it.\" Her grip tightens once, fierce. \"And watch yourself. The mud gets in... through wounds.\"\n\nHer eyes close. The bond goes quiet — not severed, banked, a fire shutting its own doors to survive the night.\n\nThe medic looks up at you. \"She's alive, ${sir}. I don't know how, and I won't promise tomorrow. We need to move NOW.\""
+      ],
+      "goto": "c1_mud_march"
+    },
+    "c1_mud_march": {
+      "text": "The last three kilometers to Cobalt Station are a single grey eternity: the stretcher party, the rear guard, the rain. You walk beside her with one hand on the stretcher rail, holding her in this world by feel.\n\nWhich is why you're the first to spot the wreck.\n\nA Separatist command speeder, shot down by someone luckier than they knew, lies broken-backed in a shell crater off the track. And pinned beneath its hull plating, soaked and shaking and alive, is a Separatist officer — human, grey-uniformed, an artillery liaison's flashes on his collar.\n\nAn artillery OBSERVER. The forward eyes of the guns on Razor's Rim. The guns that have been killing men in your care all day. The guns that just spent a regiment's wrath on one Mirialan woman.\n\nHe sees your lightsaber. He sees the stretcher behind you. He understands his situation completely — you watch him understand it — and his free hand begins to crawl, very slowly, toward the comlink lying half-buried in the mud beside him.\n\nThe stretcher party has stopped. The troopers are watching you. CT-5513 is watching you.\n\nThe rain falls.",
+      "goto": "c1_officer"
+    },
+    "c1_officer": {
+      "text": "\"Jedi,\" the officer says. His voice is steadier than his hands. \"I know what your order preaches. So we both know how this goes.\" His fingers walk another centimeter toward the comlink. \"Unless it doesn't.\"\n\nThe Force is very quiet, the way it was at the cut. Holding the question open.\n\nThrough your boots you can feel the far thunder of his guns, still working over the rear of the column. Somewhere under that thunder, men you counted through the cut are dying right now, today, because this man is good at his job.\n\nAnd behind you, on the stretcher, the slow deliberate labor of your Master's breathing.",
+      "choices": [
+        {
+          "text": "Kick the comlink away. Tourniquet, splint, stretcher. He goes back as a prisoner — and he LIVES, because that's the whole point of you.",
+          "effects": ["set officer \"spared\"", "dark %- 10", "master_rel %+ 5"],
+          "goto": "c1_mercy"
+        },
+        {
+          "text": "Pin him with the Force and pull what he knows out through his fear. Gun grids, codes, schedules. Men are dying RIGHT NOW; his comfort costs lives.",
+          "effects": ["set officer \"broken\"", "dark %+ 15", "war_score += 5", "guile %+ 5"],
+          "goto": "c1_fear"
+        },
+        {
+          "text": "Ignite your blade. He called the fire onto her. Some arithmetic is simple.",
+          "effects": ["set officer \"dead\"", "dark %+ 25"],
+          "goto": "c1_wrath"
+        },
+        {
+          "text": "Take the comlink and walk on. The mud and the rain can have him. You don't owe him a rescue, and you don't owe him a clean end either.",
+          "effects": ["set officer \"left\"", "dark %+ 8"],
+          "goto": "c1_leave"
+        }
+      ]
+    },
+    "c1_mercy": {
+      "text": "You cross the crater in three strides and the officer flinches — and then blinks, uncomprehending, as your boot sends the comlink spinning into the flooded dark and your hands start working on the hull plate pinning his legs.\n\n\"What,\" he says, \"are you doing.\"\n\n\"Field medicine. Hold still.\"\n\nThe troopers help, because of course they do; two of them have the plate up and a third has a tourniquet on before you've asked. The officer stares at the clone working on his shattered leg — at the face under the helmet, the face he's spent a year teaching guns to erase — and whatever he'd prepared to say to his executioner dies unspoken.\n\nAs they lift him onto a spare stretcher he finally finds something. \"Your Master,\" he says, low. \"The Jedi at the junction. That fire mission — I called it. You know that.\"\n\n\"I know that.\"\n\n\"Then why—\"\n\n\"Because she'd be insufferable about it if I didn't.\" It comes out in Venn's own dryness, and the sound of her voice in your mouth steadies you more than any meditation has all day.\n\nCT-5513 falls in beside you as the column moves again. He doesn't say anything. He just keeps looking back at the prisoner's stretcher, like something in his arithmetic has been rewritten.",
+      "goto": "c1_evac"
+    },
+    "c1_fear": {
+      "text": "You raise your hand and the officer stops being able to move.\n\n\"The grids,\" you say quietly. \"The codes. The fire schedule. All of it.\"\n\nHe resists. He's brave; it doesn't help him, and some part of you notes — files away — how little it helps him. You take his fear, which is vast, and you give it a shape, and the shape is everything he believes about Jedi turning out to be a comforting lie. It works the way the textbooks the Temple keeps locked say it works. It works WELL.\n\nGrids. Codes. Counter-battery solutions pour onto CT-5513's datapad, and within minutes Republic guns at Cobalt Station are speaking, and on Razor's Rim the batteries that have owned this sky all day begin, one by one, to die. You feel each one go silent like a hand lifting off your throat. Men you counted through the cut will live tonight because of this. That is true. Hold onto its trueness.\n\nWhen you release him, the officer is whole. Unbruised. Weeping without sound.\n\nThey lift him onto a stretcher anyway, because your troopers are better than the day has been. None of them look at you. The rain falls.\n\nDown the bond, banked and distant, something stirs in your Master's sleep like a flinch.",
+      "goto": "c1_evac"
+    },
+    "c1_wrath": {
+      "text": "The blade makes its sound, snow-hiss in the rain, and the crater turns blue.\n\n\"Wait—\" the officer says, and the word stops mattering.\n\nIt's fast. You're not cruel; you tell yourself that immediately afterward, and notice yourself telling it, and hate the noticing. One stroke. The guns on Razor's Rim have lost their eyes, and the man who walked fire across a column of stretchers all afternoon will never do it to anyone's column again. Battlefield arithmetic, solved.\n\nThe rain hisses where it lands on the cooling wreck.\n\nNo one says anything. That's what you'll remember — the precise quality of the silence behind you, forty men not-saying anything in unison. When you turn, the stretcher party is already moving again, eyes front, professionally elsewhere. Only CT-5513 is still looking at you. He's so new. His armor is still white under the mud. He looks at you the way you'd look at a map that's just told you you're somewhere you didn't think you were.\n\n\"He was an enemy combatant reaching for a comlink,\" you say.\n\n\"Yes ${sir},\" he says, instantly, and falls in.\n\nThe warmth doesn't leave your hands for an hour, and the worst of it — the part you'll meet again in dreams — is that it doesn't feel like guilt. It feels like a meal when you didn't know you were hungry.",
+      "goto": "c1_evac"
+    },
+    "c1_leave": {
+      "text": "You cross the crater, and the officer's whole body braces for the blade — and instead you crouch, lift the comlink out of the mud, and put it in your pocket.\n\n\"Jedi.\" He's pinned, soaked, bleeding into rust-colored water that is not getting shallower. \"Jedi. You can't—\" He laughs then, a small ruined sound. \"You're supposed to be the GOOD ones.\"\n\n\"And you're supposed to be a soldier,\" you say. \"Soldiers take their chances. There's yours.\" You nod at the water, the wreck, the night coming on. \"Your column retreated through here. Maybe they come back for you. Maybe they're as thorough as you were.\"\n\nYou walk on. The stretcher party falls in around you, and nobody says a word, and somewhere behind you in the rain a man starts shouting after you — your title, then pleading, then cursing, then just sound — until the storm files it away with everything else it owns.\n\nIt was just. Probably it was just. He kept his life and lost only his luck; men you counted through the cut got no better terms today.\n\nYou repeat that to yourself, in time with your boots, almost all the way to Cobalt Station. Down the bond, your Master's banked fire is quiet, and you are glad — you notice that you are GLAD — she didn't see.",
+      "goto": "c1_evac"
+    },
+    "c1_evac": {
+      "text": "Cobalt Station is a name for a fuel depot with delusions: three pads, a sensor mast, and now eleven hundred survivors of the Razor's Rim line packed into its perimeter while LAAT/i gunships drop through the weather four at a time, load beyond rated capacity, and claw away again.\n\nVulture droids are hunting the corridor. You watch a gunship come apart at four hundred meters with thirty men aboard, and the perimeter takes the sound of it without flinching because there is nowhere to flinch to.\n\nA hollow-eyed clone major meets you at the wire, takes one look at the lightsaber, and visibly hands you the weight off his own shoulders. \"${sir}. Every officer above me is dead. The Sep ground column's an hour out, the lift will take three hours at current rates, and I've got no air cover and the start of a panic on pad two.\" He swallows. \"What are your orders?\"\n\nYours. Not Venn's. Hers is the stretcher disappearing into the triage line.\n\nEleven hundred men. Three hours. One hour. The math doesn't go.",
+      "choices": [
+        {
+          "text": "\"Wounded lift first, fighters last, and I hold the wire myself until the final ship.\" Make the perimeter believe in the line by standing on it.",
+          "effects": ["set evac \"hold\"", "command %+ 10", "havoc_rel %+ 5", "dark %- 5"],
+          "goto": "c1_evac_hold"
+        },
+        {
+          "text": "\"Fighting strength lifts first.\" Riflemen are what wins wars; the worst wounded would die in transit anyway. Cold math, said out loud.",
+          "effects": ["set evac \"cold\"", "war_score += 5", "dark %+ 12", "command %+ 5"],
+          "goto": "c1_evac_cold"
+        },
+        {
+          "text": "Solve the air problem: take a gunship up as bait, drag the vulture droids into the station's massed guns, and buy the lift a clean sky.",
+          "effects": ["set evac \"bait\"", "saber %+ 5", "war_score += 5"],
+          "goto": "c1_evac_bait"
+        }
+      ]
+    },
+    "c1_evac_hold": {
+      "text": "\"Wounded first,\" you say, loud enough to carry past the major to the men on pad two, \"fighters last, and the last thing off this rock is me. Anyone who'd like my spot in the queue is welcome to take my place on the wire.\"\n\nIt shouldn't work. It's not arithmetic; the arithmetic is exactly as bad as it was a sentence ago. But panic is a story men tell each other about being abandoned, and you have just told a better story, and you watch it move through the perimeter faster than the comm net could carry it: the Jedi is staying. The Jedi goes last.\n\nThe panic on pad two dies. The lift becomes a machine: stretchers, walking wounded, support troops, riflemen, in clean countable batches, while you walk the wire in plain sight with your blade lit against the rain, deflecting the odd probing bolt out of the dark with something approaching contempt.\n\nThe Separatist column arrives forty minutes early. By then there are only four hundred men left inside the wire, all of them riflemen, all of them dug in, all of them strange and calm. You hold for two more hours. When the second-to-last gunship lifts, the major has to repeat your name three times before you board the last one — there's a rhythm to the wire by then, and you've become part of it.",
+      "goto": "c1_liftoff"
+    },
+    "c1_evac_cold": {
+      "text": "\"Fighting strength lifts first,\" you say. \"Riflemen, crew-served weapons, then walking wounded. Stretcher cases go last.\"\n\nThe major doesn't move. \"${sir}, the stretcher cases — if the column gets here before we finish—\"\n\n\"Then the Republic still has eight hundred riflemen it would otherwise have lost, Major, and the war doesn't care how we feel about it. Execute.\"\n\nHe executes. They all execute; that's the terrible gift of these men, they will do the hard thing if someone owns it, and you have just owned it in front of everyone. The lift becomes brutally efficient. Gunships stuffed with unwounded infantry claw skyward one after another while the triage rows lie in the rain and watch, and the medics look at you across the pad with faces you decline to read.\n\nThe arithmetic holds. That's the thing about cold equations: they do, mostly, hold. The Separatist column arrives to find the perimeter gone and the final lifts away — including, in the end, every stretcher case but nine, because the line moved faster without its anchor of dying men.\n\nNine. You'll learn the number later tonight and find it small and find yourself thinking it was WORTH it, and both of those thoughts will be the enemy's, wearing your voice. Down the bond, your Master sleeps on, and you are spared her eyes.",
+      "goto": "c1_liftoff"
+    },
+    "c1_evac_bait": {
+      "text": "\"The problem isn't lift capacity,\" you tell the major, \"it's the vultures. So we feed them.\"\n\nWhich is how you come to be standing in the open door of a gunship climbing slow and fat and irresistible into the worst sky on Jabiim, lit up like an invitation, while every anti-air gun at Cobalt Station tracks silently along beneath you.\n\nThe vultures take the bait because they are machines and you are math: one transport, no escort. Eleven of them drop out of the cloud deck in a feeding spiral — and the station's guns speak all at once, and the sky catches fire, and you stand in the door with your blade and the Force singing in your hands and bat the survivors' parting shots away from the cockpit like you're settling a bet with the storm itself.\n\nSeven vultures die in the first pass, the rest scatter, and the corridor comes clean. For two priceless hours the gunships run unmolested, and eleven hundred men ride out of Razor's Rim on the hole you tore in the sky.\n\nWhen your bait ship finally sets down, the door gunner — who has said nothing since takeoff — looks at you for a long moment. \"Begging your pardon, ${sir},\" he says, \"but you are the maddest officer I have ever served, and I've served three.\"",
+      "goto": "c1_liftoff"
+    },
+    "c1_liftoff": {
+      "text": [
+        "The last gunship out of Cobalt Station rides heavy and quiet.\n\nYou stand at the open door because the troopers left you the space, and you watch Jabiim fall away: the drowned trenches, the Crooked Road, Razor's Rim wearing its crown of guns. From altitude the battlefield becomes geography, all its arithmetic smoothed into mud-colored abstraction. Twenty-six days. You came down twenty-six days ago.",
+        {"if": "officer == \"spared\"", "text": "Across the hold, the Separatist officer lies strapped to his stretcher between two of the men his guns spent the day hunting. One of them, unasked, has draped a rain cape over him. He's staring at the cape like it's written in a language he used to speak."},
+        {"if": "officer == \"broken\"", "text": "Across the hold, the Separatist officer lies strapped to his stretcher, eyes open, looking at nothing. He doesn't weep anymore. Whatever you took out of him, the shape of where it was rides along in the hold with you, and you find you cannot look at it for more than a moment."},
+        {"if": "officer == \"dead\" or officer == \"left\"", "text": "Across the hold there's an empty stretcher rack, and you catch CT-5513 looking at you again — quickly, then away, the way men check the weather. You meet his visor evenly until he finds something else to inspect. The hold's silence has a texture you don't remember from the flight in."},
+        {"if": "venn_how == \"squad\"", "text": "Somewhere below, under the mud of the junction, is a rifleman named Brakka. You say his name once, quietly, into the engine noise. The trooper beside you hears it anyway, and very slightly, nods."},
+        "Beside you, her stretcher locked into the rack, Master Venn breathes her slow official breaths, in transit between one darkness and another.\n\nThe medic catches your eye over her body and gives you the smallest shake of his head — not 'no hope.' Just: 'not yet, don't ask yet.'"
+      ],
+      "goto": "c1_medbay"
+    },
+    "c1_medbay": {
+      "text": [
+        "The medical frigate 'Mercy of Alderaan' holds station above the weather, white and quiet, and its quiet is somehow worse than the guns.\n\nThey take her from you at the hangar deck. It's six more hours before a Mon Calamari surgeon with kind, exhausted eyes finds you in the corridor outside the bacta ward — six hours you spend learning that you don't know how to sit down anymore.\n\n\"She'll live,\" the surgeon says, and grips your shoulder when you sway. \"Hold onto that part, because the rest is harder. The shrapnel we've managed. The burns will heal. But there's spinal trauma, and trauma of a kind my scanners don't measure — whatever she did at the end, holding off that barrage, she spent something Jedi spend. She's in a bacta coma, and I won't pretend to know the day she comes out of it. Weeks. Months.\" A hesitation, honest as a scar. \"Or.\"\n\nThrough the ward viewport, Ilara Venn floats in amber light, hair drifting like weed, her face — for the first time in twelve years — telling you absolutely nothing.",
+        {"if": "venn_how == \"self\"", "text": "You press your hand flat to the transparisteel. 'Thank you for being so bad at orders.' The bond gives back only banked warmth, a hearth in a shuttered house. It will have to be enough. You make it be enough."},
+        {"if": "venn_how == \"obeyed\"", "text": "You press your hand flat to the transparisteel. 'Every man,' you tell her silently. 'I counted every man.' The bond gives back only banked warmth, a hearth in a shuttered house. It will have to be enough. You make it be enough."},
+        {"if": "venn_how == \"squad\"", "text": "You press your hand flat to the transparisteel. 'The door held,' you tell her silently. 'It cost one. His name was Brakka.' The bond gives back only banked warmth, a hearth in a shuttered house. It will have to be enough. You make it be enough."},
+        "Behind you, a throat clears apologetically. A comms ensign, holding out a datapad like it might bite.\n\n\"${sir}? Priority transmission from Coruscant. It's...\" he checks it again, as if it might have changed. \"It's the Jedi Council, ${sir}. For you.\""
+      ],
+      "effects": ["set master_alive true"],
+      "goto": "c1_holo"
+    },
+    "c1_holo": {
+      "text": "They give you a briefing room to take it in. The holoprojector wakes, and blue ghosts assemble above the table: Master Windu's unreadable severity; the small ancient shape of Master Yoda, ears low; two others you know only from Temple corridors. They look like you feel. The war is one month old.\n\n\"Padawan ${name}.\" Windu's voice carries even through holo-static. \"We've read the Jabiim dispatches. Master Venn's condition is known to us — and grieved.\" A pause, freighted. \"What was also known to us, by sunset, was the name every survivor of Razor's Rim put in their after-action reports.\"\n\nYoda's eyes find yours across half a galaxy. \"Short of Knights, this war has made us. Shorter still, of those troops will follow through fire.\" He lets that sit. \"Hmm. Decided, the Council has.\"\n\n\"By emergency provision,\" Windu says, \"the Council grants you a field commission. You will stand as acting Jedi Commander, with assignment to follow — your own battalion, your own theater. The trials will wait for the war.\" Something that is almost gentleness crosses the holo. \"Your Master argued for this months ago, for whatever that's worth. She said you were ready. We said you were young. It appears the war agrees with her. It usually does.\"\n\nThe blue light waits on you.",
+      "choices": [
+        {
+          "text": "\"I serve at the Council's will. I'll try to be worthy of her faith.\" Accept it the way she'd want: humbly.",
+          "effects": ["council_rep %+ 10", "dark %- 5", "master_rel %+ 5"],
+          "goto": "c1_end"
+        },
+        {
+          "text": "\"I'm ready, Masters. Give me the battalion and a target.\" Accept it the way the war wants: hungry.",
+          "effects": ["council_rep %+ 5", "war_score += 5", "dark %+ 5"],
+          "goto": "c1_end"
+        },
+        {
+          "text": "\"You're promoting me because you're out of Knights, and we both know it. I'll do the job anyway.\" Accept it the way she actually would: honestly.",
+          "effects": ["council_rep %- 5", "master_rel %+ 10", "guile %+ 5"],
+          "goto": "c1_end"
+        }
+      ]
+    },
+    "c1_end": {
+      "text": "When the holo dies, you stand alone in the briefing room with the rank you weren't supposed to have for years yet, on a ship full of men who already follow you, above a planet that taught you what following costs.\n\nYou walk back to the bacta ward, because there's one report left to make. The amber light. The drifting hair. The slow climb of her vitals across the monitor, stubborn as the woman herself.\n\n\"Commander,\" you tell her, trying the word on. It hangs in the antiseptic quiet, several sizes too big. 'This war is wrong-shaped,' she said, with her blood in the rain. 'Don't just fight it. Watch it.'\n\n\"I'll watch it,\" you promise the glass. \"Wake up and check my work.\"\n\nIn the morning there are orders on your pad: a battalion of the 481st Legion, newly cut from the Kamino lists, in need of a commander. The 117th. The men have already given it a name, the way they name everything — quietly, among themselves, and permanently.\n\nThey call it the Ghost Battalion.",
+      "goto_chapter": 2
+    }
+  }
+}

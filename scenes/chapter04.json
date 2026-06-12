@@ -1,0 +1,784 @@
+{
+  "chapter": 4,
+  "title": "The Sith Relic",
+  "start": "c4_start",
+  "nodes": {
+
+    "c4_start": {
+      "text": [
+        "Drezzar does not appear on the Resolute Dawn's older charts at all, and on the newer ones it appears with the notation that sailors have used for unlucky water since before hyperdrives: ANCHORAGE NOT ADVISED.",
+        "The briefing material is thinner than you'd like. A dead world at the frayed end of the Perlemian, atmosphere of ash and static, surveyed exactly four times in a thousand years. The fourth survey — a university team out of Obroa-skai, eleven souls — found a sealed structure in the southern wastes, transmitted three days of increasingly strange field notes, and went silent. The last intact line of their last transmission reads: the door is not locked, it is WAITING, and Dr. Ferren has stopped sleeping and will not give back the lamp.",
+        {"if": "vethari == \"republic\"", "text": "The Council's dispatch, for once, carried something near warmth: Vethari's yards are signing Republic keels, and your name sits attached to that victory. Which is, you suspect, exactly why your name is now attached to this. Success is a currency the Council spends quickly."},
+        {"if": "vethari == \"separatist\"", "text": "The Council's dispatch did not mention Vethari Prime, which is its own kind of mention. A world lost, a tomb to win back face. The war keeps its ledgers everywhere."},
+        {"if": "vethari == \"burned\"", "text": "The Council's dispatch was four lines long and signed by no individual Master, which Joren says is procedural and you both know is not. After Vethari, you are an asset under evaluation. A dead world far from the HoloNet is a fine place to evaluate an asset."},
+        "Somewhere down there, nine days ahead of you, a Separatist vessel is already on the ground. Joren spreads the survey holos across the wardroom table and looks up with bright, wary eyes. \"A tomb of the old Sith,\" he says. \"And the Council's orders are to *recover* what's inside. Not destroy. Recover.\" He taps the sealed door's image. \"You noticed that too. I watched you notice.\""
+      ],
+      "goto": "c4_transit"
+    },
+
+    "c4_transit": {
+      "text": [
+        "The last night in hyperspace, you find Joren in the observation blister with the survey team's field notes scrolling unread past his face, the blue storm of the tunnel lighting him like deep water.",
+        "\"Eleven hundred years,\" he says, without turning. \"That's the archive's best date for the tomb. Whoever's in there has been dead eleven centuries, and the Council wants their teaching brought home in a kit bag.\" He shuts the notes off. \"I keep telling myself it's the sensible policy. You can't fight what you refuse to understand. Holocrons in the Temple vaults have probably saved a thousand Jedi, knowing the enemy's shape in advance.\" A pause. \"Then I think: that's also exactly the argument a Sith would open with.\"",
+        "He turns from the viewport. The grin is there, but it's been worked thin somewhere since Vethari. \"So here's my proposal, and I want an answer before we make orbit, because down there will be too late. Whatever that tomb says to us — and the old reports are unanimous that such places *talk* — we tell each other. Everything. The flattering parts especially. Deal?\""
+      ],
+      "choices": [
+        {
+          "text": "\"Deal. Everything, both ways. That's how we come back from this one.\"",
+          "effects": ["joren_rel %+ 15", "set joren_pact true"],
+          "goto": "c4_descent"
+        },
+        {
+          "text": "\"I'll watch your back and you'll watch mine. But what the dark says to me is my own fight, Joren.\"",
+          "effects": ["joren_rel %- 10", "force %+ 5"],
+          "goto": "c4_descent"
+        },
+        {
+          "text": "Agree — and ask the harder question: \"And if one of us doesn't want to hand it over when we're done?\"",
+          "effects": ["joren_rel %+ 10", "guile %+ 5"],
+          "goto": "c4_descent"
+        }
+      ]
+    },
+
+    "c4_descent": {
+      "text": [
+        "Drezzar from orbit is the color of an old burn scar. The gunship goes down through ash-static that strips the comms to a five-kilometer whisper, and the surface arrives like a held breath: black glass plains, mountains gnawed to stumps, and a sky the brown of dried blood that has not seen its own sun in centuries.",
+        "The Separatist ship is exactly where the listening post promised — a sleek long-range needle, parked a respectful kilometer from the tomb and cold for days. No droids. No camp. Whoever came in it went *in*, and went in light.",
+        "The tomb itself rises out of the southern waste like the prow of a sunken ship: a wedge of black stone four hundred meters high, older than the Republic, its face carved with figures the wind has been trying to erase for a thousand years and has only managed to blur into something worse. Of the university team there is one trace — their crawler, abandoned at the foot of the approach stair, eleven bedrolls still neat inside.",
+        "Captain Havoc deploys the escort in a dry voice that dares the planet to object. \"Perimeter at the stair, ${sir}. Dice on the gunship, Longshot on the high rocks, Tally with me.\" He eyes the carved door at the top of the stair with frank dislike. \"Comms will be sand past that threshold. Standing orders, if you're overdue?\""
+      ],
+      "choices": [
+        {
+          "text": "\"Forty-eight hours, then lift off and report to the fleet. No rescue parties. Nothing follows us in — that's an order, Captain.\"",
+          "effects": ["command %+ 10", "havoc_rel %+ 10"],
+          "goto": "c4_gate"
+        },
+        {
+          "text": "\"Use your judgment. If it were me out here and you in there, I'd come in after you, orders or no.\"",
+          "effects": ["havoc_rel %+ 15", "command %- 5"],
+          "goto": "c4_gate"
+        },
+        {
+          "text": "\"Watch that Separatist ship. If anyone comes out of that tomb who isn't us — shoot first and we'll sort the diplomacy later.\"",
+          "effects": ["guile %+ 5", "dark %+ 5"],
+          "goto": "c4_gate"
+        }
+      ]
+    },
+
+    "c4_gate": {
+      "text": [
+        "The approach stair is four hundred steps, each one subtly too tall, as if cut for something that did not walk quite like a person. By the hundredth step the wind has died. By the two hundredth you can hear your own pulse. By the top there is no sound on the dead world at all except two Jedi breathing — and the door.",
+        "It stands twenty meters high, black on black, without hinge or seam, and the survey team was right: it is not locked. Locks are for things that want to keep you out. The carving above it, in High Sith neither of you should be able to read and both of you somehow can, says: I AM SARASETH, WHO WAS DENIED. ENTER, AND BE OWED.",
+        "And at the threshold — there, then not there, like a sound your ear assembles out of silence — the first whisper. It does not speak words yet. It simply *notices* you, the way a dark room notices a candle.",
+        "Joren's hand is on his saber hilt. \"Door's a test,\" he says quietly. \"Everything in this place is going to be a test. How do we open it?\""
+      ],
+      "choices": [
+        {
+          "text": "Reach into the stone with the Force — find the ancient mechanism and move it as its makers did.",
+          "effects": ["set gate \"force\"", "force %+ 10"],
+          "goto": "c4_threshold"
+        },
+        {
+          "text": "Read the carvings first. 'Denied' and 'owed' are an argument; understand it before answering it.",
+          "effects": ["set gate \"lore\"", "guile %+ 10"],
+          "goto": "c4_threshold"
+        },
+        {
+          "text": "Cut through. It's a door, you have a lightsaber, and the day is shortening.",
+          "effects": ["set gate \"cut\"", "saber %+ 10", "set tomb_woken true"],
+          "goto": "c4_threshold"
+        },
+        {
+          "text": "Open your palm on your saber's emitter shroud and press the blood to the stone. You know — somehow you know — that this is the toll, and that paying it is fastest.",
+          "effects": ["set gate \"blood\"", "dark %+ 12"],
+          "goto": "c4_threshold"
+        }
+      ]
+    },
+
+    "c4_threshold": {
+      "text": [
+        {"if": "gate == \"force\"", "text": "You spread your senses into the stone and find the mechanism waiting like a held hand — counterweights of black iron, channels cut for intention itself. It takes everything you have, and the door teaches you something about your own strength you did not know, and then twenty meters of stone swing silent as a curtain. Joren exhales. \"Show-off,\" he says, with real respect."},
+        {"if": "gate == \"lore\"", "text": "You read, and the argument unfolds: Saraseth, who was denied — a seat, a rank, a name, the carvings grieve it in circles without ever naming what. The door's riddle is its own grammar: it opens not for strength but for acknowledgment. You set your hand on the stone and say, in a tongue you learned in the last four minutes, *You were denied.* The door drinks the words and opens. Joren stares at you. \"What did you just say?\" he asks, and you find you cannot quite repeat it."},
+        {"if": "gate == \"cut\"", "text": "Your blade goes in to the hilt and the stone screams — not metaphorically, a long mineral shriek that rolls down the stair and across the waste, and somewhere below Havoc's distant voice barks the perimeter to arms. It takes twenty minutes of brute work to carve a gap, and when you step back, sweating, the whole tomb is awake around you. You can feel it: a vast attention, insulted and interested. \"Subtle,\" Joren mutters, but he goes through first, blade lit, to spare you the point."},
+        {"if": "gate == \"blood\"", "text": "The blood hits the stone and the stone takes it the way dry sand takes water — instantly, tracelessly, gratefully. The door opens at once, smooth and pleased, and the whisper that was only attention acquires, for a moment, the shape of approval. Joren catches your hand and looks at the cut a long moment. \"Where did you learn that?\" You don't have an answer. That is the part he doesn't say aloud: nowhere. You didn't learn it anywhere."},
+        "Inside, the dark is architectural — a vaulted gallery whose ceiling your lamps cannot find, walls carved with processions of kneeling figures whose faces have all been chiselled out, not by time. By Saraseth.",
+        "You are fifty meters in when the floor speaks. A grinding of ancient counterweights; Joren shouts; and the gallery simply *folds*, a slab the size of a gunship rotating down between you like a card being shuffled into a deck. You throw yourself clear. When the dust settles there are three corridors where the gallery was, and Joren's voice comes thin through tons of stone: \"—fine! I'm fine. There's a passage on my side, it bends inward. Keep moving and we meet in the middle — and ${name} — \" The stone swallows whatever else, except the last word, which might be: *everything.* The pact. Tell each other everything.",
+        "Three mouths of darkness wait. From the left one, faintly: the ring of metal on metal, rhythmic, like a forge or a drill yard. From the center: voices — one of them, impossibly, sounds like Master Venn. From the right: nothing at all, which somehow is worst."
+      ],
+      "choices": [
+        {
+          "text": "The left passage — toward the ring of steel. Meet this place's strength with your own.",
+          "goto": "c4_blades_1"
+        },
+        {
+          "text": "The center passage — toward the voices. If the tomb wants to talk, you will hear it out.",
+          "goto": "c4_voices_1"
+        },
+        {
+          "text": "The right passage — the silent one. Traps and lies are honest work; you trust nothing here that performs.",
+          "goto": "c4_serpent_1"
+        }
+      ]
+    },
+
+    "c4_blades_1": {
+      "text": [
+        "The left passage opens into a drill yard for the dead.",
+        "A long hall, floor scarred by eleven centuries of practice, and along its walls stand the sparring instructors: war constructs of black iron and red crystal, built in a shape that is almost human and crueler for the almost. As your lamp touches them, six sets of furnace-eyes kindle, and they step down from their alcoves with the terrible patience of things that have waited a very long time for a student.",
+        "They do not rush you. They take positions across the hall with parade-ground formality, and the foremost raises a corroded blade of dark metal in something that is unmistakably a salute. The whisper, stronger here, finally finds its words, and they arrive directly behind your teeth: *Saraseth built us to teach. The lesson is the same one the galaxy teaches, little knight. It has only ever had one lesson. Show me how much of it you already know.*",
+        {"if": "background == \"guardian\"", "text": "Every cell of your training answers. You were raised for exactly this — and that, you realize as your blade comes up, is precisely what the tomb finds interesting about you."},
+        "The constructs come on in pairs, ancient metal whining, and the hall narrows behind you. There is no way out but through the lesson."
+      ],
+      "choices": [
+        {
+          "text": "Meet them blade to blade — pure saber work, the way Master Venn drilled it into you.",
+          "effects": ["saber %+ 10"],
+          "goto": "c4_blades_r"
+        },
+        {
+          "text": "Fight the hall, not the droids — collapse an alcove, funnel them, make their numbers worthless.",
+          "effects": ["command %+ 10", "set c4_smart true"],
+          "goto": "c4_blades_r"
+        },
+        {
+          "text": "The whisper is offering. You can feel it under your wrists like a second pulse: *let me show you the forms they cannot answer.* Accept the lesson.",
+          "effects": ["dark %+ 15", "set whisper_pact true", "nyx_rel %+ 0"],
+          "goto": "c4_blades_dark"
+        }
+      ]
+    },
+
+    "c4_blades_r": {
+      "text": [
+        "Iron and crystal and the smell of burning centuries. The lesson begins."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "saber >= 50 or (c4_smart and command >= 50)",
+          "goto": "c4_blades_win"
+        },
+        {
+          "text": "(Continue)",
+          "if": "saber < 50 and (not c4_smart or command < 50)",
+          "goto": "c4_blades_fall"
+        }
+      ]
+    },
+
+    "c4_blades_win": {
+      "text": [
+        "You are better than the dead expected.",
+        "The first pair you take apart at the joints, old metal parting under new light; the second pair die against a collapsed alcove of your choosing; the last two come together, fast as anything you have ever faced, and for forty seconds the hall is nothing but red and blue and the ringing of a forge — and then it is over, and you are standing, and they are not.",
+        "Silence. Your breath. And then — eleven centuries of dust sifting from the unseen ceiling — the hall *applauds*: every empty alcove ringing faintly, metal on stone, like a drill yard honoring a graduate. The whisper is closer now, and warmer, and that is somehow worse than its cold was. *There you are,* it says. *Venn's student. The Council's instrument. Do you feel how little of what you just did, they taught you? You learned that in their war. Imagine what you could learn in mine.*",
+        "The far door stands open. It was open the whole time, you understand suddenly; the lesson was never the price of passage. The lesson was an audition.",
+        "You go through, blade still lit, and the dark beyond says your name once, softly, in a voice that is not yet a woman's and not quite the tomb's."
+      ],
+      "effects": ["saber %+ 5"],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_blades_fall": {
+      "text": [
+        "The third construct is faster than you.",
+        "Its corroded blade takes you across the ribs — armorweave holds, barely, but the impact hurls you into a pillar and the hall goes white-then-grey, and when your vision steadies you are on one knee with your saber three meters away and six furnace-eyed teachers closing in formal, unhurried order. They will not make it quick. Teaching is never quick.",
+        "And the whisper kneels down beside you, gentle as a medic. *This is the lesson, little knight. Not the blades — this. The moment when what you are is not enough, and everything you love is on the far side of it. Your Order will tell you to die well here. I will tell you the truth: there is no such thing as dying well. There is only the reaching hand. Take it, and stand.*",
+        "Your saber is three meters away. The constructs are four. The hand is right here."
+      ],
+      "choices": [
+        {
+          "text": "Take it. Reach for the cold, and stand.",
+          "goto": "c4_pact"
+        },
+        {
+          "text": "Refuse — call your saber, plant your feet, and pay whatever the lesson costs in your own coin.",
+          "effects": ["set c4_wounded true", "force %+ 10", "dark %- 5"],
+          "goto": "c4_blades_endure"
+        }
+      ]
+    },
+
+    "c4_blades_endure": {
+      "text": [
+        "You choose your own coin.",
+        "The saber slaps into your palm and you get up the slow way, the true way, on muscle and stubbornness and Master Venn's voice in your memory saying *again* the way she said it four thousand times in the Temple yard. You cannot beat six. You beat the two between you and the door instead, take a corroded edge along your shoulder for the privilege — a wound you'll carry into whatever waits below — and you go through the gap burning with pain and entirely, defiantly yourself.",
+        "Behind you the constructs stop at the threshold like dogs at a fence line. The lesson, it seems, only owns the hall.",
+        "The whisper follows you down the descending passage, and for the first time there is something in it other than silk. Curiosity, perhaps. Or appetite refining its estimate. *Interesting,* it says. *The ones who refuse are always the sweetest, in the end. Ask your Council — no. You will meet someone soon who asked already. Ask her what refusing got her.*",
+        "You don't answer. Answering is a door, and you have opened enough doors today. But the words walk with you all the way down: *you will meet someone soon.*"
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_blades_dark": {
+      "text": [
+        "You accept the lesson.",
+        "It is not like being puppeted. That is the horror you were braced for — strings, possession, your hands not your own — and the truth is so much gentler and so much worse: it is like remembering. The forms pour up through you as if you had always known them and merely misplaced them, footwork older than the Republic, angles of attack that treat a defender's compassion as one more opening. The constructs, built to these very forms, recognize their maker's hand and falter — and you take them apart in ninety seconds of cold, flawless, *delicious* geometry.",
+        "When it ends you are not even breathing hard. The hall's empty alcoves ring their faint applause, and you stand in the wreckage wanting, more than anything, another six.",
+        "*There,* says the whisper, intimate as a hand on your shoulder. *That is what they kept from you. Eleven years in their Temple and they taught you to fence. One hall of mine and you have begun to fight. Now ask the only question that matters: why would teachers hide a lesson — unless they feared the student?*",
+        "Half of it is a lie. You can feel that it is half a lie. It is the other half that follows you down the descending passage like a second shadow, fitting itself to your stride."
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_voices_1": {
+      "text": [
+        "The center passage is full of people who are not there.",
+        "It descends in long shallow turns, and at every turn the air thickens into someone. The first is a survey archaeologist — Dr. Ferren, you recognize him from the file — sitting against the wall with his lamp, explaining politely that he can't leave yet, the door has almost finished telling him what he's owed. He is not real. The bones two turns further down, holding the same lamp, are.",
+        "Then the tomb finds the faces that matter.",
+        {"if": "master_alive", "text": "Master Venn stands at the fourth turning, not as you saw her last — not the still shape in the bacta tank, drifting in blue light — but mud-spattered and upright on Jabiim, exactly as she looked the moment before the artillery found the ridge. \"You took my command and my battalion,\" the vision says, in her dry, precise voice, the cadence so perfect your chest aches. \"Tell me, Padawan: when I wake — *if* I wake — how much of the student I trained will be left to greet me?\""},
+        {"if": "bombarded", "text": "At the fifth turning stand the dead of Calden Spire. They are not angry. That is the unbearable craft of it: they stand in their work clothes and their school clothes in the orange light of their burning district, and they look at you the way people look at weather — at a thing that happened to them, vast and unaccountable, wearing in this case your face and your rank and your order to fire."},
+        {"if": "civvies_saved", "text": "At the fifth turning stands a Calden Spire dockworker with her daughter asleep on her shoulder — one of the thousands your troopers carried out of the foundry district roof by roof. \"You saved us,\" the vision says, and smiles, and the smile goes wrong at its edges. \"This time. While it was cheap. The war is young, Jedi. Shall I show you what you do when the price goes up?\""},
+        "And at the last turning before the passage opens out, the tomb shows you Joren. He is older in the vision, a Knight in full, and he stands above a body in the rain with the saddest, most certain face you have ever seen on him. \"It's not a betrayal,\" vision-Joren says quietly, to the body, which does not move and whose face you cannot quite see. \"You stopped being you. Somebody had to come.\"",
+        "The whisper threads through all of it, patient as water: *I show only what is already there, little knight. The Force shows futures. I show ledgers. Would you like to know what you already owe?*"
+      ],
+      "choices": [
+        {
+          "text": "Name the visions for what they are — grief and fear, dressed in stolen faces — and walk through them with your eyes open.",
+          "effects": ["force %+ 10"],
+          "goto": "c4_voices_r"
+        },
+        {
+          "text": "Stop. Answer them. The dead — and the not-yet-dead — deserve answers, even here, even from you.",
+          "effects": ["force %+ 5", "master_rel %+ 5", "set c4_answered true"],
+          "goto": "c4_voices_r"
+        },
+        {
+          "text": "Ignite your blade and cut them down. Stolen faces deserve burning, and the tomb deserves to learn what you do to things that wear your master's voice.",
+          "effects": ["dark %+ 14", "saber %+ 5"],
+          "goto": "c4_voices_dark"
+        }
+      ]
+    },
+
+    "c4_voices_r": {
+      "text": [
+        "You set your feet and meet the gallery of ghosts on your own terms. The passage tightens; the visions press close, borrowing breath and warmth now, plucking at your sleeves with hands that almost weigh something; and the whisper turns every answer you give into two new questions. It has had eleven hundred years to practice this. You have had one war."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "force >= 50 or (c4_answered and master_rel >= 55)",
+          "goto": "c4_voices_win"
+        },
+        {
+          "text": "(Continue)",
+          "if": "force < 50 and (not c4_answered or master_rel < 55)",
+          "goto": "c4_voices_fall"
+        }
+      ]
+    },
+
+    "c4_voices_win": {
+      "text": [
+        "But you have something eleven centuries of cunning keeps underestimating: you know what you did, and you have already grieved it honestly.",
+        "The visions need a crack to pry at — a guilt unadmitted, a fear unsaid. Yours are scar tissue, not wounds. When the false Venn demands an accounting, you give her one, complete, unflinching, and she has nowhere to go but mist. When the futures accuse, you answer that the future is unwritten or it is nothing. One by one the borrowed faces thin, and at the end the passage holds only cold air and a very old anger with nothing left to wear.",
+        "*You are no fun at all,* the whisper says, and for one startling moment it sounds genuinely sulky — a child denied, eleven hundred years old. Then the silk returns. *No matter. Honesty is a door too, little knight. The honest ones simply take longer, and are worth more. Come down. Someone less patient than I am has nearly reached my vault, and you two should meet while you are both still pretending to be what your orders say.*",
+        "The passage opens out and tips downward, and from far below, for the first time, you hear it with your ears and not your mind: the snap-hiss of a lightsaber. Then another."
+      ],
+      "effects": ["force %+ 5", "dark %- 5"],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_voices_fall": {
+      "text": [
+        "It finds the crack.",
+        "You will never be sure afterward which face was the lever — Venn in the bacta-blue, the rain-soaked future Joren, the patient dead — only that between one turning and the next the passage stops being a place you are walking through and becomes a place you are *in*, the visions solid as winter, your knees on eleven-century stone with no memory of kneeling. The voices have stopped accusing. That was only the opening bid. Now they are simply telling you, in relays, in voices you love, that everything you fear about yourself is accurate, and they have receipts.",
+        "Your saber is in your hand. There is nothing here to cut.",
+        "*Enough,* the whisper says — and the visions actually pause, like a court silenced by its judge. *They will hold you here until your lamp dies and your troopers find your bones holding it, like the doctor on the stair. Or: take my hand, and I will close the ledger. All of it. You will walk out of this passage owing nothing to anyone — not the dead, not your master, not your Order. Imagine the lightness, little knight. Imagine never being owed against again.*"
+      ],
+      "choices": [
+        {
+          "text": "Take the hand. Close the ledger. You cannot carry all of them and the war too.",
+          "goto": "c4_pact"
+        },
+        {
+          "text": "Refuse. Pick one true thing — Venn's real voice, saying *again* — and crawl toward it until the lies run out of air.",
+          "effects": ["set c4_wounded true", "master_rel %+ 10", "dark %- 5"],
+          "goto": "c4_voices_endure"
+        }
+      ]
+    },
+
+    "c4_voices_endure": {
+      "text": [
+        "*Again.*",
+        "Not the tomb's version of her — your own, the real memory with its real impatience and its real, hidden kindness: Master Venn at dawn in the south training yard, four thousand repetitions ago, telling a furious eleven-year-old that falling down is the curriculum. You crawl toward that voice. The visions scream at your back in every register of love and accusation, and you go on hands and knees over black stone toward one true remembered morning until, between one breath and the next, the passage runs out of lies and you are lying on cold flagstones in an empty corridor, alone, shaking, alive.",
+        "It costs you. Something is torn in you that bacta will not reach — you can feel it flutter when you stand, a hairline fracture in the place you keep your certainty. But it is *your* tear, honestly come by, and nothing in this tomb has a claim on it.",
+        "The whisper keeps its distance the rest of the descent. When it speaks at last, there is a new note under the silk — the careful respect of a merchant revising a price. *The ones who crawl out are rare,* it says. *She crawled too, you know. The one below. Out of the wreck of everything your Order promised her. Ask her. You are about to have so much to talk about.*"
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_voices_dark": {
+      "text": [
+        "The blade comes up and the gallery of ghosts learns what your grief does when it is cornered.",
+        "You cut down Master Venn's stolen face and it bursts like smoke and reforms wearing her disappointment, so you cut it down again. You burn the patient dead out of the passage meter by meter, the blue light strobing off black walls, and somewhere in the rhythm of it the horror quietly clocks out and something else signs on in its place — because it *works*, and it feels like lancing an infected wound, and the visions are screaming now in a way that has stopped sounding like the people they pretend to be and started sounding like the tomb itself, hurt and astonished and thrilled.",
+        "When you reach the bottom turning, the last vision — rain-soaked future Joren, standing over the body you couldn't quite see — doesn't speak its line. It looks at the blade in your hand, and at your face, and the tomb gives it one new sentence on the way out: \"You see,\" it says, softly, in Joren's voice, \"this is what I meant.\"",
+        "Then mist, and silence, and the whisper wrapping you like a field dressing: *Magnificent. They will tell you wrath is blindness, little knight. They lie. You have never seen this clearly in your life. Hold on to that — you will want it in a moment. She fights the same way you just learned you do.*"
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_serpent_1": {
+      "text": [
+        "The silent passage kills you politely, in eleven different ways, all of which you decline.",
+        "It is the tomb's service corridor, you realize within the first hundred meters — the way Saraseth's embalmers and architects actually came and went, and so the way rigged against everyone who thinks themselves clever enough to skip the lessons. The floor is a mosaic where one tile pattern in nine is a lie over a forty-meter shaft. The walls weep an oil that your lamp would ignite at the wrong height. There are no monsters and no ghosts; there is only craft, eleven centuries old and still oiled, still patient, still proud of itself.",
+        {"if": "background == \"sentinel\"", "text": "And craft, as it happens, is your mother tongue. The Temple raised you in undercities where the traps were newer and the stakes were smaller, and you find yourself reading the corridor the way you read the tether district's gate logs — as testimony. Someone built this. Builders have habits. Habits are confessions."},
+        "Halfway down, the passage's masterpiece: a gallery of locks. The corridor becomes a vault door laid sideways — nine rings of black iron, each ring carved with the same procession of faceless kneeling figures, each ring turning freely and only one alignment in some tens of thousands that does not flood the gallery with the weeping oil and strike a spark.",
+        "The whisper arrives like a colleague leaning over your shoulder. *My architect's pride and joy. He died in it, which he would tell you was the point, if I had left him a mouth. Shall I tell you the alignment? You need only ask nicely. Or owe me one small, unspecified favor — my favorite currency.*"
+      ],
+      "choices": [
+        {
+          "text": "Work the rings yourself — read the carvings, find the architect's habits, pick the eleven-century lock.",
+          "effects": ["guile %+ 10"],
+          "goto": "c4_serpent_r"
+        },
+        {
+          "text": "Feel for the mechanism with the Force — the counterweights cannot lie about where they want to fall.",
+          "effects": ["force %+ 5", "set c4_felt true"],
+          "goto": "c4_serpent_r"
+        },
+        {
+          "text": "Ask nicely. One small, unspecified favor, to a dead voice in a wall. It's only words.",
+          "effects": ["dark %+ 15", "set whisper_pact true"],
+          "goto": "c4_serpent_dark"
+        }
+      ]
+    },
+
+    "c4_serpent_r": {
+      "text": [
+        "Nine rings, one truth, and an architect's ghost grading your work. You begin."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "guile >= 50 or (c4_felt and force >= 50)",
+          "goto": "c4_serpent_win"
+        },
+        {
+          "text": "(Continue)",
+          "if": "guile < 50 and (not c4_felt or force < 50)",
+          "goto": "c4_serpent_fall"
+        }
+      ]
+    },
+
+    "c4_serpent_win": {
+      "text": [
+        "The architect had habits. Dead men always do.",
+        "He counted in nines, because his rings do. He hid his tells in the kneeling figures — every ring's true position marked by the one figure whose chiselled-out face is angled a half-degree up, the single crumb of defiance he buried in his master's monument: *even erased, I looked up.* You find all nine. The rings align with a sound like a cathedral clearing its throat, and the gallery folds itself open into a descending stair, and not one drop of oil falls.",
+        "*Oh, well done,* the whisper says, and the pleasure in it is unfeigned and far more disturbing than anger would be. *You found his little heresy. Eleven hundred years and you are the first. Do you know, your Order would have sanded those faces smooth — tidy archives, tidy hearts. It takes a certain kind of eye to find the one who looked up. Her eyes are the same kind. You will see.*",
+        "You are getting very tired of being told whom you are about to meet. From below, faint but unmistakable now, comes the proof that the whisper's gossip is at least half true: the ring and snarl of lightsabers, two pitches of red — and nothing answering them. Whoever she is fighting down there, it isn't a Jedi. It's the tomb."
+      ],
+      "effects": ["guile %+ 5"],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_serpent_fall": {
+      "text": [
+        "The eighth ring lies to you.",
+        "You feel the mistake the instant it commits — a click out of rhythm, a counterweight going somewhere eager — and then the gallery's ceiling unseams and the weeping oil comes down not in drops but in sheets, and the ninth ring, with the architect's last laugh, begins drawing its striker across its flint rail with the lazy inevitability of a sunrise. You have perhaps a minute of footing on the oiled rings, a closed door behind, a flooded gallery ahead, and arithmetic on all sides.",
+        "*Now this is awkward,* the whisper says, with the warm sympathy of a creditor. *He really was very good, my architect. Here is the situation, plainly, because I respect you: in fifty seconds this gallery burns, and your Order will receive a condolence and a casualty code. Or — say the word, just the one word, ask — and I will tell you the ninth ring's truth. No favors this time. Free, even. A gift between future colleagues. All you must do is ask the dark for help, and mean it, and notice — pay attention, little knight, this is the entire curriculum — notice how it feels when the dark says yes.*"
+      ],
+      "choices": [
+        {
+          "text": "Ask. Mean it. Notice.",
+          "goto": "c4_pact"
+        },
+        {
+          "text": "Refuse — cut your anchor line, drop through the lie of a floor into the shaft below, and trust the Force and your own two hands to find the bottom alive.",
+          "effects": ["set c4_wounded true", "force %+ 10"],
+          "goto": "c4_serpent_endure"
+        }
+      ]
+    },
+
+    "c4_serpent_endure": {
+      "text": [
+        "You pick the one exit the architect priced highest and pay it.",
+        "The false tiles take you when you ask them to — forty meters of black throat, your shoulder shrieking off an outcrop, the Force flung beneath you like a blanket snapped open at the last instant — and you land in the tomb's underworks hard enough to cost you a rib's worth of breathing and keep your life as change. Above, through the shaft, the gallery ignites with a soft, disappointed *whump*: the architect's masterpiece, spending itself on an empty room.",
+        "You lie in the dark of the underworks and laugh, once, because it hurts and because you are alive and nothing down here got to vote on it.",
+        "The whisper takes its time finding you. When it does, the silk has a faint, fascinating fray in it. *That,* it says, *was the stupidest, most beautiful thing I have watched a Jedi do in eleven hundred years. She jumped too, you know. When her Order's wreckage was burning around her. Straight down into the dark, on nothing but spite and the Force. I begin to think the two of you were shipped from the same yard.* A pause, and then, almost gently: *The stair to my vault is to your left, little knight. You have earned the front door.*"
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_serpent_dark": {
+      "text": [
+        "\"Tell me,\" you say — quietly, because Joren is a kilometer of stone away and some sentences should not have witnesses.",
+        "The whisper does not gloat. That is the lesson inside the lesson, you will understand later: it answers promptly, accurately, *helpfully*, like a good quartermaster, because the entire transaction is designed to feel exactly this reasonable. Ring by ring it walks you through the architect's confession — the nines, the faces, the one figure on each ring that looked up — and the gallery opens for you like a guildhall door, smooth and welcoming, not one drop of oil spilled.",
+        "It is only on the descending stair, replaying the exchange, that you find the hook. The whisper taught you nothing about locks. It taught you what *asking* feels like — how small it is, how painless, how the sky fails to fall. The first favor is free the way the first hand of sabacc is free.",
+        "*A pleasure doing business,* the whisper says, settling around your shoulders like a borrowed coat. *You see how simple it is? No screaming, no yellow eyes. Just help, asked for and given. Remember this feeling when the woman below offers you the same. She learned it the same way. We are all,* and here it laughs, eleven hundred years of dust in the sound, *students of the same small word.*"
+      ],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_pact": {
+      "text": [
+        "You take the hand.",
+        "There is no thunderclap. That is the first thing you will lie to yourself about afterward: it is not a fall, not a possession, not a violation. It is *relief*. The cold comes up through you like water through a dry field, and everything that was impossible a heartbeat ago becomes a matter of simple mechanics — the way out, the way through, the way up, lit plainly, as if the dark had merely been waiting all your life for you to stop being rude and ask.",
+        "You stand. You walk out of the trap that was killing you. It costs you nothing at all, today.",
+        "*There,* says the whisper, and the terrible thing about its voice is the absence of triumph — only a teacher's quiet satisfaction, a box ticked in an eleven-century gradebook. *Notice how small it was. They will have told you the dark side is a cliff, little knight — one step, one scream, one fall. They lie, and they know they lie. It is a stair. Everyone takes it one reasonable step at a time, and every step is survivable, and every step is* — the whisper turns the word over lovingly — *deserved. You were owed this one. You will be owed others.*",
+        "Somewhere below, faint through the stone, a lightsaber sings. Two pitches of red. The whisper warms like a hearth. *Come and meet the woman who took the stair before you. I have been telling her about you for days.*"
+      ],
+      "effects": ["dark %+ 18"],
+      "goto": "c4_antechamber"
+    },
+
+    "c4_antechamber": {
+      "text": [
+        "All roads down arrive at the same place: the antechamber of Saraseth's vault, a circular hall beneath a dome of carved, screaming faces, lit hellish red from below by channels of some luminous mineral in the floor. Across the hall stands the final door, and the final door is *open* — forced, recently, the stone around its mechanism still smoking faintly where something hot and red chewed through eleven centuries of patience in minutes.",
+        "Two things happen at once.",
+        "From the passage mouth to your right, Joren — alive, grey with dust, a lightsaber gash burned across the shoulder of his robe that he didn't have this morning. \"${name}!\" The relief on his face is the realest thing you have seen all day. He starts toward you—",
+        "—and the floor answers him. A ring of the carved channels flares, and out of the mineral light rises a containment lattice, ancient and crackling — a stasis snare, the tomb's last porter, and Joren is inside its circle when it wakes. It does not crush. It *holds*, red threads winding his arms, his throat, his saber hand, drinking his motion like sand drinking blood, and you can see it begin to cost him: his knees buckling slow, his breath shortening, his eyes finding yours across the hall.",
+        "\"Don't—\" he manages, \"—don't you *dare* weigh this—\"",
+        "Beyond the forced door, clear now, unhurried, a woman's voice you have never heard speaks from inside the vault — to you, through twenty meters of stone, as if resuming a conversation: \"He has minutes, Jedi. The vault has one prize. I do hope your Council told you which one you came for.\""
+      ],
+      "choices": [
+        {
+          "text": "Joren. Now. The relic has waited eleven centuries; it can wait ten more minutes.",
+          "effects": ["joren_rel %+ 20", "set saved_joren true"],
+          "goto": "c4_ante_save"
+        },
+        {
+          "text": "Break the snare the fast way — hurl the Force through its ancient circuits in one brutal overload, and reach the vault while the echoes are still falling.",
+          "effects": ["force %+ 10", "joren_rel %+ 10", "set saved_joren true", "dark %+ 5"],
+          "goto": "c4_ante_save"
+        },
+        {
+          "text": "He's a Knight in all but name; the snare holds, it doesn't kill — probably. The mission is through that door, and the mission is what you both came to die for. Go.",
+          "effects": ["dark %+ 15", "joren_rel %- 25", "set left_joren true"],
+          "goto": "c4_vault"
+        }
+      ]
+    },
+
+    "c4_ante_save": {
+      "text": [
+        "You choose your friend, and the tomb — you would swear it — sighs.",
+        "The snare is old and proud and no match for a living will that refuses to bargain. You find its rhythm, the pulse of the mineral channels, and you break it the way Master Venn taught you to break a pin-lock hold: not against the strength, through the gap in its timing. The red threads spasm and unravel; Joren comes out of the collapsing lattice on his hands and knees, whooping air, and grips your forearm with what strength he has left.",
+        "\"Weighed it anyway,\" he rasps, \"didn't you. Saw you do the sums.\" A broken laugh. \"Thanks for rounding in my favor.\"",
+        "From the vault, the woman's voice, dry as Drezzar: \"How touching. And how informative.\" A pause, and the sound of something small and crystalline being lifted from a stone setting that has held it for eleven hundred years. \"Do come in, both of you. I've just finished.\"",
+        "Joren retrieves his saber, meets your eyes — one short nod, the south-stair nod, *together* — and you go through the forced door side by side."
+      ],
+      "goto": "c4_vault"
+    },
+
+    "c4_vault": {
+      "text": [
+        "The vault of Saraseth is small. After the tomb's vast theater, that is the shock of it: an octagonal cell barely ten meters across, walls of polished black mirror, and at its heart a plinth of red stone where the dead Sith's whole estate sits in a space smaller than your two cupped hands — a holocron, four-sided, the color of embers behind smoke, turning slowly a hand's breadth above the plinth as if it, too, is looking you over.",
+        "She stands beside it like its honor guard.",
+        "Dathomirian: chalk-pale skin under a hood thrown carelessly back, the clan tattoos of a nightsister line fading at her temples, perhaps five years older than you. Two saber hilts ride at the small of her back — you knew that, somehow, before you saw them — and her eyes in the ember light are the gold of a sun through smoke. She is, you register with the unhelpful clarity the Force sometimes inflicts, beautiful the way a drawn blade is beautiful; and she is watching you with frank, unhurried interest, as if the two Jedi in the doorway are the relic and the holocron is the visitor.",
+        {"if": "left_joren", "text": "\"You left him in the snare,\" she says, by way of greeting, and smiles slowly. \"I heard it hold and I heard you walk past it. Do you know, my masters sent me here for a dead man's crystal. I begin to think the better prize walked in on its own feet.\""},
+        {"if": "saved_joren", "text": "\"You broke the snare,\" she says, by way of greeting, tilting her head. \"For him. With the vault standing open and me inside it. Either you are exactly the fool your Council prays you are—\" the gold eyes narrow, amused, \"—or you knew precisely how long I'd wait, because you knew I wanted the conversation more than the head start. Which is it, I wonder.\""},
+        "\"Sev'ara Nyx,\" she says, with a small bow that mocks neither of you, which is somehow worse. \"Once of your Order — they will not have mentioned me; they are diligent about their erasures. Now of Count Dooku's service.\" She plucks the holocron from the air and weighs it in one pale hand. \"And you are Venn's student. The tomb has been *singing* about you all day.\""
+      ],
+      "goto": "c4_parley"
+    },
+
+    "c4_parley": {
+      "text": [
+        "Joren's blade comes up a few degrees. Nyx ignores him with surgical precision; whatever this room is about to be, she has decided it is about you.",
+        "\"Before the dance,\" she says, \"one question. Professional courtesy, student to student.\" She holds the holocron up between two fingers, ember light leaking through her grip. \"Your Council sent you to *recover* this. Not destroy it. You checked the orders twice — I would have. So ask yourself the question I asked, nine years ago, holding a thing just like it: why does your Order keep a vault of these? If the dark side is poison, who is the cellar of poisons *for?* They will tell you: to know the enemy. Mm. And when I was a youngling judged too angry for their Temple — when they shipped me to a service corps scow and my homeworld burned while two Council committees debated jurisdiction — tell me, which shelf of the poison cellar was knowing *that* enemy?\"",
+        "She lets the silence do a turn of the room.",
+        "\"Everything they fear is in here,\" she says, softer. \"Not because it is wicked, little knight. Because it *works without their permission.* That is the entire secret. That is what I came eleven days through the dark to collect. What did you come for — truly? Their errand? Or your own answer?\""
+      ],
+      "choices": [
+        {
+          "text": "Answer her honestly — Vethari, the war, the doubts — and ask your own questions back. If she wanted you dead, this room would already be a tomb twice over.",
+          "effects": ["nyx_rel %+ 22", "dark %+ 8"],
+          "goto": "c4_parley_2"
+        },
+        {
+          "text": "\"There is no emotion, there is peace. You were failed, Sev'ara Nyx. That doesn't make the dark side true — it makes the Order guilty. Both things can stand.\"",
+          "effects": ["nyx_rel %+ 10", "force %+ 5", "council_rep %+ 5"],
+          "goto": "c4_parley_2"
+        },
+        {
+          "text": "Turn it back on her: \"You hold a dead man's box in a dead man's basement, running a dead man's errand for a Count who collects broken Jedi. Who exactly works without permission here?\"",
+          "effects": ["nyx_rel %+ 16", "guile %+ 10"],
+          "goto": "c4_parley_2"
+        },
+        {
+          "text": "Ignite your blade mid-sentence. She talks like the tomb talks; you have heard enough of the tomb today.",
+          "effects": ["nyx_rel %+ 12", "set struck_first true"],
+          "goto": "c4_duel"
+        }
+      ]
+    },
+
+    "c4_parley_2": {
+      "text": [
+        "Whatever you expected her to do with your answer, it is not what she does: she *listens* — completely, the gold eyes still, the performance set down for a moment like a heavy coat. You understand abruptly that this is her actual weapon. Vey lies and Vexis-creatures flatter, but Nyx listens, and people walk into the dark behind her because the dark is where the listening was.",
+        "\"Better than I hoped,\" she says at last. \"They told me Venn's student would quote the Code and lunge.\" She begins, slowly, to circle the plinth, and the holocron turns lazily above her open palm. \"Let me give you something true, then, since you've paid in kind. Your war is a lie. Not losing — *built.* The same hands hold both leashes; I have seen one set of fingers, and I think my Count knows the other and pretends he doesn't. Your Order suspects and files reports. And those soldiers dying for you by the hundred thousand—\"",
+        {"if": "bombarded", "text": "\"—ask the ones you spent at Calden Spire. Oh yes, even out here we watched that. They gave you a city and a clock and called the arithmetic yours. They will do it again, and again, until the day the arithmetic is *you* — and a Council table decides your district is the acceptable cost.\""},
+        {"if": "not bombarded", "text": "\"—bred in tanks, raised in ten years, sold to your Senate by the million with birthdays and serial numbers and no vote in any of it. The Jedi looked at a slave army and asked only whether they could command it ethically. You know this. I watch you know it.\""},
+        "She stops circling. \"Come with me, or fight me, or chase me — the night ends one of three ways, and I confess I'm curious which you pick. But the holocron goes where I go, little knight. Unless you take it.\""
+      ],
+      "choices": [
+        {
+          "text": "\"Last chance, Sev'ara Nyx. Set it down and surrender — to me, not the Republic. I'll stand for you to the Council myself.\"",
+          "effects": ["command %+ 5", "nyx_rel %+ 5"],
+          "goto": "c4_duel"
+        },
+        {
+          "text": "Take it. Rip the holocron out of her grip with the Force, mid-sentence, and let the conversation follow the prize.",
+          "effects": ["force %+ 10"],
+          "goto": "c4_duel"
+        },
+        {
+          "text": "\"...Which set of fingers? Tell me what you've seen.\" Hear her out — one minute longer, whatever Joren's face is doing.",
+          "effects": ["nyx_rel %+ 8", "dark %+ 8", "joren_rel %- 10", "set heard_nyx true"],
+          "goto": "c4_duel"
+        }
+      ]
+    },
+
+    "c4_duel": {
+      "text": [
+        {"if": "heard_nyx", "text": "She gives you one minute and keeps her word to the second: a sliver of what she has seen — a cloaked transmission, a voice that gave Dooku an order and was *thanked* for it, coordinates filed in her memory like a splinter. Half of it could be theater. The half that couldn't is going to cost you sleep for a year. \"There,\" she says gently. \"Now you're infected too. It's kinder with company.\" And then, conversationally: \"Catch.\""},
+        "It begins the way the tomb's constructs began: with a salute.",
+        "Both hilts leave the small of her back at once, and the vault fills with red — paired blades, one a half-length short, a style you have never seen outside the oldest training holos: makashi precision in the lead hand, something feral and nightsister-bred in the off hand, and underneath both a current of pure, joyous *attention*. The tomb's whisper was right about one thing. She fights the way other people confess.",
+        {"if": "saved_joren", "text": "Joren takes her flank without a word — south stair, the old patterns, two halves of one defense — and even so it is everything the pair of you can do to hold the octagon's center. She is not trying to kill you. That is the genuinely frightening part: she is *reading* you, both of you, page by page, parry by parry, and enjoying the book."},
+        {"if": "left_joren", "text": "You fight her alone — Joren is still half a hall behind you, tearing free of the snare's dying threads — and alone, the difference in your years shows immediately and cruelly. She drives you around the plinth like a drill instructor, naming your forms aloud as she dismantles them. \"Shien. Predictable. Your master's Soresu — better. And *that*—\" as you bind her lead blade, \"—that they did not teach you. There you are.\""},
+        "\"Here is my offer,\" she says across the crossed blades, not even slightly out of breath. \"Disengage. Walk out with your friend and your clean conscience, and tell your Council the tomb was empty. Or impress me.\""
+      ],
+      "choices": [
+        {
+          "text": "Press the attack — everything Venn taught you, everything the war added, full commitment, blade against blades.",
+          "effects": ["saber %+ 10"],
+          "goto": "c4_duel_r1"
+        },
+        {
+          "text": "Fight the room, not the woman — the plinth, the mirrored walls, the smoking door, Joren's angles. Make her fight architecture.",
+          "effects": ["command %+ 10", "set c4_room true"],
+          "goto": "c4_duel_r1"
+        },
+        {
+          "text": "Match her fire with fire. The tomb spent all day teaching you where the fast strength lives; draw on it, and show her what Venn's student looks like off the leash.",
+          "effects": ["dark %+ 16", "nyx_rel %+ 8", "saber %+ 5"],
+          "goto": "c4_duel_dark"
+        }
+      ]
+    },
+
+    "c4_duel_r1": {
+      "text": [
+        "Red and blue paint the black mirrors with war. Somewhere far above, eleven hundred years of dust shake loose and fall like snow."
+      ],
+      "choices": [
+        {
+          "text": "(Continue)",
+          "if": "saber >= 55 or (c4_room and command >= 50) or (saved_joren and saber >= 45)",
+          "goto": "c4_duel_win"
+        },
+        {
+          "text": "(Continue)",
+          "if": "saber < 55 and (not c4_room or command < 50) and (not saved_joren or saber < 45)",
+          "goto": "c4_duel_loss"
+        }
+      ]
+    },
+
+    "c4_duel_win": {
+      "text": [
+        "She is better than you. You win anyway.",
+        "It happens the way real victories happen — not one clean stroke but an accumulation: a half-step she concedes to the plinth's corner, a bind that costs her the short blade's angle, Joren's blade or the smoking door or the architecture of the octagon itself slowly bricking up her exits, until on the thirtieth exchange your blade is through her guard and a line of charred cloth opens along her ribs and the holocron — the holocron spins out of her keeping and cracks down on the stone between you all like a thrown gauntlet.",
+        "She looks at it. At you. And she laughs — winded, delighted, bleeding, the first wholly honest sound she has made tonight.",
+        "\"*There* you are,\" she says. \"Worth the trip after all.\" Her off hand is already behind her — not for the blade; for the wall, where something she planted on her way in answers with a red blink. \"Keep the box, little knight. Consider it your fee for the lesson. And do — *do* — ask them why it goes in a vault and not a furnace. I'll want your answer next time.\"",
+        "The charge blows the vault's mirrored wall into night and ash-wind. By the time the dust clears, there is only the tomb, the dead Sith's holocron at your feet — and far above on the broken stone, two red blades saluting once before the dark of Drezzar swallows her whole.",
+        "Joren lowers his blade slowly. \"Next time,\" he repeats, flatly. \"Why does she think there's a next time?\" He looks at you. \"Why do I?\""
+      ],
+      "effects": ["nyx_rel %+ 6", "war_score %+ 5"],
+      "goto": "c4_after"
+    },
+
+    "c4_duel_loss": {
+      "text": [
+        "She is better than you, and tonight that is the whole of the story.",
+        "The end comes on her schedule. A feint you buy completely, a nightsister sweep that takes your legs, and then black stone against your back and a red blade humming a finger's width from your throat, close enough that the world smells of ozone and your own ending. Joren — held off at the door behind a snarl of hurled debris — goes very still. Everyone in the vault knows she has won. Everyone in the vault knows what comes next.",
+        "She steps back and turns it off.",
+        "\"Oh, don't look so betrayed,\" she says, holstering one hilt, gold eyes bright. \"Dooku wants the box. *I* came for the inventory.\" And then she does the thing you will be turning over at ship's night for months: she takes the holocron of Darth Saraseth out of her coat — and sets it on the plinth. \"Tell your Council you won it,\" she says. \"They'll believe you; they want to. And every time you look at it, you'll know the truth instead: that it was a *gift*, and you'll wonder why, and one night you will want to ask me. That's the hook, little knight. I learned it from them.\"",
+        "The wall charge takes the mirrors out into the ash-wind, and she is gone up through the ruin with a mocking two-blade salute, leaving you alive, beaten, and holding exactly what you came for — which is, you understand dimly, the most dangerous outcome this room had on offer.",
+        "Joren helps you up. Neither of you says anything for a long time."
+      ],
+      "effects": ["nyx_rel %+ 8"],
+      "goto": "c4_after"
+    },
+
+    "c4_duel_dark": {
+      "text": [
+        "You stop fencing, and you fall on her like weather.",
+        "The tomb's day of lessons comes up through your boots — the drill yard's geometry or the gallery's clarity or simply the long accumulated rage of this whole rotten year — and your blade stops asking questions. For one minute of your life you fight without doubt, without ledger, without anyone's permission, and the vault's black mirrors multiply you into an army of yourself, and Sev'ara Nyx gives ground. Actually gives ground: two blades to your one, nine years your senior, retreating around the plinth with her eyes blown wide and golden and *glad.*",
+        "\"Yes,\" she breathes — parry, bind, the short blade shrieking out of her hand in a spray of sparks — \"yes, *there*, that's what they buried under all that Temple posture—\" and even disarmed and bleeding she is laughing, backing toward the wall where a planted charge answers her touch with a red blink, \"—do you feel it? The honesty? That's the only sermon I'll ever preach you, little knight: it is the only honest thing in this whole lying war—\"",
+        "The wall blows out into ash and night. The holocron drops from her keeping as she goes up through the ruin — dropped, or *left* — and her voice comes down out of the dark with her parting salute: \"Keep practicing. I'll check your forms in person. Soon.\"",
+        "Silence. Dust like snow. Joren is looking at you from the doorway, and there is dust on his face and something much older than dust in his expression, and you realize your blade is still lit and you do not remember the last minute in order.",
+        "You feel magnificent. That is the problem you will be living with from tonight on: you feel *magnificent*."
+      ],
+      "effects": ["nyx_rel %+ 8", "joren_rel %- 10"],
+      "goto": "c4_after"
+    },
+
+    "c4_after": {
+      "text": [
+        "The holocron of Darth Saraseth weighs four hundred grams and sits in your palm like a sleeping coal — warm, faintly, wrongly, the way blood is warm.",
+        "Up close the smoked-crystal faces are etched with microscript in dead languages, and at the heart of it something turns when you turn, keeps facing you however you hold it. The tomb's whisper has gone quiet — not absent: *relocated.* The voice that filled four hundred meters of stone all day now fits in your closed fist, and it is patient, and it knows the way to your quarters.",
+        {"if": "saved_joren", "text": "Joren limps the long stair beside you, shoulder-burned, snare-bruised, alive. At the threshold he stops you with a hand on your arm. \"What I said in there — about weighing it. I watched you choose me over the vault with that *thing* singing at you the whole time.\" His grip tightens once. \"Whatever I write in the report, that part goes in first.\""},
+        {"if": "left_joren", "text": "Joren walks the long stair three steps behind you and says nothing at all. He freed himself from the dying snare — of course he did, he's Joren — and he fought when it mattered, and he has not once raised his voice. At the threshold he stops. \"I'd have died in that ring,\" he says, conversationally, to the dead sky. \"It was at my throat when it lost power. You couldn't have known it would lose power.\" A pause. \"The report will say the mission came first. It will be accurate.\" He walks past you down the four hundred steps, and the distance between you is exactly the width of the thing in your hand."},
+        "Below, floodlights: the perimeter. Havoc's voice carries up the stair, counting heads aloud the way he always does, two Jedi and no losses, and for a moment Drezzar almost feels like somewhere the living are permitted."
+      ],
+      "goto": "c4_egress"
+    },
+
+    "c4_egress": {
+      "text": [
+        "The gunship lifts at dusk, if Drezzar's bruise-brown dimming counts as dusk, and the tomb falls away below like a closing mouth.",
+        "Tally has the turret and is narrating the Separatist needle-ship's destruction to Dice with deep satisfaction — Longshot put three rockets into it on Havoc's order the moment a hooded figure went up its ramp, \"and she walked out of the fireball, ${sir}, I am telling you, *walked*, and took the survey crawler, and Longshot says he had her in the reticle and his hands wouldn't—\" Havoc clears his throat once and the story ends.",
+        {"if": "civvies_saved", "text": "The captain drops into the jump seat across from you, helmet off. \"The men don't like this one, ${sir}. No disrespect. Droids they understand. Cities, even—\" he tips his head at the ash below, \"—but the boys watched that mountain all day like it was watching back, and Tally's been humming to stop hearing it. Permission to tell them their commander's got it in a box and the box is going to the Temple where boxes go?\" He means it as a joke. Mostly."},
+        {"if": "bombarded", "text": "The captain drops into the jump seat across from you, helmet off, and looks for a while at the sealed case between your boots. \"Calden Spire, the men understood, ${sir}. Arithmetic. Orders.\" He taps his own temple. \"This one they don't. Dead world, dead wizard, one box out. Longshot wants to know what we'd have done if you hadn't come back up those stairs.\" A pause that is not quite insubordinate. \"I told him we'd have followed standing orders. I'd take it kindly, ${sir}, if you didn't make a liar of me someday.\""},
+        {"if": "not bombarded and not civvies_saved", "text": "Havoc drops into the jump seat across from you, helmet off, and studies the sealed case between your boots with a soldier's flat taxonomy: not droid, not ordnance, not ration. \"Cargo manifest's going to say 'archaeological materials,' ${sir},\" he says at last. \"I've written some creative manifests in this war. That one's my masterpiece.\""},
+        "Through the deck, through the case, through the kilometer of cold sky between you and the tomb — very softly, in a voice only you can hear, the holocron begins to sing."
+      ],
+      "goto": "c4_voyage"
+    },
+
+    "c4_voyage": {
+      "text": [
+        "Ship's night, three days out from Drezzar, two days short of the rendezvous where a Temple courier waits to take custody. The Resolute Dawn hums around you, forty decks of sleeping war. You are alone in the secure hold with a sealed case, and the case is talking.",
+        "It has learned you with terrifying speed. It does not hiss about power; it knows you better. It talks about *Vethari* — the move neither you nor Joren was good enough to see; it could teach you to see such moves. It talks about Master Venn, drifting in her blue tank: there are techniques in here, it murmurs, older than the Republic, for calling the drowning back. It talks about the war's hidden hands, the ones Nyx glimpsed — *the answer is in me, little knight, I watched these same fingers work a thousand years ago.* Each offer is a door, and every door is plausible, and behind all of them the stair going down one reasonable step at a time.",
+        {"if": "dark >= 40", "text": "And beneath the offers, quieter, the truest hook of all: it has stopped feeling like an enemy's voice. Somewhere on Drezzar the whisper crossed the border into your own inner weather, and on the bad watches you can no longer perfectly tell which thoughts came with you and which came aboard in the case."},
+        {"if": "whisper_pact", "text": "*You asked once already,* it reminds you, gently, factually, a creditor with excellent records. *In the dark, when it mattered. The sky did not fall. It never falls. That is my entire curriculum, and you have already passed the first examination.*"},
+        "Tomorrow, the courier. Joren has drafted the transfer manifest and left the custody line — whose name surrenders the relic — blank, for yours.",
+        "The case sits on the table. The ship sleeps. The choice, at last, is the simple one the whole tomb was built to ask."
+      ],
+      "choices": [
+        {
+          "text": "Sign it over. Tomorrow the holocron goes to the Temple vaults, the Council's problem, the way the orders read — and the voice goes with it.",
+          "goto": "c4_give"
+        },
+        {
+          "text": "Open the case tonight. Just once. Not to obey it — to *interrogate* it. Nyx's hidden hands, Venn's drowning, the war's authors: you will never again be this close to answers.",
+          "effects": ["dark %+ 12"],
+          "goto": "c4_open"
+        },
+        {
+          "text": "Keep it. Quietly, deniably, indefinitely. The Council files dangers in vaults and forgets them; you will *understand* this one, and be armed with what it knows when the hidden hands finally show themselves.",
+          "effects": ["dark %+ 10"],
+          "goto": "c4_keep"
+        },
+        {
+          "text": "Destroy it. Now, tonight, orders be damned. Some doors should not exist, and you have watched this one learn your name.",
+          "effects": ["dark %- 5", "council_rep %- 5"],
+          "goto": "c4_destroy"
+        }
+      ]
+    },
+
+    "c4_open": {
+      "text": [
+        "The case opens without a sound. The holocron is awake before the lid is half raised.",
+        "It does not show you a gatekeeper, no robed hologram with a dead man's manners. Saraseth was denied a seat among teachers, and what the crystal kept of him does not teach: it *bargains*. For one hour, in the cold of the secure hold, you ask and it answers — and the answers are good. That is the thing no Temple warning ever quite prepared you for: they are *good*. A name Nyx didn't know she'd shown you, sketched in context. A breathing rhythm for the drowning that you write down with shaking hands before you can stop yourself, in case Venn— in case. A reading of Vethari so lucid it feels like being handed your own life annotated.",
+        "And the price, this first night, is nothing at all. Of course it is nothing. The first hand of sabacc is free.",
+        "When you finally close the case, ship's dawn is two hours off, your eyes feel sandblasted, and the voice from inside the crystal follows you all the way to the hatch, not pleading, not commanding — simply *certain*: *Now you know what your Council keeps in its cellar, little knight. The only question left is whose cellar this bottle ages in. Theirs — or a student's, at last?*"
+      ],
+      "choices": [
+        {
+          "text": "Theirs. What just happened is exactly why. Sign the transfer in the morning and put a vault's walls between yourself and that voice.",
+          "effects": ["force %+ 5"],
+          "goto": "c4_give"
+        },
+        {
+          "text": "Yours. One hour bought you more truth than a year of Council briefings. Keep it — student, cellar, and all.",
+          "effects": ["dark %+ 8"],
+          "goto": "c4_keep"
+        }
+      ]
+    },
+
+    "c4_destroy": {
+      "text": [
+        "You set the holocron on the deck of the secure hold, take your lightsaber in both hands, and bring the blade down with everything the day has left you.",
+        "The blade stops. Not against resistance — against *refusal*: a hand's breadth above the smoked crystal, plasma flattening and pooling like water on glass, and up the hilt and into your wrists comes a sensation you will never successfully describe, as if the weapon itself were being politely overruled. Eleven hundred years, the unmoved crystal seems to say, in the dust-dry voice you have come to know. *Better students than you have tried furnaces, oceans, suns. I am still making my rounds. Sit down, little knight, before you wake the ship.*",
+        "You try for an hour. Cargo plasma-cutter. The Force, hurled until your nose bleeds. The crystal warms, turns, and endures, and finally projects — for one mocking instant — a faint schematic of the Resolute Dawn's own reactor, annotated in dead languages, as if to say: *that might do it. Shall we?*",
+        "You sit in the cold hold with your dead options, and the real choice reassembles itself in front of you, patient as the tomb: the vault, or the keeping. There was never a third door. There never is."
+      ],
+      "choices": [
+        {
+          "text": "The vault, then. If it cannot be destroyed, it can at least be buried under the Temple with the rest of the cellar. Sign it over.",
+          "effects": ["force %+ 5"],
+          "goto": "c4_give"
+        },
+        {
+          "text": "The keeping. If it cannot be destroyed, then someone must watch it — someone who has heard its tricks and survived them. You.",
+          "effects": ["dark %+ 8"],
+          "goto": "c4_keep"
+        }
+      ]
+    },
+
+    "c4_give": {
+      "text": [
+        "At the rendezvous, a Temple courier ship the size of a lifeboat matches the Dawn's airlock, and a silver-haired Jedi archivist with careful hands and a sealed stasis reliquary takes custody of the holocron of Darth Saraseth on the strength of your signature.",
+        "The voice fights to the last. Not with threats — with *bargains*, sweeter and more specific by the second, names and cures and futures spilling out of the crystal in a final fire-sale of everything you might ever want, and the last thing it says, as the reliquary's field closes over it like water, is not a curse. It is, in a tone of vast, eleven-century patience: *As you like. I am very good at waiting, little knight. Ask the Council where they keep me. See if they tell you.*",
+        "Then silence. Real silence, for the first time since the four hundredth step — a quiet so abrupt and so clean that you sway on your feet, and the archivist, who has clearly seen this before, steadies your elbow without comment.",
+        "Joren signs as witness with a flourish of pure relief. On the walk back from the airlock he is lighter than he has been since Vethari, talking fast, planning the report, two younglings on a staircase again — and if some traitor sliver of you keeps cataloguing what just left the ship, keeps reaching for the warm spot in your senses where the singing used to be, that is between you and the long watches of the night.",
+        "The Council's commendation arrives within a day. It is brief, formal, and uses the word 'trust' once, which Joren says is practically a parade."
+      ],
+      "effects": ["set holocron \"council\"", "council_rep %+ 15", "dark %- 5", "joren_rel %+ 10"],
+      "goto": "c4_exit"
+    },
+
+    "c4_keep": {
+      "text": [
+        "The official record will show that the tomb of Saraseth, when finally breached by Republic envoys, held funerary goods, dead languages, and no holocron — the Separatist agent designated NYX, SEV'ARA having presumably extracted the primary artifact before their arrival. It is a clean story. Nyx herself, you reflect, will laugh herself sick when it reaches her, and say nothing, because the hook is the gift that keeps on giving.",
+        "Making the record say it is the night's true work."
+      ],
+      "choices": [
+        {
+          "text": "Forge it properly: amend the cargo manifest, re-seal an empty reliquary case for the courier, and let paperwork do what paperwork does best.",
+          "effects": ["set holocron \"kept\"", "guile %+ 10", "dark %+ 12"],
+          "goto": "c4_keep_2"
+        },
+        {
+          "text": "The deck officer logged the case's mass on intake. Brush his memory smooth with the Force — a small cloud, a kindness really, one less thing for him to be questioned about someday.",
+          "effects": ["set holocron \"kept\"", "force %+ 5", "dark %+ 16"],
+          "goto": "c4_keep_2"
+        },
+        {
+          "text": "Tell Joren a half-truth before he can ask: the holocron was lost with Nyx. Say it to his face, on the strength of the south stair, and make him believe it.",
+          "effects": ["set holocron \"kept\"", "joren_rel %- 20", "guile %+ 5", "dark %+ 12"],
+          "goto": "c4_keep_2"
+        }
+      ]
+    },
+
+    "c4_keep_2": {
+      "text": [
+        "It is done by ship's dawn.",
+        "The courier departs with a sealed reliquary and a clean manifest; the Council receives a regretful report; and in the false bottom of your campaign chest, wrapped in a shielding mesh you built yourself from a sensor-baffle kit, four hundred grams of dead Sith ride toward the rest of your war. You are aware — fully, lucidly, the way you are aware of a blade's edge — of every line you have just crossed. That lucidity feels like control. The holocron, who has watched a thousand years of students mistake the one for the other, says nothing at all that night, and its silence is the most companionable it has ever been.",
+        {"if": "joren_pact", "text": "Somewhere in the next cabin sleeps the friend you promised, in the observation blister over a blue storm: *everything, both ways.* The pact lasted nine days. You will get very good, in the months ahead, at not finishing that thought."},
+        "The whisper waits until you are at the hatch, lights out, the deed irreversible. Then, softly, in the voice that no longer sounds entirely separate from your own: *Good. Now we can begin.*"
+      ],
+      "goto": "c4_exit"
+    },
+
+    "c4_exit": {
+      "text": [
+        "Two days later the Resolute Dawn drops out of hyperspace into the marshalling yards above Ord Radama, and the war takes you back with both hands.",
+        "Dispatches flood the bridge the moment the comm buoys sync: fleet movements, casualty lists, a Council summons for full debrief on Coruscant. Joren reads his own orders at your elbow and whistles — the two of you are being kept in harness, it seems; the Council approves of pairs it can compare.",
+        {"if": "holocron == \"council\"", "text": "And one more item, flagged for your eyes: the Temple confirms receipt of one (1) artifact, designation withheld, vault designation withheld. You read the line twice. Somewhere under Coruscant, behind doors with no handles, the patient voice is telling its bargains to the dark. *Ask the Council where they keep me,* it said. You file the dispatch and discover that you have, without deciding to, begun to wonder."},
+        {"if": "holocron == \"kept\"", "text": "Your gear goes down to the surface barracks with the command staff's baggage train, one campaign chest among forty, and you catch yourself tracking it across the landing field the way a parent tracks a child in a crowd. Patience, sings the small warm voice that no one else aboard can hear. We have all the war ahead of us, little knight."},
+        "But the dispatch that stops your breathing is the shortest, relayed from the Temple's halls of healing, eleven words exactly:",
+        "PATIENT VENN, ILARA — RESPONSIVE STIMULI OBSERVED. PROGNOSIS REVISED: GUARDED. FAMILIAR PRESENCE REQUESTED.",
+        "Joren reads it over your shoulder and grips the back of your neck the way he did at Jabiim, when the gunships finally came. \"Coruscant first anyway,\" he says, rough. \"Go sit with her. I'll handle the Council's questions until you're—\" He stops. Starts again. \"Go sit with her.\"",
+        "Below, troopships are loading for theaters whose names you don't know yet. Ahead, Coruscant, the Council, a waking master who will look at you with eyes that have always seen everything — and whatever it is you have begun, this year, to become.",
+        "The Dawn turns coreward, and the war turns with her."
+      ],
+      "goto_chapter": 5
+    }
+  }
+}
